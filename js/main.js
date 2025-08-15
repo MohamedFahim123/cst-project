@@ -18,7 +18,7 @@ const MyAppROUTES = [
     description: "Shop Page",
   },
   {
-    path: "/shop/productdetails",
+    path: "/shop/product-details",
     title: "Shop Details",
     description: "Shop Details Page",
   },
@@ -177,6 +177,7 @@ const router = new Router({
 
   "/": "/pages/home/home.html",
   "/shop": "/pages/shop/shop.html",
+  "/shop/product-details": "/pages/shop/product-details/product-details.html",
   "/blogs": "/pages/blogs/blogs.html",
   "/contact": "/pages/contact/contact.html",
   "/cart": "/pages/cart/cart.html",
