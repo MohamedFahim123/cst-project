@@ -1,7 +1,67 @@
-import { MyAppROUTES } from "./routes.js";
+const MyAppROUTES = [
+  // error page
+  {
+    path: "/404",
+    title: "404",
+    description: "This Page Does Not Exist",
+  },
+
+  // home pages
+  {
+    path: "/",
+    title: "Home",
+    description: "Our Home Page",
+  },
+  {
+    path: "/shop",
+    title: "Shop",
+    description: "Shop Page",
+  },
+  {
+    path: "/shop/productdetails",
+    title: "Shop Details",
+    description: "Shop Details Page",
+  },
+  {
+    path: "/blogs",
+    title: "Blogs",
+    description: "Blog Page",
+  },
+  {
+    path: "/contact",
+    title: "Contact",
+    description: "Our Contact Page",
+  },
+
+  // carts
+  {
+    path: "/cart",
+    title: "Cart",
+    description: "Cart Page",
+  },
+  {
+    path: "/wishlist",
+    title: "Wishlist",
+    description: "Wishlist Page",
+  },
+
+  // auth
+  {
+    path: "/login",
+    title: "Login",
+    description: "Login Page",
+  },
+  {
+    path: "/register",
+    title: "Register",
+    description: "Register Page",
+  },
+];
 
 class Router {
   #routes = { "/": "/pages/home/home.html" };
+  #navBar = "";
+  #footer = "";
   constructor(routes) {
     this.Routes = routes;
 
@@ -24,12 +84,14 @@ class Router {
   async getNav() {
     const res = await fetch("/components/navbar.html");
     const html = await res.text();
+    this.#navBar = html;
     return html;
   }
 
   async getFooter() {
     const res = await fetch("/components/footer.html");
     const html = await res.text();
+    this.#footer = html;
     return html;
   }
 
@@ -45,6 +107,7 @@ class Router {
     const app = document.getElementById("app");
     const header = document.getElementById("header");
     const footer = document.getElementById("footer");
+    route = "/" + route.replace(/^\/+/, "").toLowerCase();
 
     this.showLoader();
 
@@ -54,8 +117,8 @@ class Router {
     }
 
     if (!route.includes("/dashboard")) {
-      header.innerHTML = await this.getNav();
-      footer.innerHTML = await this.getFooter();
+      header.innerHTML = this.#navBar || (await this.getNav());
+      footer.innerHTML = this.#footer || (await this.getFooter());
     } else {
       header.innerHTML = "";
       footer.innerHTML = "";
@@ -64,7 +127,6 @@ class Router {
     if (push && this.Routes[route]) {
       history.pushState({}, "", route);
     }
-
     const file = this.Routes[route];
 
     if (file) {
@@ -105,22 +167,29 @@ class Router {
   }
 
   navigate(route) {
-    this.render(route, true);
+    const normalizedRoute = "/" + route.replace(/^\/+/, "").toLowerCase();
+    this.render(normalizedRoute, true);
   }
 }
 
 const router = new Router({
-  "/": "/pages/home/home.html",
-  "/about": "/pages/about/about.html",
-  "/contact": "/pages/contact/contact.html",
-  "./about/about.html": "/pages/about/about.html",
   "/404": "/pages/404/404.html",
-  "/dashboard": "/pages/dashboard/profile/profile.html",
+
+  "/": "/pages/home/home.html",
+  "/shop": "/pages/shop/shop.html",
+  "/blogs": "/pages/blogs/blogs.html",
+  "/contact": "/pages/contact/contact.html",
+  "/cart": "/pages/cart/cart.html",
+  "/wishlist": "/pages/wishlist/wishlist.html",
+
+  "/register": "/pages/register/register.html",
+  "/login": "/pages/login/login.html",
 });
 
 document.addEventListener("click", (e) => {
-  if (e.target.matches("[data-link]")) {
+  const link = e.target.closest("[data-link]");
+  if (link) {
     e.preventDefault();
-    router.navigate(e.target.getAttribute("href"));
+    router.navigate(link.getAttribute("href"));
   }
 });
