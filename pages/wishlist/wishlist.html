@@ -1,111 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wishlist Page</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
-  <link rel="stylesheet" href="/css/bootstrap.min.css">
   <link rel="stylesheet" href="wishlist.css">
 
 
 </head>
+
 <body>
 
-<div class="container pt-4">
-  <p><span class="text-secondary">Home ></span> Wishlist</p>
+  <div class="container pt-4">
+    <p><span class="text-secondary">Home ></span> Wishlist</p>
 
-  <!-- icon -->
- <div class="wishlistImage my-5 d-flex justify-content-center align-items-center" >
-  <span class="h3">Your Favorite Products <i class="fas fa-heart fa-2x text-danger"></i></span>
-</div>
+    <!-- icon -->
+    <div class="wishlistImage my-5 d-flex justify-content-center align-items-center">
+      <span class="h3">Your Favorite Products <i class="fas fa-heart fa-2x text-danger"></i></span>
+    </div>
 
 
-  <!-- Wishlist Table -->
-  <div class="wishlist-section mt-5 mb-5">
-    <div class="container">
-      <div class="wishlist-table-wrap">
-        <table class="wishlist-table">
-          <thead>
-            <tr>
-              <th></th>
-              <th>Product Image</th>
-              <th>Name</th>
-              <th>Price</th>
-              <th>Stock Status</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="product-remove"><a href="#" class="delete-row"><i class="far fa-window-close"></i></a></td>
-              <td><img src="assets/img/products/product-img-1.jpg" alt=""></td>
-              <td>Strawberry</td>
-              <td>$85</td>
-              <td><span class="text-success">In Stock</span></td>
-              <td>
-                <a href="#" class="btn-move me-2">Move to Cart</a>
-                <a href="#" class="btn-remove delete-row">Remove</a>
-              </td>
-            </tr>
-            <tr>
-              <td class="product-remove"><a href="#" class="delete-row"><i class="far fa-window-close"></i></a></td>
-              <td><img src="assets/img/products/product-img-2.jpg" alt=""></td>
-              <td>Berry</td>
-              <td>$70</td>
-              <td><span class="text-danger">Out of Stock</span></td>
-              <td>
-                <a href="#" class="btn-move me-2 disabled" style="pointer-events:none; opacity:0.6;">Move to Cart</a>
-                <a href="#" class="btn-remove delete-row">Remove</a>
-              </td>
-            </tr>
-            <tr>
-              <td class="product-remove"><a href="#" class="delete-row"><i class="far fa-window-close"></i></a></td>
-              <td><img src="assets/img/products/product-img-3.jpg" alt=""></td>
-              <td>Lemon</td>
-              <td>$35</td>
-              <td><span class="text-success">In Stock</span></td>
-              <td>
-                <a href="#" class="btn-move me-2">Move to Cart</a>
-                <a href="#" class="btn-remove delete-row">Remove</a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+    <!-- Wishlist Table -->
+    <div class="wishlist-section mt-5 mb-5">
+      <div class="container">
+        <div class="wishlist-table-wrap">
+          <table class="wishlist-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Product Image</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Stock Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="product-remove"><a href="#" class="delete-row"><i class="far fa-window-close"></i></a></td>
+                <td><img src="assets/img/products/product-img-1.jpg" alt=""></td>
+                <td>Strawberry</td>
+                <td>$85</td>
+                <td><span class="text-success">In Stock</span></td>
+                <td>
+                  <a href="#" class="btn-move me-2">Move to Cart</a>
+                  <a href="#" class="btn-remove delete-row">Remove</a>
+                </td>
+              </tr>
+              <tr>
+                <td class="product-remove"><a href="#" class="delete-row"><i class="far fa-window-close"></i></a></td>
+                <td><img src="assets/img/products/product-img-2.jpg" alt=""></td>
+                <td>Berry</td>
+                <td>$70</td>
+                <td><span class="text-danger">Out of Stock</span></td>
+                <td>
+                  <a href="#" class="btn-move me-2 disabled" style="pointer-events:none; opacity:0.6;">Move to Cart</a>
+                  <a href="#" class="btn-remove delete-row">Remove</a>
+                </td>
+              </tr>
+              <tr>
+                <td class="product-remove"><a href="#" class="delete-row"><i class="far fa-window-close"></i></a></td>
+                <td><img src="assets/img/products/product-img-3.jpg" alt=""></td>
+                <td>Lemon</td>
+                <td>$35</td>
+                <td><span class="text-success">In Stock</span></td>
+                <td>
+                  <a href="#" class="btn-move me-2">Move to Cart</a>
+                  <a href="#" class="btn-remove delete-row">Remove</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<script src="/js/bootstrap.min.js"></script>
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
-<script>
-  // Delete row functionality
-  document.querySelectorAll('.delete-row').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-      e.preventDefault();
-      this.closest('tr').remove();
+  <script>
+    // Delete row functionality
+    document.querySelectorAll('.delete-row').forEach(btn => {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        this.closest('tr').remove();
+      });
     });
-  });
-</script>
+  </script>
 
-</body>
-</html>
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wishlist</title>
-</head>
-
-<body>
-
-    <div class="wishlist">
-        <h1>
-            Wishlist Page
-        </h1>
-    </div>
 </body>
 
 </html>

@@ -22,6 +22,9 @@ const APP_ROUTES = [
   { path: "/cart", title: "Cart", description: "Cart Page" },
   { path: "/wishlist", title: "Wishlist", description: "Wishlist Page" },
 
+  // Checkout pages
+  { path: "/checkout", title: "Checkout", description: "Checkout Page" },
+
   // Auth pages
   { path: "/login", title: "Login", description: "Login Page" },
   { path: "/register", title: "Register", description: "Register Page" },
@@ -199,6 +202,7 @@ const appRouter = new Router({
   "/contact": "/pages/contact/contact.html",
   "/cart": "/pages/cart/cart.html",
   "/wishlist": "/pages/wishlist/wishlist.html",
+  "/checkout": "/pages/checkout/checkout.html",
   "/register": "/pages/register/register.html",
   "/login": "/pages/login/login.html",
 });

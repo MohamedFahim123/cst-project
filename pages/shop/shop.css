@@ -1,12 +1,3 @@
-.shop {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: blue;
-}
-
 .c-check-purple:checked {
   background-color: #634c9f;
   border-color: #634c9f;
