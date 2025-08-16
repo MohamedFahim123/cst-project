@@ -1,8 +1,7 @@
-.about {
+.product-details {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: blue;
+  background-color: rgb(3, 68, 39);
 }

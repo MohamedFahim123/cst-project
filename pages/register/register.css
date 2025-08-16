@@ -1,0 +1,66 @@
+.register-container {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 800px;
+}
+
+.register-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.register-tabs {
+  display: flex;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.register-tab {
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  color: #6c757d;
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+}
+
+.register-tab.active {
+  color: var(--bg-main-color);
+  border-bottom-color: var(--bg-main-color);
+}
+
+.register-tab:first-child {
+  margin-right: 1rem;
+}
+
+.form-label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.form-control {
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.user-type-options {
+  margin: 1.5rem 0;
+}
+
+.form-check {
+  margin-bottom: 0.75rem;
+}
+
+.privacy-text {
+  font-size: 0.85rem;
+  color: #6c757d;
+  margin: 1.5rem 0;
+}
+
+.register-btn {
+  width: 100%;
+  padding: 0.75rem;
+  font-weight: 600;
+}
