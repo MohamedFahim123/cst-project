@@ -30,6 +30,7 @@ const APP_ROUTES = [
 /*
  * Router Class Constructor Which Handles client-side routing for SPA
  */
+
 class Router {
   #routeMap = {};
   #cachedNavbar = "";
@@ -56,7 +57,14 @@ class Router {
       const link = e.target.closest("[data-link]");
       if (link) {
         e.preventDefault();
+
         this.navigate(link.getAttribute("href"));
+
+        document.querySelectorAll(".nav-link.active").forEach((el) => {
+          el.classList.remove("active");
+        });
+
+        link.classList.add("active");
       }
     });
   }
