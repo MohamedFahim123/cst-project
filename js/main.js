@@ -79,7 +79,6 @@ class Router {
     return await response.text();
   }
 
-
   #updatePageMeta(meta) {
     if (!meta) return;
 
@@ -98,9 +97,22 @@ class Router {
     try {
       this.#toggleLoader(true);
 
-      const normalizedPath = this.#normalizePath(rawPath);
-      const matchingRoute = this.#findMatchingRoute(normalizedPath);
+      let normalizedPath = this.#normalizePath(rawPath);
 
+      if (normalizedPath === "/index.html") {
+        history.replaceState({}, "", "/");
+        normalizedPath = "/";
+      }
+
+      if (normalizedPath === "/shop/product-details") {
+        const matchingRoute = this.#findMatchingRoute(normalizedPath);
+        if (matchingRoute) {
+          await this.#renderRoute(matchingRoute, normalizedPath, updateHistory);
+          return;
+        }
+      }
+
+      const matchingRoute = this.#findMatchingRoute(normalizedPath);
       if (!matchingRoute) {
         return this.navigate("/404");
       }
@@ -110,7 +122,7 @@ class Router {
       console.error("Navigation error:", error);
       this.navigate("/404");
     } finally {
-      this.#toggleLoader(false);
+      setTimeout(() => this.#toggleLoader(false), 500);
     }
   }
 
