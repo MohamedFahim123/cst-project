@@ -138,11 +138,11 @@
 }
 
 .promo .col:nth-child(1) .promo-card {
-  background: url(../../imgs/banner-20.jpg.png);
+  background: url(../../assets/banner-20.jpg.png);
 }
 
 .promo .col:nth-child(2) .promo-card {
-  background: url(../../imgs/banner-21.jpg.png);
+  background: url(../../assets/banner-21.jpg.png);
 }
 
 .promo .promo-heading {

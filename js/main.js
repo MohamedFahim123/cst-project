@@ -1,13 +1,5 @@
-/**
- * Application Route Configuration
- * Defines all routes with their metadata
- */
-
 const APP_ROUTES = [
-  // Error page
   { path: "/404", title: "404", description: "This Page Does Not Exist" },
-
-  // Main pages
   { path: "/", title: "Home", description: "Our Home Page" },
   { path: "/shop", title: "Shop", description: "Shop Page" },
   {
@@ -17,22 +9,12 @@ const APP_ROUTES = [
   },
   { path: "/blogs", title: "Blogs", description: "Blog Page" },
   { path: "/contact", title: "Contact", description: "Our Contact Page" },
-
-  // Cart pages
   { path: "/cart", title: "Cart", description: "Cart Page" },
   { path: "/wishlist", title: "Wishlist", description: "Wishlist Page" },
-
-  // Checkout pages
   { path: "/checkout", title: "Checkout", description: "Checkout Page" },
-
-  // Auth pages
   { path: "/login", title: "Login", description: "Login Page" },
   { path: "/register", title: "Register", description: "Register Page" },
 ];
-
-/*
- * Router Class Constructor Which Handles client-side routing for SPA
- */
 
 class Router {
   #routeMap = {};
@@ -49,25 +31,14 @@ class Router {
   }
 
   #setupEventListeners() {
-    window.addEventListener("popstate", () =>
-      this.#handleNavigation(window.location.pathname, false)
-    );
-    window.addEventListener("load", () =>
-      this.#handleNavigation(window.location.pathname, false)
-    );
+    window.addEventListener("hashchange", () => this.#handleNavigation());
+    window.addEventListener("load", () => this.#handleNavigation());
 
     document.addEventListener("click", (e) => {
       const link = e.target.closest("[data-link]");
       if (link) {
         e.preventDefault();
-
         this.navigate(link.getAttribute("href"));
-
-        document.querySelectorAll(".nav-link.active").forEach((el) => {
-          el.classList.remove("active");
-        });
-
-        link.classList.add("active");
       }
     });
   }
@@ -92,38 +63,31 @@ class Router {
 
   #updatePageMeta(meta) {
     if (!meta) return;
-
     document.title = meta.title;
     const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute("content", meta.description);
-    }
+    if (metaDesc) metaDesc.setAttribute("content", meta.description);
   }
 
   #toggleLoader(show) {
     this.#loaderElement.style.display = show ? "flex" : "none";
   }
 
-  async #handleNavigation(rawPath, updateHistory = true) {
+  async #handleNavigation() {
     try {
       this.#toggleLoader(true);
 
-      let normalizedPath = this.#normalizePath(rawPath);
-
-      if (normalizedPath === "/index.html") {
-        history.replaceState({}, "", "/");
-        normalizedPath = "/";
-      }
+      let hashPath = window.location.hash.slice(1) || "/";
+      let normalizedPath = this.#normalizePath(hashPath);
 
       const matchingRoute = this.#findMatchingRoute(normalizedPath);
       if (!matchingRoute) {
-        return this.navigate("/404");
+        return this.navigate("#/404");
       }
 
-      await this.#renderRoute(matchingRoute, normalizedPath, updateHistory);
+      await this.#renderRoute(matchingRoute, normalizedPath);
     } catch (error) {
       console.error("Navigation error:", error);
-      this.navigate("/404");
+      this.navigate("#/404");
     } finally {
       setTimeout(() => this.#toggleLoader(false), 500);
     }
@@ -138,13 +102,11 @@ class Router {
     );
   }
 
-  async #renderRoute(routeKey, normalizedPath, updateHistory) {
-    if (normalizedPath === "/index.html") {
-      history.replaceState({}, "", "/");
-      normalizedPath = "/";
-    }
+  async #renderRoute(routeKey, normalizedPath) {
     document.querySelectorAll("[data-link]").forEach((link) => {
-      const linkPath = this.#normalizePath(link.getAttribute("href"));
+      const linkPath = this.#normalizePath(
+        link.getAttribute("href").replace("#", "")
+      );
       link.classList.toggle("active", linkPath === normalizedPath);
     });
 
@@ -153,10 +115,6 @@ class Router {
     } else {
       this.#headerElement.innerHTML = "";
       this.#footerElement.innerHTML = "";
-    }
-
-    if (updateHistory) {
-      history.pushState({}, "", routeKey);
     }
 
     const template = await this.#loadTemplate(this.#routeMap[routeKey]);
@@ -183,13 +141,10 @@ class Router {
   }
 
   navigate(path) {
-    const normalizedPath = this.#normalizePath(path);
-    const currentPath = this.#normalizePath(window.location.pathname);
-
-    if (normalizedPath === currentPath) {
-      return;
+    if (!path.startsWith("#")) {
+      path = "#" + path;
     }
-    this.#handleNavigation(path, true);
+    window.location.hash = path.replace(/^#+/, "#");
   }
 }
 
