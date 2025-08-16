@@ -2,11 +2,18 @@
   "rewrites": [
     {
       "source": "/shop/product-details",
-      "destination": "/"
+      "destination": "/index.html",
+      "headers": {
+        "Cache-Control": "no-cache, no-store, must-revalidate"
+      }
+    },
+    {
+      "source": "/shop/product-details/",
+      "destination": "/index.html"
     },
     {
       "source": "/(.*)",
-      "destination": "/"
+      "destination": "/index.html"
     }
   ]
 }
