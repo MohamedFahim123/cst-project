@@ -6,3 +6,43 @@
   height: 100vh;
   background-color: blue;
 }
+
+.c-check-purple:checked {
+  background-color: #634c9f;
+  border-color: #634c9f;
+}
+
+.shop-filters-header {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.shop-filter-container {
+  padding: 1rem 0;
+  border-bottom: 1px solid #e1e1e1;
+}
+
+#customRange::-webkit-slider-thumb {
+  background: black; /* أخضر Bootstrap */
+}
+#customRange::-webkit-slider-runnable-track {
+  background: black;
+}
+
+.bg-gray {
+  background-color: #e5e7eb;
+}
+
+.border-gray {
+  border-color: #d1d5db;
+}
+
+.c-fs-7 {
+  font-size: 14px;
+}
+.c-fs-8 {
+  font-size: 12px;
+}
