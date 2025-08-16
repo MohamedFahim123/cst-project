@@ -70,7 +70,7 @@ class Router {
   }
 
   #normalizePath(path) {
-    return path ? `/${path.replace(/^\/+|\/+$/g, "").toLowerCase()}` : "/";
+    return path ? `/${path.replace(/^\/+|\/+$/g, "")}` : "/";
   }
 
   async #loadTemplate(url) {
@@ -119,11 +119,7 @@ class Router {
   }
 
   #findMatchingRoute(path) {
-    return (
-      Object.keys(this.#routeMap).find(
-        (key) => key.toLowerCase() === path.toLowerCase()
-      ) || null
-    );
+    return Object.keys(this.#routeMap).find((key) => key === path) || null;
   }
 
   async #renderRoute(routeKey, normalizedPath, updateHistory) {
@@ -131,6 +127,10 @@ class Router {
       history.replaceState({}, "", "/");
       normalizedPath = "/";
     }
+    document.querySelectorAll("[data-link]").forEach((link) => {
+      const linkPath = this.#normalizePath(link.getAttribute("href"));
+      link.classList.toggle("active", linkPath === normalizedPath);
+    });
 
     if (!normalizedPath.includes("/dashboard")) {
       await this.#loadLayoutComponents();
@@ -167,6 +167,12 @@ class Router {
   }
 
   navigate(path) {
+    const normalizedPath = this.#normalizePath(path);
+    const currentPath = this.#normalizePath(window.location.pathname);
+
+    if (normalizedPath === currentPath) {
+      return;
+    }
     this.#handleNavigation(path, true);
   }
 }

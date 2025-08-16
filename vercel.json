@@ -1,7 +1,12 @@
 {
-  "routes": [
-    { "handle": "filesystem" },
-    { "src": "/shop/product-details", "dest": "/index.html" },
-    { "src": "/(.*)", "dest": "/index.html" }
+  "rewrites": [
+    {
+      "source": "/shop/product-details",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
   ]
 }
