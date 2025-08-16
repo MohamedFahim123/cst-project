@@ -104,14 +104,6 @@ class Router {
         normalizedPath = "/";
       }
 
-      if (normalizedPath === "/shop/product-details") {
-        const matchingRoute = this.#findMatchingRoute(normalizedPath);
-        if (matchingRoute) {
-          await this.#renderRoute(matchingRoute, normalizedPath, updateHistory);
-          return;
-        }
-      }
-
       const matchingRoute = this.#findMatchingRoute(normalizedPath);
       if (!matchingRoute) {
         return this.navigate("/404");
