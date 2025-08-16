@@ -1,0 +1,278 @@
+.navbar {
+  box-shadow: var(--shadow-sm);
+}
+.navbar-title {
+  color: var(--bg-main-color);
+}
+.navbar-brand {
+  font-size: 1.5rem;
+  color: var(--text-main-color);
+}
+
+.navbar-brand:hover {
+  color: var(--text-main-color);
+}
+
+.nav-link {
+  color: var(--text-main-color);
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  color: var(--bg-main-color);
+}
+
+.dropdown-menu {
+  min-width: 120px;
+}
+
+.cart-badge {
+  font-size: 0.6rem;
+  padding: 0.15rem 0.3rem;
+}
+.navbar-toggler {
+  border: none;
+  padding: 0.5rem;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+.delivery-info {
+  display: none;
+  font-size: 0.85rem;
+  color: var(--text-second-color);
+}
+
+.dropdown-menu {
+  border: none;
+  box-shadow: var(--shadow-md);
+}
+
+.dropdown-item {
+  padding: 0.5rem 1.5rem;
+}
+
+.badge {
+  font-size: 0.6rem;
+  padding: 0.25rem 0.4rem;
+}
+
+.offcanvas {
+  max-width: 80%;
+}
+
+.offcanvas-header {
+  padding: 1rem 1.5rem;
+}
+
+.offcanvas-body {
+  padding: 0;
+}
+
+.offcanvas-body .nav-link {
+  padding: 0.75rem 1.5rem;
+  border-bottom: 1px solid var(--bg-light);
+}
+
+.nav-link.active {
+  color: var(--bg-main-color) !important;
+  font-weight: 600;
+}
+
+footer {
+  background-color: var(--bg-light);
+  color: var(--text-main-color);
+  font-size: 0.9rem;
+}
+
+footer h5 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+  color: var(--text-main-color);
+}
+
+footer a {
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: var(--bg-main-color) !important;
+}
+
+.input-group .form-control {
+  border-right: 0;
+}
+
+.input-group .btn {
+  border-left: 0;
+}
+
+.social-icons a {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 50%;
+  margin-right: 10px;
+  transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+  background-color: var(--bg-main-color);
+  color: #fff !important;
+}
+
+.payment-methods i {
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.payment-methods i:hover {
+  opacity: 1;
+}
+
+footer .col-md-6 {
+  text-align: center !important;
+}
+
+.payment-methods,
+.footer-links {
+  justify-content: center;
+}
+
+.app-download img {
+  max-width: 120px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.navbar-nav .nav-item {
+  margin: 0 0.25rem !important;
+}
+.signIn-btn,
+.signUp-btn {
+  background-color: var(--bg-main-color) !important;
+  color: var(--bg-light) !important;
+  padding: 5px 20px !important;
+  border: 1px solid var(--bg-main-color) !important;
+  border-radius: 5px !important;
+  font-weight: 500 !important;
+  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  -webkit-border-radius: 5px !important;
+  -moz-border-radius: 5px !important;
+  -ms-border-radius: 5px !important;
+  -o-border-radius: 5px !important;
+}
+.signIn-btn {
+  background-color: var(--bg-light) !important;
+  color: var(--bg-main-color) !important;
+}
+
+.signIn-btn:hover {
+  background-color: var(--bg-main-color) !important;
+  color: var(--bg-light) !important;
+}
+.signUp-btn:hover {
+  background-color: var(--bg-light) !important;
+  color: var(--bg-main-color) !important;
+}
+
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
+footer {
+  background-color: var(--bg-light);
+  color: var(--text-main-color);
+  font-size: 0.9rem;
+}
+
+footer h5 {
+  color: var(--title-main-color);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+footer a {
+  color: var(--text-main-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: var(--bg-main-color);
+}
+
+.newsletter-btn {
+  background-color: var(--bg-main-color);
+  border: 1px solid var(--bg-main-color) !important;
+  color: white;
+  border: none;
+  max-height: 50px;
+}
+
+.newsletter-btn:hover {
+  opacity: 0.9;
+}
+
+.footer-divider {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.payment-icon {
+  font-size: 1.8rem;
+  margin-right: 0.5rem;
+  opacity: 0.7;
+}
+
+.app-download {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+@media (min-width: 768px) {
+  footer .col-md-6 {
+    text-align: left !important;
+  }
+
+  .payment-methods,
+  .footer-links {
+    justify-content: flex-end;
+  }
+}
+
+@media (min-width: 992px) {
+  .delivery-info {
+    display: block;
+  }
+
+  .offcanvas {
+    display: none !important;
+  }
+
+  .navbar-collapse {
+    display: flex !important;
+  }
+}
+@media (min-width: 1200px) {
+  .navbar {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+}

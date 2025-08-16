@@ -1,7 +1,66 @@
-.login {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: black;
+
+.login-container {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 800px;
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.login-tabs {
+  display: flex;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.login-tab {
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  color: #6c757d;
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+}
+
+.login-tab.active {
+  color: var(--bg-main-color);
+  border-bottom-color: var(--bg-main-color);
+}
+
+.login-tab:first-child {
+  margin-right: 1rem;
+}
+
+.form-label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.form-control {
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.form-check-label {
+  font-size: 0.9rem;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 0.75rem;
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+.forgot-password {
+  display: block;
+  text-align: right;
+  font-size: 0.9rem;
+  margin-top: -0.5rem;
+  margin-bottom: 1.5rem;
 }
