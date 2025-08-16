@@ -1,6 +1,7 @@
 @import url("store.css");
 
 :root {
+  --bg-section: #eeeeee66;
   --bg-main-color: #634c9f;
   --bg-light: #f8f9fa;
   --title-main-color: #39245f;
