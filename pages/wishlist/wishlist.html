@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wishlist Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+  <style>
+    body {
+      background: #f8f9fa;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+   
+
+    /* Wishlist Table */
+    .wishlist-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    .wishlist-table th, 
+    .wishlist-table td {
+      padding: 15px;
+      text-align: center;
+      border: 1px solid #dee2e6; /* lines between rows/columns */
+    }
+    .wishlist-table thead {
+      background: #343a40;
+      color: #fff;
+    }
+    .wishlist-table td img {
+      width: 60px;
+      border-radius: 8px;
+    }
+    .wishlist-table .product-remove a {
+      color: #dc3545;
+      font-size: 1.2rem;
+      transition: 0.2s;
+      cursor: pointer;
+    }
+    .wishlist-table .product-remove a:hover {
+      color: #a71d2a;
+    }
+
+    /* Buttons */
+    .btn-move {
+      background: #0d6efd;
+      color: #fff;
+      border-radius: 8px;
+      padding: 6px 12px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .btn-move:hover {
+      background: #0b5ed7;
+    }
+    .btn-remove {
+      background: #dc3545;
+      color: #fff;
+      border-radius: 8px;
+      padding: 6px 12px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .btn-remove:hover {
+      background: #a71d2a;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container pt-4">
+  <p><span class="text-secondary">Home ></span> Wishlist</p>
+
+  <!-- icon -->
+ <div class="wishlistImage my-5 d-flex justify-content-center align-items-center" >
+  <span class="h3">Your Favorite Products <i class="fas fa-heart fa-2x text-danger"></i></span>
+</div>
+
+
+  <!-- Wishlist Table -->
+  <div class="wishlist-section mt-5 mb-5">
+    <div class="container">
+      <div class="wishlist-table-wrap">
+        <table class="wishlist-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Product Image</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Stock Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="product-remove"><a href="#" class="delete-row"><i class="far fa-window-close"></i></a></td>
+              <td><img src="assets/img/products/product-img-1.jpg" alt=""></td>
+              <td>Strawberry</td>
+              <td>$85</td>
+              <td><span class="text-success">In Stock</span></td>
+              <td>
+                <a href="#" class="btn-move me-2">Move to Cart</a>
+                <a href="#" class="btn-remove delete-row">Remove</a>
+              </td>
+            </tr>
+            <tr>
+              <td class="product-remove"><a href="#" class="delete-row"><i class="far fa-window-close"></i></a></td>
+              <td><img src="assets/img/products/product-img-2.jpg" alt=""></td>
+              <td>Berry</td>
+              <td>$70</td>
+              <td><span class="text-danger">Out of Stock</span></td>
+              <td>
+                <a href="#" class="btn-move me-2 disabled" style="pointer-events:none; opacity:0.6;">Move to Cart</a>
+                <a href="#" class="btn-remove delete-row">Remove</a>
+              </td>
+            </tr>
+            <tr>
+              <td class="product-remove"><a href="#" class="delete-row"><i class="far fa-window-close"></i></a></td>
+              <td><img src="assets/img/products/product-img-3.jpg" alt=""></td>
+              <td>Lemon</td>
+              <td>$35</td>
+              <td><span class="text-success">In Stock</span></td>
+              <td>
+                <a href="#" class="btn-move me-2">Move to Cart</a>
+                <a href="#" class="btn-remove delete-row">Remove</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+<script>
+  // Delete row functionality
+  document.querySelectorAll('.delete-row').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      this.closest('tr').remove();
+    });
+  });
+</script>
+
+</body>
+</html>
