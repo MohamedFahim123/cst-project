@@ -119,7 +119,12 @@ class Router {
   }
 
   #findMatchingRoute(path) {
-    return Object.keys(this.#routeMap).find((key) => key === path) || null;
+    const cleanPath = path.replace(/\/+$/, "");
+    return (
+      Object.keys(this.#routeMap).find(
+        (key) => key.replace(/\/+$/, "") === cleanPath
+      ) || null
+    );
   }
 
   async #renderRoute(routeKey, normalizedPath, updateHistory) {

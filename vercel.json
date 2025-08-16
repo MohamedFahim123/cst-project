@@ -2,11 +2,11 @@
   "rewrites": [
     {
       "source": "/shop/product-details",
-      "destination": "/index.html"
+      "destination": "/"
     },
     {
       "source": "/(.*)",
-      "destination": "/index.html"
+      "destination": "/"
     }
   ]
 }
