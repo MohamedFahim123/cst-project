@@ -1,7 +1,257 @@
-.product-details {
+/* Simple Image Slider */
+.image-slider {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+}
+
+.slider-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slider-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.slider-image.active {
+  opacity: 1;
+}
+
+/* Thumbnail Images */
+.thumbnail-images {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  justify-content: space-between;
+}
+.thumb-wrapper {
+  flex: 1;
   display: flex;
   justify-content: center;
+}
+.thumbnail-images .img-thumbnail {
+  height: 80px;
+  width: 100%;
+  max-width: 100px;
+  object-fit: cover;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.thumbnail-images .img-thumbnail:hover,
+.thumbnail-images .img-thumbnail.active {
+  border-color: var(--bg-main-color);
+  transform: scale(1.05);
+}
+
+/* Product Information */
+.product-info {
+  padding: 1rem;
+}
+
+.price {
+  margin-bottom: 0.5rem;
+}
+
+.current-price {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--bg-main-color);
+}
+
+.product-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+/* Rating Section */
+.rating {
+  display: flex;
   align-items: center;
-  height: 100vh;
-  background-color: rgb(3, 68, 39);
+  margin-bottom: 1rem;
+}
+
+.stars {
+  color: var(--bg-main-color);
+  font-size: 1rem;
+}
+
+.write-review {
+  color: #666;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.write-review:hover {
+  color: var(--bg-main-color);
+  text-decoration: underline;
+}
+
+/* Stock Status */
+.stock-status {
+  margin-bottom: 1.5rem;
+}
+
+.in-stock {
+  color: #28a745;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.in-stock i {
+  font-size: 0.7rem;
+  margin-right: 0.5rem;
+}
+
+/* Product Description */
+.product-description p {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+/* Quantity Controls */
+.quantity-selector {
+  margin-bottom: 1.5rem;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.qty-btn {
+  width: 40px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #dee2e6;
+  background-color: #fff;
+}
+
+.qty-btn:hover {
+  background-color: #f8f9fa;
+  border-color: var(--bg-main-color);
+}
+
+.qty-input {
+  width: 80px;
+  text-align: center;
+  border: 1px solid #dee2e6;
+}
+
+.qty-input:focus {
+  border-color: var(--bg-main-color);
+  box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
+}
+
+/* Add to Cart Button */
+.add-to-cart-btn {
+  background-color: var(--bg-main-color);
+  border-color: var(--bg-main-color);
+  color: #212529;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 12px 0;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  color: #fff;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #fff;
+  color: var(--bg-main-color);
+  border-color: var(--bg-main-color);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  -webkit-transform: translateY(-2px);
+  -moz-transform: translateY(-2px);
+  -ms-transform: translateY(-2px);
+  -o-transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 767.98px) {
+  .container-fluid {
+    padding: 1rem;
+  }
+
+  .image-slider {
+    height: 300px;
+  }
+
+  .thumbnail-images .img-thumbnail {
+    height: 60px;
+  }
+
+  .product-title {
+    font-size: 1.5rem;
+  }
+
+  .current-price {
+    font-size: 1.7rem;
+  }
+
+  .quantity-controls {
+    justify-content: flex-start;
+  }
+}
+
+@media (min-width: 768px) {
+  .image-slider {
+    height: 500px;
+  }
+
+  .thumbnail-images .img-thumbnail {
+    height: 100px;
+  }
+}
+
+/* Animation for carousel */
+.carousel-item {
+  transition: transform 0.6s ease-in-out;
+}
+
+/* Fallback carousel styles */
+.carousel-inner {
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel-item {
+  display: none;
+  position: relative;
+}
+
+.carousel-item.active {
+  display: block;
+}
+
+/* Smooth transitions for fallback */
+.carousel-item {
+  opacity: 0;
+  transition: opacity 0.6s ease-in-out;
+}
+
+.carousel-item.active {
+  opacity: 1;
+} /* Hover effects */
+.main-image:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }

@@ -1,3 +1,39 @@
+import {
+  getAllProducts,
+  getShopFilters,
+  getAllUsers,
+} from "../pages/home/home.js";
+import {
+  initializeAddToCart,
+  initializeQuantityControls,
+  initializeSlider,
+} from "../pages/shop/product-details/product-details.js";
+
+const PAGE_INITIALIZERS = {
+  "/shop/product-details": () => {
+    initializeSlider();
+    initializeQuantityControls();
+    initializeAddToCart();
+  },
+  "/": async () => {
+    const products = JSON.parse(localStorage.getItem("all-products"));
+    if (!products) {
+      const products = await getAllProducts();
+      localStorage.setItem("all-products", JSON.stringify(products));
+    }
+    const filters = JSON.parse(localStorage.getItem("shop-filters"));
+    if (!filters) {
+      const filters = await getShopFilters();
+      localStorage.setItem("shop-filters", JSON.stringify(filters));
+    }
+    const users = JSON.parse(localStorage.getItem("users"));
+    if (!users) {
+      const users = await getAllUsers();
+      localStorage.setItem("users", JSON.stringify(users));
+    }
+  },
+};
+
 const APP_ROUTES = [
   { path: "/404", title: "404", description: "This Page Does Not Exist" },
   { path: "/", title: "Home", description: "Our Home Page" },
@@ -121,6 +157,9 @@ class Router {
     this.#appElement.innerHTML = template;
 
     this.#updatePageMeta(this.#getRouteMeta(routeKey));
+    if (PAGE_INITIALIZERS[routeKey]) {
+      PAGE_INITIALIZERS[routeKey]();
+    }
   }
 
   async #loadLayoutComponents() {

@@ -1,0 +1,31 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Leanne Graham",
+      "username": "Bret",
+      "email": "G2oPj@example.com",
+      "password": "12345678",
+      "role": "admin",
+      "profile": ""
+    },
+    {
+      "id": 2,
+      "name": "Ervin Howell",
+      "username": "Antonette",
+      "password": "12345678",
+      "email": "H2oPj@example.com",
+      "role": "user",
+      "profile": ""
+    },
+    {
+      "id": 3,
+      "name": "Clementine Bauch",
+      "username": "Samantha",
+      "password": "12345678",
+      "email": "KlHJU@example.com",
+      "role": "seller",
+      "profile": ""
+    }
+  ]
+}

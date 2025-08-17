@@ -1,0 +1,30 @@
+{
+  "Categories": ["smartphone", "laptop", "tablet","desktop"],
+  "Brands": [
+    "Apple",
+    "Oppo",
+    "Realme",
+    "Samsung",
+    "Vivo",
+    "Asus",
+    "Huawei",
+    "Lenovo",
+    "Dell"
+  ],
+  "min-price": 249.99,
+  "max-price": 1999.99,
+  "Categories-count": {
+    "smartphones": 4,
+    "laptops": 5,
+    "tablets": 3
+  },
+  "Brands-count": {
+    "Samsung": 3,
+    "Vivo": 3,
+    "Apple": 2,
+    "Asus": 1,
+    "Huawei": 1,
+    "Lenovo": 1,
+    "Dell": 1
+  }
+}
