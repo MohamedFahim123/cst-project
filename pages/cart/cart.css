@@ -1,8 +1,4 @@
-    /* Breadcrumb */
-    .container p {
-      font-size: 0.9rem;
-      color: #6c757d;
-    }
+
 
     /* Empty cart notice */
     .empty-cart {
@@ -28,7 +24,7 @@
       border: 1px solid #dee2e6; /*  lines between rows/columns */
     }
     .cart-table thead {
-      background: #343a40;
+      background: var(--bg-main-color);
       color: #fff;
     }
     .cart-table td img {
@@ -78,11 +74,11 @@
       transition: 0.3s;
     }
     .cart-buttons .boxed-btn {
-      background: #0d6efd;
+      background: var(--bg-main-color);
       color: #fff;
     }
     .cart-buttons .boxed-btn:hover {
-      background: #0b5ed7;
+      background: #8c54d6d2;
     }
     .cart-buttons .black {
       background: #343a40;

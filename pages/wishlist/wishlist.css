@@ -17,10 +17,7 @@
   background: #343a40;
   color: #fff;
 }
-.wishlist-table td img {
-  width: 60px;
-  border-radius: 8px;
-}
+
 .wishlist-table .product-remove a {
   color: #dc3545;
   font-size: 1.2rem;
@@ -31,26 +28,25 @@
   color: #a71d2a;
 }
 
-/* Buttons */
-.btn-move {
-  background: #0d6efd;
-  color: #fff;
-  border-radius: 8px;
-  padding: 6px 12px;
-  text-decoration: none;
-  transition: 0.3s;
+.btn-move{
+  color: rgb(61, 135, 61);
+  transition: all .04s;
+  cursor: pointer;
+font-size: 20px;
+
 }
-.btn-move:hover {
-  background: #0b5ed7;
+.btn-move:hover{
+  color: rgb(56, 173, 56);
 }
-.btn-remove {
-  background: #dc3545;
-  color: #fff;
-  border-radius: 8px;
-  padding: 6px 12px;
-  text-decoration: none;
-  transition: 0.3s;
+
+.btn-remove{
+  color: #a71d2a;
+  transition: all 0.4s;
+cursor: pointer;
+font-size: 20px;
 }
-.btn-remove:hover {
-  background: #a71d2a;
+
+
+.btn-remove:hover{
+  color: #dc3545;
 }
