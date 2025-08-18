@@ -5,6 +5,7 @@
     "description": "The iPhone 5s is a classic smartphone known for its compact design and advanced features during its release. While it's an older model, it still provides a reliable user experience.",
     "category": "smartphones",
     "price": 199.99,
+    "deletedPrice": 249.99,
     "discountPercentage": 12.91,
     "rating": 2.83,
     "stock": 25,
@@ -12,45 +13,11 @@
     "brand": "Apple",
     "sku": "SMA-APP-IPH-121",
     "weight": 2,
-    "dimensions": {
-      "width": 5.29,
-      "height": 18.38,
-      "depth": 17.72
-    },
     "warrantyInformation": "Lifetime warranty",
     "shippingInformation": "Ships in 1 month",
     "availabilityStatus": "In Stock",
-    "reviews": [
-      {
-        "rating": 5,
-        "comment": "Highly recommended!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Jace Smith",
-        "reviewerEmail": "jace.smith@x.dummyjson.com"
-      },
-      {
-        "rating": 1,
-        "comment": "Not as described!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Logan Torres",
-        "reviewerEmail": "logan.torres@x.dummyjson.com"
-      },
-      {
-        "rating": 5,
-        "comment": "Very satisfied!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Harper Kelly",
-        "reviewerEmail": "harper.kelly@x.dummyjson.com"
-      }
-    ],
     "returnPolicy": "60 days return policy",
     "minimumOrderQuantity": 3,
-    "meta": {
-      "createdAt": "2025-04-30T09:41:02.054Z",
-      "updatedAt": "2025-04-30T09:41:02.054Z",
-      "barcode": "8814683940853",
-      "qrCode": "https://cdn.dummyjson.com/public/qr-code.png"
-    },
     "images": [
       "https://cdn.dummyjson.com/product-images/smartphones/iphone-5s/1.webp",
       "https://cdn.dummyjson.com/product-images/smartphones/iphone-5s/2.webp",
@@ -64,6 +31,7 @@
     "description": "The iPhone 6 is a stylish and capable smartphone with a larger display and improved performance. It introduced new features and design elements, making it a popular choice in its time.",
     "category": "smartphones",
     "price": 299.99,
+    "deletedPrice": 349.99,
     "discountPercentage": 6.69,
     "rating": 3.41,
     "stock": 60,
@@ -71,37 +39,9 @@
     "brand": "Apple",
     "sku": "SMA-APP-IPH-122",
     "weight": 7,
-    "dimensions": {
-      "width": 11,
-      "height": 9.1,
-      "depth": 9.67
-    },
     "warrantyInformation": "1 month warranty",
     "shippingInformation": "Ships overnight",
     "availabilityStatus": "In Stock",
-    "reviews": [
-      {
-        "rating": 3,
-        "comment": "Disappointing product!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Stella Morris",
-        "reviewerEmail": "stella.morris@x.dummyjson.com"
-      },
-      {
-        "rating": 4,
-        "comment": "Excellent quality!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Nolan Gonzalez",
-        "reviewerEmail": "nolan.gonzalez@x.dummyjson.com"
-      },
-      {
-        "rating": 5,
-        "comment": "Great value for money!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Benjamin Foster",
-        "reviewerEmail": "benjamin.foster@x.dummyjson.com"
-      }
-    ],
     "returnPolicy": "7 days return policy",
     "minimumOrderQuantity": 5,
     "meta": {
@@ -123,6 +63,7 @@
     "description": "The iPhone 13 Pro is a cutting-edge smartphone with a powerful camera system, high-performance chip, and stunning display. It offers advanced features for users who demand top-notch technology.",
     "category": "smartphones",
     "price": 1099.99,
+    "deletedPrice": 1299.99,
     "discountPercentage": 9.37,
     "rating": 4.12,
     "stock": 56,
@@ -130,37 +71,9 @@
     "brand": "Apple",
     "sku": "SMA-APP-IPH-123",
     "weight": 8,
-    "dimensions": {
-      "width": 12.63,
-      "height": 5.28,
-      "depth": 14.29
-    },
     "warrantyInformation": "3 year warranty",
     "shippingInformation": "Ships in 2 weeks",
     "availabilityStatus": "In Stock",
-    "reviews": [
-      {
-        "rating": 5,
-        "comment": "Would buy again!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Christian Perez",
-        "reviewerEmail": "christian.perez@x.dummyjson.com"
-      },
-      {
-        "rating": 3,
-        "comment": "Not worth the price!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Liam Gonzalez",
-        "reviewerEmail": "liam.gonzalez@x.dummyjson.com"
-      },
-      {
-        "rating": 5,
-        "comment": "Very satisfied!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Tristan Scott",
-        "reviewerEmail": "tristan.scott@x.dummyjson.com"
-      }
-    ],
     "returnPolicy": "7 days return policy",
     "minimumOrderQuantity": 1,
     "meta": {
@@ -182,6 +95,7 @@
     "description": "The iPhone X is a flagship smartphone featuring a bezel-less OLED display, facial recognition technology (Face ID), and impressive performance. It represents a milestone in iPhone design and innovation.",
     "category": "smartphones",
     "price": 899.99,
+    "deletedPrice": 999.99,
     "discountPercentage": 19.59,
     "rating": 2.51,
     "stock": 37,
@@ -189,37 +103,9 @@
     "brand": "Apple",
     "sku": "SMA-APP-IPH-124",
     "weight": 1,
-    "dimensions": {
-      "width": 21.88,
-      "height": 24.19,
-      "depth": 14.19
-    },
     "warrantyInformation": "3 months warranty",
     "shippingInformation": "Ships in 3-5 business days",
     "availabilityStatus": "In Stock",
-    "reviews": [
-      {
-        "rating": 4,
-        "comment": "Highly recommended!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Tyler Davis",
-        "reviewerEmail": "tyler.davis@x.dummyjson.com"
-      },
-      {
-        "rating": 5,
-        "comment": "Great product!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Aria Parker",
-        "reviewerEmail": "aria.parker@x.dummyjson.com"
-      },
-      {
-        "rating": 2,
-        "comment": "Not as described!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Lily Torres",
-        "reviewerEmail": "lily.torres@x.dummyjson.com"
-      }
-    ],
     "returnPolicy": "7 days return policy",
     "minimumOrderQuantity": 2,
     "meta": {
@@ -241,6 +127,7 @@
     "description": "The Oppo A57 is a mid-range smartphone known for its sleek design and capable features. It offers a balance of performance and affordability, making it a popular choice.",
     "category": "smartphones",
     "price": 249.99,
+    "deletedPrice": 299.99,
     "discountPercentage": 2.43,
     "rating": 3.94,
     "stock": 19,
@@ -248,37 +135,9 @@
     "brand": "Oppo",
     "sku": "SMA-OPP-OPP-125",
     "weight": 5,
-    "dimensions": {
-      "width": 7.2,
-      "height": 10.74,
-      "depth": 23.68
-    },
     "warrantyInformation": "Lifetime warranty",
     "shippingInformation": "Ships in 3-5 business days",
     "availabilityStatus": "In Stock",
-    "reviews": [
-      {
-        "rating": 4,
-        "comment": "Excellent quality!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Scarlett Wright",
-        "reviewerEmail": "scarlett.wright@x.dummyjson.com"
-      },
-      {
-        "rating": 5,
-        "comment": "Excellent quality!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Jacob Cooper",
-        "reviewerEmail": "jacob.cooper@x.dummyjson.com"
-      },
-      {
-        "rating": 2,
-        "comment": "Poor quality!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Zoe Nicholson",
-        "reviewerEmail": "zoe.nicholson@x.dummyjson.com"
-      }
-    ],
     "returnPolicy": "90 days return policy",
     "minimumOrderQuantity": 3,
     "meta": {
@@ -300,6 +159,7 @@
     "description": "The Oppo F19 Pro Plus is a feature-rich smartphone with a focus on camera capabilities. It boasts advanced photography features and a powerful performance for a premium user experience.",
     "category": "smartphones",
     "price": 399.99,
+    "deletedPrice": 499.99,
     "discountPercentage": 18.64,
     "rating": 3.51,
     "stock": 78,
@@ -307,37 +167,9 @@
     "brand": "Oppo",
     "sku": "SMA-OPP-OPP-126",
     "weight": 6,
-    "dimensions": {
-      "width": 6.78,
-      "height": 25.17,
-      "depth": 8.4
-    },
     "warrantyInformation": "3 year warranty",
     "shippingInformation": "Ships in 1 week",
     "availabilityStatus": "In Stock",
-    "reviews": [
-      {
-        "rating": 5,
-        "comment": "Very happy with my purchase!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Emily Johnson",
-        "reviewerEmail": "emily.johnson@x.dummyjson.com"
-      },
-      {
-        "rating": 5,
-        "comment": "Highly recommended!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Jaxon Barnes",
-        "reviewerEmail": "jaxon.barnes@x.dummyjson.com"
-      },
-      {
-        "rating": 4,
-        "comment": "Would buy again!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Nova Cooper",
-        "reviewerEmail": "nova.cooper@x.dummyjson.com"
-      }
-    ],
     "returnPolicy": "90 days return policy",
     "minimumOrderQuantity": 1,
     "meta": {
@@ -359,6 +191,7 @@
     "description": "The Oppo K1 series offers a range of smartphones with various features and specifications. Known for their stylish design and reliable performance, the Oppo K1 series caters to diverse user preferences.",
     "category": "smartphones",
     "price": 299.99,
+    "deletedPrice": 349.99,
     "discountPercentage": 18.29,
     "rating": 4.25,
     "stock": 55,
@@ -366,37 +199,9 @@
     "brand": "Oppo",
     "sku": "SMA-OPP-OPP-127",
     "weight": 5,
-    "dimensions": {
-      "width": 13.89,
-      "height": 10.63,
-      "depth": 16.6
-    },
     "warrantyInformation": "1 month warranty",
     "shippingInformation": "Ships in 1-2 business days",
     "availabilityStatus": "In Stock",
-    "reviews": [
-      {
-        "rating": 4,
-        "comment": "Very pleased!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Christopher West",
-        "reviewerEmail": "christopher.west@x.dummyjson.com"
-      },
-      {
-        "rating": 4,
-        "comment": "Highly recommended!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Mia Miller",
-        "reviewerEmail": "mia.miller@x.dummyjson.com"
-      },
-      {
-        "rating": 2,
-        "comment": "Very dissatisfied!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Ella Adams",
-        "reviewerEmail": "ella.adams@x.dummyjson.com"
-      }
-    ],
     "returnPolicy": "30 days return policy",
     "minimumOrderQuantity": 5,
     "meta": {
@@ -419,6 +224,7 @@
     "description": "The Realme C35 is a budget-friendly smartphone with a focus on providing essential features for everyday use. It offers a reliable performance and user-friendly experience.",
     "category": "smartphones",
     "price": 149.99,
+    "deletedPrice": 199.99,
     "discountPercentage": 15.3,
     "rating": 4.2,
     "stock": 48,
@@ -426,37 +232,9 @@
     "brand": "Realme",
     "sku": "SMA-REA-REA-128",
     "weight": 2,
-    "dimensions": {
-      "width": 25.28,
-      "height": 8.14,
-      "depth": 29.53
-    },
     "warrantyInformation": "3 year warranty",
     "shippingInformation": "Ships overnight",
     "availabilityStatus": "In Stock",
-    "reviews": [
-      {
-        "rating": 4,
-        "comment": "Great product!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Penelope King",
-        "reviewerEmail": "penelope.king@x.dummyjson.com"
-      },
-      {
-        "rating": 2,
-        "comment": "Very unhappy with my purchase!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Asher Scott",
-        "reviewerEmail": "asher.scott@x.dummyjson.com"
-      },
-      {
-        "rating": 4,
-        "comment": "Highly impressed!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Henry Adams",
-        "reviewerEmail": "henry.adams@x.dummyjson.com"
-      }
-    ],
     "returnPolicy": "90 days return policy",
     "minimumOrderQuantity": 3,
     "meta": {
@@ -478,6 +256,7 @@
     "description": "The Realme X is a mid-range smartphone known for its sleek design and impressive display. It offers a good balance of performance and camera capabilities for users seeking a quality device.",
     "category": "smartphones",
     "price": 299.99,
+    "deletedPrice": 349.99,
     "discountPercentage": 6.95,
     "rating": 3.7,
     "stock": 12,
@@ -485,37 +264,9 @@
     "brand": "Realme",
     "sku": "SMA-REA-REA-129",
     "weight": 4,
-    "dimensions": {
-      "width": 25.59,
-      "height": 21.42,
-      "depth": 12.75
-    },
     "warrantyInformation": "1 month warranty",
     "shippingInformation": "Ships in 3-5 business days",
     "availabilityStatus": "In Stock",
-    "reviews": [
-      {
-        "rating": 5,
-        "comment": "Would buy again!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Hazel Evans",
-        "reviewerEmail": "hazel.evans@x.dummyjson.com"
-      },
-      {
-        "rating": 5,
-        "comment": "Fast shipping!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Brayden Fleming",
-        "reviewerEmail": "brayden.fleming@x.dummyjson.com"
-      },
-      {
-        "rating": 5,
-        "comment": "Very satisfied!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Madison Stewart",
-        "reviewerEmail": "madison.stewart@x.dummyjson.com"
-      }
-    ],
     "returnPolicy": "No return policy",
     "minimumOrderQuantity": 3,
     "meta": {
@@ -537,6 +288,7 @@
     "description": "The Realme XT is a feature-rich smartphone with a focus on camera technology. It comes equipped with advanced camera sensors, delivering high-quality photos and videos for photography enthusiasts.",
     "category": "smartphones",
     "price": 349.99,
+    "deletedPrice": 399.99,
     "discountPercentage": 11.51,
     "rating": 4.58,
     "stock": 80,
@@ -544,37 +296,9 @@
     "brand": "Realme",
     "sku": "SMA-REA-REA-130",
     "weight": 3,
-    "dimensions": {
-      "width": 24.98,
-      "height": 26.73,
-      "depth": 6.5
-    },
     "warrantyInformation": "3 year warranty",
     "shippingInformation": "Ships in 1 month",
     "availabilityStatus": "In Stock",
-    "reviews": [
-      {
-        "rating": 4,
-        "comment": "Very satisfied!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Emily Brown",
-        "reviewerEmail": "emily.brown@x.dummyjson.com"
-      },
-      {
-        "rating": 3,
-        "comment": "Not as described!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Ella Cook",
-        "reviewerEmail": "ella.cook@x.dummyjson.com"
-      },
-      {
-        "rating": 5,
-        "comment": "Would buy again!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Layla Sullivan",
-        "reviewerEmail": "layla.sullivan@x.dummyjson.com"
-      }
-    ],
     "returnPolicy": "60 days return policy",
     "minimumOrderQuantity": 3,
     "meta": {
@@ -596,6 +320,7 @@
     "description": "The Samsung Galaxy S7 is a flagship smartphone known for its sleek design and advanced features. It features a high-resolution display, powerful camera, and robust performance.",
     "category": "smartphones",
     "price": 299.99,
+    "deletedPrice": 349.99,
     "discountPercentage": 19.55,
     "rating": 3.3,
     "stock": 67,
@@ -603,37 +328,9 @@
     "brand": "Samsung",
     "sku": "SMA-SAM-SAM-131",
     "weight": 10,
-    "dimensions": {
-      "width": 13.55,
-      "height": 24.24,
-      "depth": 5.63
-    },
     "warrantyInformation": "3 months warranty",
     "shippingInformation": "Ships in 3-5 business days",
     "availabilityStatus": "In Stock",
-    "reviews": [
-      {
-        "rating": 1,
-        "comment": "Not as described!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Julian James",
-        "reviewerEmail": "julian.james@x.dummyjson.com"
-      },
-      {
-        "rating": 4,
-        "comment": "Fast shipping!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Lucas Gordon",
-        "reviewerEmail": "lucas.gordon@x.dummyjson.com"
-      },
-      {
-        "rating": 4,
-        "comment": "Excellent quality!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Ava Taylor",
-        "reviewerEmail": "ava.taylor@x.dummyjson.com"
-      }
-    ],
     "returnPolicy": "No return policy",
     "minimumOrderQuantity": 1,
     "meta": {
@@ -655,6 +352,7 @@
     "description": "The Samsung Galaxy S8 is a premium smartphone with an Infinity Display, offering a stunning visual experience. It boasts advanced camera capabilities and cutting-edge technology.",
     "category": "smartphones",
     "price": 499.99,
+    "deletedPrice": 599.99,
     "discountPercentage": 19.45,
     "rating": 4.4,
     "stock": 0,
@@ -662,37 +360,9 @@
     "brand": "Samsung",
     "sku": "SMA-SAM-SAM-132",
     "weight": 6,
-    "dimensions": {
-      "width": 23.05,
-      "height": 26.88,
-      "depth": 15.73
-    },
     "warrantyInformation": "2 year warranty",
     "shippingInformation": "Ships in 1 week",
     "availabilityStatus": "Out of Stock",
-    "reviews": [
-      {
-        "rating": 4,
-        "comment": "Highly impressed!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Owen Fisher",
-        "reviewerEmail": "owen.fisher@x.dummyjson.com"
-      },
-      {
-        "rating": 4,
-        "comment": "Highly impressed!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Clara Berry",
-        "reviewerEmail": "clara.berry@x.dummyjson.com"
-      },
-      {
-        "rating": 4,
-        "comment": "Highly recommended!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Tyler Davis",
-        "reviewerEmail": "tyler.davis@x.dummyjson.com"
-      }
-    ],
     "returnPolicy": "No return policy",
     "minimumOrderQuantity": 4,
     "meta": {
@@ -714,6 +384,7 @@
     "description": "The Samsung Galaxy S10 is a flagship device featuring a dynamic AMOLED display, versatile camera system, and powerful performance. It represents innovation and excellence in smartphone technology.",
     "category": "smartphones",
     "price": 699.99,
+    "deletedPrice": 799.99,
     "discountPercentage": 5.59,
     "rating": 3.06,
     "stock": 19,
@@ -721,37 +392,9 @@
     "brand": "Samsung",
     "sku": "SMA-SAM-SAM-133",
     "weight": 9,
-    "dimensions": {
-      "width": 27.41,
-      "height": 15.26,
-      "depth": 27.02
-    },
     "warrantyInformation": "No warranty",
     "shippingInformation": "Ships in 2 weeks",
     "availabilityStatus": "In Stock",
-    "reviews": [
-      {
-        "rating": 4,
-        "comment": "Excellent quality!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Tristan Scott",
-        "reviewerEmail": "tristan.scott@x.dummyjson.com"
-      },
-      {
-        "rating": 5,
-        "comment": "Would buy again!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Christopher West",
-        "reviewerEmail": "christopher.west@x.dummyjson.com"
-      },
-      {
-        "rating": 2,
-        "comment": "Would not recommend!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Amelia Perez",
-        "reviewerEmail": "amelia.perez@x.dummyjson.com"
-      }
-    ],
     "returnPolicy": "30 days return policy",
     "minimumOrderQuantity": 2,
     "meta": {
@@ -773,6 +416,7 @@
     "description": "The Vivo S1 is a stylish and mid-range smartphone offering a blend of design and performance. It features a vibrant display, capable camera system, and reliable functionality.",
     "category": "smartphones",
     "price": 249.99,
+    "deletedPrice": 299.99,
     "discountPercentage": 10.17,
     "rating": 3.5,
     "stock": 50,
@@ -780,37 +424,9 @@
     "brand": "Vivo",
     "sku": "SMA-VIV-VIV-134",
     "weight": 4,
-    "dimensions": {
-      "width": 14.06,
-      "height": 11.79,
-      "depth": 6.78
-    },
     "warrantyInformation": "6 months warranty",
     "shippingInformation": "Ships in 3-5 business days",
     "availabilityStatus": "In Stock",
-    "reviews": [
-      {
-        "rating": 4,
-        "comment": "Very satisfied!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Samantha Martinez",
-        "reviewerEmail": "samantha.martinez@x.dummyjson.com"
-      },
-      {
-        "rating": 3,
-        "comment": "Very disappointed!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Logan Lee",
-        "reviewerEmail": "logan.lee@x.dummyjson.com"
-      },
-      {
-        "rating": 4,
-        "comment": "Would buy again!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Sophia Jones",
-        "reviewerEmail": "sophia.jones@x.dummyjson.com"
-      }
-    ],
     "returnPolicy": "7 days return policy",
     "minimumOrderQuantity": 1,
     "meta": {
@@ -832,6 +448,7 @@
     "description": "The Vivo V9 is a smartphone known for its sleek design and emphasis on capturing high-quality selfies. It features a notch display, dual-camera setup, and a modern design.",
     "category": "smartphones",
     "price": 299.99,
+    "deletedPrice": 349.99,
     "discountPercentage": 17.67,
     "rating": 3.6,
     "stock": 82,
@@ -839,37 +456,9 @@
     "brand": "Vivo",
     "sku": "SMA-VIV-VIV-135",
     "weight": 4,
-    "dimensions": {
-      "width": 19.85,
-      "height": 21.83,
-      "depth": 13.04
-    },
     "warrantyInformation": "2 year warranty",
     "shippingInformation": "Ships in 1 month",
     "availabilityStatus": "In Stock",
-    "reviews": [
-      {
-        "rating": 2,
-        "comment": "Very unhappy with my purchase!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Logan Lawson",
-        "reviewerEmail": "logan.lawson@x.dummyjson.com"
-      },
-      {
-        "rating": 5,
-        "comment": "Awesome product!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Layla Young",
-        "reviewerEmail": "layla.young@x.dummyjson.com"
-      },
-      {
-        "rating": 4,
-        "comment": "Great value for money!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Asher Scott",
-        "reviewerEmail": "asher.scott@x.dummyjson.com"
-      }
-    ],
     "returnPolicy": "60 days return policy",
     "minimumOrderQuantity": 2,
     "meta": {
@@ -891,6 +480,7 @@
     "description": "The Vivo X21 is a premium smartphone with a focus on cutting-edge technology. It features an in-display fingerprint sensor, a high-resolution display, and advanced camera capabilities.",
     "category": "smartphones",
     "price": 499.99,
+    "deletedPrice": 599.99,
     "discountPercentage": 17.41,
     "rating": 4.26,
     "stock": 7,
@@ -898,37 +488,9 @@
     "brand": "Vivo",
     "sku": "SMA-VIV-VIV-136",
     "weight": 10,
-    "dimensions": {
-      "width": 22.49,
-      "height": 21.62,
-      "depth": 27.88
-    },
     "warrantyInformation": "1 year warranty",
     "shippingInformation": "Ships in 1-2 business days",
     "availabilityStatus": "In Stock",
-    "reviews": [
-      {
-        "rating": 4,
-        "comment": "Very pleased!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Liam Gonzalez",
-        "reviewerEmail": "liam.gonzalez@x.dummyjson.com"
-      },
-      {
-        "rating": 4,
-        "comment": "Fast shipping!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Aurora Barnes",
-        "reviewerEmail": "aurora.barnes@x.dummyjson.com"
-      },
-      {
-        "rating": 2,
-        "comment": "Not as described!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Evelyn Walker",
-        "reviewerEmail": "evelyn.walker@x.dummyjson.com"
-      }
-    ],
     "returnPolicy": "60 days return policy",
     "minimumOrderQuantity": 3,
     "meta": {
@@ -950,6 +512,7 @@
     "description": "The MacBook Pro 14 Inch in Space Grey is a powerful and sleek laptop, featuring Apple's M1 Pro chip for exceptional performance and a stunning Retina display.",
     "category": "laptops",
     "price": 1999.99,
+    "deletedPrice": 2499.99,
     "discountPercentage": 4.69,
     "rating": 3.65,
     "stock": 24,
@@ -957,37 +520,9 @@
     "brand": "Apple",
     "sku": "LAP-APP-APP-078",
     "weight": 9,
-    "dimensions": {
-      "width": 20.03,
-      "height": 9.54,
-      "depth": 14.82
-    },
     "warrantyInformation": "3 year warranty",
     "shippingInformation": "Ships in 2 weeks",
     "availabilityStatus": "In Stock",
-    "reviews": [
-      {
-        "rating": 5,
-        "comment": "Very happy with my purchase!",
-        "date": "2025-04-30T09:41:02.053Z",
-        "reviewerName": "Hazel Evans",
-        "reviewerEmail": "hazel.evans@x.dummyjson.com"
-      },
-      {
-        "rating": 5,
-        "comment": "Very happy with my purchase!",
-        "date": "2025-04-30T09:41:02.053Z",
-        "reviewerName": "Christopher West",
-        "reviewerEmail": "christopher.west@x.dummyjson.com"
-      },
-      {
-        "rating": 4,
-        "comment": "Very satisfied!",
-        "date": "2025-04-30T09:41:02.053Z",
-        "reviewerName": "Aubrey Garcia",
-        "reviewerEmail": "aubrey.garcia@x.dummyjson.com"
-      }
-    ],
     "returnPolicy": "90 days return policy",
     "minimumOrderQuantity": 1,
     "meta": {
@@ -1009,6 +544,7 @@
     "description": "The Asus Zenbook Pro Dual Screen Laptop is a high-performance device with dual screens, providing productivity and versatility for creative professionals.",
     "category": "laptops",
     "price": 1799.99,
+    "deletedPrice": 2299.99,
     "discountPercentage": 11.14,
     "rating": 3.95,
     "stock": 45,
@@ -1016,37 +552,9 @@
     "brand": "Asus",
     "sku": "LAP-ASU-ASU-079",
     "weight": 9,
-    "dimensions": {
-      "width": 16.6,
-      "height": 11.49,
-      "depth": 10.89
-    },
     "warrantyInformation": "3 year warranty",
     "shippingInformation": "Ships in 1 month",
     "availabilityStatus": "In Stock",
-    "reviews": [
-      {
-        "rating": 4,
-        "comment": "Very happy with my purchase!",
-        "date": "2025-04-30T09:41:02.053Z",
-        "reviewerName": "Michael Johnson",
-        "reviewerEmail": "michael.johnson@x.dummyjson.com"
-      },
-      {
-        "rating": 5,
-        "comment": "Highly recommended!",
-        "date": "2025-04-30T09:41:02.053Z",
-        "reviewerName": "Zoe Bennett",
-        "reviewerEmail": "zoe.bennett@x.dummyjson.com"
-      },
-      {
-        "rating": 4,
-        "comment": "Very satisfied!",
-        "date": "2025-04-30T09:41:02.053Z",
-        "reviewerName": "Mila Hernandez",
-        "reviewerEmail": "mila.hernandez@x.dummyjson.com"
-      }
-    ],
     "returnPolicy": "7 days return policy",
     "minimumOrderQuantity": 1,
     "meta": {
@@ -1068,6 +576,7 @@
     "description": "The Huawei Matebook X Pro is a slim and stylish laptop with a high-resolution touchscreen display, offering a premium experience for users on the go.",
     "category": "laptops",
     "price": 1399.99,
+    "deletedPrice": 1899.99,
     "discountPercentage": 9.38,
     "rating": 4.98,
     "stock": 75,
@@ -1075,37 +584,9 @@
     "brand": "Huawei",
     "sku": "LAP-HUA-HUA-080",
     "weight": 9,
-    "dimensions": {
-      "width": 18.21,
-      "height": 22.83,
-      "depth": 17.26
-    },
     "warrantyInformation": "No warranty",
     "shippingInformation": "Ships overnight",
     "availabilityStatus": "In Stock",
-    "reviews": [
-      {
-        "rating": 4,
-        "comment": "Very satisfied!",
-        "date": "2025-04-30T09:41:02.053Z",
-        "reviewerName": "Evan Wright",
-        "reviewerEmail": "evan.wright@x.dummyjson.com"
-      },
-      {
-        "rating": 4,
-        "comment": "Very happy with my purchase!",
-        "date": "2025-04-30T09:41:02.053Z",
-        "reviewerName": "Hunter Gordon",
-        "reviewerEmail": "hunter.gordon@x.dummyjson.com"
-      },
-      {
-        "rating": 1,
-        "comment": "Not worth the price!",
-        "date": "2025-04-30T09:41:02.053Z",
-        "reviewerName": "William Gonzalez",
-        "reviewerEmail": "william.gonzalez@x.dummyjson.com"
-      }
-    ],
     "returnPolicy": "60 days return policy",
     "minimumOrderQuantity": 1,
     "meta": {
@@ -1127,6 +608,7 @@
     "description": "The Lenovo Yoga 920 is a 2-in-1 convertible laptop with a flexible hinge, allowing you to use it as a laptop or tablet, offering versatility and portability.",
     "category": "laptops",
     "price": 1099.99,
+    "deletedPrice": 1599.99,
     "discountPercentage": 6.55,
     "rating": 2.86,
     "stock": 40,
@@ -1134,37 +616,9 @@
     "brand": "Lenovo",
     "sku": "LAP-LEN-LEN-081",
     "weight": 9,
-    "dimensions": {
-      "width": 20.84,
-      "height": 22.68,
-      "depth": 17.39
-    },
     "warrantyInformation": "6 months warranty",
     "shippingInformation": "Ships in 2 weeks",
     "availabilityStatus": "In Stock",
-    "reviews": [
-      {
-        "rating": 4,
-        "comment": "Would buy again!",
-        "date": "2025-04-30T09:41:02.053Z",
-        "reviewerName": "Bella Gonzalez",
-        "reviewerEmail": "bella.gonzalez@x.dummyjson.com"
-      },
-      {
-        "rating": 5,
-        "comment": "Great value for money!",
-        "date": "2025-04-30T09:41:02.053Z",
-        "reviewerName": "Nathan Reed",
-        "reviewerEmail": "nathan.reed@x.dummyjson.com"
-      },
-      {
-        "rating": 4,
-        "comment": "Great value for money!",
-        "date": "2025-04-30T09:41:02.053Z",
-        "reviewerName": "Hazel Gardner",
-        "reviewerEmail": "hazel.gardner@x.dummyjson.com"
-      }
-    ],
     "returnPolicy": "No return policy",
     "minimumOrderQuantity": 1,
     "meta": {
@@ -1186,6 +640,7 @@
     "description": "The New DELL XPS 13 9300 Laptop is a compact and powerful device, featuring a virtually borderless InfinityEdge display and high-end performance for various tasks.",
     "category": "laptops",
     "price": 1499.99,
+    "deletedPrice": 1999.99,
     "discountPercentage": 11.89,
     "rating": 2.67,
     "stock": 74,
@@ -1193,37 +648,9 @@
     "brand": "Dell",
     "sku": "LAP-DEL-DEL-082",
     "weight": 2,
-    "dimensions": {
-      "width": 13.76,
-      "height": 29,
-      "depth": 21.42
-    },
     "warrantyInformation": "2 year warranty",
     "shippingInformation": "Ships in 2 weeks",
     "availabilityStatus": "In Stock",
-    "reviews": [
-      {
-        "rating": 3,
-        "comment": "Poor quality!",
-        "date": "2025-04-30T09:41:02.053Z",
-        "reviewerName": "Charlotte Lopez",
-        "reviewerEmail": "charlotte.lopez@x.dummyjson.com"
-      },
-      {
-        "rating": 4,
-        "comment": "Very satisfied!",
-        "date": "2025-04-30T09:41:02.053Z",
-        "reviewerName": "Alice Smith",
-        "reviewerEmail": "alice.smith@x.dummyjson.com"
-      },
-      {
-        "rating": 2,
-        "comment": "Disappointing product!",
-        "date": "2025-04-30T09:41:02.053Z",
-        "reviewerName": "Ava Taylor",
-        "reviewerEmail": "ava.taylor@x.dummyjson.com"
-      }
-    ],
     "returnPolicy": "60 days return policy",
     "minimumOrderQuantity": 1,
     "meta": {
@@ -1245,6 +672,7 @@
     "description": "The iPad Mini 2021 in Starlight is a compact and powerful tablet from Apple. Featuring a stunning Retina display, powerful A-series chip, and a sleek design, it offers a premium tablet experience.",
     "category": "tablets",
     "price": 499.99,
+    "deletedPrice": 599.99,
     "discountPercentage": 3.64,
     "rating": 3.18,
     "stock": 47,
@@ -1252,37 +680,9 @@
     "brand": "Apple",
     "sku": "TAB-APP-IPA-159",
     "weight": 5,
-    "dimensions": {
-      "width": 17.03,
-      "height": 5.34,
-      "depth": 29.62
-    },
     "warrantyInformation": "2 year warranty",
     "shippingInformation": "Ships in 1-2 business days",
     "availabilityStatus": "In Stock",
-    "reviews": [
-      {
-        "rating": 4,
-        "comment": "Highly impressed!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Eleanor Collins",
-        "reviewerEmail": "eleanor.collins@x.dummyjson.com"
-      },
-      {
-        "rating": 5,
-        "comment": "Very happy with my purchase!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Leo Rivera",
-        "reviewerEmail": "leo.rivera@x.dummyjson.com"
-      },
-      {
-        "rating": 4,
-        "comment": "Would buy again!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Carter Rivera",
-        "reviewerEmail": "carter.rivera@x.dummyjson.com"
-      }
-    ],
     "returnPolicy": "No return policy",
     "minimumOrderQuantity": 3,
     "meta": {
@@ -1305,6 +705,7 @@
     "description": "The Samsung Galaxy Tab S8 Plus in Grey is a high-performance Android tablet by Samsung. With a large AMOLED display, powerful processor, and S Pen support, it's ideal for productivity and entertainment.",
     "category": "tablets",
     "price": 599.99,
+    "deletedPrice": 699.99,
     "discountPercentage": 13.31,
     "rating": 4.68,
     "stock": 62,
@@ -1312,37 +713,9 @@
     "brand": "Samsung",
     "sku": "TAB-SAM-SAM-160",
     "weight": 1,
-    "dimensions": {
-      "width": 6.11,
-      "height": 25.85,
-      "depth": 26.85
-    },
     "warrantyInformation": "3 months warranty",
     "shippingInformation": "Ships in 2 weeks",
     "availabilityStatus": "In Stock",
-    "reviews": [
-      {
-        "rating": 5,
-        "comment": "Highly impressed!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Christopher West",
-        "reviewerEmail": "christopher.west@x.dummyjson.com"
-      },
-      {
-        "rating": 2,
-        "comment": "Disappointing product!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Owen Sullivan",
-        "reviewerEmail": "owen.sullivan@x.dummyjson.com"
-      },
-      {
-        "rating": 2,
-        "comment": "Very disappointed!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Aria Roberts",
-        "reviewerEmail": "aria.roberts@x.dummyjson.com"
-      }
-    ],
     "returnPolicy": "7 days return policy",
     "minimumOrderQuantity": 1,
     "meta": {
@@ -1365,6 +738,7 @@
     "description": "The Samsung Galaxy Tab in White is a sleek and versatile Android tablet. With a vibrant display, long-lasting battery, and a range of features, it offers a great user experience for various tasks.",
     "category": "tablets",
     "price": 349.99,
+    "deletedPrice": 399.99,
     "discountPercentage": 18.2,
     "rating": 3.72,
     "stock": 92,
@@ -1372,37 +746,9 @@
     "brand": "Samsung",
     "sku": "TAB-SAM-SAM-161",
     "weight": 5,
-    "dimensions": {
-      "width": 15.05,
-      "height": 5.37,
-      "depth": 11.82
-    },
     "warrantyInformation": "3 months warranty",
     "shippingInformation": "Ships overnight",
     "availabilityStatus": "In Stock",
-    "reviews": [
-      {
-        "rating": 1,
-        "comment": "Waste of money!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Max Russell",
-        "reviewerEmail": "max.russell@x.dummyjson.com"
-      },
-      {
-        "rating": 2,
-        "comment": "Poor quality!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Lincoln Kelly",
-        "reviewerEmail": "lincoln.kelly@x.dummyjson.com"
-      },
-      {
-        "rating": 4,
-        "comment": "Very satisfied!",
-        "date": "2025-04-30T09:41:02.054Z",
-        "reviewerName": "Elena Long",
-        "reviewerEmail": "elena.long@x.dummyjson.com"
-      }
-    ],
     "returnPolicy": "7 days return policy",
     "minimumOrderQuantity": 5,
     "meta": {
@@ -1419,4 +765,4 @@
     ],
     "thumbnail": "https://cdn.dummyjson.com/product-images/tablets/samsung-galaxy-tab-white/thumbnail.webp"
   }
-]
+] 

@@ -22,8 +22,9 @@ export const getCategories = async () => {
     btn.addEventListener("click", () => {
       let filters = JSON.parse(localStorage.getItem("curr-filters"));
       if (filters) {
+        console.log(btn.id);
         filters = {
-          category: btn.id,
+          category: [btn.id],
         };
         localStorage.setItem("curr-filters", JSON.stringify(filters));
         window.scrollTo(0, 0);
@@ -43,7 +44,7 @@ export const getCategories = async () => {
 export const renderBrands = (Swiper) => {
   const brandsContainer = document.getElementById("brandsContainer");
   const localFilters = JSON.parse(localStorage.getItem("shop-filters"));
-  const brands = localFilters?.Brands || [];
+  const brands = localFilters?.brands || [];
 
   brandsContainer.innerHTML = "";
   brands.forEach((brand) => {
@@ -84,7 +85,7 @@ export const renderBrands = (Swiper) => {
       let filters = JSON.parse(localStorage.getItem("curr-filters"));
       if (filters) {
         filters = {
-          brand: e.target.id.toLowerCase(),
+          brand: [e.target.id.toLowerCase()],
         };
         localStorage.setItem("curr-filters", JSON.stringify(filters));
         window.scrollTo(0, 0);
@@ -101,6 +102,41 @@ export const renderBrands = (Swiper) => {
   });
 };
 
+const productCard = (product) => {
+  return `
+      <div class="swiper-slide">
+        <div class="card" id="${product.id}">
+          <i class="fa-regular fa-heart position-absolute z-3"></i>
+          <span class="badge text-bg-danger position-absolute z-3">${
+            product.discountPercentage
+          }%</span>
+          <img src=${product.thumbnail} class="card-img-top" alt=${
+    product.title
+  } loading="lazy" />
+          <div class="card-body">
+            <h5 class="card-title fs-6" title="${product.title}">${
+    product.title.length > 30
+      ? product.title.slice(0, 30) + "..."
+      : product.title
+  }</h5>
+            <p class="card-text fs-6 text-secondary mb-1 mb-1" title="${
+              product.description
+            }">
+            ${product.description.slice(0, 95)}...
+            </p>
+            <div class="price">
+              <span class="me-2 fw-bold fs-5">${Math.ceil(product.price)}</span>
+              <span class="fw-light fs-6 text-decoration-line-through">${product.deletedPrice}</span>
+            </div>
+            <button class="addtocart">
+              Add to cart <i class="fa-solid fa-plus"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+  `;
+};
+
 export const handleRenderingRecommendedProducts = (Swiper) => {
   const products = JSON.parse(localStorage.getItem("all-products"));
   const recommendedProductsContainer = document.getElementById(
@@ -108,48 +144,86 @@ export const handleRenderingRecommendedProducts = (Swiper) => {
   );
 
   recommendedProductsContainer.innerHTML = "";
-  products.slice(0, 8).forEach((product) => {
-    recommendedProductsContainer.innerHTML += `
-              <div class="swiper-slide">
-                <div class="card" id="${product.id}">
-                  <i class="fa-regular fa-heart position-absolute z-3"></i>
-                  <span class="badge text-bg-danger position-absolute z-3">${
-                    product.discountPercentage
-                  }%</span>
-                  <img src=${product.thumbnail} class="card-img-top" alt=${
-                      product.title
-                    } loading="lazy" />
-                  <div class="card-body">
-                    <h5 class="card-title">${product.title}</h5>
-                    <p class="card-text mb-1 mb-1" title="${product.description}">
-                    ${product.description.slice(0, 100)}...
-                    </p>
-                    <div class="price">
-                      <span class="me-2 fw-bold fs-5">${product.price}</span>
-                      <span class="fw-light fs-6 text-decoration-line-through">${
-                        (product.price +
-                        product.discountPercentage * product.price).toFixed(3)
-                      }</span>
-                    </div>
-                    <button class="addtocart">
-                      Add to cart <i class="fa-solid fa-plus"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
-  `;
+  const mobiles = products
+    .filter((product) => product.category === "smartphones")
+    .slice(0, 3);
+  const tablets = products
+    .filter((product) => product.category === "tablets")
+    .slice(0, 3);
+  const laptops = products
+    .filter((product) => product.category === "laptops")
+    .slice(0, 3);
+  const desktops = products
+    .filter((product) => product.category === "desktops")
+    .slice(0, 3);
+
+  mobiles.forEach((product) => {
+    recommendedProductsContainer.innerHTML += productCard(product);
+  });
+
+  tablets.forEach((product) => {
+    recommendedProductsContainer.innerHTML += productCard(product);
+  });
+
+  laptops.forEach((product) => {
+    recommendedProductsContainer.innerHTML += productCard(product);
+  });
+
+  desktops.forEach((product) => {
+    recommendedProductsContainer.innerHTML += productCard(product);
   });
 
   recommendedProductsContainer.addEventListener("click", (e) => {
-    if (e.target.classList.contains("card-img-top") || e.target.classList.contains("card-title")) {
+    if (
+      e.target.classList.contains("card-img-top") ||
+      e.target.classList.contains("card-title")
+    ) {
       localStorage.setItem("curr-product", e.target.closest(".card").id);
       window.scrollTo(0, 0);
       router.navigate(`/shop/product-details`);
     }
-  })
+  });
 
   const recommendedSlider = document.getElementById("recommendedSlider");
   new Swiper(recommendedSlider, {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    loop: true,
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    breakpoints: {
+      576: { slidesPerView: 2 },
+      992: { slidesPerView: 3 },
+      1200: { slidesPerView: 4 },
+    },
+  });
+};
+
+export const bestSellingProducts = (Swiper) => {
+  const bestSellingProductsContainer = document.getElementById(
+    "bestsellerContainer"
+  );
+  const products = JSON.parse(localStorage.getItem("all-products"));
+  products.sort((a, b) => b.rating - a.rating);
+  bestSellingProductsContainer.innerHTML = "";
+  products.slice(0, 8).forEach((product) => {
+    bestSellingProductsContainer.innerHTML += productCard(product);
+  });
+
+  const bestSellingSlider = document.getElementById("bestsellerProducts");
+  bestSellingSlider.addEventListener("click", (e) => {
+    if (
+      e.target.classList.contains("card-img-top") ||
+      e.target.classList.contains("card-title")
+    ) {
+      localStorage.setItem("curr-product", e.target.closest(".card").id);
+      window.scrollTo(0, 0);
+      router.navigate(`/shop/product-details`);
+    }
+  });
+  new Swiper(bestSellingSlider, {
     slidesPerView: 1,
     spaceBetween: 20,
     loop: true,

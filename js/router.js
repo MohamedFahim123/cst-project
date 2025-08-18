@@ -56,11 +56,24 @@ class Router {
   #normalizePath(path) {
     return path ? `/${path.replace(/^\/+|\/+$/g, "")}` : "/";
   }
+  #removeFiltersAndGoToShop = () => {
+    localStorage.removeItem("curr-filters");
+    router.navigate("/shop");
+  };
 
   async #loadTemplate(url) {
     const response = await fetch(url);
     if (!response.ok) throw new Error(`Failed to load template: ${url}`);
-    return await response.text();
+    const text = await response.text();
+
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(text, "text/html");
+
+    if (doc.body && doc.body.innerHTML.trim() !== "") {
+      return doc.body.innerHTML;
+    }
+
+    return text;
   }
 
   #updatePageMeta(meta) {
@@ -121,6 +134,16 @@ class Router {
 
     const template = await this.#loadTemplate(this.#routeMap[routeKey]);
     this.#appElement.innerHTML = template;
+    const shopLink = document.getElementById("shop-direct");
+    if (shopLink) {
+      document.addEventListener("click", (e) => {
+        const shopBtn = e.target.closest("#shop-direct");
+        if (shopBtn) {
+          e.preventDefault();
+          this.#removeFiltersAndGoToShop();
+        }
+      });
+    }
 
     this.#updatePageMeta(this.#getRouteMeta(routeKey));
     if (PAGE_INITIALIZERS[routeKey]) {

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop</title>
+    <link rel="stylesheet" href="shop.css">
 
 </head>
 
@@ -20,16 +21,18 @@
                     <div class="row g-2 mb-2">
                         <div class="col-6">
                             <label for="minRange" class="form-label small text-muted">Min</label>
-                            <input type="number" class="form-control form-control-sm" id="minRange" value="0">
+                            <input type="number" disabled name="minRange" class="form-control form-control-sm"
+                                id="minRange" step="1" value="0">
                         </div>
                         <div class="col-6">
                             <label for="maxRange" class="form-label small text-muted">Max</label>
-                            <input type="number" class="form-control form-control-sm" id="maxRange" value="100">
+                            <input type="number" disabled name="maxRange" class="form-control form-control-sm"
+                                id="maxRange" step="1" value="100">
                         </div>
                     </div>
-                    <input class="form-range mb-2" type="range" id="customRange">
+                    <input class="form-range mb-2" type="range" name="customRange" step="1" id="customRange">
                     <div class="d-flex justify-content-between align-items-center">
-                        <p class="mb-0 small text-muted">Price $0 - $30</p>
+                        <p class="mb-0 small text-muted" id="priceRangeText">Price $0 - $30</p>
                         <button class="btn btn-sm text-black bg-gray px-3 py-2 fw-bold">Filter</button>
                     </div>
                 </div>
@@ -37,73 +40,16 @@
                 <!-- product categories -->
                 <div class="shop-filter-container">
                     <p class="shop-filters-header">Product Categories</p>
-                    <div class="px-1 small">
-                        <div class="form-check my-1">
-                            <input class="form-check-input c-check-purple" type="checkbox" id="cat1">
-                            <label class="form-check-label" for="cat1">Fruits & Vegetables</label>
-                        </div>
-                        <div class="form-check my-1">
-                            <input class="form-check-input c-check-purple" type="checkbox" id="cat2">
-                            <label class="form-check-label" for="cat2">Baby & Pregnancy</label>
-                        </div>
-                        <div class="form-check my-1">
-                            <input class="form-check-input c-check-purple" type="checkbox" id="cat3">
-                            <label class="form-check-label" for="cat3">Beverages</label>
-                        </div>
-                        <div class="form-check my-1">
-                            <input class="form-check-input c-check-purple" type="checkbox" id="cat4">
-                            <label class="form-check-label" for="cat4">Meats & Seafood</label>
-                        </div>
-                        <div class="form-check my-1">
-                            <input class="form-check-input c-check-purple" type="checkbox" id="cat5">
-                            <label class="form-check-label" for="cat5">Biscuits & Snacks</label>
-                        </div>
-                        <div class="form-check my-1">
-                            <input class="form-check-input c-check-purple" type="checkbox" id="cat6">
-                            <label class="form-check-label" for="cat6">Breads & Bakery</label>
-                        </div>
-                        <div class="form-check my-1">
-                            <input class="form-check-input c-check-purple" type="checkbox" id="cat7">
-                            <label class="form-check-label" for="cat7">Frozen Foods</label>
-                        </div>
-                        <div class="form-check my-1">
-                            <input class="form-check-input c-check-purple" type="checkbox" id="cat8">
-                            <label class="form-check-label" for="cat8">Grocery & Staples</label>
-                        </div>
-                        <div class="form-check my-1">
-                            <input class="form-check-input c-check-purple" type="checkbox" id="cat9">
-                            <label class="form-check-label" for="cat9">Healthcare</label>
-                        </div>
-                        <div class="form-check my-1">
-                            <input class="form-check-input c-check-purple" type="checkbox" id="cat10">
-                            <label class="form-check-label" for="cat10">Household Needs</label>
-                        </div>
+                    <div class="px-1 small" id="productCategoriesContainer">
+                        
                     </div>
                 </div>
 
                 <!-- product brands -->
                 <div class="shop-filter-container">
                     <p class="shop-filters-header">Brands</p>
-                    <div class="px-1 small">
-                        <div class="form-check my-1">
-                            <input class="form-check-input c-check-purple" type="checkbox" id="brand1">
-                            <label class="form-check-label" for="brand1">Fresh</label>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- product status -->
-                <div class="shop-filter-container">
-                    <p class="shop-filters-header">Product Status</p>
-                    <div class="px-1 small">
-                        <div class="form-check my-1">
-                            <input class="form-check-input c-check-purple" type="checkbox" id="status1">
-                            <label class="form-check-label" for="status1">In Stock</label>
-                        </div>
-                        <div class="form-check my-1">
-                            <input class="form-check-input c-check-purple" type="checkbox" id="status2">
-                            <label class="form-check-label" for="status2">On Sale</label>
-                        </div>
+                    <div class="px-1 small" id="productBrandsContainer">
+                        
                     </div>
                 </div>
             </div>
@@ -153,281 +99,7 @@
                     </div>
                 </div>
                 <!-- product grid container -->
-                <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-0 my-2">
-                    <!-- product-card  -->
-                    <div class="col container  p-3  border border-gray">
-                        <!-- product-card-actions -->
-                        <div class="card-actions d-flex justify-content-between align-items-center">
-                            <span class=" py-1 px-2 bg-danger text-white c-fs-8 rounded- rounded-pill">75%</span>
-                            <i class="fa-regular fa-heart fs-5"></i>
-                        </div>
-                        <!-- product-card-preview -->
-                        <div>
-                            <img src="../../assets/102fea2b8f61777e46acf54aaa51b9c3e327cef1.jpg"
-                                class="w-75 mx-auto d-block" alt="">
-                        </div>
-                        <!-- product-card-content -->
-                        <div>
-                            <!-- product-title  -->
-                            <p class="my-1 c-fs-7 fw-bold">Strawberries – 1lb</p>
-                            <!-- stars rating -->
-                            <div class="d-flex g-1 c-fs-8 my-1">
-                                <i class="fa-solid fa-star text-warning"></i>
-                                <i class="fa-solid fa-star  text-warning"></i>
-                                <i class="fa-solid fa-star  text-warning"></i>
-                                <i class="fa-regular fa-star  text-warning"></i>
-                                <i class="fa-regular fa-star  text-warning"></i>
-                            </div>
-                            <!-- price  -->
-                            <div class="d-flex align-items-center gap-2 fw-bold my-1">
-                                <p class="text-danger fs-4 m-0">$8.74</p>
-                                <p class="fs-6  text-decoration-line-through m-0">$10.55</p>
-                            </div>
-                            <!-- add to cart action  -->
-                            <div>
-                                <button></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col container  p-3  border border-gray">
-                        <!-- product-card-actions -->
-                        <div class="card-actions d-flex justify-content-between align-items-center">
-                            <span class=" py-1 px-2 bg-danger text-white c-fs-8 rounded- rounded-pill">75%</span>
-                            <i class="fa-regular fa-heart fs-5"></i>
-                        </div>
-                        <!-- product-card-preview -->
-                        <div>
-                            <img src="../../assets/102fea2b8f61777e46acf54aaa51b9c3e327cef1.jpg"
-                                class="w-75 mx-auto d-block" alt="">
-                        </div>
-                        <!-- product-card-content -->
-                        <div>
-                            <!-- product-title  -->
-                            <p class="my-1 c-fs-7 fw-bold">Strawberries – 1lb</p>
-                            <!-- stars rating -->
-                            <div class="d-flex g-1 c-fs-8 my-1">
-                                <i class="fa-solid fa-star text-warning"></i>
-                                <i class="fa-solid fa-star  text-warning"></i>
-                                <i class="fa-solid fa-star  text-warning"></i>
-                                <i class="fa-regular fa-star  text-warning"></i>
-                                <i class="fa-regular fa-star  text-warning"></i>
-                            </div>
-                            <!-- price  -->
-                            <div class="d-flex align-items-center gap-2 fw-bold my-1">
-                                <p class="text-danger fs-4 m-0">$8.74</p>
-                                <p class="fs-6  text-decoration-line-through m-0">$10.55</p>
-                            </div>
-                            <!-- add to cart action  -->
-                            <div>
-                                <button></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col container  p-3  border border-gray">
-                        <!-- product-card-actions -->
-                        <div class="card-actions d-flex justify-content-between align-items-center">
-                            <span class=" py-1 px-2 bg-danger text-white c-fs-8 rounded- rounded-pill">75%</span>
-                            <i class="fa-regular fa-heart fs-5"></i>
-                        </div>
-                        <!-- product-card-preview -->
-                        <div>
-                            <img src="../../assets/102fea2b8f61777e46acf54aaa51b9c3e327cef1.jpg"
-                                class="w-75 mx-auto d-block" alt="">
-                        </div>
-                        <!-- product-card-content -->
-                        <div>
-                            <!-- product-title  -->
-                            <p class="my-1 c-fs-7 fw-bold">Strawberries – 1lb</p>
-                            <!-- stars rating -->
-                            <div class="d-flex g-1 c-fs-8 my-1">
-                                <i class="fa-solid fa-star text-warning"></i>
-                                <i class="fa-solid fa-star  text-warning"></i>
-                                <i class="fa-solid fa-star  text-warning"></i>
-                                <i class="fa-regular fa-star  text-warning"></i>
-                                <i class="fa-regular fa-star  text-warning"></i>
-                            </div>
-                            <!-- price  -->
-                            <div class="d-flex align-items-center gap-2 fw-bold my-1">
-                                <p class="text-danger fs-4 m-0">$8.74</p>
-                                <p class="fs-6  text-decoration-line-through m-0">$10.55</p>
-                            </div>
-                            <!-- add to cart action  -->
-                            <div>
-                                <button></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col container  p-3  border border-gray">
-                        <!-- product-card-actions -->
-                        <div class="card-actions d-flex justify-content-between align-items-center">
-                            <span class=" py-1 px-2 bg-danger text-white c-fs-8 rounded- rounded-pill">75%</span>
-                            <i class="fa-regular fa-heart fs-5"></i>
-                        </div>
-                        <!-- product-card-preview -->
-                        <div>
-                            <img src="../../assets/102fea2b8f61777e46acf54aaa51b9c3e327cef1.jpg"
-                                class="w-75 mx-auto d-block" alt="">
-                        </div>
-                        <!-- product-card-content -->
-                        <div>
-                            <!-- product-title  -->
-                            <p class="my-1 c-fs-7 fw-bold">Strawberries – 1lb</p>
-                            <!-- stars rating -->
-                            <div class="d-flex g-1 c-fs-8 my-1">
-                                <i class="fa-solid fa-star text-warning"></i>
-                                <i class="fa-solid fa-star  text-warning"></i>
-                                <i class="fa-solid fa-star  text-warning"></i>
-                                <i class="fa-regular fa-star  text-warning"></i>
-                                <i class="fa-regular fa-star  text-warning"></i>
-                            </div>
-                            <!-- price  -->
-                            <div class="d-flex align-items-center gap-2 fw-bold my-1">
-                                <p class="text-danger fs-4 m-0">$8.74</p>
-                                <p class="fs-6  text-decoration-line-through m-0">$10.55</p>
-                            </div>
-                            <!-- add to cart action  -->
-                            <div>
-                                <button></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col container  p-3  border border-gray">
-                        <!-- product-card-actions -->
-                        <div class="card-actions d-flex justify-content-between align-items-center">
-                            <span class=" py-1 px-2 bg-danger text-white c-fs-8 rounded- rounded-pill">75%</span>
-                            <i class="fa-regular fa-heart fs-5"></i>
-                        </div>
-                        <!-- product-card-preview -->
-                        <div>
-                            <img src="../../assets/102fea2b8f61777e46acf54aaa51b9c3e327cef1.jpg"
-                                class="w-75 mx-auto d-block" alt="">
-                        </div>
-                        <!-- product-card-content -->
-                        <div>
-                            <!-- product-title  -->
-                            <p class="my-1 c-fs-7 fw-bold">Strawberries – 1lb</p>
-                            <!-- stars rating -->
-                            <div class="d-flex g-1 c-fs-8 my-1">
-                                <i class="fa-solid fa-star text-warning"></i>
-                                <i class="fa-solid fa-star  text-warning"></i>
-                                <i class="fa-solid fa-star  text-warning"></i>
-                                <i class="fa-regular fa-star  text-warning"></i>
-                                <i class="fa-regular fa-star  text-warning"></i>
-                            </div>
-                            <!-- price  -->
-                            <div class="d-flex align-items-center gap-2 fw-bold my-1">
-                                <p class="text-danger fs-4 m-0">$8.74</p>
-                                <p class="fs-6  text-decoration-line-through m-0">$10.55</p>
-                            </div>
-                            <!-- add to cart action  -->
-                            <div>
-                                <button></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col container  p-3  border border-gray">
-                        <!-- product-card-actions -->
-                        <div class="card-actions d-flex justify-content-between align-items-center">
-                            <span class=" py-1 px-2 bg-danger text-white c-fs-8 rounded- rounded-pill">75%</span>
-                            <i class="fa-regular fa-heart fs-5"></i>
-                        </div>
-                        <!-- product-card-preview -->
-                        <div>
-                            <img src="../../assets/102fea2b8f61777e46acf54aaa51b9c3e327cef1.jpg"
-                                class="w-75 mx-auto d-block" alt="">
-                        </div>
-                        <!-- product-card-content -->
-                        <div>
-                            <!-- product-title  -->
-                            <p class="my-1 c-fs-7 fw-bold">Strawberries – 1lb</p>
-                            <!-- stars rating -->
-                            <div class="d-flex g-1 c-fs-8 my-1">
-                                <i class="fa-solid fa-star text-warning"></i>
-                                <i class="fa-solid fa-star  text-warning"></i>
-                                <i class="fa-solid fa-star  text-warning"></i>
-                                <i class="fa-regular fa-star  text-warning"></i>
-                                <i class="fa-regular fa-star  text-warning"></i>
-                            </div>
-                            <!-- price  -->
-                            <div class="d-flex align-items-center gap-2 fw-bold my-1">
-                                <p class="text-danger fs-4 m-0">$8.74</p>
-                                <p class="fs-6  text-decoration-line-through m-0">$10.55</p>
-                            </div>
-                            <!-- add to cart action  -->
-                            <div>
-                                <button></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col container  p-3  border border-gray">
-                        <!-- product-card-actions -->
-                        <div class="card-actions d-flex justify-content-between align-items-center">
-                            <span class=" py-1 px-2 bg-danger text-white c-fs-8 rounded- rounded-pill">75%</span>
-                            <i class="fa-regular fa-heart fs-5"></i>
-                        </div>
-                        <!-- product-card-preview -->
-                        <div>
-                            <img src="../../assets/102fea2b8f61777e46acf54aaa51b9c3e327cef1.jpg"
-                                class="w-75 mx-auto d-block" alt="">
-                        </div>
-                        <!-- product-card-content -->
-                        <div>
-                            <!-- product-title  -->
-                            <p class="my-1 c-fs-7 fw-bold">Strawberries – 1lb</p>
-                            <!-- stars rating -->
-                            <div class="d-flex g-1 c-fs-8 my-1">
-                                <i class="fa-solid fa-star text-warning"></i>
-                                <i class="fa-solid fa-star  text-warning"></i>
-                                <i class="fa-solid fa-star  text-warning"></i>
-                                <i class="fa-regular fa-star  text-warning"></i>
-                                <i class="fa-regular fa-star  text-warning"></i>
-                            </div>
-                            <!-- price  -->
-                            <div class="d-flex align-items-center gap-2 fw-bold my-1">
-                                <p class="text-danger fs-4 m-0">$8.74</p>
-                                <p class="fs-6  text-decoration-line-through m-0">$10.55</p>
-                            </div>
-                            <!-- add to cart action  -->
-                            <div>
-                                <button></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col container  p-3  border border-gray">
-                        <!-- product-card-actions -->
-                        <div class="card-actions d-flex justify-content-between align-items-center">
-                            <span class=" py-1 px-2 bg-danger text-white c-fs-8 rounded- rounded-pill">75%</span>
-                            <i class="fa-regular fa-heart fs-5"></i>
-                        </div>
-                        <!-- product-card-preview -->
-                        <div>
-                            <img src="../../assets/102fea2b8f61777e46acf54aaa51b9c3e327cef1.jpg"
-                                class="w-75 mx-auto d-block" alt="">
-                        </div>
-                        <!-- product-card-content -->
-                        <div>
-                            <!-- product-title  -->
-                            <p class="my-1 c-fs-7 fw-bold">Strawberries – 1lb</p>
-                            <!-- stars rating -->
-                            <div class="d-flex g-1 c-fs-8 my-1">
-                                <i class="fa-solid fa-star text-warning"></i>
-                                <i class="fa-solid fa-star  text-warning"></i>
-                                <i class="fa-solid fa-star  text-warning"></i>
-                                <i class="fa-regular fa-star  text-warning"></i>
-                                <i class="fa-regular fa-star  text-warning"></i>
-                            </div>
-                            <!-- price  -->
-                            <div class="d-flex align-items-center gap-2 fw-bold my-1">
-                                <p class="text-danger fs-4 m-0">$8.74</p>
-                                <p class="fs-6  text-decoration-line-through m-0">$10.55</p>
-                            </div>
-                            <!-- add to cart action  -->
-                            <div>
-                                <button></button>
-                            </div>
-                        </div>
-                    </div>
-
+                <div id="product-grid-container" class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-0 my-2">
                 </div>
 
             </div>

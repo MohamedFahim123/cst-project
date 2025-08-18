@@ -21,7 +21,7 @@
                 <div class="text pe-4">
                   <h1 class="text-capitalize mb-4 fw-bold">Smartphones That Inspire</h1>
                   <p class="fs-5 mb-5">Stay connected in style with the latest flagship phones at unbeatable prices.</p>
-                  <button id="smartphone" type="button" title="Shop Smartphones"
+                  <button id="smartphones" type="button" title="Shop Smartphones"
                     class="home-banner-category signIn-btn shadow-md">Shop
                     Smartphones</button>
                 </div>
@@ -38,7 +38,7 @@
                 <div class="text pe-4">
                   <h1 class="text-capitalize mb-4 fw-bold">Powerful Laptops for Work & Play</h1>
                   <p class="fs-5 mb-5">Experience blazing performance and sleek design with our top-rated laptops.</p>
-                  <button id="laptop" type="button" title="Explore Laptops"
+                  <button id="laptops" type="button" title="Explore Laptops"
                     class="home-banner-category signIn-btn shadow-md">Explore Laptops</button>
                 </div>
                 <div class="image">
@@ -54,7 +54,7 @@
                 <div class="text pe-4">
                   <h1 class="text-capitalize mb-4 fw-bold">Tablets Built for Productivity</h1>
                   <p class="fs-5 mb-5">Lightweight, fast, and versatile — discover tablets perfect for work or play.</p>
-                  <button id="tablet" type="button" title="Browse Tablets"
+                  <button id="tablets" type="button" title="Browse Tablets"
                     class="home-banner-category signIn-btn shadow-md">Browse Tablets</button>
                 </div>
                 <div class="image">
@@ -135,7 +135,7 @@
                 <p class="promo-description fs-6 mb-4">
                   Simplify your life with cutting-edge electronics
                 </p>
-                <a href="/shop" data-link aria-label="label"
+                <a href="/shop" data-link aria-label="label" id="shop-direct"
                   class="promo-button d-inline-block fw-bold text-decoration-none rounded-5 border">Shop Now →</a>
               </div>
             </div>
@@ -148,7 +148,7 @@
                 <p class="promo-description fs-6 mb-4">
                   From smart home gadgets to premium accessories
                 </p>
-                <a href="/shop" data-link aria-label="label"
+                <a href="/shop" data-link aria-label="label" id="shop-direct"
                   class="promo-button d-inline-block fw-bold text-decoration-none rounded-5 border">Shop Now →</a>
               </div>
             </div>
@@ -294,119 +294,14 @@
           <p class="fs-6 fw-medium text-secondary">New products with updated stocks.</p>
         </div>
         <article class="bestseller-products my-3">
-          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 row-gap-4">
-            <div class="col">
-              <div class="card">
-                <i class="fa-regular fa-heart position-absolute z-3"></i>
-                <span class="badge text-bg-danger position-absolute z-3">75%</span>
-                <img src="../../assets/s-l500.webp" class="card-img-top" alt="image" loading="lazy" />
-                <div class="card-body">
-                  <h5 class="card-title">Laptob Gaming</h5>
-                  <ul class="rate d-flex align-items-center p-0 mb-2">
-                    <li><i class="fa-regular fa-star fs-6"></i></li>
-                    <li><i class="fa-regular fa-star fs-6"></i></li>
-                    <li><i class="fa-regular fa-star fs-6"></i></li>
-                    <li><i class="fa-regular fa-star fs-6"></i></li>
-                    <li><i class="fa-regular fa-star fs-6"></i></li>
-                  </ul>
-                  <p class="card-text mb-1 mb-1">
-                    Some quick example text to build on the card title and
-                    make up the bulk of the card’s content.
-                  </p>
-                  <div class="price">
-                    <span class="me-2 fw-bold fs-5">23,469</span>
-                    <span class="fw-light fs-6 text-decoration-line-through">25,500</span>
-                  </div>
-                  <button class="addtocart">
-                    Add to cart <i class="fa-solid fa-plus"></i>
-                  </button>
-                </div>
-              </div>
+          <div class="swiper pb-5 px-2" id="bestsellerProducts">
+            <div class="swiper-wrapper" id="bestsellerContainer">
             </div>
-            <div class="col">
-              <div class="card">
-                <i class="fa-regular fa-heart position-absolute z-3"></i>
-                <span class="badge text-bg-danger position-absolute z-3">75%</span>
-                <img src="../../assets/s-l500.webp" class="card-img-top" alt="image" loading="lazy" />
-                <div class="card-body">
-                  <h5 class="card-title">Laptob Gaming</h5>
-                  <ul class="rate d-flex align-items-center p-0 mb-2">
-                    <li><i class="fa-regular fa-star fs-6"></i></li>
-                    <li><i class="fa-regular fa-star fs-6"></i></li>
-                    <li><i class="fa-regular fa-star fs-6"></i></li>
-                    <li><i class="fa-regular fa-star fs-6"></i></li>
-                    <li><i class="fa-regular fa-star fs-6"></i></li>
-                  </ul>
-                  <p class="card-text mb-1">
-                    Some quick example text to build on the card title and
-                    make up the bulk of the card’s content.
-                  </p>
-                  <div class="price">
-                    <span class="me-2 fw-bold fs-5">23,469</span>
-                    <span class="fw-light fs-6 text-decoration-line-through">25,500</span>
-                  </div>
-                  <button class="addtocart">
-                    Add to cart <i class="fa-solid fa-plus"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card">
-                <i class="fa-regular fa-heart position-absolute z-3"></i>
-                <span class="badge text-bg-danger position-absolute z-3">75%</span>
-                <img src="../../assets/s-l500.webp" class="card-img-top" alt="image" loading="lazy" />
-                <div class="card-body">
-                  <h5 class="card-title">Laptob Gaming</h5>
-                  <ul class="rate d-flex align-items-center p-0 mb-2">
-                    <li><i class="fa-regular fa-star fs-6"></i></li>
-                    <li><i class="fa-regular fa-star fs-6"></i></li>
-                    <li><i class="fa-regular fa-star fs-6"></i></li>
-                    <li><i class="fa-regular fa-star fs-6"></i></li>
-                    <li><i class="fa-regular fa-star fs-6"></i></li>
-                  </ul>
-                  <p class="card-text mb-1">
-                    Some quick example text to build on the card title and
-                    make up the bulk of the card’s content.
-                  </p>
-                  <div class="price">
-                    <span class="me-2 fw-bold fs-5">23,469</span>
-                    <span class="fw-light fs-6 text-decoration-line-through">25,500</span>
-                  </div>
-                  <button class="addtocart">
-                    Add to cart <i class="fa-solid fa-plus"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card">
-                <i class="fa-regular fa-heart position-absolute z-3"></i>
-                <span class="badge text-bg-danger position-absolute z-3">75%</span>
-                <img src="../../assets/s-l500.webp" class="card-img-top" alt="image" loading="lazy" />
-                <div class="card-body">
-                  <h5 class="card-title">Laptob Gaming</h5>
-                  <ul class="rate d-flex align-items-center p-0 mb-2">
-                    <li><i class="fa-regular fa-star fs-6"></i></li>
-                    <li><i class="fa-regular fa-star fs-6"></i></li>
-                    <li><i class="fa-regular fa-star fs-6"></i></li>
-                    <li><i class="fa-regular fa-star fs-6"></i></li>
-                    <li><i class="fa-regular fa-star fs-6"></i></li>
-                  </ul>
-                  <p class="card-text mb-1">
-                    Some quick example text to build on the card title and
-                    make up the bulk of the card’s content.
-                  </p>
-                  <div class="price">
-                    <span class="me-2 fw-bold fs-5">23,469</span>
-                    <span class="fw-light fs-6 text-decoration-line-through">25,500</span>
-                  </div>
-                  <button class="addtocart">
-                    Add to cart <i class="fa-solid fa-plus"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
+
+            <!-- Navigation -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+
           </div>
         </article>
       </div>
