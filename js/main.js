@@ -8,17 +8,11 @@ import {
   renderBrands,
   handleRenderingRecommendedProducts,
 } from "../pages/home/home.js";
-import {
-  initializeAddToCart,
-  initializeQuantityControls,
-  initializeSlider,
-} from "../pages/shop/product-details/product-details.js";
+import { initializeProductDetailsFunctions } from "../pages/shop/product-details/product-details.js";
 
 export const PAGE_INITIALIZERS = {
   "/shop/product-details": () => {
-    initializeSlider();
-    initializeQuantityControls();
-    initializeAddToCart();
+    initializeProductDetailsFunctions();
   },
   "/": async () => {
     const products = JSON.parse(localStorage.getItem("all-products"));
