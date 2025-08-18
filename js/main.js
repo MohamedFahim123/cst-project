@@ -9,16 +9,11 @@ import {
   handleRenderingRecommendedProducts,
   renderBrands,
 } from "../pages/home/home.js";
-<<<<<<< HEAD
 import {
-  initializeAddToCart,
-  initializeQuantityControls,
-  initializeSlider,
-} from "../pages/shop/product-details/product-details.js";
-import { handleFilterProductsIfExistFilters, inputsSetups } from "../pages/shop/shop.js";
-=======
+  handleFilterProductsIfExistFilters,
+  inputsSetups,
+} from "../pages/shop/shop.js";
 import { initializeProductDetailsFunctions } from "../pages/shop/product-details/product-details.js";
->>>>>>> 48d98f62136f17c8212579e3aa5b1ae9b528e7ec
 
 export const PAGE_INITIALIZERS = {
   "/shop/product-details": () => {
