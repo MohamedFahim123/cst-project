@@ -12,6 +12,7 @@ import {
 import {
   handleFilterProductsIfExistFilters,
   inputsSetups,
+  resetFilters
 } from "../pages/shop/shop.js";
 import { initializeProductDetailsFunctions } from "../pages/shop/product-details/product-details.js";
 
@@ -43,5 +44,6 @@ export const PAGE_INITIALIZERS = {
   "/shop": () => {
     handleFilterProductsIfExistFilters();
     inputsSetups();
+    resetFilters();
   },
 };

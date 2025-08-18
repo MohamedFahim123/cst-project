@@ -22,7 +22,6 @@ export const getCategories = async () => {
     btn.addEventListener("click", () => {
       let filters = JSON.parse(localStorage.getItem("curr-filters"));
       if (filters) {
-        console.log(btn.id);
         filters = {
           category: [btn.id],
         };
@@ -31,7 +30,7 @@ export const getCategories = async () => {
         router.navigate("/shop");
       } else {
         const filters = {
-          category: btn.id,
+          category: [btn.id],
         };
         localStorage.setItem("curr-filters", JSON.stringify(filters));
         window.scrollTo(0, 0);
@@ -92,7 +91,7 @@ export const renderBrands = (Swiper) => {
         router.navigate("/shop");
       } else {
         const filters = {
-          brand: e.target.id.toLowerCase(),
+          brand: [e.target.id.toLowerCase()],
         };
         localStorage.setItem("curr-filters", JSON.stringify(filters));
         window.scrollTo(0, 0);
@@ -126,7 +125,9 @@ const productCard = (product) => {
             </p>
             <div class="price">
               <span class="me-2 fw-bold fs-5">${Math.ceil(product.price)}</span>
-              <span class="fw-light fs-6 text-decoration-line-through">${product.deletedPrice}</span>
+              <span class="fw-light fs-6 text-decoration-line-through">${
+                product.deletedPrice
+              }</span>
             </div>
             <button class="addtocart">
               Add to cart <i class="fa-solid fa-plus"></i>

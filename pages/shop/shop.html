@@ -17,7 +17,10 @@
 
                 <!-- widget price filter -->
                 <div class="shop-filter-container">
-                    <p class="shop-filters-header">Price Filter</p>
+                    <p class="shop-filters-header d-flex justify-content-between">Price Filter
+                        <button id="resetPriceFilter1"
+                            class="btn btn-sm text-black bg-gray px-3 py-2 fw-bold">Reset</button>
+                    </p>
                     <div class="row g-2 mb-2">
                         <div class="col-6">
                             <label for="minRange" class="form-label small text-muted">Min</label>
@@ -33,7 +36,6 @@
                     <input class="form-range mb-2" type="range" name="customRange" step="1" id="customRange">
                     <div class="d-flex justify-content-between align-items-center">
                         <p class="mb-0 small text-muted" id="priceRangeText">Price $0 - $30</p>
-                        <button class="btn btn-sm text-black bg-gray px-3 py-2 fw-bold">Filter</button>
                     </div>
                 </div>
 
@@ -41,7 +43,7 @@
                 <div class="shop-filter-container">
                     <p class="shop-filters-header">Product Categories</p>
                     <div class="px-1 small" id="productCategoriesContainer">
-                        
+
                     </div>
                 </div>
 
@@ -49,7 +51,7 @@
                 <div class="shop-filter-container">
                     <p class="shop-filters-header">Brands</p>
                     <div class="px-1 small" id="productBrandsContainer">
-                        
+
                     </div>
                 </div>
             </div>
@@ -66,42 +68,44 @@
                                 <i class="fa-solid fa-filter"></i>
                             </button>
                         </div>
-                        <p class="m-0 fw-semibold  text-muted">Showing 16 results</p>
+                        <p class="m-0 fw-semibold  text-muted" id="productCountText"></p>
                     </div>
 
                     <!-- right -->
                     <div class="d-flex gap-2">
                         <!-- Sort Dropdown -->
-                        <div class="dropdown">
+                        <div class="dropdown" data-bs-auto-close="outside">
                             <button class="btn  btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 Sort
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end ">
-                                <li><a class="dropdown-item" href="#">Name</a></li>
-                                <li><a class="dropdown-item" href="#">Price Low → High</a></li>
-                                <li><a class="dropdown-item" href="#">Price High → Low</a></li>
+                                <li><button title="Name" class="dropdown-item" href="#">Name</button></li>
+                                <li><button title="Price Low → High" class="dropdown-item" href="#">Price Low →
+                                        High</button></li>
+                                <li><button title="Price High → Low" class="dropdown-item" href="#">Price High →
+                                        Low</button></li>
                             </ul>
                         </div>
 
                         <!-- Show Dropdown -->
-                        <div class="dropdown">
+                        <div class="dropdown" data-bs-auto-close="outside">
                             <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 Show
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end ">
-                                <li><a class="dropdown-item" href="#">All</a></li>
-                                <li><a class="dropdown-item" href="#">10 items</a></li>
-                                <li><a class="dropdown-item" href="#">20 items</a></li>
+                                <li><button title="All" class="dropdown-item" href="#">All</button></li>
+                                <li><button title="10 items" class="dropdown-item" href="#">10 items</button></li>
+                                <li><button title="20 items" class="dropdown-item" href="#">20 items</button></li>
                             </ul>
                         </div>
                     </div>
                 </div>
                 <!-- product grid container -->
-                <div id="product-grid-container" class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-0 my-2">
+                <div id="product-grid-container" class="product-grid-container">
                 </div>
-
+                <div id="pagination-container" class="pagination-container"></div>
             </div>
         </div>
     </div>
@@ -114,7 +118,10 @@
         </div>
         <div class="offcanvas-body">
             <div class="shop-filter-container">
-                <p class="shop-filters-header">Price Filter</p>
+                <p class="shop-filters-header d-flex justify-content-between">Price Filter
+                    <button id="resetPriceFilter2"
+                        class="btn btn-sm text-black bg-gray px-3 py-2 fw-bold">Reset</button>
+                </p>
                 <div class="row g-2 mb-2">
                     <div class="col-6">
                         <label for="minRange" class="form-label small text-muted">Min</label>
@@ -128,7 +135,6 @@
                 <input class="form-range mb-2" type="range" id="customRange">
                 <div class="d-flex justify-content-between align-items-center">
                     <p class="mb-0 small text-muted">Price $0 - $30</p>
-                    <button class="btn btn-sm text-black bg-gray px-3 py-2 fw-bold">Filter</button>
                 </div>
             </div>
 

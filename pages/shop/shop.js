@@ -1,3 +1,5 @@
+import { router } from "../../js/router.js";
+
 let filters = {
   min: 0,
   max: 0,
@@ -5,50 +7,97 @@ let filters = {
   category: [],
 };
 
+let currentPage = 1;
+let itemsPerPage = 10;
+let filteredProducts = [];
+
 const productCard = (product) => {
   return `
-        <div class="col container  p-3  border border-gray">
-            <div class="card-actions d-flex justify-content-between align-items-center">
-                <span class="py-1 px-2 shop-card-badge text-white c-fs-8 rounded-pill">${
-                  product.discountPercentage
-                }%</span>
-                <i class="fa-regular fa-heart add-to-fav cursor-pointer fs-5"></i>
-            </div>
-            <div>
-                <img src="${product.thumbnail}"
-                    class="w-75 mx-auto d-block" alt="${product.title}">
-            </div>
-            <div>
-                <p class="my-1 c-fs-7 fw-bold">${product.title}</p>
-                <div class="d-flex align-items-center gap-2 fw-bold my-1">
-                    <p class="shop-card-price  fs-4 m-0">$${Math.ceil(
-                      product.price
-                    )}</p>
-                    <p class="fs-6  text-decoration-line-through m-0">$${
-                      product.deletedPrice
-                    }</p>
-                </div>
-                <div>
-                    <button id="${
-                      product.id
-                    }" class="shop-cart-btn w-100"> <i class="fa-solid fa-cart-shopping"></i> Add to Cart</button>
-                </div>
-            </div>
+    <div class="product-card p-3 border border-gray" data-product-id="${
+      product.id
+    }">
+      <div class="card-actions d-flex justify-content-between align-items-center">
+        <span class="py-1 px-2 shop-card-badge text-white c-fs-8 rounded-pill">
+          ${product.discountPercentage}%
+        </span>
+        <i class="fa-regular fa-heart add-to-fav cursor-pointer fs-5"></i>
+      </div>
+      <div class="product-image-container">
+        <img src="${product.thumbnail}"
+             class="w-75 mx-auto d-block product-image cursor-pointer" 
+             alt="${product.title}">
+      </div>
+      <div>
+        <p class="my-1 c-fs-7 fw-bold product-title cursor-pointer">
+          ${product.title}
+        </p>
+        <div class="d-flex align-items-center gap-2 fw-bold my-1">
+          <p class="shop-card-price fs-4 m-0">$${Math.ceil(product.price)}</p>
+          <p class="fs-6 text-decoration-line-through m-0">$${
+            product.deletedPrice
+          }</p>
         </div>
-    `;
+        <div>
+          <button class="shop-cart-btn w-100 add-to-cart-btn" data-product-id="${
+            product.id
+          }">
+            <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+  `;
 };
 
-export const renderProducts = (products) => {
-  const productsContainer = document.getElementById("product-grid-container");
-  productsContainer.innerHTML = "";
+export const initializeProductCards = () => {
+  document.addEventListener("click", (e) => {
+    const productCard = e.target.closest(".product-card");
+    if (!productCard) return;
 
-  products.forEach((product) => {
-    productsContainer.innerHTML += productCard(product);
+    const productId = productCard.dataset.productId;
+
+    if (
+      e.target.classList.contains("product-image") ||
+      e.target.closest(".product-image-container")
+    ) {
+      navigateToProductDetails(productId);
+    }
+
+    if (e.target.classList.contains("product-title")) {
+      navigateToProductDetails(productId);
+    }
+
+    if (
+      e.target.classList.contains("add-to-cart-btn") ||
+      e.target.closest(".add-to-cart-btn")
+    ) {
+      //   addToCart(productId);
+    }
   });
 };
 
+const navigateToProductDetails = (productId) => {
+  localStorage.setItem("curr-product", productId);
+  router.navigate("/shop/product-details");
+};
+
+export const renderProducts = (products) => {
+  filteredProducts = products;
+  const startIdx = (currentPage - 1) * itemsPerPage;
+  const endIdx = startIdx + itemsPerPage;
+  const paginatedProducts = products.slice(startIdx, endIdx);
+  const productCountText = document.getElementById("productCountText");
+  productCountText.textContent = `Showing ${paginatedProducts.length} of ${products.length} products`;
+
+  const productsContainer = document.getElementById("product-grid-container");
+  productsContainer.innerHTML = paginatedProducts
+    .map((product) => productCard(product))
+    .join("");
+
+  initializeProductCards();
+  renderPagination(products.length);
+};
 const filterProductAndRenderThem = (_localFilters) => {
-  console.log(_localFilters);
   const products = JSON.parse(localStorage.getItem("all-products"));
   const localFilters = {
     min: 0,
@@ -79,7 +128,7 @@ const filterProductAndRenderThem = (_localFilters) => {
       return product;
     }
   });
-  console.log(filteredProducts);
+  currentPage = 1;
   renderProducts(filteredProducts);
 };
 
@@ -88,7 +137,6 @@ export const handleFilterProductsIfExistFilters = () => {
   if (localFilters) {
     filterProductAndRenderThem(localFilters);
   } else {
-    console.log(filters)
     filterProductAndRenderThem(filters);
   }
 };
@@ -128,6 +176,7 @@ export const inputsSetups = () => {
     category: [],
     ...JSON.parse(localStorage.getItem("curr-filters")),
   };
+  localStorage.removeItem("curr-filters");
 
   if (defaultFilters) {
     filters = { ...defaultFilters };
@@ -179,7 +228,7 @@ export const inputsSetups = () => {
         </div> `);
   });
 
-  productCatContainer.addEventListener("click", (e) => {
+  productCatContainer.addEventListener("change", (e) => {
     if (e.target.classList.contains("form-check-input")) {
       if (e.target.checked) {
         filters.category = [...filters.category, e.target.id];
@@ -188,6 +237,18 @@ export const inputsSetups = () => {
         filters.category = filters.category.filter(
           (cat) => cat !== e.target.id
         );
+        const localFilters = JSON.parse(localStorage.getItem("curr-filters"));
+        if (localFilters) {
+          localFilters.category = filters.category;
+          if (localFilters.category.length === 0) {
+            delete localFilters.category;
+          }
+          if (Object.keys(localFilters).length === 0) {
+            localStorage.removeItem("curr-filters");
+          } else {
+            localStorage.setItem("curr-filters", JSON.stringify(localFilters));
+          }
+        }
         handleFilterProductsIfExistFilters();
       }
     }
@@ -215,15 +276,92 @@ export const inputsSetups = () => {
         </div> `);
   });
 
-  productBrandContainer.addEventListener("click", (e) => {
+  productBrandContainer.addEventListener("change", (e) => {
     if (e.target.classList.contains("form-check-input")) {
       if (e.target.checked) {
         filters.brand = [...filters.brand, e.target.id.toLowerCase()];
         handleFilterProductsIfExistFilters();
       } else if (!e.target.checked) {
-        filters.brand = filters.brand.filter((brand) => brand !== e.target.id);
+        console.log("object");
+        filters.brand = filters.brand.filter(
+          (brand) => brand !== e.target.id.toLowerCase()
+        );
+        const localFilters = JSON.parse(localStorage.getItem("curr-filters"));
+        if (localFilters) {
+          localFilters.brand = filters.brand;
+          if (localFilters.brand.length === 0) {
+            delete localFilters.brand;
+          }
+          if (Object.keys(localFilters).length === 0) {
+            localStorage.removeItem("curr-filters");
+          } else {
+            localStorage.setItem("curr-filters", JSON.stringify(localFilters));
+          }
+        }
         handleFilterProductsIfExistFilters();
       }
     }
+  });
+};
+
+export const resetFilters = () => {
+  const resetPriceFilterBtn1 = document.getElementById("resetPriceFilter1");
+  const resetPriceFilterBtn2 = document.getElementById("resetPriceFilter2");
+  const reset = () => {
+    filters = { ...filters, brand: [], category: [] };
+    handleFilterProductsIfExistFilters();
+    inputsSetups();
+  };
+  resetPriceFilterBtn1.addEventListener("click", reset);
+  resetPriceFilterBtn2.addEventListener("click", reset);
+};
+const renderPagination = (totalItems) => {
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+  const paginationContainer = document.getElementById("pagination-container");
+
+  if (totalPages <= 1) {
+    paginationContainer.innerHTML = "";
+    return;
+  }
+
+  let paginationHTML = `
+    <nav>
+      <ul class="pagination">
+        <li class="page-item ${currentPage === 1 ? "disabled" : ""}">
+          <a class="page-link" href="#" data-page="${currentPage - 1}">
+            <i class="fas fa-chevron-left"></i>
+          </a>
+        </li>
+  `;
+
+  for (let i = 1; i <= totalPages; i++) {
+    paginationHTML += `
+      <li class="page-item ${i === currentPage ? "active" : ""}">
+        <a class="page-link" href="#" data-page="${i}">${i}</a>
+      </li>
+    `;
+  }
+
+  paginationHTML += `
+        <li class="page-item ${currentPage === totalPages ? "disabled" : ""}">
+          <a class="page-link" href="#" data-page="${currentPage + 1}">
+            <i class="fas fa-chevron-right"></i>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  `;
+
+  paginationContainer.innerHTML = paginationHTML;
+
+  document.querySelectorAll(".page-link").forEach((link) => {
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
+      const page = parseInt(this.dataset.page);
+      if (!isNaN(page)) {
+        currentPage = page;
+        renderProducts(filteredProducts);
+      }
+    });
   });
 };
