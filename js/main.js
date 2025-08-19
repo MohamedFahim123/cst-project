@@ -9,12 +9,12 @@ import {
   handleRenderingRecommendedProducts,
   renderBrands,
 } from "../pages/home/home.js";
+import { initializeProductDetailsFunctions } from "../pages/shop/product-details/product-details.js";
 import {
   handleFilterProductsIfExistFilters,
   inputsSetups,
-  resetFilters
+  resetFilters,
 } from "../pages/shop/shop.js";
-import { initializeProductDetailsFunctions } from "../pages/shop/product-details/product-details.js";
 
 export const PAGE_INITIALIZERS = {
   "/shop/product-details": () => {

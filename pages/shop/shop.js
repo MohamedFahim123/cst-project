@@ -282,7 +282,6 @@ export const inputsSetups = () => {
         filters.brand = [...filters.brand, e.target.id.toLowerCase()];
         handleFilterProductsIfExistFilters();
       } else if (!e.target.checked) {
-        console.log("object");
         filters.brand = filters.brand.filter(
           (brand) => brand !== e.target.id.toLowerCase()
         );
