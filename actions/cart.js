@@ -1,11 +1,36 @@
-import StorageCollection from "./storageCollection.js";
+import { showToast } from "./showToast.js";
 
-class Cart extends StorageCollection {
-  static STORAGE_KEY = "cart-items";
+class Cart {
+  static STORAGE_KEY = "currentUser";
+  #items = { cart: [] };
   #listeners = [];
 
   constructor() {
-    super(Cart.STORAGE_KEY);
+    this.#items = this.#load();
+  }
+
+  #load() {
+    try {
+      const saved = localStorage.getItem(Cart.STORAGE_KEY);
+      return saved ? JSON.parse(saved) : { cart: [] };
+    } catch (e) {
+      console.error("Failed to load cart:", e);
+      return { cart: [] };
+    }
+  }
+
+  #save() {
+    localStorage.setItem(Cart.STORAGE_KEY, JSON.stringify(this.#items));
+    this.#notify();
+  }
+
+  _setItems(newItems) {
+    this.#items = newItems;
+    this.#save();
+  }
+
+  _getItems() {
+    return this.#items;
   }
 
   onChange(callback) {
@@ -23,24 +48,33 @@ class Cart extends StorageCollection {
     }
 
     const items = this._getItems();
-    const existing = items.find((item) => item.id === product.id);
+    const existing = items.cart.find((item) => +item.id === +product.id);
 
     if (existing) {
       existing.quantity += quantity;
     } else {
-      items.push({ ...product, quantity });
+      items.cart.push({ ...product, quantity });
     }
 
     this._setItems(items);
+    showToast(`${product.name} added to cart`, "success");
+  }
+
+  has(productId) {
+    return this._getItems().cart.some((item) => +item.id === +productId);
   }
 
   remove(productId) {
-    this._setItems(this._getItems().filter((item) => item.id !== productId));
+    const items = this._getItems();
+    const item = items.cart.find((i) => +i.id === +productId);
+    items.cart = items.cart.filter((item) => +item.id !== +productId);
+    this._setItems(items);
+    showToast(`${item.name} removed from cart`, "error");
   }
 
   updateQuantity(productId, quantity) {
     const items = this._getItems();
-    const item = items.find((i) => i.id === productId);
+    const item = items.cart.find((i) => +i.id === +productId);
 
     if (!item) return;
 
@@ -52,15 +86,23 @@ class Cart extends StorageCollection {
     }
   }
 
-  get itemCount() {
-    return this._getItems().reduce((sum, item) => sum + item.quantity, 0);
+  clear() {
+    this._setItems({ cart: [] });
+  }
+
+  get allItemsCount() {
+    return this._getItems().cart.reduce((sum, item) => sum + item.quantity, 0);
   }
 
   get totalPrice() {
-    return this._getItems().reduce(
+    return this._getItems().cart.reduce(
       (sum, item) => sum + item.quantity * (item.price || 0),
       0
     );
+  }
+
+  get items() {
+    return [...this._getItems().cart];
   }
 }
 

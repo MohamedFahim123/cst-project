@@ -4,7 +4,6 @@ import { showNotification } from "./showNotification.js";
 export async function initializeRelatedProducts() {
   // get the products from local storage
   const products = JSON.parse(localStorage.getItem("all-products")) || [];
-  console.log(products);
   // Get 6 random products for related products
   const relatedProducts = extractRandomList(products, 6);
   renderRelatedProducts(relatedProducts);

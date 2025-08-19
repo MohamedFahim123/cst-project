@@ -17,6 +17,10 @@ import {
   resetFilters,
 } from "../pages/shop/shop.js";
 import { cartAndWishlistLogic } from "./shred.js";
+import { loginSubmitHandler } from "../pages/login/login.js";
+import { registerSubmitHandler } from "../pages/register/main.js";
+import { cart } from "../actions/cart.js";
+import { Customer } from "../pages/register/User.js";
 
 export const PAGE_INITIALIZERS = {
   "/shop/product-details": () => {
@@ -59,5 +63,11 @@ export const PAGE_INITIALIZERS = {
   },
   "/checkout": () => {
     cartAndWishlistLogic();
+  },
+  "/login": () => {
+    loginSubmitHandler();
+  },
+  "/register": () => {
+    registerSubmitHandler();
   },
 };

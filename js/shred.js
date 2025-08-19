@@ -1,4 +1,5 @@
 import { cart } from "../actions/cart.js";
+import { showToast } from "../actions/showToast.js";
 import { wishlist } from "../actions/wishlist.js";
 
 let isInitialized = false;
@@ -12,18 +13,23 @@ export const cartAndWishlistLogic = () => {
   document.addEventListener("click", (e) => {
     const cartBtn = e.target.closest(".add-to-cart-btn");
     if (cartBtn) {
-      const product = {
-        id: cartBtn.dataset.id,
-        name: cartBtn.dataset.name,
-        price: parseFloat(cartBtn.dataset.price),
-      };
+      const userLogin = localStorage.getItem("currentUser");
+      if (userLogin) {
+        const product = {
+          id: cartBtn.dataset.id,
+          name: cartBtn.dataset.name,
+          price: parseFloat(cartBtn.dataset.price),
+        };
 
-      if (cart.has(product.id)) {
-        cart.remove(product.id);
+        if (cart.has(product.id)) {
+          cart.remove(product.id);
+        } else {
+          cart.add(product, 1);
+        }
+        updateButtonStates();
       } else {
-        cart.add(product, 1);
+        showToast("Please login to add to cart", "error");
       }
-      updateButtonStates();
       return;
     }
 

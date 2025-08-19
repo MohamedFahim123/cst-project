@@ -1,7 +1,6 @@
 import { cart } from "../../actions/cart.js";
 import { wishlist } from "../../actions/wishlist.js";
 import { router } from "../../js/router.js";
-import { cartAndWishlistLogic } from "../../js/shred.js";
 
 let filters = {
   min: 0,
@@ -23,7 +22,7 @@ const productCard = (product) => {
         <span class="py-1 px-2 shop-card-badge text-white c-fs-8 rounded-pill">
           ${product.discountPercentage}%
         </span>
-        <i data-id="${product.id}" class=" ${
+        <i data-id="${product.id}" title="Add to Wishlist" data-price="${product.price}" data-name="${product.title}" class=" ${
     wishlist.has(+product.id) ? "text-danger fa-solid" : "fa-regular"
   } add-to-wishlist-btn fa-heart add-to-fav  cursor-pointer fs-5"></i>
       </div>
@@ -108,6 +107,7 @@ export const renderProducts = (products) => {
   renderPagination(products.length);
   // cartAndWishlistLogic();
 };
+
 const filterProductAndRenderThem = (_localFilters) => {
   const products = JSON.parse(localStorage.getItem("all-products"));
   const localFilters = {
@@ -325,6 +325,7 @@ export const resetFilters = () => {
   resetPriceFilterBtn1.addEventListener("click", reset);
   resetPriceFilterBtn2.addEventListener("click", reset);
 };
+
 const renderPagination = (totalItems) => {
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const paginationContainer = document.getElementById("pagination-container");

@@ -1,5 +1,5 @@
 import { PAGE_INITIALIZERS } from "./main.js";
-import { updateCartAndWishlistBadges } from "./shred.js";
+import { cartAndWishlistLogic, updateCartAndWishlistBadges } from "./shred.js";
 
 const APP_ROUTES = [
   { path: "/404", title: "404", description: "This Page Does Not Exist" },
