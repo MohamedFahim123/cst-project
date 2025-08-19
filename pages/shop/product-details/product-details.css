@@ -79,6 +79,32 @@
   color: var(--bg-main-color);
 }
 
+.discounted-price {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--bg-main-color);
+}
+
+.original-price {
+  font-size: 1.2rem;
+  color: #999;
+  text-decoration: line-through;
+  font-weight: normal;
+}
+
+/* Stock Status Styles */
+.stock-status .out-of-stock {
+  color: #dc3545;
+}
+
+.stock-status .low-stock {
+  color: #ffc107;
+}
+
+.stock-status .in-stock {
+  color: #28a745;
+}
+
 .product-title {
   font-size: 1.8rem;
   font-weight: 600;
