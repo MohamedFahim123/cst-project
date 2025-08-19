@@ -160,19 +160,20 @@
   color: var(--bg-main-color);
 }
 
-.qty-input {
+.form-control.qty-input {
   width: 80px;
   text-align: center;
   border: 1px solid #dee2e6;
+  margin-bottom: 0;
 }
 
 .qty-input:focus {
   border-color: var(--bg-main-color);
-  box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
+  box-shadow: 0 0 0 0.2rem #ffc10740;
 }
 
 /* Add to Cart Button */
-.add-to-cart-btn {
+.btn.add-to-cart-btn {
   background-color: var(--bg-main-color);
   border-color: var(--bg-main-color);
   color: #212529;
