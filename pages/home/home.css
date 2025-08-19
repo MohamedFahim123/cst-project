@@ -4,9 +4,14 @@
   background: linear-gradient(to right, var(--bg-main-color), #cdbbfa);
   padding: 100px 0;
 }
+
+.home .carousel-item {
+  margin-bottom: 50px;
+}
+
 .home-hero .carousel-control-prev {
-  top: 95%;
-  left: 73rem;
+  top: 98%;
+  /* left: 75rem; */
   width: 50px;
   height: 50px;
   background-color: var(--bg-main-color);
@@ -18,8 +23,9 @@
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
 }
+
 .home-hero .carousel-control-next {
-  top: 95%;
+  top: 98%;
   width: 50px;
   height: 50px;
   background-color: var(--bg-main-color);
@@ -57,20 +63,13 @@
   min-height: 540px;
 }
 .card:hover {
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
-    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
 }
 .card img {
   transition: 0.3s;
 }
 .card:hover img {
   transform: scale(1.05);
-}
-.card .fa-heart {
-  transition: 0.3s;
-}
-.card .fa-heart:hover {
-  color: var(--red-color);
 }
 .card-tocart-btn {
   background-color: var(--green-color);
@@ -106,8 +105,8 @@
 .home-recommended-products .swiper-button-prev,
 .bestseller-products .swiper-button-prev {
   color: var(--bg-main-color);
-  left: 0px;
-  top: 30px;
+  left: 10px;
+  bottom: 100px;
   border: 1px solid var(--bg-main-color);
   border-radius: 50%;
   -webkit-border-radius: 50%;
@@ -127,8 +126,10 @@
 .home-recommended-products .swiper-button-next,
 .bestseller-products .swiper-button-next {
   color: var(--bg-main-color);
-  right: 73rem;
-  top: 30px;
+  /* right: 73rem; */
+  /* top: 30px; */
+  right: 10px;
+  bottom: 100px;
   border: 1px solid var(--bg-main-color);
   border-radius: 50%;
   -webkit-border-radius: 50%;
@@ -369,11 +370,17 @@
 }
 
 .home-bestseller-products .card .fa-heart {
-  right: 5px;
-  top: 5px;
+  right: 5px !important;
+  top: 5px !important;
 }
 
 .home-bestseller-products .card .card-body .price span:first-of-type {
   color: var(--red-color);
 }
 /* Best Seller */
+.card .fa-heart {
+  transition: 0.3s;
+}
+.card .fa-heart:hover {
+  color: var(--red-color);
+}
