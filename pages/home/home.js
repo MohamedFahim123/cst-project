@@ -1,4 +1,6 @@
+import { cart } from "../../actions/cart.js";
 import { fetchData } from "../../actions/fetchData.js";
+import { wishlist } from "../../actions/wishlist.js";
 import { router } from "../../js/router.js";
 
 export const getAllProducts = async () => {
@@ -105,31 +107,51 @@ const productCard = (product) => {
   return `
       <div class="swiper-slide">
         <div class="card" id="${product.id}">
-          <i class="fa-regular fa-heart position-absolute z-3"></i>
-          <span class="badge text-bg-danger position-absolute z-3">${
-            product.discountPercentage
-          }%</span>
-          <img src=${product.thumbnail} class="card-img-top" alt=${
+          <i  
+            class="add-to-wishlist-btn fa-regular fa-heart position-absolute z-3"
+            data-id="${product.id}"
+            data-name="${product.title}"
+            data-price="${product.price}"
+          ></i>
+
+          <span class="badge text-bg-danger position-absolute z-3">
+            ${product.discountPercentage}%
+          </span>
+
+          <img src="${product.thumbnail}" class="card-img-top" alt="${
     product.title
-  } loading="lazy" />
+  }" loading="lazy" />
+
           <div class="card-body">
-            <h5 class="card-title fs-6" title="${product.title}">${
-    product.title.length > 30
-      ? product.title.slice(0, 30) + "..."
-      : product.title
-  }</h5>
-            <p class="card-text fs-6 text-secondary mb-1 mb-1" title="${
+            <h5 class="card-title fs-6" title="${product.title}">
+              ${
+                product.title.length > 30
+                  ? product.title.slice(0, 30) + "..."
+                  : product.title
+              }
+            </h5>
+
+            <p class="card-text fs-6 text-secondary mb-1" title="${
               product.description
             }">
-            ${product.description.slice(0, 95)}...
+              ${product.description.slice(0, 95)}...
             </p>
+
             <div class="price">
               <span class="me-2 fw-bold fs-5">${Math.ceil(product.price)}</span>
               <span class="fw-light fs-6 text-decoration-line-through">${
                 product.deletedPrice
               }</span>
             </div>
-            <button class="addtocart">
+
+            <button 
+              data-id="${product.id}" 
+              data-name="${product.title}" 
+              data-price="${product.price}" 
+              type="button" 
+              title="Add to cart" 
+              class="addtocart add-to-cart-btn"
+            >
               Add to cart <i class="fa-solid fa-plus"></i>
             </button>
           </div>
@@ -200,6 +222,7 @@ export const handleRenderingRecommendedProducts = (Swiper) => {
       1200: { slidesPerView: 4 },
     },
   });
+  // cartAndWishlistLogic();
 };
 
 export const bestSellingProducts = (Swiper) => {

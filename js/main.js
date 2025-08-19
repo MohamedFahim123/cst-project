@@ -15,6 +15,7 @@ import {
   inputsSetups,
   resetFilters,
 } from "../pages/shop/shop.js";
+import { cartAndWishlistLogic } from "./shred.js";
 
 export const PAGE_INITIALIZERS = {
   "/shop/product-details": () => {
@@ -40,10 +41,21 @@ export const PAGE_INITIALIZERS = {
     renderBrands(Swiper);
     handleRenderingRecommendedProducts(Swiper);
     bestSellingProducts(Swiper);
+    cartAndWishlistLogic();
   },
   "/shop": () => {
     handleFilterProductsIfExistFilters();
     inputsSetups();
     resetFilters();
+    cartAndWishlistLogic();
+  },
+  "/cart": () => {
+    cartAndWishlistLogic();
+  },
+  "/wishlist": () => {
+    cartAndWishlistLogic();
+  },
+  "/checkout": () => {
+    cartAndWishlistLogic();
   },
 };

@@ -1,3 +1,5 @@
+import { cart } from "../../actions/cart.js";
+import { wishlist } from "../../actions/wishlist.js";
 import { router } from "../../js/router.js";
 
 let filters = {
@@ -20,7 +22,11 @@ const productCard = (product) => {
         <span class="py-1 px-2 shop-card-badge text-white c-fs-8 rounded-pill">
           ${product.discountPercentage}%
         </span>
-        <i class="fa-regular fa-heart add-to-fav cursor-pointer fs-5"></i>
+        <i data-id="${product.id}" class=" ${
+    wishlist.has(+product.id)
+      ? "text-danger fa-solid"
+      : "fa-regular"
+  } add-to-wishlist-btn fa-heart add-to-fav  cursor-pointer fs-5"></i>
       </div>
       <div class="product-image-container">
         <img src="${product.thumbnail}"
@@ -38,10 +44,14 @@ const productCard = (product) => {
           }</p>
         </div>
         <div>
-          <button class="shop-cart-btn w-100 add-to-cart-btn" data-product-id="${
-            product.id
-          }">
-            <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+          <button type="button" id="${product.id}" class="shop-cart-btn w-100 add-to-cart-btn ${
+    cart.has(+product.id) ? "in-cart" : ""
+  }" data-id="${product.id}" data-name="${product.title}" data-price="${
+    product.price
+  }">
+            <i class="fa-solid fa-cart-shopping"></i> ${
+              cart.has(+product.id) ? "Remove from Cart" : "Add to Cart"
+            }
           </button>
         </div>
       </div>

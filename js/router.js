@@ -1,4 +1,5 @@
 import { PAGE_INITIALIZERS } from "./main.js";
+import { updateCartAndWishlistBadges } from "./shred.js";
 
 const APP_ROUTES = [
   { path: "/404", title: "404", description: "This Page Does Not Exist" },
@@ -127,6 +128,7 @@ class Router {
 
     if (!normalizedPath.includes("/dashboard")) {
       await this.#loadLayoutComponents();
+      updateCartAndWishlistBadges();
     } else {
       this.#headerElement.innerHTML = "";
       this.#footerElement.innerHTML = "";
