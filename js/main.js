@@ -12,6 +12,7 @@ import {
 import { initializeProductDetailsFunctions } from "../pages/shop/product-details/product-details.js";
 import {
   handleFilterProductsIfExistFilters,
+  initializeProductCards,
   inputsSetups,
   resetFilters,
 } from "../pages/shop/shop.js";
@@ -45,9 +46,10 @@ export const PAGE_INITIALIZERS = {
   },
   "/shop": () => {
     handleFilterProductsIfExistFilters();
+    initializeProductCards();
     inputsSetups();
     resetFilters();
-    cartAndWishlistLogic();
+    setTimeout(() => cartAndWishlistLogic(), 100);
   },
   "/cart": () => {
     cartAndWishlistLogic();

@@ -2,9 +2,11 @@ import { cart } from "../actions/cart.js";
 import { wishlist } from "../actions/wishlist.js";
 
 export const cartAndWishlistLogic = () => {
-  const cartBtns = document.querySelectorAll(".add-to-cart-btn");
-  cartBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
+  // Use event delegation for cart buttons
+  document.addEventListener("click", (e) => {
+    // Handle cart buttons
+    if (e.target.closest(".add-to-cart-btn")) {
+      const btn = e.target.closest(".add-to-cart-btn");
       const product = {
         id: btn.dataset.id,
         name: btn.dataset.name,
@@ -17,32 +19,31 @@ export const cartAndWishlistLogic = () => {
         cart.add(product, 1);
       }
       updateButtonStates();
-    });
-  });
+    }
 
-  const wishlistBtns = document.querySelectorAll(".add-to-wishlist-btn");
-  wishlistBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
+    // Handle wishlist buttons
+    if (e.target.closest(".add-to-wishlist-btn")) {
+      const btn = e.target.closest(".add-to-wishlist-btn");
       const product = {
         id: btn.dataset.id,
         name: btn.dataset.name,
         price: parseFloat(btn.dataset.price),
       };
 
-      // ✅ same listener handles both add/remove
       if (wishlist.has(product.id)) {
         wishlist.remove(product.id);
       } else {
         wishlist.add(product);
       }
       updateButtonStates();
-    });
+    }
   });
 
   const sync = () => {
     updateCartAndWishlistBadges();
     updateButtonStates();
   };
+
   cart.onChange(sync);
   wishlist.onChange(sync);
 
@@ -50,10 +51,11 @@ export const cartAndWishlistLogic = () => {
 };
 
 function updateButtonStates() {
+  // Update cart buttons
   document.querySelectorAll(".add-to-cart-btn").forEach((btn) => {
     const id = btn.dataset.id;
     if (cart.has(id)) {
-      btn.innerHTML = `<i class="fa-solid fa-cart-shopping"></i>Remove from Cart`;
+      btn.innerHTML = `<i class="fa-solid fa-cart-shopping"></i> Remove from Cart`;
       btn.classList.add("in-cart");
     } else {
       btn.innerHTML = `<i class="fa-solid fa-cart-plus"></i> Add to Cart`;
@@ -61,6 +63,7 @@ function updateButtonStates() {
     }
   });
 
+  // Update wishlist buttons
   document.querySelectorAll(".add-to-wishlist-btn").forEach((btn) => {
     const id = btn.dataset.id;
     if (wishlist.has(id)) {

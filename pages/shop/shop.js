@@ -1,6 +1,7 @@
 import { cart } from "../../actions/cart.js";
 import { wishlist } from "../../actions/wishlist.js";
 import { router } from "../../js/router.js";
+import { cartAndWishlistLogic } from "../../js/shred.js";
 
 let filters = {
   min: 0,
@@ -23,9 +24,7 @@ const productCard = (product) => {
           ${product.discountPercentage}%
         </span>
         <i data-id="${product.id}" class=" ${
-    wishlist.has(+product.id)
-      ? "text-danger fa-solid"
-      : "fa-regular"
+    wishlist.has(+product.id) ? "text-danger fa-solid" : "fa-regular"
   } add-to-wishlist-btn fa-heart add-to-fav  cursor-pointer fs-5"></i>
       </div>
       <div class="product-image-container">
@@ -44,7 +43,9 @@ const productCard = (product) => {
           }</p>
         </div>
         <div>
-          <button type="button" id="${product.id}" class="shop-cart-btn w-100 add-to-cart-btn ${
+          <button type="button" id="${
+            product.id
+          }" class="shop-cart-btn w-100 add-to-cart-btn ${
     cart.has(+product.id) ? "in-cart" : ""
   }" data-id="${product.id}" data-name="${product.title}" data-price="${
     product.price
@@ -104,8 +105,8 @@ export const renderProducts = (products) => {
     .map((product) => productCard(product))
     .join("");
 
-  initializeProductCards();
   renderPagination(products.length);
+  // cartAndWishlistLogic();
 };
 const filterProductAndRenderThem = (_localFilters) => {
   const products = JSON.parse(localStorage.getItem("all-products"));

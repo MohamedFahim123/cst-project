@@ -1,6 +1,4 @@
-import { cart } from "../../actions/cart.js";
 import { fetchData } from "../../actions/fetchData.js";
-import { wishlist } from "../../actions/wishlist.js";
 import { router } from "../../js/router.js";
 
 export const getAllProducts = async () => {
@@ -222,7 +220,6 @@ export const handleRenderingRecommendedProducts = (Swiper) => {
       1200: { slidesPerView: 4 },
     },
   });
-  // cartAndWishlistLogic();
 };
 
 export const bestSellingProducts = (Swiper) => {
