@@ -151,6 +151,11 @@ class Router {
     if (PAGE_INITIALIZERS[routeKey]) {
       PAGE_INITIALIZERS[routeKey]();
     }
+
+    setTimeout(() => {
+      cartAndWishlistLogic();
+      updateCartAndWishlistBadges();
+    }, 50);
   }
 
   async #loadLayoutComponents() {

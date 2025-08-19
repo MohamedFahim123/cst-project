@@ -1,16 +1,21 @@
 import { cart } from "../actions/cart.js";
 import { wishlist } from "../actions/wishlist.js";
 
+let isInitialized = false;
+
 export const cartAndWishlistLogic = () => {
-  // Use event delegation for cart buttons
+  if (isInitialized) {
+    updateButtonStates();
+    return;
+  }
+
   document.addEventListener("click", (e) => {
-    // Handle cart buttons
-    if (e.target.closest(".add-to-cart-btn")) {
-      const btn = e.target.closest(".add-to-cart-btn");
+    const cartBtn = e.target.closest(".add-to-cart-btn");
+    if (cartBtn) {
       const product = {
-        id: btn.dataset.id,
-        name: btn.dataset.name,
-        price: parseFloat(btn.dataset.price),
+        id: cartBtn.dataset.id,
+        name: cartBtn.dataset.name,
+        price: parseFloat(cartBtn.dataset.price),
       };
 
       if (cart.has(product.id)) {
@@ -19,15 +24,15 @@ export const cartAndWishlistLogic = () => {
         cart.add(product, 1);
       }
       updateButtonStates();
+      return;
     }
 
-    // Handle wishlist buttons
-    if (e.target.closest(".add-to-wishlist-btn")) {
-      const btn = e.target.closest(".add-to-wishlist-btn");
+    const wishlistBtn = e.target.closest(".add-to-wishlist-btn");
+    if (wishlistBtn) {
       const product = {
-        id: btn.dataset.id,
-        name: btn.dataset.name,
-        price: parseFloat(btn.dataset.price),
+        id: wishlistBtn.dataset.id,
+        name: wishlistBtn.dataset.name,
+        price: parseFloat(wishlistBtn.dataset.price),
       };
 
       if (wishlist.has(product.id)) {
@@ -48,10 +53,10 @@ export const cartAndWishlistLogic = () => {
   wishlist.onChange(sync);
 
   sync();
+  isInitialized = true;
 };
 
 function updateButtonStates() {
-  // Update cart buttons
   document.querySelectorAll(".add-to-cart-btn").forEach((btn) => {
     const id = btn.dataset.id;
     if (cart.has(id)) {
@@ -63,7 +68,6 @@ function updateButtonStates() {
     }
   });
 
-  // Update wishlist buttons
   document.querySelectorAll(".add-to-wishlist-btn").forEach((btn) => {
     const id = btn.dataset.id;
     if (wishlist.has(id)) {
