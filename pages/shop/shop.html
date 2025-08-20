@@ -23,26 +23,26 @@
                     </p>
                     <div class="row g-2 mb-2">
                         <div class="col-6">
-                            <label for="minRange" class="form-label small text-muted">Min</label>
-                            <input type="number" disabled name="minRange" class="form-control form-control-sm"
-                                id="minRange" step="1" value="0">
+                            <label for="minRange1" class="form-label small text-muted">Min</label>
+                            <input type="number" id="minRange1" disabled name="minRange" class="form-control form-control-sm minRange"
+                                step="1" value="0">
                         </div>
                         <div class="col-6">
-                            <label for="maxRange" class="form-label small text-muted">Max</label>
-                            <input type="number" disabled name="maxRange" class="form-control form-control-sm"
-                                id="maxRange" step="1" value="100">
+                            <label for="maxRange1" class="form-label small text-muted">Max</label>
+                            <input type="number" disabled name="maxRange" class="maxRange form-control form-control-sm"
+                                id="maxRange1" step="1" value="100">
                         </div>
                     </div>
-                    <input class="form-range mb-2" type="range" name="customRange" step="1" id="customRange">
+                    <input class="form-range mb-2 customRange" type="range" name="customRange" step="1" id="customRange1">
                     <div class="d-flex justify-content-between align-items-center">
-                        <p class="mb-0 small text-muted" id="priceRangeText">Price $0 - $30</p>
+                        <p class="mb-0 small text-muted priceRangeText">Price $0 - $30</p>
                     </div>
                 </div>
 
                 <!-- product categories -->
                 <div class="shop-filter-container">
                     <p class="shop-filters-header">Product Categories</p>
-                    <div class="px-1 small" id="productCategoriesContainer">
+                    <div class="px-1 small productCategoriesContainer">
 
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                 <!-- product brands -->
                 <div class="shop-filter-container">
                     <p class="shop-filters-header">Brands</p>
-                    <div class="px-1 small" id="productBrandsContainer">
+                    <div class="px-1 small productBrandsContainer">
 
                     </div>
                 </div>
@@ -64,7 +64,8 @@
                     <div class="d-flex align-items-center">
                         <!-- mobile Filter Toggler  -->
                         <div class="d-lg-none">
-                            <button class="btn small" type="button" id="filterOffcanvasToggler" data-bs-toggle="offcanvas" data-bs-target="#filterSidebar">
+                            <button class="btn small" type="button" id="filterOffcanvasToggler"
+                                data-bs-toggle="offcanvas" data-bs-target="#filterSidebar">
                                 <i class="fa-solid fa-filter"></i>
                             </button>
                         </div>
@@ -126,26 +127,26 @@
                 </p>
                 <div class="row g-2 mb-2">
                     <div class="col-6">
-                        <label for="minRange" class="form-label small text-muted">Min</label>
-                        <input type="number" disabled name="minRange" class="form-control form-control-sm" id="minRange"
+                        <label for="minRange2" class="form-label small text-muted">Min</label>
+                        <input type="number" disabled name="minRange" class="form-control form-control-sm minRange" id="minRange2"
                             step="1" value="0">
                     </div>
                     <div class="col-6">
-                        <label for="maxRange" class="form-label small text-muted">Max</label>
-                        <input type="number" disabled name="maxRange" class="form-control form-control-sm" id="maxRange"
+                        <label for="maxRange2" class="form-label small text-muted">Max</label>
+                        <input type="number" disabled name="maxRange" class="maxRange form-control form-control-sm" id="maxRange2"
                             step="1" value="100">
                     </div>
                 </div>
-                <input class="form-range mb-2" type="range" name="customRange" step="1" id="customRange">
+                <input class="form-range mb-2 customRange" type="range" name="customRange" step="1" id="customRange2">
                 <div class="d-flex justify-content-between align-items-center">
-                    <p class="mb-0 small text-muted" id="priceRangeText">Price $0 - $30</p>
+                    <p class="mb-0 small text-muted priceRangeText">Price $0 - $30</p>
                 </div>
             </div>
 
             <!-- product categories -->
             <div class="shop-filter-container">
                 <p class="shop-filters-header">Product Categories</p>
-                <div class="px-1 small" id="productCategoriesContainer">
+                <div class="px-1 small productCategoriesContainer">
 
                 </div>
             </div>
@@ -153,7 +154,7 @@
             <!-- product brands -->
             <div class="shop-filter-container">
                 <p class="shop-filters-header">Brands</p>
-                <div class="px-1 small" id="productBrandsContainer">
+                <div class="px-1 small productBrandsContainer">
 
                 </div>
             </div>

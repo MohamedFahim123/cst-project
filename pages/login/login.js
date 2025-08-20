@@ -12,7 +12,6 @@ function loginSubmitHandler() {
   const emailInput = document.getElementById("email");
   const passwordInput = document.getElementById("password");
 
-  // event Handler for the submit
   document.getElementById("loginForm").addEventListener("submit", function (e) {
     e.preventDefault();
 
@@ -25,8 +24,8 @@ function loginSubmitHandler() {
       const state = validateUserCredentials(email, password);
       if (state) {
         showToast("User Logged In Successfully", "success");
-        router.navigate("/home");
-      } else showToast("Invalid Credentials", "error");
+        router.navigate("/")
+      }
     } else {
       showToast("Invalid User Inputs", "error");
       displayErrorsAlerts(validationErrors, {

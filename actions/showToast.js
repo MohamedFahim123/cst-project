@@ -4,7 +4,6 @@ export function showToast(message, type = "info") {
   const toast = document.createElement("div");
   toast.className = `toast show ${type}`;
   toast.innerText = message;
-  console.log(container)
   container.appendChild(toast);
 
   setTimeout(() => {

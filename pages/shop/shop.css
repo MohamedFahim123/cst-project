@@ -172,3 +172,28 @@
     -o-transform: translate(0, 0);
   }
 }
+.empty-state {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+  text-align: center;
+  padding: 2rem;
+}
+
+.empty-state i {
+  opacity: 0.5;
+  margin-bottom: 1rem;
+}
+
+.empty-state h4 {
+  margin-bottom: 0.5rem;
+  color: #6b7280;
+}
+
+.empty-state p {
+  color: #9ca3af;
+  margin-bottom: 1.5rem;
+}

@@ -1,5 +1,4 @@
 import Swiper from "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs";
-
 import {
   bestSellingProducts,
   getAllProducts,
@@ -9,6 +8,8 @@ import {
   handleRenderingRecommendedProducts,
   renderBrands,
 } from "../pages/home/home.js";
+import { loginSubmitHandler } from "../pages/login/login.js";
+import { registerSubmitHandler } from "../pages/register/main.js";
 import { initializeProductDetailsFunctions } from "../pages/shop/product-details/product-details.js";
 import {
   handleFilterProductsIfExistFilters,
@@ -17,10 +18,7 @@ import {
   resetFilters,
 } from "../pages/shop/shop.js";
 import { cartAndWishlistLogic } from "./shred.js";
-import { loginSubmitHandler } from "../pages/login/login.js";
-import { registerSubmitHandler } from "../pages/register/main.js";
-import { cart } from "../actions/cart.js";
-import { Customer } from "../pages/register/User.js";
+import { wishlistInitialization } from "../pages/wishlist/mywishlist.js";
 
 export const PAGE_INITIALIZERS = {
   "/shop/product-details": () => {
@@ -56,10 +54,14 @@ export const PAGE_INITIALIZERS = {
     setTimeout(() => cartAndWishlistLogic(), 100);
   },
   "/cart": () => {
+    import("../pages/cart/mycart.js").then((module) => {
+      module.initializeCart();
+    });
     cartAndWishlistLogic();
   },
   "/wishlist": () => {
     cartAndWishlistLogic();
+    wishlistInitialization();
   },
   "/checkout": () => {
     cartAndWishlistLogic();

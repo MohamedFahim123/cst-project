@@ -2,35 +2,53 @@ import { showToast } from "./showToast.js";
 
 class Cart {
   static STORAGE_KEY = "currentUser";
-  #items = { cart: [] };
   #listeners = [];
 
   constructor() {
-    this.#items = this.#load();
   }
 
   #load() {
     try {
-      const saved = localStorage.getItem(Cart.STORAGE_KEY);
-      return saved ? JSON.parse(saved) : { cart: [] };
+      const userData = localStorage.getItem(Cart.STORAGE_KEY);
+      if (!userData) return { cart: [] };
+
+      const parsed = JSON.parse(userData);
+      return parsed.cart ? parsed : { ...parsed, cart: [] };
     } catch (e) {
       console.error("Failed to load cart:", e);
       return { cart: [] };
     }
   }
 
-  #save() {
-    localStorage.setItem(Cart.STORAGE_KEY, JSON.stringify(this.#items));
-    this.#notify();
+  #save(cartData) {
+    try {
+      const userData = localStorage.getItem(Cart.STORAGE_KEY);
+      let currentUser = userData ? JSON.parse(userData) : {};
+
+      const updatedUser = { ...currentUser, cart: cartData };
+      localStorage.setItem(Cart.STORAGE_KEY, JSON.stringify(updatedUser));
+      this.#notify();
+    } catch (e) {
+      console.error("Failed to save cart:", e);
+    }
   }
 
-  _setItems(newItems) {
-    this.#items = newItems;
-    this.#save();
+  _getUserData() {
+    try {
+      const userData = localStorage.getItem(Cart.STORAGE_KEY);
+      return userData ? JSON.parse(userData) : {};
+    } catch (e) {
+      console.error("Failed to get user data:", e);
+      return {};
+    }
   }
 
-  _getItems() {
-    return this.#items;
+  _setUserData(userData) {
+    try {
+      localStorage.setItem(Cart.STORAGE_KEY, JSON.stringify(userData));
+    } catch (e) {
+      console.error("Failed to set user data:", e);
+    }
   }
 
   onChange(callback) {
@@ -47,34 +65,42 @@ class Cart {
       return;
     }
 
-    const items = this._getItems();
-    const existing = items.cart.find((item) => +item.id === +product.id);
+    const userData = this._getUserData();
+    const cart = userData.cart || [];
+    const existing = cart.find((item) => +item.id === +product.id);
 
     if (existing) {
       existing.quantity += quantity;
     } else {
-      items.cart.push({ ...product, quantity });
+      cart.push({ ...product, quantity });
     }
 
-    this._setItems(items);
+    this.#save(cart);
     showToast(`${product.name} added to cart`, "success");
   }
 
   has(productId) {
-    return this._getItems().cart.some((item) => +item.id === +productId);
+    const userData = this._getUserData();
+    const cart = userData.cart || [];
+    return cart.some((item) => +item.id === +productId);
   }
 
   remove(productId) {
-    const items = this._getItems();
-    const item = items.cart.find((i) => +i.id === +productId);
-    items.cart = items.cart.filter((item) => +item.id !== +productId);
-    this._setItems(items);
-    showToast(`${item.name} removed from cart`, "error");
+    const userData = this._getUserData();
+    const cart = userData.cart || [];
+    const item = cart.find((i) => +i.id === +productId);
+
+    if (item) {
+      const newCart = cart.filter((item) => +item.id !== +productId);
+      this.#save(newCart);
+      showToast(`${item.name} removed from cart`, "error");
+    }
   }
 
   updateQuantity(productId, quantity) {
-    const items = this._getItems();
-    const item = items.cart.find((i) => +i.id === +productId);
+    const userData = this._getUserData();
+    const cart = userData.cart || [];
+    const item = cart.find((i) => +i.id === +productId);
 
     if (!item) return;
 
@@ -82,27 +108,33 @@ class Cart {
       this.remove(productId);
     } else {
       item.quantity = quantity;
-      this._setItems(items);
+      this.#save(cart);
     }
   }
 
   clear() {
-    this._setItems({ cart: [] });
+    const userData = this._getUserData();
+    this.#save([]);
   }
 
   get allItemsCount() {
-    return this._getItems().cart.reduce((sum, item) => sum + item.quantity, 0);
+    const userData = this._getUserData();
+    const cart = userData.cart || [];
+    return cart.reduce((sum, item) => sum + item.quantity, 0);
   }
 
   get totalPrice() {
-    return this._getItems().cart.reduce(
+    const userData = this._getUserData();
+    const cart = userData.cart || [];
+    return cart.reduce(
       (sum, item) => sum + item.quantity * (item.price || 0),
       0
     );
   }
 
   get items() {
-    return [...this._getItems().cart];
+    const userData = this._getUserData();
+    return [...(userData.cart || [])];
   }
 }
 

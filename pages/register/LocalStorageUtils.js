@@ -1,5 +1,3 @@
-// LOCAL STORAGE Utils
-
 import { showToast } from "../../actions/showToast.js";
 import { router } from "../../js/router.js";
 
@@ -17,31 +15,31 @@ function addUserToLocalStorage(userObj) {
 
 // setting the newly created user as Current
 function setCurrentUser(userobj) {
-  let currentUser = JSON.parse(localStorage.getItem("currentUser")) || {};
-  currentUser = userobj;
-  localStorage.setItem("currentUser", JSON.stringify(currentUser));
+  localStorage.setItem("currentUser", JSON.stringify(userobj));
   showToast("new User Logged in ", "success");
 }
+
 // function that looks for a users array stored in local Storage
 function getUsersFromLocalStorage() {
-  const users = JSON.parse(localStorage.getItem("users")) || [];
+  const users = JSON.parse(localStorage.getItem("users")) || { users: [] };
   return users.users;
 }
 
-// check if User's  Credentials match whats in localStorage
+// check if User's Credentials match whats in localStorage
 function validateUserCredentials(email, password) {
   let state = false;
   const users = getUsersFromLocalStorage();
   const user = users.find((user) => user.email === email);
+  
   if (!user) {
     showToast("not such User , PLease Enter Valid Email", "error");
   } else if (user.password != password) {
     showToast("Uncorrect Password ,try again", "error");
   } else {
-    router.navigate("/home");
+    setCurrentUser(user); // ADD THIS LINE - Set the current user
     state = true;
   }
   return state;
 }
 
-export { addUserToLocalStorage, setCurrentUser, validateUserCredentials };
+export { addUserToLocalStorage, setCurrentUser, validateUserCredentials, getUsersFromLocalStorage };

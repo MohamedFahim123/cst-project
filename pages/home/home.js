@@ -108,6 +108,7 @@ const productCard = (product) => {
           <i  
             class="add-to-wishlist-btn fa-regular fa-heart position-absolute z-3"
             data-id="${product.id}"
+            data-thumbnail="${product.thumbnail}"
             data-name="${product.title}"
             data-price="${product.price}"
           ></i>
@@ -144,6 +145,7 @@ const productCard = (product) => {
 
             <button 
               data-id="${product.id}" 
+            data-thumbnail="${product.thumbnail}"
               data-name="${product.title}" 
               data-price="${product.price}" 
               type="button" 
