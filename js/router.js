@@ -13,6 +13,7 @@ const APP_ROUTES = [
   { path: "/blogs", title: "Blogs", description: "Blog Page" },
   { path: "/contact", title: "Contact", description: "Our Contact Page" },
   { path: "/cart", title: "Cart", description: "Cart Page" },
+  { path: "/profile", title: "Profile", description: "User Profile Page" },
   { path: "/wishlist", title: "Wishlist", description: "Wishlist Page" },
   { path: "/checkout", title: "Checkout", description: "Checkout Page" },
   { path: "/login", title: "Login", description: "Login Page" },
@@ -47,11 +48,7 @@ class Router {
   }
 
   #getRouteMeta(path) {
-    return (
-      APP_ROUTES.find(
-        (route) => route.path.toLowerCase() === path.toLowerCase()
-      ) || null
-    );
+    return APP_ROUTES.find((route) => route.path.toLowerCase() === path.toLowerCase()) || null;
   }
 
   #normalizePath(path) {
@@ -111,18 +108,12 @@ class Router {
 
   #findMatchingRoute(path) {
     const cleanPath = path.replace(/\/+$/, "");
-    return (
-      Object.keys(this.#routeMap).find(
-        (key) => key.replace(/\/+$/, "") === cleanPath
-      ) || null
-    );
+    return Object.keys(this.#routeMap).find((key) => key.replace(/\/+$/, "") === cleanPath) || null;
   }
 
   async #renderRoute(routeKey, normalizedPath) {
     document.querySelectorAll("[data-link]").forEach((link) => {
-      const linkPath = this.#normalizePath(
-        link.getAttribute("href").replace("#", "")
-      );
+      const linkPath = this.#normalizePath(link.getAttribute("href").replace("#", ""));
       link.classList.toggle("active", linkPath === normalizedPath);
     });
 
@@ -192,6 +183,7 @@ export const router = new Router({
   "/blogs": "/pages/blogs/blogs.html",
   "/contact": "/pages/contact/contact.html",
   "/cart": "/pages/cart/cart.html",
+  "/profile": "/pages/profile/profile.html",
   "/wishlist": "/pages/wishlist/wishlist.html",
   "/checkout": "/pages/checkout/checkout.html",
   "/register": "/pages/register/register.html",

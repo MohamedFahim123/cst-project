@@ -59,6 +59,7 @@ export const PAGE_INITIALIZERS = {
     });
     cartAndWishlistLogic();
   },
+
   "/wishlist": () => {
     cartAndWishlistLogic();
     wishlistInitialization();
