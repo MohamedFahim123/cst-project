@@ -4,9 +4,18 @@ import { showNotification } from "./showNotification.js";
 export async function initializeRelatedProducts() {
   // get the products from local storage
   const products = JSON.parse(localStorage.getItem("all-products")) || [];
-  console.log(products);
-  // Get 6 random products for related products
-  const relatedProducts = extractRandomList(products, 6);
+  // get current product
+  const currentProductId = +localStorage.getItem("curr-product");
+  const currentProduct = products.find((product) => product.id === currentProductId);
+  let relatedProducts = [];
+  if (currentProduct) {
+    relatedProducts = products.filter(
+      (product) => product.brand === currentProduct.brand && product.id !== currentProductId
+    );
+    // Get 4 random products for related products
+    relatedProducts = extractRandomList(relatedProducts, 4);
+  }
+
   renderRelatedProducts(relatedProducts);
 }
 
@@ -24,7 +33,7 @@ function renderRelatedProducts(products) {
       const hasHalfStar = rating % 1 >= 0.5;
 
       return `
-      <div class="col-6 col-md-4 col-lg-3 col-xl-2 ">
+      <div class="col-12 col-md-6 col-lg-4 col-xl-3 ">
         <div class="related-product-card">
           ${discountPercentage > 0 ? `<div class="product-badge">${discountPercentage}%</div>` : ""}
           
