@@ -39,8 +39,6 @@ const dasbhoardSidebarContent = {
 export const handleRenderingSideBarLinks = (path) => {
   const sideLinksContainer = document.querySelector(".pf-nav-list");
   const loginedUser = JSON.parse(localStorage.getItem("currentUser"));
-  console.log(loginedUser);
-  console.log(sideLinksContainer);
   if (!loginedUser) return;
   if (!sideLinksContainer) return;
 

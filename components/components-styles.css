@@ -276,3 +276,30 @@ footer a:hover {
     padding-bottom: 1rem;
   }
 }
+#logout-btn {
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+#logout-btn:hover {
+  color: var(--red-color) !important;
+}
+
+#profile-link {
+  cursor: pointer;
+  font-size: 20px;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+}
+
+#profile-link:hover {
+  color: var(--bg-main-color) !important;
+}

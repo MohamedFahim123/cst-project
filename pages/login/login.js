@@ -1,12 +1,12 @@
 import {
-  validationErrors,
-  validateUserLogin,
   displayErrorsAlerts,
+  validateUserLogin,
+  validationErrors,
 } from "../register/validationUtils.js";
 
-import { validateUserCredentials } from "../register/LocalStorageUtils.js";
 import { showToast } from "../../actions/showToast.js";
 import { router } from "../../js/router.js";
+import { validateUserCredentials } from "../register/LocalStorageUtils.js";
 
 function loginSubmitHandler() {
   const emailInput = document.getElementById("email");
@@ -24,7 +24,7 @@ function loginSubmitHandler() {
       const state = validateUserCredentials(email, password);
       if (state) {
         showToast("User Logged In Successfully", "success");
-        router.navigate("/")
+        router.navigate("/");
       }
     } else {
       showToast("Invalid User Inputs", "error");

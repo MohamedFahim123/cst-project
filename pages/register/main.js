@@ -1,16 +1,17 @@
-import { User, Customer, Seller } from "../register/User.js";
+import { Customer, Seller } from "../register/User.js";
 import {
-  validationErrors,
-  validateUserRegister,
   displayErrorsAlerts,
+  validateUserRegister,
+  validationErrors,
 } from "../register/validationUtils.js";
 
+import { showToast } from "../../actions/showToast.js";
+import { router } from "../../js/router.js";
 import {
   addUserToLocalStorage,
+  checkIfUserExists,
   setCurrentUser,
 } from "../register/LocalStorageUtils.js";
-import { router } from "../../js/router.js";
-import { showToast } from "../../actions/showToast.js";
 
 // event Handler for Form Submission
 
@@ -31,6 +32,13 @@ function registerSubmitHandler() {
       ).value;
 
       const isValidData = validateUserRegister(userName, email, password);
+
+      const userExist = checkIfUserExists(email);
+      if (userExist) {
+        showToast("User Already Exists, Please Login", "error");
+        return;
+      }
+
       if (isValidData) {
         showToast("User Registered Successfully", "success");
         if (role === "customer") {

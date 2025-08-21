@@ -2,51 +2,100 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Wishlist Page</title>
   <link rel="stylesheet" href="wishlist.css">
+  <!-- Make sure to include Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
-  <div class="container py-5">
-    <!-- Wishlist header -->
-    <div class="wishlist-header my-5 d-flex justify-content-center align-items-center">
-      <span class="h3">Your Favorite Products <i class="fas fa-heart fa-2x text-danger"></i></span>
-    </div>
+  <div class="wishlist-body py-5">
+    <div class="container pt-4">
+      <!-- Wishlist Icon -->
+      <div class="text-center my-5">
+        <div class="wishlist-image">
+          <i class="fas fa-heart"></i>
+        </div>
+        <h2>Your Wishlist</h2>
+      </div>
 
-    <!-- Empty wishlist message (initially hidden) -->
-    <div id="empty-wishlist" class="text-center py-5 d-none">
-      <i class="fas fa-heart-broken fa-4x text-muted mb-3"></i>
-      <h4 class="text-muted">Your wishlist is empty</h4>
-      <p class="text-muted">Start adding products you love!</p>
-      <a href="/#/shop" class="btn btn-outline-success mt-3">Continue Shopping</a>
-    </div>
+      <!-- Login Required Message - Initially hidden -->
+      <div id="login-required-message"
+        class="text-center mx-auto w-50 border border-1 border-secondary-subtle p-3 d-none">
+        <i class="fas fa-lock mb-2"></i>
+        <h4 class="text-muted">Login Required</h4>
+        <p class="text-muted mb-2">Please login to view your wishlist.</p>
+        <a href="#/login" data-link class="btn btn-outline-success mt-2">Login Now</a>
+      </div>
 
-    <!-- Wishlist Table -->
-    <div id="wishlist-content" class="wishlist-section mt-5 mb-5">
-      <div class="container">
-        <div class="wishlist-table-wrap">
-          <table class="wishlist-table">
-            <thead>
-              <tr>
-                <th>Product</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Stock Status</th>
-                <th>Add to Cart</th>
-                <th>Remove</th>
-              </tr>
-            </thead>
-            <tbody id="wishlist-items">
-              <!-- Wishlist items will be populated by JavaScript -->
-            </tbody>
-          </table>
+      <!-- Empty Wishlist Message - Initially hidden -->
+      <div id="empty-wishlist" class="text-center mx-auto w-50 border border-1 border-secondary-subtle p-3 d-none">
+        <i class="fas fa-heart-broken mb-2"></i>
+        <h4 class="text-muted">Your wishlist is empty</h4>
+        <p class="text-muted mb-2">Looks like you haven't added any items to your wishlist yet.</p>
+        <a href="#/shop" data-link class="btn btn-outline-success mt-2">Continue Shopping</a>
+      </div>
+
+      <!-- Wishlist Content - Initially hidden -->
+      <div id="wishlist-content" class="wishlist-content d-none">
+        <div class="row g-4">
+          <!-- Wishlist Table -->
+          <div class="col-lg-8 col-md-12">
+            <div class="wishlist-table-wrap table-responsive">
+              <table class="wishlist-table">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Stock Status</th>
+                    <th>Add to Cart</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="wishlist-items">
+                  <!-- Wishlist items will be dynamically inserted here -->
+                </tbody>
+              </table>
+            </div>
+            <div class="d-flex justify-content-between mt-3">
+              <a href="#/shop" data-link class="boxed-btn">Continue Shopping</a>
+              <button id="clear-wishlist" class="boxed-btn btn btn-outline-danger">Clear Wishlist</button>
+            </div>
+          </div>
+
+          <!-- Sidebar -->
+          <div class="col-lg-4">
+            <div class="total-section">
+              <table class="total-table">
+                <thead>
+                  <tr>
+                    <th colspan="2" class="text-center">Wishlist Summary</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Items: </strong></td>
+                    <td id="wishlist-count">0</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Total Value: </strong></td>
+                    <td id="wishlist-total">$0</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="wishlist-buttons mt-3">
+                <button id="add-all-to-cart" class="boxed-btn bg-success w-100">Add All to Cart</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
+  <script src="wishlist.js"></script>
 </body>
 
 </html>

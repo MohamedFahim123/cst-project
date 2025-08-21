@@ -17,9 +17,12 @@ import {
   inputsSetups,
   resetFilters,
 } from "../pages/shop/shop.js";
-import { cartAndWishlistLogic } from "./shred.js";
-import { wishlistInitialization } from "../pages/wishlist/mywishlist.js";
 import { router } from "./router.js";
+import { cartAndWishlistLogic } from "./shred.js";
+import {
+  initializeWishlist,
+  refreshWishlist,
+} from "../pages/wishlist/mywishlist.js";
 
 export const PAGE_INITIALIZERS = {
   "/shop/product-details": () => {
@@ -62,8 +65,9 @@ export const PAGE_INITIALIZERS = {
   },
 
   "/wishlist": () => {
+    refreshWishlist();
+    initializeWishlist();
     cartAndWishlistLogic();
-    wishlistInitialization();
   },
   "/checkout": () => {
     cartAndWishlistLogic();
@@ -74,7 +78,6 @@ export const PAGE_INITIALIZERS = {
   "/register": () => {
     registerSubmitHandler();
   },
-  // payment page initializer
   "/payment": async () => {
     // Load PayPal SDK dynamically
     const paypalScript = document.createElement("script");
@@ -102,7 +105,6 @@ export const PAGE_INITIALIZERS = {
                 alert(
                   "✅ Payment completed by " + details.payer.name.given_name
                 );
-                console.log(details);
               });
             },
             onError: function (err) {
@@ -122,7 +124,6 @@ document.addEventListener("click", (e) => {
     const user = JSON.parse(localStorage.getItem("currentUser"));
     if (!user) return;
     const pathname = `/${user.role.toLowerCase()}-dashboard/profile`;
-    console.log(pathname)
     router.navigate(pathname.trim());
   }
 });

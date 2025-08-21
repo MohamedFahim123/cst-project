@@ -2,7 +2,6 @@ import { handleRenderingSideBarLinks } from "../components/sidebar.js";
 import { PAGE_INITIALIZERS } from "./main.js";
 import { cartAndWishlistLogic, updateCartAndWishlistBadges } from "./shred.js";
 
-
 const APP_ROUTES = [
   { path: "/404", title: "404", description: "This Page Does Not Exist" },
   { path: "/", title: "Home", description: "Our Home Page" },
@@ -78,9 +77,91 @@ class Router {
   #footerElement = document.getElementById("footer");
   #sideBarElement = document.getElementById("pf-sidebar-wrapper");
 
+  #authState = {
+    // Check if user is logged in
+    isLoggedIn: () => {
+      return localStorage.getItem("currentUser") !== null;
+    },
+
+    // Update UI based on authentication state
+    updateUI: () => {
+      const isLoggedIn = this.#authState.isLoggedIn();
+      const authButtons = document.getElementById("auth-buttons");
+      const mobileAuthButtons = document.getElementById("mobile-auth-buttons");
+      const mobileUserMenu = document.querySelectorAll(".mobile-user-menu");
+
+      if (isLoggedIn) {
+        // User is logged in - show user menu, hide auth buttons
+        if (authButtons) authButtons.classList.add("d-none");
+        if (mobileAuthButtons) mobileAuthButtons.classList.add("d-none");
+        if (mobileUserMenu.length) mobileUserMenu.forEach((item) => item.classList.remove("d-none"));
+      } else {
+        // User is not logged in - show auth buttons, hide user menu
+        if (authButtons) authButtons.classList.remove("d-none");
+        if (mobileAuthButtons) mobileAuthButtons.classList.remove("d-none");
+        if (mobileUserMenu.length) mobileUserMenu.forEach((item) => item.classList.add("d-none"));
+      }
+    },
+
+    // Initialize authentication state listeners
+    init: () => {
+      // Update UI on initial load
+      this.#authState.updateUI();
+
+      // Add logout event listeners
+      const logoutBtn = document.getElementById("logout-btn");
+      const mobileLogoutBtn = document.getElementById("mobile-logout-btn");
+
+      if (logoutBtn) {
+        logoutBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          localStorage.removeItem("currentUser");
+          // Dispatch event to notify other components
+          window.dispatchEvent(new CustomEvent("authStateChanged"));
+          // Update UI
+          this.#authState.updateUI();
+          // Redirect to home page
+          window.location.href = "/";
+        });
+      }
+
+      if (mobileLogoutBtn) {
+        mobileLogoutBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          localStorage.removeItem("currentUser");
+          // Dispatch event to notify other components
+          window.dispatchEvent(new CustomEvent("authStateChanged"));
+          // Update UI
+          this.#authState.updateUI();
+          // Close mobile menu
+          const mobileMenu = document.getElementById("mobileMenu");
+          const bsOffcanvas = bootstrap.Offcanvas.getInstance(mobileMenu);
+          if (bsOffcanvas) bsOffcanvas.hide();
+          // Redirect to home page
+          window.location.href = "/";
+        });
+      }
+
+      // Listen for storage events (for changes in other tabs/windows)
+      window.addEventListener("storage", (e) => {
+        if (e.key === "currentUser") {
+          this.#authState.updateUI();
+        }
+      });
+
+      // Listen for custom auth state changes
+      window.addEventListener(
+        "authStateChanged",
+        this.#authState.updateUI.bind(this)
+      );
+    },
+  };
+
   constructor(routes) {
     this.#routeMap = routes;
     this.#setupEventListeners();
+    // Initialize auth state on router creation
+    setTimeout(() => this.#authState.init(), 0);
   }
 
   #setupEventListeners() {
@@ -248,6 +329,8 @@ class Router {
     }
 
     setTimeout(() => {
+      // Reinitialize auth state after page content is loaded
+      this.#authState.init();
       cartAndWishlistLogic();
       updateCartAndWishlistBadges();
     }, 50);
@@ -267,6 +350,9 @@ class Router {
 
       this.#headerElement.innerHTML = navbar;
       this.#footerElement.innerHTML = footer;
+
+      // Initialize auth state after navbar is loaded
+      setTimeout(() => this.#authState.init(), 0);
     } catch (error) {
       console.error("Failed to load layout components:", error);
     }

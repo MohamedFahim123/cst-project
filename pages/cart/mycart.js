@@ -5,18 +5,22 @@ let cartInitialized = false;
 
 export function initializeCart() {
   if (cartInitialized) return;
-  
+
   const cartItems = cart.items;
   renderCartItems(cartItems);
   updateCartTotals(cartItems);
   toggleEmptyState(cartItems);
 
-  document.getElementById("clear-cart")?.addEventListener("click", clearCart);
-  document.getElementById("update-cart")?.addEventListener("click", updateCartQuantities);
+  document.addEventListener("click", (e) => {
+    if (e.target.id == "clear-cart") clearCart();
+  });
+  document
+    .getElementById("update-cart")
+    ?.addEventListener("click", updateCartQuantities);
 
   // Listen for cart changes
   cart.onChange(handleCartChange);
-  
+
   cartInitialized = true;
 }
 
@@ -45,9 +49,9 @@ function renderCartItems(items) {
       <tr data-id="${item.id}">
         <td>
           <div class="d-flex align-items-center">
-            <img src="${
-              product.thumbnail || "https://via.placeholder.com/80"
-            }" class="product-img me-3" alt="${item.name}">
+            <img src="${product.thumbnail}" class="product-img me-3" alt="${
+        item.name
+      }">
             <div>
               <h6 class="mb-0">${item.name}</h6>
               <small class="text-muted">SKU: ${item.id}</small>
@@ -56,7 +60,7 @@ function renderCartItems(items) {
         </td>
         <td>$${item.price.toFixed(2)}</td>
         <td>
-          <input type="number" value="${
+          <input type="number" name="quantity" autocomplete="off" value="${
             item.quantity
           }" min="1" class="quantity-input" data-id="${item.id}">
         </td>
@@ -82,11 +86,11 @@ function renderCartItems(items) {
 
   // Add event listeners to quantity inputs for real-time updates
   document.querySelectorAll(".quantity-input").forEach((input) => {
-    input.addEventListener("change", function() {
+    input.addEventListener("change", function () {
       updateSingleItemQuantity(this.dataset.id, parseInt(this.value));
     });
-    
-    input.addEventListener("input", function() {
+
+    input.addEventListener("input", function () {
       updateSingleItemTotal(this.dataset.id, parseInt(this.value));
     });
   });
@@ -101,10 +105,12 @@ function updateSingleItemQuantity(productId, quantity) {
 
 function updateSingleItemTotal(productId, quantity) {
   if (quantity > 0) {
-    const item = cart.items.find(item => item.id == productId);
+    const item = cart.items.find((item) => item.id == productId);
     if (item) {
       const itemTotal = item.price * quantity;
-      const totalElement = document.querySelector(`tr[data-id="${productId}"] .item-total`);
+      const totalElement = document.querySelector(
+        `tr[data-id="${productId}"] .item-total`
+      );
       if (totalElement) {
         totalElement.textContent = `$${itemTotal.toFixed(2)}`;
       }

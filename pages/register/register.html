@@ -24,32 +24,32 @@
             <form id="registerForm">
                 <div class="mb-3">
                     <label for="username" class="form-label">Username <span class="ms-2 text-danger">*</span></label>
-                    <input type="text" placeholder="Enter Your User Name" class="form-control" id="username" required>
+                    <input type="text" placeholder="Enter Your User Name" name="username" autocomplete="on" class="form-control" id="username" required>
                 </div>
 
                 <div class="mb-3">
                     <label for="email" class="form-label">Email address <span class="ms-2 text-danger">*</span></label>
-                    <input type="email" placeholder="example@email.com" class="form-control" id="email" required>
+                    <input type="email" placeholder="example@email.com" class="form-control" autocomplete="on" name="email" id="email" required>
                 </div>
 
 
                 <div class="mb-3">
                     <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
-                    <input type="password" placeholder="password" class="form-control" id="password" required>
+                    <input type="password" placeholder="password" class="form-control" id="password" autocomplete="off" name="password" required>
                 </div>
 
                 <div class="user-type-options">
                     <h6 class="mb-3">I am a:</h6>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="userType" id="customer" value="customer"
+                        <input class="form-check-input" type="radio" autocomplete="on" name="userType" id="customer" value="customer"
                             checked>
-                        <label class="form-check-label" for="role">
+                        <label class="form-check-label" for="customer">
                             <i class="fas fa-user me-2"></i> Customer
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="userType" id="seller" value="seller">
-                        <label class="form-check-label" for="role">
+                        <input class="form-check-input" type="radio" name="userType" autocomplete="on" id="seller" value="seller">
+                        <label class="form-check-label" for="seller">
                             <i class="fas fa-store me-2"></i> Seller
                         </label>
                     </div>

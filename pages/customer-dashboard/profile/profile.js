@@ -7,7 +7,7 @@ const userData = {
   email: "john.doe@example.com",
   phone: "+1 (555) 123-4567",
   address: "123 Main Street, City, State 12345",
-  avatar: "https://via.placeholder.com/150x150/634c9f/ffffff?text=JD"
+  avatar: ""
 };
 
 // Initialize profile page
@@ -18,11 +18,6 @@ document.addEventListener('DOMContentLoaded', function() {
   initializeImageUpload();
   loadUserProfile();
 });
-
-// Initialize profile functionality
-function initializeProfile() {
-  console.log('Profile page initialized');
-}
 
 // Tab switching functionality
 function initializeTabSwitching() {
