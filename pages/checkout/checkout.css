@@ -13,7 +13,7 @@
   --shadow-md: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
-body {
+.checkout-body {
   font-family: "Segoe UI", Roboto, sans-serif;
   background: var(--bg-light);
   margin: 0;
@@ -22,7 +22,7 @@ body {
 }
 
 /* Container */
-.container {
+.checkout-container {
   max-width: 1100px;
   margin: auto;
   padding: 15px;
@@ -72,7 +72,7 @@ body {
   gap: 18px;
 }
 
-.row {
+.checkout-row {
   display: flex;
   gap: 15px;
   flex-wrap: wrap;
