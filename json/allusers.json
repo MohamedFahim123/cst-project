@@ -2,10 +2,10 @@
   "users": [
     {
       "id": 1,
-      "name": "Leanne Graham",
-      "username": "Bret",
-      "email": "G2oPj@example.com",
-      "password": "12345678",
+      "name": "Mohamed Fahim",
+      "username": "mohamed fahim",
+      "email": "mohamed@fahim.com",
+      "password": "mohamed1",
       "role": "admin",
       "profile": ""
     },

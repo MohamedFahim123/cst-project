@@ -83,23 +83,72 @@ class Router {
       return localStorage.getItem("currentUser") !== null;
     },
 
+    // Get current user role
+    getUserRole: () => {
+      const user = JSON.parse(localStorage.getItem("currentUser") || "{}");
+      return user.role || "";
+    },
+
+    // Check if user is admin
+    isAdmin: () => {
+      return this.#authState.getUserRole().toLowerCase() === "admin";
+    },
+
     // Update UI based on authentication state
     updateUI: () => {
       const isLoggedIn = this.#authState.isLoggedIn();
+      const isAdmin = this.#authState.isAdmin();
       const authButtons = document.getElementById("auth-buttons");
       const mobileAuthButtons = document.getElementById("mobile-auth-buttons");
       const mobileUserMenu = document.querySelectorAll(".mobile-user-menu");
+
+      // Cart and wishlist elements
+      const cartLink = document.querySelector('a[href="/cart"]');
+      const wishlistLink = document.querySelector('a[href="/wishlist"]');
+      const mobileCartLink = document.querySelector(
+        '#mobileMenu a[href="/cart"]'
+      );
+      const mobileWishlistLink = document.querySelector(
+        '#mobileMenu a[href="/wishlist"]'
+      );
 
       if (isLoggedIn) {
         // User is logged in - show user menu, hide auth buttons
         if (authButtons) authButtons.classList.add("d-none");
         if (mobileAuthButtons) mobileAuthButtons.classList.add("d-none");
-        if (mobileUserMenu.length) mobileUserMenu.forEach((item) => item.classList.remove("d-none"));
+        if (mobileUserMenu.length)
+          mobileUserMenu.forEach((item) => item.classList.remove("d-none"));
+
+        // Hide cart/wishlist for admin users
+        if (isAdmin) {
+          if (cartLink) cartLink.style.display = "none";
+          if (wishlistLink) wishlistLink.style.display = "none";
+          if (mobileCartLink)
+            mobileCartLink.parentElement.style.display = "none";
+          if (mobileWishlistLink)
+            mobileWishlistLink.parentElement.style.display = "none";
+        } else {
+          if (cartLink) cartLink.style.display = "block";
+          if (wishlistLink) wishlistLink.style.display = "block";
+          if (mobileCartLink)
+            mobileCartLink.parentElement.style.display = "block";
+          if (mobileWishlistLink)
+            mobileWishlistLink.parentElement.style.display = "block";
+        }
       } else {
         // User is not logged in - show auth buttons, hide user menu
         if (authButtons) authButtons.classList.remove("d-none");
         if (mobileAuthButtons) mobileAuthButtons.classList.remove("d-none");
-        if (mobileUserMenu.length) mobileUserMenu.forEach((item) => item.classList.add("d-none"));
+        if (mobileUserMenu.length)
+          mobileUserMenu.forEach((item) => item.classList.add("d-none"));
+
+        // Show cart/wishlist for non-logged in users
+        if (cartLink) cartLink.style.display = "block";
+        if (wishlistLink) wishlistLink.style.display = "block";
+        if (mobileCartLink)
+          mobileCartLink.parentElement.style.display = "block";
+        if (mobileWishlistLink)
+          mobileWishlistLink.parentElement.style.display = "block";
       }
     },
 
@@ -231,6 +280,16 @@ class Router {
         return this.navigate("#/404");
       }
 
+      // Check if admin is trying to access restricted routes
+      const isAdmin = this.#authState.isAdmin();
+      if (
+        isAdmin &&
+        (normalizedPath === "/cart" || normalizedPath === "/wishlist")
+      ) {
+        // Redirect admin users to their dashboard instead of cart/wishlist
+        return this.navigate("/admin-dashboard/profile");
+      }
+
       await this.#renderRoute(matchingRoute, normalizedPath);
     } catch (error) {
       console.error("Navigation error:", error);
@@ -331,8 +390,12 @@ class Router {
     setTimeout(() => {
       // Reinitialize auth state after page content is loaded
       this.#authState.init();
-      cartAndWishlistLogic();
-      updateCartAndWishlistBadges();
+
+      // Only initialize cart and wishlist logic for non-admin users
+      if (!this.#authState.isAdmin()) {
+        cartAndWishlistLogic();
+        updateCartAndWishlistBadges();
+      }
     }, 50);
   }
 
