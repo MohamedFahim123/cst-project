@@ -1,0 +1,545 @@
+/* Profile Page Styles - Using 'pf-' prefix for all classes */
+
+/* CSS Variables matching website theme */
+:root {
+  --pf-border-radius: 12px;
+  --pf-border-color: #e5e7eb;
+}
+
+/* Base Styles */
+.pf-container {
+  min-height: 100vh;
+  background: var(--bg-light);
+  padding: 2rem 0;
+}
+
+/* Sidebar Styles */
+.pf-sidebar-wrapper {
+  margin-bottom: 2rem;
+}
+
+.pf-sidebar {
+  background: var(--bg-white);
+  border-radius: var(--pf-border-radius);
+  box-shadow: var(--shadow-md);
+  padding: 2rem;
+  height: fit-content;
+  position: sticky;
+  top: 2rem;
+}
+
+.pf-sidebar-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--pf-border-color);
+}
+
+.pf-user-avatar {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1rem;
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid var(--bg-main-color);
+}
+
+.pf-user-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pf-user-name {
+  color: var(--title-main-color);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.pf-user-email {
+  color: var(--text-second-color);
+  font-size: 0.9rem;
+  margin-bottom: 0;
+}
+
+/* Navigation Styles */
+.pf-sidebar-nav {
+  margin-bottom: 2rem;
+}
+
+.pf-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.pf-nav-item {
+  margin-bottom: 0.5rem;
+}
+
+.pf-nav-link {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  color: var(--text-main-color);
+  text-decoration: none;
+  border-radius: 8px;
+  transition: var(--transition);
+  font-weight: 500;
+}
+
+.pf-nav-link:hover {
+  background: rgba(99, 76, 159, 0.1);
+  color: var(--bg-main-color);
+  text-decoration: none;
+}
+
+.pf-nav-link.active {
+  background: var(--bg-main-color);
+  color: white;
+}
+
+.pf-nav-icon {
+  margin-right: 0.75rem;
+  font-size: 1.1rem;
+  width: 20px;
+}
+
+.pf-nav-text {
+  font-size: 0.95rem;
+}
+
+/* Sidebar Footer */
+.pf-sidebar-footer {
+  border-top: 1px solid var(--pf-border-color);
+  padding-top: 2rem;
+}
+
+.pf-logout-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1rem;
+  background: transparent;
+  color: #dc3545;
+  border: 1px solid #dc3545;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.pf-logout-btn:hover {
+  background: #dc3545;
+  color: white;
+}
+
+.pf-logout-btn i {
+  margin-right: 0.5rem;
+}
+
+/* Main Content Styles */
+.pf-main-content {
+  padding-left: 2rem;
+}
+
+.pf-content-header {
+  margin-bottom: 2rem;
+}
+
+.pf-page-title {
+  color: var(--title-main-color);
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.title-icon {
+  margin-right: 1rem;
+  color: var(--bg-main-color);
+}
+
+.pf-page-subtitle {
+  color: var(--text-second-color);
+  font-size: 1.1rem;
+  margin-bottom: 0;
+}
+
+/* Tab Content */
+.pf-tab-content {
+  display: none;
+}
+
+.pf-tab-content.active {
+  display: block;
+  animation: pf-fadeIn 0.3s ease-in;
+}
+
+@keyframes pf-fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Content Body */
+.pf-content-body {
+  background: var(--bg-white);
+  border-radius: var(--pf-border-radius);
+  box-shadow: var(--shadow-md);
+  padding: 2rem;
+}
+
+/* Profile Avatar Styles */
+.pf-profile-avatar {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid var(--bg-main-color);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.pf-profile-avatar:hover {
+  transform: scale(1.05);
+}
+
+.pf-profile-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pf-avatar-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: var(--transition);
+  color: white;
+  font-size: 1.5rem;
+}
+
+.pf-profile-avatar:hover .pf-avatar-overlay {
+  opacity: 1;
+}
+
+/* Info Card */
+.pf-info-card {
+  background: var(--bg-light);
+  border-radius: var(--pf-border-radius);
+  padding: 2rem;
+  height: 100%;
+}
+
+.pf-card-title {
+  color: var(--title-main-color);
+  font-weight: 600;
+  margin-bottom: 2rem;
+  font-size: 1.3rem;
+}
+
+.pf-info-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.pf-info-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.pf-info-label {
+  display: flex;
+  align-items: center;
+  color: var(--text-second-color);
+  font-weight: 500;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.pf-info-icon {
+  margin-right: 0.5rem;
+  color: var(--bg-main-color);
+  width: 16px;
+}
+
+.pf-info-value {
+  color: var(--text-main-color);
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 0.75rem;
+  background: var(--bg-white);
+  border-radius: 8px;
+  border: 1px solid var(--pf-border-color);
+}
+
+/* Update Form Styles */
+.pf-upload-avatar {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid var(--bg-main-color);
+}
+
+.pf-upload-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pf-upload-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: var(--transition);
+}
+
+.pf-upload-avatar:hover .pf-upload-overlay {
+  opacity: 1;
+}
+
+.pf-upload-label {
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  margin: 0;
+}
+
+.pf-upload-label i {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.pf-upload-label span {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Form Styles */
+.pf-form-card {
+  background: var(--bg-light);
+  border-radius: var(--pf-border-radius);
+  padding: 2rem;
+}
+
+.pf-form-label {
+  display: flex;
+  align-items: center;
+  color: var(--text-main-color);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.pf-form-icon {
+  margin-right: 0.5rem;
+  color: var(--bg-main-color);
+  width: 16px;
+}
+
+.pf-form-control {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--pf-border-color);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: var(--transition);
+  background: var(--bg-white);
+}
+
+.pf-form-control:focus {
+  outline: none;
+  border-color: var(--bg-main-color);
+  box-shadow: 0 0 0 3px rgba(99, 76, 159, 0.1);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Form Actions */
+.pf-form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  justify-content: flex-end;
+}
+
+.pf-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+}
+
+.pf-btn-icon {
+  margin-right: 0.5rem;
+}
+
+.pf-btn-primary {
+  background: var(--bg-main-color);
+  color: white;
+}
+
+.pf-btn-primary:hover {
+  background: var(--title-main-color);
+  transform: translateY(-2px);
+}
+
+.pf-btn-secondary {
+  background: transparent;
+  color: var(--text-second-color);
+  border: 1px solid var(--pf-border-color);
+}
+
+.pf-btn-secondary:hover {
+  background: var(--bg-light);
+  color: var(--text-main-color);
+}
+
+/* Empty State */
+.pf-empty-state {
+  text-align: center;
+  padding: 3rem;
+  color: var(--text-second-color);
+}
+
+.pf-empty-icon {
+  font-size: 4rem;
+  color: var(--pf-border-color);
+  margin-bottom: 1.5rem;
+}
+
+.pf-empty-title {
+  color: var(--title-main-color);
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.pf-empty-text {
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 991.98px) {
+  .pf-main-content {
+    padding-left: 0;
+    margin-top: 2rem;
+  }
+
+  .pf-sidebar {
+    position: relative;
+    top: 0;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .pf-container {
+    padding: 1rem 0;
+  }
+
+  .pf-sidebar {
+    padding: 1.5rem;
+  }
+
+  .pf-content-body {
+    padding: 1.5rem;
+  }
+
+  .pf-page-title {
+    font-size: 1.5rem;
+  }
+
+  .pf-form-actions {
+    flex-direction: column;
+  }
+
+  .pf-btn {
+    justify-content: center;
+  }
+
+  .pf-nav-link {
+    padding: 0.75rem;
+  }
+
+  .pf-info-card,
+  .pf-form-card {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .pf-profile-avatar,
+  .pf-upload-avatar {
+    width: 120px;
+    height: 120px;
+  }
+
+  .pf-sidebar-header {
+    padding-bottom: 1.5rem;
+  }
+
+  .pf-sidebar-footer {
+    padding-top: 1.5rem;
+  }
+}
+
+/* Animation Utilities */
+.pf-fade-in {
+  animation: pf-fadeIn 0.3s ease-in;
+}
+
+.pf-slide-up {
+  animation: pf-slideUp 0.3s ease-out;
+}
+
+@keyframes pf-slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

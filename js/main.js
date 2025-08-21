@@ -19,6 +19,7 @@ import {
 } from "../pages/shop/shop.js";
 import { cartAndWishlistLogic } from "./shred.js";
 import { wishlistInitialization } from "../pages/wishlist/mywishlist.js";
+import { router } from "./router.js";
 
 export const PAGE_INITIALIZERS = {
   "/shop/product-details": () => {
@@ -74,40 +75,54 @@ export const PAGE_INITIALIZERS = {
     registerSubmitHandler();
   },
   // payment page initializer
- "/payment": async () => {
-  // Load PayPal SDK dynamically
-  const paypalScript = document.createElement("script");
-  paypalScript.src = "https://www.paypal.com/sdk/js?client-id=AWwGica7qOijXlw0dsQ_OYl-Tft5VkdJTDPPM5_cchS4tD-0Dk0Jayd0C53wHKoXHdsIbsqsOaAwzfSq&currency=USD";
-  paypalScript.onload = () => {
-    if (window.paypal) {
-      paypal.Buttons({
-        createOrder: function (data, actions) {
-          return actions.order.create({
-            purchase_units: [{
-              description: "Ecommerce Checkout",
-              amount: {
-                currency_code: "USD",
-                value: "15.89"   // fixed test total
-              }
-            }]
-          });
-        },
-        onApprove: function (data, actions) {
-          return actions.order.capture().then(function (details) {
-            alert("✅ Payment completed by " + details.payer.name.given_name);
-            console.log(details);
-          });
-        },
-        onError: function (err) {
-          console.error("PayPal Error:", err);
-          alert("❌ PayPal Checkout failed: " + err.message);
-        }
-      }).render("#paypal-button-container");
-    }
-  };
-  document.body.appendChild(paypalScript);
-}
-
-
-
+  "/payment": async () => {
+    // Load PayPal SDK dynamically
+    const paypalScript = document.createElement("script");
+    paypalScript.src =
+      "https://www.paypal.com/sdk/js?client-id=AWwGica7qOijXlw0dsQ_OYl-Tft5VkdJTDPPM5_cchS4tD-0Dk0Jayd0C53wHKoXHdsIbsqsOaAwzfSq&currency=USD";
+    paypalScript.onload = () => {
+      if (window.paypal) {
+        paypal
+          .Buttons({
+            createOrder: function (data, actions) {
+              return actions.order.create({
+                purchase_units: [
+                  {
+                    description: "Ecommerce Checkout",
+                    amount: {
+                      currency_code: "USD",
+                      value: "15.89", // fixed test total
+                    },
+                  },
+                ],
+              });
+            },
+            onApprove: function (data, actions) {
+              return actions.order.capture().then(function (details) {
+                alert(
+                  "✅ Payment completed by " + details.payer.name.given_name
+                );
+                console.log(details);
+              });
+            },
+            onError: function (err) {
+              console.error("PayPal Error:", err);
+              alert("❌ PayPal Checkout failed: " + err.message);
+            },
+          })
+          .render("#paypal-button-container");
+      }
+    };
+    document.body.appendChild(paypalScript);
+  },
 };
+
+document.addEventListener("click", (e) => {
+  if (e.target.id == "profile-link") {
+    const user = JSON.parse(localStorage.getItem("currentUser"));
+    if (!user) return;
+    const pathname = `/${user.role.toLowerCase()}-dashboard/profile`;
+    console.log(pathname)
+    router.navigate(pathname.trim());
+  }
+});

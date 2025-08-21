@@ -1,65 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>User Profile - My Account</title>
 
-    <!-- Bootstrap CSS -->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Profile - My Account</title>
 
-    <!-- Font Awesome Icons -->
+  <!-- Bootstrap CSS -->
 
-    <!-- Custom CSS -->
-  </head>
-  <body>
+  <!-- Font Awesome Icons -->
+
+  <!-- Custom CSS -->
+</head>
+
+<body>
+  <div id="dashboard-grid">
     <div class="pf-container">
       <div class="container-fluid">
         <div class="row">
           <!-- Sidebar -->
-          <div class="col-lg-3 col-md-4 pf-sidebar-wrapper">
-            <div class="pf-sidebar">
-              <div class="pf-sidebar-header">
-                <div class="pf-user-avatar">
-                  <img
-                    src="https://via.placeholder.com/80x80/634c9f/ffffff?text=JD"
-                    alt="User Avatar"
-                    id="pf-avatar-img" />
-                </div>
-                <h5 class="pf-user-name" id="pf-sidebar-name">John Doe</h5>
-                <p class="pf-user-email" id="pf-sidebar-email">john.doe@example.com</p>
-              </div>
-
-              <nav class="pf-sidebar-nav">
-                <ul class="pf-nav-list">
-                  <li class="pf-nav-item">
-                    <a href="#profile" class="pf-nav-link active" data-tab="profile">
-                      <i class="fas fa-user pf-nav-icon"></i>
-                      <span class="pf-nav-text">Profile</span>
-                    </a>
-                  </li>
-                  <li class="pf-nav-item">
-                    <a href="#update-profile" class="pf-nav-link" data-tab="update-profile">
-                      <i class="fas fa-edit pf-nav-icon"></i>
-                      <span class="pf-nav-text">Update Profile</span>
-                    </a>
-                  </li>
-                  <li class="pf-nav-item">
-                    <a href="#orders" class="pf-nav-link" data-tab="orders">
-                      <i class="fas fa-shopping-bag pf-nav-icon"></i>
-                      <span class="pf-nav-text">Order History</span>
-                    </a>
-                  </li>
-                </ul>
-              </nav>
-
-              <div class="pf-sidebar-footer">
-                <button class="pf-logout-btn" id="pf-logout-btn">
-                  <i class="fas fa-sign-out-alt"></i>
-                  <span>Logout</span>
-                </button>
-              </div>
-            </div>
+          <div class="col-lg-3 col-md-4 pf-sidebar-wrapper" id="pf-sidebar-wrapper">
           </div>
+
 
           <!-- Main Content -->
           <div class="col-lg-9 col-md-8 pf-main-content">
@@ -70,16 +32,13 @@
                   <i class="fas fa-user pf-title-icon"></i>
                   My Profile
                 </h2>
-                <p class="pf-page-subtitle">View your personal information</p>
               </div>
 
               <div class="pf-content-body">
                 <div class="row">
                   <div class="col-md-4 text-center mb-4">
                     <div class="pf-profile-avatar">
-                      <img
-                        src="https://via.placeholder.com/150x150/634c9f/ffffff?text=JD"
-                        alt="Profile Picture"
+                      <img src="https://via.placeholder.com/150x150/634c9f/ffffff?text=JD" alt="Profile Picture"
                         id="pf-profile-img" />
                       <div class="pf-avatar-overlay">
                         <i class="fas fa-camera"></i>
@@ -120,9 +79,7 @@
                             <i class="fas fa-map-marker-alt pf-info-icon"></i>
                             Address
                           </label>
-                          <span class="pf-info-value" id="pf-display-address"
-                            >123 Main Street, City, State 12345</span
-                          >
+                          <span class="pf-info-value" id="pf-display-address">123 Main Street, City, State 12345</span>
                         </div>
                       </div>
                     </div>
@@ -146,9 +103,7 @@
                   <div class="row">
                     <div class="col-md-4 text-center mb-4">
                       <div class="pf-upload-avatar">
-                        <img
-                          src="https://via.placeholder.com/150x150/634c9f/ffffff?text=JD"
-                          alt="Profile Picture"
+                        <img src="https://via.placeholder.com/150x150/634c9f/ffffff?text=JD" alt="Profile Picture"
                           id="pf-upload-img" />
                         <div class="pf-upload-overlay">
                           <label for="pf-avatar-input" class="pf-upload-label">
@@ -168,10 +123,7 @@
                               <i class="fas fa-user pf-form-icon"></i>
                               Full Name
                             </label>
-                            <input
-                              type="text"
-                              class="pf-form-control"
-                              id="pf-update-name"
+                            <input type="text" class="pf-form-control" id="pf-update-name"
                               placeholder="Enter your full name" />
                           </div>
 
@@ -180,10 +132,7 @@
                               <i class="fas fa-envelope pf-form-icon"></i>
                               Email Address
                             </label>
-                            <input
-                              type="email"
-                              class="pf-form-control"
-                              id="pf-update-email"
+                            <input type="email" class="pf-form-control" id="pf-update-email"
                               placeholder="Enter your email" />
                           </div>
 
@@ -192,10 +141,7 @@
                               <i class="fas fa-phone pf-form-icon"></i>
                               Phone Number
                             </label>
-                            <input
-                              type="tel"
-                              class="pf-form-control"
-                              id="pf-update-phone"
+                            <input type="tel" class="pf-form-control" id="pf-update-phone"
                               placeholder="Enter your phone number" />
                           </div>
 
@@ -204,10 +150,7 @@
                               <i class="fas fa-map-marker-alt pf-form-icon"></i>
                               Address
                             </label>
-                            <textarea
-                              class="pf-form-control pf-textarea"
-                              id="pf-update-address"
-                              rows="3"
+                            <textarea class="pf-form-control pf-textarea" id="pf-update-address" rows="3"
                               placeholder="Enter your address"></textarea>
                           </div>
                         </div>
@@ -260,5 +203,7 @@
         </div>
       </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>

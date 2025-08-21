@@ -1,5 +1,7 @@
+import { handleRenderingSideBarLinks } from "../components/sidebar.js";
 import { PAGE_INITIALIZERS } from "./main.js";
 import { cartAndWishlistLogic, updateCartAndWishlistBadges } from "./shred.js";
+
 
 const APP_ROUTES = [
   { path: "/404", title: "404", description: "This Page Does Not Exist" },
@@ -19,16 +21,62 @@ const APP_ROUTES = [
   { path: "/login", title: "Login", description: "Login Page" },
   { path: "/register", title: "Register", description: "Register Page" },
   { path: "/payment", title: "Payment", description: "Payment Page" },
+
+  // customer Dashboard
+  {
+    path: "/customer-dashboard/profile",
+    title: "Profile",
+    description: "User Profile Page",
+  },
+  {
+    path: "/customer-dashboard/orders",
+    title: "Orders",
+    description: "Orders Page",
+  },
+  {
+    path: "/customer-dashboard/update-profile",
+    title: "Update Profile",
+    description: "Update Profile Page",
+  },
+  {
+    path: "/customer-dashboard/order-details",
+    title: "Order Details",
+    description: "Order Details Page",
+  },
+
+  // Seller Dashboard
+  {
+    path: "/seller-dashboard/profile",
+    title: "Profile",
+    description: "User Profile Page",
+  },
+  {
+    path: "/seller-dashboard/orders",
+    title: "Orders",
+    description: "Orders Page",
+  },
+  {
+    path: "/seller-dashboard/update-profile",
+    title: "Update Profile",
+    description: "Update Profile Page",
+  },
+  {
+    path: "/seller-dashboard/order-details",
+    title: "Order Details",
+    description: "Order Details Page",
+  },
 ];
 
 class Router {
   #routeMap = {};
   #cachedNavbar = "";
   #cachedFooter = "";
+  #cachedSidebar = "";
   #loaderElement = document.getElementById("loader");
   #appElement = document.getElementById("app");
   #headerElement = document.getElementById("header");
   #footerElement = document.getElementById("footer");
+  #sideBarElement = document.getElementById("pf-sidebar-wrapper");
 
   constructor(routes) {
     this.#routeMap = routes;
@@ -49,7 +97,11 @@ class Router {
   }
 
   #getRouteMeta(path) {
-    return APP_ROUTES.find((route) => route.path.toLowerCase() === path.toLowerCase()) || null;
+    return (
+      APP_ROUTES.find(
+        (route) => route.path.toLowerCase() === path.toLowerCase()
+      ) || null
+    );
   }
 
   #normalizePath(path) {
@@ -109,21 +161,65 @@ class Router {
 
   #findMatchingRoute(path) {
     const cleanPath = path.replace(/\/+$/, "");
-    return Object.keys(this.#routeMap).find((key) => key.replace(/\/+$/, "") === cleanPath) || null;
+    return (
+      Object.keys(this.#routeMap).find(
+        (key) => key.replace(/\/+$/, "") === cleanPath
+      ) || null
+    );
   }
 
   async #renderRoute(routeKey, normalizedPath) {
     document.querySelectorAll("[data-link]").forEach((link) => {
-      const linkPath = this.#normalizePath(link.getAttribute("href").replace("#", ""));
+      const linkPath = this.#normalizePath(
+        link.getAttribute("href").replace("#", "")
+      );
       link.classList.toggle("active", linkPath === normalizedPath);
     });
 
-    if (!normalizedPath.includes("/dashboard")) {
+    if (!normalizedPath.includes("dashboard")) {
       await this.#loadLayoutComponents();
       updateCartAndWishlistBadges();
+      this.#sideBarElement = "";
     } else {
-      this.#headerElement.innerHTML = "";
+      const user = JSON.parse(localStorage.getItem("currentUser"));
+      if (!user) return this.navigate("/login");
+      const isCustomerOk =
+        user.role.toLowerCase() === "customer" &&
+        (normalizedPath.includes("seller") || normalizedPath.includes("admin"));
+
+      const isSellerOk =
+        user.role.toLowerCase() === "seller" &&
+        (normalizedPath.includes("customer") ||
+          normalizedPath.includes("admin"));
+
+      const isAdminOk =
+        user.role.toLowerCase() === "admin" &&
+        (normalizedPath.includes("customer") ||
+          normalizedPath.includes("seller"));
+
+      if (isCustomerOk) {
+        return this.navigate("/customer-dashboard/profile");
+      } else if (isSellerOk) {
+        return this.navigate("/seller-dashboard/profile");
+      } else if (isAdminOk) {
+        return this.navigate("/admin-dashboard/profile");
+      }
+
+      await this.#loadLayoutComponents();
+      updateCartAndWishlistBadges();
       this.#footerElement.innerHTML = "";
+    }
+
+    if (
+      normalizedPath.includes("/login") ||
+      normalizedPath.includes("/register")
+    ) {
+      const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+      if (currentUser) {
+        return this.navigate(
+          `/${currentUser.role.toLowerCase()}-dashboard/profile`
+        );
+      }
     }
 
     const template = await this.#loadTemplate(this.#routeMap[routeKey]);
@@ -144,6 +240,13 @@ class Router {
       PAGE_INITIALIZERS[routeKey]();
     }
 
+    const dashboardContainer = document.getElementById("dashboard-grid");
+    if (dashboardContainer) {
+      this.#sideBarElement = document.getElementById("pf-sidebar-wrapper");
+      this.#sideBarElement.innerHTML = this.#cachedSidebar;
+      handleRenderingSideBarLinks(normalizedPath);
+    }
+
     setTimeout(() => {
       cartAndWishlistLogic();
       updateCartAndWishlistBadges();
@@ -152,13 +255,15 @@ class Router {
 
   async #loadLayoutComponents() {
     try {
-      const [navbar, footer] = await Promise.all([
+      const [navbar, footer, sidebar] = await Promise.all([
         this.#cachedNavbar || this.#loadTemplate("/components/navbar.html"),
         this.#cachedFooter || this.#loadTemplate("/components/footer.html"),
+        this.#cachedSidebar || this.#loadTemplate("/components/sidebar.html"),
       ]);
 
       this.#cachedNavbar = navbar;
       this.#cachedFooter = footer;
+      this.#cachedSidebar = sidebar;
 
       this.#headerElement.innerHTML = navbar;
       this.#footerElement.innerHTML = footer;
@@ -190,4 +295,21 @@ export const router = new Router({
   "/register": "/pages/register/register.html",
   "/login": "/pages/login/login.html",
   "/payment": "/pages/payment/payment.html",
+
+  // customer Dashboard
+  "/customer-dashboard/profile":
+    "/pages/customer-dashboard/profile/profile.html",
+  "/customer-dashboard/orders": "/pages/customer-dashboard/orders/orders.html",
+  "/customer-dashboard/update-profile":
+    "/pages/customer-dashboard/update-profile/update-profile.html",
+  "/customer-dashboard/order-details":
+    "/pages/customer-dashboard/order-details/order-details.html",
+
+  // seller Dashboard
+  "/seller-dashboard/profile": "/pages/seller-dashboard/profile/profile.html",
+  "/seller-dashboard/orders": "/pages/seller-dashboard/orders/orders.html",
+  "/seller-dashboard/update-profile":
+    "/pages/seller-dashboard/update-profile/update-profile.html",
+  "/seller-dashboard/order-details":
+    "/pages/seller-dashboard/order-details/order-details.html",
 });

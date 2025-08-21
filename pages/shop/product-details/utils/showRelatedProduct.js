@@ -1,4 +1,5 @@
-import { showNotification } from "./showNotification.js";
+import { cart } from "../../../../actions/cart.js";
+import { wishlist } from "../../../../actions/wishlist.js";
 
 // Related Products Functionality
 export async function initializeRelatedProducts() {
@@ -6,11 +7,15 @@ export async function initializeRelatedProducts() {
   const products = JSON.parse(localStorage.getItem("all-products")) || [];
   // get current product
   const currentProductId = +localStorage.getItem("curr-product");
-  const currentProduct = products.find((product) => product.id === currentProductId);
+  const currentProduct = products.find(
+    (product) => product.id === currentProductId
+  );
   let relatedProducts = [];
   if (currentProduct) {
     relatedProducts = products.filter(
-      (product) => product.brand === currentProduct.brand && product.id !== currentProductId
+      (product) =>
+        product.brand === currentProduct.brand &&
+        product.id !== currentProductId
     );
     // Get 4 random products for related products
     relatedProducts = extractRandomList(relatedProducts, 4);
@@ -27,7 +32,10 @@ function renderRelatedProducts(products) {
     .map((product) => {
       const discountPercentage = Math.round(product.discountPercentage || 0);
       const originalPrice = product.price;
-      const discountedPrice = (originalPrice * (1 - discountPercentage / 100)).toFixed(2);
+      const discountedPrice = (
+        originalPrice *
+        (1 - discountPercentage / 100)
+      ).toFixed(2);
       const rating = product.rating || 0;
       const fullStars = Math.floor(rating);
       const hasHalfStar = rating % 1 >= 0.5;
@@ -35,14 +43,22 @@ function renderRelatedProducts(products) {
       return `
       <div class="col-12 col-md-6 col-lg-4 col-xl-3 ">
         <div class="related-product-card">
-          ${discountPercentage > 0 ? `<div class="product-badge">${discountPercentage}%</div>` : ""}
-          
-          <button class="wishlist-btn" data-product-id="${product.id}" title="Add to Wishlist">
-            <i class="far fa-heart"></i>
-          </button>
-          
+<div class="card-actions d-flex justify-content-between align-items-center">
+        <span class="py-1 px-2 shop-card-badge text-white c-fs-8 rounded-pill">
+          ${product.discountPercentage}%
+        </span>
+        <i data-id="${product.id}" data-thumbnail="${
+        product.thumbnail
+      }" title="Add to Wishlist" data-price="${product.price}" data-name="${
+        product.title
+      }" class=" ${
+        wishlist.has(+product.id) ? "text-danger fa-solid" : "fa-regular"
+      } add-to-wishlist-btn fa-heart add-to-fav  cursor-pointer fs-5"></i>
+      </div>
           <div class="product-image-container">
-            <img src="${product.images[0]}" alt="${product.title}" class="product-image">
+            <img src="${product.images[0]}" alt="${
+        product.title
+      }" class="product-image">
           </div>
           
           <div class="product-info-card">
@@ -57,7 +73,11 @@ function renderRelatedProducts(products) {
             
             <div class="product-price">
               <span class="current-price-card">$${discountedPrice}</span>
-              ${discountPercentage > 0 ? `<span class="original-price">$${originalPrice}</span>` : ""}
+              ${
+                discountPercentage > 0
+                  ? `<span class="original-price">$${originalPrice}</span>`
+                  : ""
+              }
             </div>
             
             <div class="stock-status-card">
@@ -65,9 +85,19 @@ function renderRelatedProducts(products) {
               <span class="stock-text">IN STOCK</span>
             </div>
             
-            <button class="add-to-cart-btn-card" data-product-id="${product.id}">
-              <i class="fas fa-shopping-cart me-1"></i> IN STOCK
-            </button>
+             <button type="button" id="${
+               product.id
+             }" class="shop-cart-btn w-100 add-to-cart-btn ${
+        cart.has(+product.id) ? "in-cart" : ""
+      }" data-id="${product.id}" data-thumbnail="${
+        product.thumbnail
+      }" data-name="${product.title}" data-price="${product.price}">
+                       <i class="fa-solid fa-cart-shopping"></i> ${
+                         cart.has(+product.id)
+                           ? "Remove from Cart"
+                           : "Add to Cart"
+                       }
+                     </button>
           </div>
         </div>
       </div>
@@ -76,50 +106,50 @@ function renderRelatedProducts(products) {
     .join("");
 
   // Add event listeners for related product actions
-  addRelatedProductsEventListeners();
+  // addRelatedProductsEventListeners();
 }
 
-function addRelatedProductsEventListeners() {
-  // Wishlist buttons
-  document.querySelectorAll(".wishlist-btn").forEach((btn) => {
-    btn.addEventListener("click", function (e) {
-      e.preventDefault();
-      const icon = this.querySelector("i");
+// function addRelatedProductsEventListeners() {
+//   // Wishlist buttons
+//   document.querySelectorAll(".wishlist-btn").forEach((btn) => {
+//     btn.addEventListener("click", function (e) {
+//       e.preventDefault();
+//       const icon = this.querySelector("i");
 
-      if (icon.classList.contains("far")) {
-        icon.classList.remove("far");
-        icon.classList.add("fas");
-        showNotification("Added to wishlist!");
-      } else {
-        icon.classList.remove("fas");
-        icon.classList.add("far");
-        showNotification("Removed from wishlist!");
-      }
-    });
-  });
+//       if (icon.classList.contains("far")) {
+//         icon.classList.remove("far");
+//         icon.classList.add("fas");
+//         showNotification("Added to wishlist!");
+//       } else {
+//         icon.classList.remove("fas");
+//         icon.classList.add("far");
+//         showNotification("Removed from wishlist!");
+//       }
+//     });
+//   });
 
-  // Add to cart buttons
-  document.querySelectorAll(".add-to-cart-btn-card").forEach((btn) => {
-    btn.addEventListener("click", function () {
-      const originalText = this.innerHTML;
-      this.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-      this.disabled = true;
+// Add to cart buttons
+// document.querySelectorAll(".add-to-cart-btn-card").forEach((btn) => {
+//   btn.addEventListener("click", function () {
+//     const originalText = this.innerHTML;
+//     this.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+//     this.disabled = true;
 
-      setTimeout(() => {
-        this.innerHTML = '<i class="fas fa-check"></i> ADDED';
-        this.style.background = "#28a745";
+//     setTimeout(() => {
+//       this.innerHTML = '<i class="fas fa-check"></i> ADDED';
+//       this.style.background = "#28a745";
 
-        setTimeout(() => {
-          this.innerHTML = originalText;
-          this.disabled = false;
-          this.style.background = "";
-        }, 2000);
+//       setTimeout(() => {
+//         this.innerHTML = originalText;
+//         this.disabled = false;
+//         this.style.background = "";
+//       }, 2000);
 
-        showNotification("Product added to cart!");
-      }, 800);
-    });
-  });
-}
+//       showNotification("Product added to cart!");
+//     }, 800);
+//   });
+// });
+// }
 
 // ---------- Resuable Functions ----------
 
