@@ -18,6 +18,7 @@ const APP_ROUTES = [
   { path: "/checkout", title: "Checkout", description: "Checkout Page" },
   { path: "/login", title: "Login", description: "Login Page" },
   { path: "/register", title: "Register", description: "Register Page" },
+  { path: "/payment", title: "Payment", description: "Payment Page" },
 ];
 
 class Router {
@@ -188,4 +189,5 @@ export const router = new Router({
   "/checkout": "/pages/checkout/checkout.html",
   "/register": "/pages/register/register.html",
   "/login": "/pages/login/login.html",
+  "/payment": "/pages/payment/payment.html",
 });
