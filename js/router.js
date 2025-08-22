@@ -165,6 +165,7 @@ class Router {
         logoutBtn.addEventListener("click", (e) => {
           e.preventDefault();
           localStorage.removeItem("currentUser");
+          localStorage.removeItem("wishlist-items");
           // Dispatch event to notify other components
           window.dispatchEvent(new CustomEvent("authStateChanged"));
           // Update UI
