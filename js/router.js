@@ -456,7 +456,7 @@ export const router = new Router({
 
   // seller Dashboard
   "/seller-dashboard/profile": "/pages/seller-dashboard/profile/profile.html",
-  "/seller-dashboard/orders": "/pages/seller-dashboard/orders/orders.html",
+  "/seller-dashboard/addproduct": "/pages/seller-dashboard/addProduct/addProduct.html",
   "/seller-dashboard/update-profile":
     "/pages/seller-dashboard/update-profile/update-profile.html",
   "/seller-dashboard/order-details":

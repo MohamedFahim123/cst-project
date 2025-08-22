@@ -21,12 +21,12 @@ function setCurrentUser(userobj) {
 // function that looks for a users array stored in local Storage
 function getUsersFromLocalStorage() {
   const users = JSON.parse(localStorage.getItem("users")) || { users: [] };
-  return users.users;
+  return users?.users;
 }
 
 function checkIfUserExists(email) {
   const users = getUsersFromLocalStorage();
-  const user = users.find((user) => user.email === email);
+  const user = users?.find((user) => user.email === email);
   return user ? true : false;
 }
 
@@ -34,7 +34,7 @@ function checkIfUserExists(email) {
 function validateUserCredentials(email, password) {
   let state = false;
   const users = getUsersFromLocalStorage();
-  const user = users.find((user) => user.email === email);
+  const user = users?.find((user) => user.email === email);
 
   if (!user) {
     showToast("not such User , PLease Enter Valid Email", "error");

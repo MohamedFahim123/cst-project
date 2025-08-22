@@ -3,11 +3,11 @@
 // Sample user data - in real application this would come from API/localStorage
 const userData = {
   id: 1,
-  name: "John Doe",
-  email: "john.doe@example.com",
-  phone: "+1 (555) 123-4567",
+  name: "Saeid",
+  email: "saeid.doe@example.com",
+  phone: "+20 (555) 123-4567",
   address: "123 Main Street, City, State 12345",
-  avatar: ""
+  avatar: "src='https://th.bing.com/th/id/OIP.DUgnCMuOUuGFel-5ZiIYTwHaDt?w=323&h=174&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3'"
 };
 
 // Initialize profile page
