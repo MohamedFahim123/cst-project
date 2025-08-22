@@ -36,12 +36,24 @@ const dasbhoardSidebarContent = {
   ],
 };
 
+export function renderSidebarUserInfo() {}
 export const handleRenderingSideBarLinks = (path) => {
-  const sideLinksContainer = document.querySelector(".pf-nav-list");
   const loginedUser = JSON.parse(localStorage.getItem("currentUser"));
   if (!loginedUser) return;
-  if (!sideLinksContainer) return;
 
+  const sidebarName = document.querySelector("#pf-sidebar-name");
+  const sidebarEmail = document.querySelector("#pf-sidebar-email");
+  const avatarImage = document.querySelector("#pf-avatar-img");
+  const sideLinksContainer = document.querySelector(".pf-nav-list");
+
+  if (!sideLinksContainer || !sidebarName || !sidebarEmail || !avatarImage) return;
+
+  // Render User Info
+  sidebarName.textContent = loginedUser.username;
+  sidebarEmail.textContent = loginedUser.email;
+  avatarImage.src = loginedUser.avatar || "../../assets/avatar.jpg";
+
+  // Render Side List
   const sidebarLinks = dasbhoardSidebarContent[loginedUser.role.toLowerCase()];
   sidebarLinks.forEach((link) => {
     return (sideLinksContainer.innerHTML += `<li class="pf-nav-item">
