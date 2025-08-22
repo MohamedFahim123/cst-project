@@ -11,6 +11,8 @@ import {
 import { loginSubmitHandler } from "../pages/login/login.js";
 import { registerSubmitHandler } from "../pages/register/main.js";
 import { initializeProductDetailsFunctions } from "../pages/shop/product-details/product-details.js";
+import { initializeProfile } from "../pages/customer-dashboard/profile/profile.js";
+import { initializeUpdateProfile } from "../pages/customer-dashboard/update-profile/update-profile.js";
 import {
   handleFilterProductsIfExistFilters,
   initializeProductCards,
@@ -19,15 +21,9 @@ import {
 } from "../pages/shop/shop.js";
 import { router } from "./router.js";
 import { cartAndWishlistLogic } from "./shred.js";
-import {
-  initializeWishlist,
-  refreshWishlist,
-} from "../pages/wishlist/mywishlist.js";
+import { initializeWishlist, refreshWishlist } from "../pages/wishlist/mywishlist.js";
 
 export const PAGE_INITIALIZERS = {
-  "/shop/product-details": () => {
-    initializeProductDetailsFunctions();
-  },
   "/": async () => {
     const products = JSON.parse(localStorage.getItem("all-products"));
     if (!products) {
@@ -56,6 +52,15 @@ export const PAGE_INITIALIZERS = {
     inputsSetups();
     resetFilters();
     setTimeout(() => cartAndWishlistLogic(), 100);
+  },
+  "/shop/product-details": () => {
+    initializeProductDetailsFunctions();
+  },
+  "/customer-dashboard/profile": () => {
+    initializeProfile();
+  },
+  "/customer-dashboard/update-profile": () => {
+    initializeUpdateProfile();
   },
   "/cart": () => {
     import("../pages/cart/mycart.js").then((module) => {
@@ -102,9 +107,7 @@ export const PAGE_INITIALIZERS = {
             },
             onApprove: function (data, actions) {
               return actions.order.capture().then(function (details) {
-                alert(
-                  "✅ Payment completed by " + details.payer.name.given_name
-                );
+                alert("✅ Payment completed by " + details.payer.name.given_name);
               });
             },
             onError: function (err) {

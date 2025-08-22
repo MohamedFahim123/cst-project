@@ -7,15 +7,11 @@ export async function initializeRelatedProducts() {
   const products = JSON.parse(localStorage.getItem("all-products")) || [];
   // get current product
   const currentProductId = +localStorage.getItem("curr-product");
-  const currentProduct = products.find(
-    (product) => product.id === currentProductId
-  );
+  const currentProduct = products.find((product) => product.id === currentProductId);
   let relatedProducts = [];
   if (currentProduct) {
     relatedProducts = products.filter(
-      (product) =>
-        product.brand === currentProduct.brand &&
-        product.id !== currentProductId
+      (product) => product.brand === currentProduct.brand && product.id !== currentProductId
     );
     // Get 4 random products for related products
     relatedProducts = extractRandomList(relatedProducts, 4);
@@ -32,10 +28,7 @@ function renderRelatedProducts(products) {
     .map((product) => {
       const discountPercentage = Math.round(product.discountPercentage || 0);
       const originalPrice = product.price;
-      const discountedPrice = (
-        originalPrice *
-        (1 - discountPercentage / 100)
-      ).toFixed(2);
+      const discountedPrice = (originalPrice * (1 - discountPercentage / 100)).toFixed(2);
       const rating = product.rating || 0;
       const fullStars = Math.floor(rating);
       const hasHalfStar = rating % 1 >= 0.5;
@@ -49,19 +42,15 @@ function renderRelatedProducts(products) {
         </span>
         <i data-id="${product.id}" data-thumbnail="${
         product.thumbnail
-      }" title="Add to Wishlist" data-price="${product.price}" data-name="${
-        product.title
-      }" class=" ${
+      }" title="Add to Wishlist" data-price="${product.price}" data-name="${product.title}" class=" ${
         wishlist.has(+product.id) ? "text-danger fa-solid" : "fa-regular"
       } add-to-wishlist-btn fa-heart add-to-fav  cursor-pointer fs-5"></i>
       </div>
           <div class="product-image-container">
-            <img src="${product.images[0]}" alt="${
-        product.title
-      }" class="product-image">
+            <img src="${product.images[0]}" alt="${product.title}" class="product-image">
           </div>
           
-          <div class="product-info-card">
+          <div class="pd-product-info-card">
             <h3 class="product-name">${product.title}</h3>
             
             <div class="product-rating">
@@ -73,11 +62,7 @@ function renderRelatedProducts(products) {
             
             <div class="product-price">
               <span class="current-price-card">$${discountedPrice}</span>
-              ${
-                discountPercentage > 0
-                  ? `<span class="original-price">$${originalPrice}</span>`
-                  : ""
-              }
+              ${discountPercentage > 0 ? `<span class="original-price">$${originalPrice}</span>` : ""}
             </div>
             
             <div class="stock-status-card">
@@ -85,17 +70,13 @@ function renderRelatedProducts(products) {
               <span class="stock-text">IN STOCK</span>
             </div>
             
-             <button type="button" id="${
-               product.id
-             }" class="shop-cart-btn w-100 add-to-cart-btn ${
+             <button type="button" id="${product.id}" class="shop-cart-btn w-100 add-to-cart-btn ${
         cart.has(+product.id) ? "in-cart" : ""
-      }" data-id="${product.id}" data-thumbnail="${
-        product.thumbnail
-      }" data-name="${product.title}" data-price="${product.price}">
+      }" data-id="${product.id}" data-thumbnail="${product.thumbnail}" data-name="${
+        product.title
+      }" data-price="${product.price}">
                        <i class="fa-solid fa-cart-shopping"></i> ${
-                         cart.has(+product.id)
-                           ? "Remove from Cart"
-                           : "Add to Cart"
+                         cart.has(+product.id) ? "Remove from Cart" : "Add to Cart"
                        }
                      </button>
           </div>
