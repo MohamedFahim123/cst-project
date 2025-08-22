@@ -4,12 +4,3 @@
     margin: 0;
     box-sizing: border-box;
 }
-
-@media (min-width:870px){
-    form {
-  box-shadow: 0 0 20px var(--bg-main-color);
-  border-radius: 12px;
-
-  background: #fff;
-}
-}

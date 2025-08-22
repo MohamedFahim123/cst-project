@@ -94,7 +94,6 @@
 
 /* Product info styles */
 .product-info {
-  display: flex;
   align-items: center;
   gap: 15px;
 }
