@@ -23,6 +23,7 @@ import {
   initializeWishlist,
   refreshWishlist,
 } from "../pages/wishlist/mywishlist.js";
+import { addProductHandler } from "../pages/seller-dashboard/addProduct/addProduct.js";
 
 export const PAGE_INITIALIZERS = {
   "/shop/product-details": () => {
@@ -116,6 +117,9 @@ export const PAGE_INITIALIZERS = {
       }
     };
     document.body.appendChild(paypalScript);
+  },
+  "/seller-dashboard/addproduct": () => {
+    addProductHandler();
   },
 };
 

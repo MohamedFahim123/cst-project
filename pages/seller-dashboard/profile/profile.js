@@ -7,11 +7,12 @@ const userData = {
   email: "saeid.doe@example.com",
   phone: "+20 (555) 123-4567",
   address: "123 Main Street, City, State 12345",
-  avatar: "src='https://th.bing.com/th/id/OIP.DUgnCMuOUuGFel-5ZiIYTwHaDt?w=323&h=174&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3'"
+  avatar:
+    "src='https://th.bing.com/th/id/OIP.DUgnCMuOUuGFel-5ZiIYTwHaDt?w=323&h=174&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3'",
 };
 
 // Initialize profile page
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("DOMContentLoaded", function () {
   initializeProfile();
   initializeTabSwitching();
   initializeFormHandlers();
@@ -21,28 +22,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Tab switching functionality
 function initializeTabSwitching() {
-  const navLinks = document.querySelectorAll('.pf-nav-link');
-  const tabContents = document.querySelectorAll('.pf-tab-content');
+  const navLinks = document.querySelectorAll(".pf-nav-link");
+  const tabContents = document.querySelectorAll(".pf-tab-content");
 
-  navLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
+  navLinks.forEach((link) => {
+    link.addEventListener("click", function (e) {
       e.preventDefault();
-      
-      const targetTab = this.getAttribute('data-tab');
-      
+
+      const targetTab = this.getAttribute("data-tab");
+
       // Remove active class from all nav links
-      navLinks.forEach(nav => nav.classList.remove('active'));
-      
+      navLinks.forEach((nav) => nav.classList.remove("active"));
+
       // Add active class to clicked nav link
-      this.classList.add('active');
-      
+      this.classList.add("active");
+
       // Hide all tab contents
-      tabContents.forEach(tab => tab.classList.remove('active'));
-      
+      tabContents.forEach((tab) => tab.classList.remove("active"));
+
       // Show target tab content
-      const targetTabContent = document.getElementById(targetTab + '-tab');
+      const targetTabContent = document.getElementById(targetTab + "-tab");
       if (targetTabContent) {
-        targetTabContent.classList.add('active');
+        targetTabContent.classList.add("active");
       }
     });
   });
@@ -51,34 +52,34 @@ function initializeTabSwitching() {
 // Load user profile data
 function loadUserProfile() {
   // Try to get user data from localStorage first
-  const storedUser = localStorage.getItem('user-profile');
+  const storedUser = localStorage.getItem("user-profile");
   const currentUser = storedUser ? JSON.parse(storedUser) : userData;
-  
+
   // Update sidebar user info
-  updateElement('pf-sidebar-name', currentUser.name);
-  updateElement('pf-sidebar-email', currentUser.email);
-  updateImageElement('pf-avatar-img', currentUser.avatar);
-  
+  updateElement("pf-sidebar-name", currentUser.name);
+  updateElement("pf-sidebar-email", currentUser.email);
+  updateImageElement("pf-avatar-img", currentUser.avatar);
+
   // Update profile display
-  updateElement('pf-display-name', currentUser.name);
-  updateElement('pf-display-email', currentUser.email);
-  updateElement('pf-display-phone', currentUser.phone || 'Not provided');
-  updateElement('pf-display-address', currentUser.address || 'Not provided');
-  updateImageElement('pf-profile-img', currentUser.avatar);
-  
+  updateElement("pf-display-name", currentUser.name);
+  updateElement("pf-display-email", currentUser.email);
+  updateElement("pf-display-phone", currentUser.phone || "Not provided");
+  updateElement("pf-display-address", currentUser.address || "Not provided");
+  updateImageElement("pf-profile-img", currentUser.avatar);
+
   // Update form fields
-  updateInputValue('pf-update-name', currentUser.name);
-  updateInputValue('pf-update-email', currentUser.email);
-  updateInputValue('pf-update-phone', currentUser.phone);
-  updateInputValue('pf-update-address', currentUser.address);
-  updateImageElement('pf-upload-img', currentUser.avatar);
+  updateInputValue("pf-update-name", currentUser.name);
+  updateInputValue("pf-update-email", currentUser.email);
+  updateInputValue("pf-update-phone", currentUser.phone);
+  updateInputValue("pf-update-address", currentUser.address);
+  updateImageElement("pf-upload-img", currentUser.avatar);
 }
 
 // Update element text content
 function updateElement(id, value) {
   const element = document.getElementById(id);
   if (element) {
-    element.textContent = value || 'Not provided';
+    element.textContent = value || "Not provided";
   }
 }
 
@@ -101,61 +102,65 @@ function updateInputValue(id, value) {
 // Initialize form handlers
 function initializeFormHandlers() {
   // Update profile form
-  const updateForm = document.getElementById('pf-update-form');
+  const updateForm = document.getElementById("pf-update-form");
   if (updateForm) {
-    updateForm.addEventListener('submit', handleProfileUpdate);
+    updateForm.addEventListener("submit", handleProfileUpdate);
   }
-  
+
   // Cancel button
-  const cancelBtn = document.getElementById('pf-cancel-btn');
+  const cancelBtn = document.getElementById("pf-cancel-btn");
   if (cancelBtn) {
-    cancelBtn.addEventListener('click', handleFormCancel);
+    cancelBtn.addEventListener("click", handleFormCancel);
   }
-  
+
   // Logout button
-  const logoutBtn = document.getElementById('pf-logout-btn');
+  const logoutBtn = document.getElementById("pf-logout-btn");
   if (logoutBtn) {
-    logoutBtn.addEventListener('click', handleLogout);
+    logoutBtn.addEventListener("click", handleLogout);
   }
 }
 
 // Handle profile update
 function handleProfileUpdate(e) {
   e.preventDefault();
-  
+
   const formData = {
-    name: document.getElementById('pf-update-name').value,
-    email: document.getElementById('pf-update-email').value,
-    phone: document.getElementById('pf-update-phone').value,
-    address: document.getElementById('pf-update-address').value
+    name: document.getElementById("pf-update-name").value,
+    email: document.getElementById("pf-update-email").value,
+    phone: document.getElementById("pf-update-phone").value,
+    address: document.getElementById("pf-update-address").value,
   };
-  
+
   // Validate form data
   if (!formData.name || !formData.email) {
-    showNotification('Please fill in required fields (Name and Email)', 'error');
+    showNotification(
+      "Please fill in required fields (Name and Email)",
+      "error"
+    );
     return;
   }
-  
+
   // Simulate API call
-  showLoadingState('pf-update-form');
-  
+  showLoadingState("pf-update-form");
+
   setTimeout(() => {
     // Update user data
-    const currentUser = JSON.parse(localStorage.getItem('user-profile')) || userData;
+    const currentUser =
+      JSON.parse(localStorage.getItem("user-profile")) || userData;
     const updatedUser = { ...currentUser, ...formData };
-    
+
     // Save to localStorage
-    localStorage.setItem('user-profile', JSON.stringify(updatedUser));
-    
+    localStorage.setItem("user-profile", JSON.stringify(updatedUser));
+
     // Reload profile data
     loadUserProfile();
-    
+
     // Hide loading state
-    hideLoadingState('pf-update-form');
-    
+    hideLoadingState("pf-update-form");
+
     // Show success message
-    showNotification('Profile updated successfully!', 'success');
-    
+    showNotification("Profile updated successfully!", "success");
+
     // Switch back to profile tab
     document.querySelector('[data-tab="profile"]').click();
   }, 1500);
@@ -165,61 +170,62 @@ function handleProfileUpdate(e) {
 function handleFormCancel() {
   // Reset form to original values
   loadUserProfile();
-  showNotification('Changes cancelled', 'info');
+  showNotification("Changes cancelled", "info");
 }
 
 // Handle logout
 function handleLogout() {
-  if (confirm('Are you sure you want to logout?')) {
+  if (confirm("Are you sure you want to logout?")) {
     // Clear user data
-    localStorage.removeItem('user-profile');
-    localStorage.removeItem('user-session');
-    
+    localStorage.removeItem("user-profile");
+    localStorage.removeItem("user-session");
+
     // Show logout message
-    showNotification('Logged out successfully', 'success');
-    
+    showNotification("Logged out successfully", "success");
+
     // Redirect to login page after delay
     setTimeout(() => {
-      window.location.href = '../login/login.html';
+      window.location.href = "../login/login.html";
     }, 1500);
   }
 }
 
 // Initialize image upload functionality
 function initializeImageUpload() {
-  const avatarInput = document.getElementById('pf-avatar-input');
-  const uploadImg = document.getElementById('pf-upload-img');
-  
+  const avatarInput = document.getElementById("pf-avatar-input");
+  const uploadImg = document.getElementById("pf-upload-img");
+
   if (avatarInput) {
-    avatarInput.addEventListener('change', function(e) {
+    avatarInput.addEventListener("change", function (e) {
       const file = e.target.files[0];
       if (file) {
         // Validate file type
-        if (!file.type.startsWith('image/')) {
-          showNotification('Please select a valid image file', 'error');
+        if (!file.type.startsWith("image/")) {
+          showNotification("Please select a valid image file", "error");
           return;
         }
-        
+
         // Validate file size (max 5MB)
         if (file.size > 5 * 1024 * 1024) {
-          showNotification('Image size should be less than 5MB', 'error');
+          showNotification("Image size should be less than 5MB", "error");
           return;
         }
-        
+
         // Read and display image
         const reader = new FileReader();
-        reader.onload = function(e) {
+        reader.onload = function (e) {
           const imageUrl = e.target.result;
-          updateImageElement('pf-upload-img', imageUrl);
-          updateImageElement('pf-profile-img', imageUrl);
-          updateImageElement('pf-avatar-img', imageUrl);
-          
+          updateImageElement("pf-upload-img", imageUrl);
+          updateImageElement("pf-profile-img", imageUrl);
+          updateImageElement("pf-avatar-img", imageUrl);
+
           // Save to localStorage (in real app, you'd upload to server)
-          const currentUser = JSON.parse(localStorage.getItem('user-profile')) || userData;
+          const currentUser =
+            JSON.parse(localStorage.getItem("user-profile")) || userData;
           currentUser.avatar = imageUrl;
-          localStorage.setItem('user-profile', JSON.stringify(currentUser));
-          
-          showNotification('Profile picture updated!', 'success');
+          localStorage.setItem("user-profile", JSON.stringify(currentUser));
+
+          showNotification("Profile picture updated!", "success");
         };
         reader.readAsDataURL(file);
       }
@@ -231,10 +237,11 @@ function initializeImageUpload() {
 function showLoadingState(formId) {
   const form = document.getElementById(formId);
   if (form) {
-    const submitBtn = form.querySelector('.pf-btn-primary');
+    const submitBtn = form.querySelector(".pf-btn-primary");
     if (submitBtn) {
       submitBtn.disabled = true;
-      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin pf-btn-icon"></i>Updating...';
+      submitBtn.innerHTML =
+        '<i class="fas fa-spinner fa-spin pf-btn-icon"></i>Updating...';
     }
   }
 }
@@ -243,22 +250,23 @@ function showLoadingState(formId) {
 function hideLoadingState(formId) {
   const form = document.getElementById(formId);
   if (form) {
-    const submitBtn = form.querySelector('.pf-btn-primary');
+    const submitBtn = form.querySelector(".pf-btn-primary");
     if (submitBtn) {
       submitBtn.disabled = false;
-      submitBtn.innerHTML = '<i class="fas fa-save pf-btn-icon"></i>Save Changes';
+      submitBtn.innerHTML =
+        '<i class="fas fa-save pf-btn-icon"></i>Save Changes';
     }
   }
 }
 
 // Show notification
-function showNotification(message, type = 'info') {
+function showNotification(message, type = "info") {
   // Remove existing notifications
-  const existingToasts = document.querySelectorAll('.pf-toast');
-  existingToasts.forEach(toast => toast.remove());
-  
+  const existingToasts = document.querySelectorAll(".pf-toast");
+  existingToasts.forEach((toast) => toast.remove());
+
   // Create toast element
-  const toast = document.createElement('div');
+  const toast = document.createElement("div");
   toast.className = `pf-toast pf-toast-${type}`;
   toast.innerHTML = `
     <div class="pf-toast-content">
@@ -269,7 +277,7 @@ function showNotification(message, type = 'info') {
       </button>
     </div>
   `;
-  
+
   // Add toast styles
   toast.style.cssText = `
     position: fixed;
@@ -284,14 +292,14 @@ function showNotification(message, type = 'info') {
     min-width: 300px;
     animation: slideInRight 0.3s ease-out;
   `;
-  
+
   // Add to document
   document.body.appendChild(toast);
-  
+
   // Auto remove after 4 seconds
   setTimeout(() => {
     if (toast && toast.parentElement) {
-      toast.style.animation = 'slideOutRight 0.3s ease-in';
+      toast.style.animation = "slideOutRight 0.3s ease-in";
       setTimeout(() => toast.remove(), 300);
     }
   }, 4000);
@@ -300,10 +308,10 @@ function showNotification(message, type = 'info') {
 // Get notification icon based on type
 function getNotificationIcon(type) {
   const icons = {
-    success: 'fa-check-circle',
-    error: 'fa-exclamation-circle',
-    warning: 'fa-exclamation-triangle',
-    info: 'fa-info-circle'
+    success: "fa-check-circle",
+    error: "fa-exclamation-circle",
+    warning: "fa-exclamation-triangle",
+    info: "fa-info-circle",
   };
   return icons[type] || icons.info;
 }
@@ -311,16 +319,16 @@ function getNotificationIcon(type) {
 // Get notification color based on type
 function getNotificationColor(type) {
   const colors = {
-    success: '#16a34a',
-    error: '#dc2626',
-    warning: '#f59e0b',
-    info: '#3b82f6'
+    success: "#16a34a",
+    error: "#dc2626",
+    warning: "#f59e0b",
+    info: "#3b82f6",
   };
   return colors[type] || colors.info;
 }
 
 // Add notification animations to page
-const style = document.createElement('style');
+const style = document.createElement("style");
 style.textContent = `
   @keyframes slideInRight {
     from { transform: translateX(100%); opacity: 0; }
@@ -369,45 +377,53 @@ document.head.appendChild(style);
 
 // Sample orders data for orders tab
 function loadOrderHistory() {
-  const ordersContainer = document.getElementById('pf-orders-container');
-  
+  const ordersContainer = document.getElementById("pf-orders-container");
+
   // Sample orders (in real app, this would come from API)
   const orders = [
     {
-      id: 'ORD-2024-001',
-      date: '2024-01-15',
-      status: 'Delivered',
+      id: "ORD-2024-001",
+      date: "2024-01-15",
+      status: "Delivered",
       total: 299.99,
-      items: 3
+      items: 3,
     },
     {
-      id: 'ORD-2024-002',
-      date: '2024-02-20',
-      status: 'Processing',
-      total: 159.50,
-      items: 2
-    }
+      id: "ORD-2024-002",
+      date: "2024-02-20",
+      status: "Processing",
+      total: 159.5,
+      items: 2,
+    },
   ];
-  
+
   if (orders.length === 0) {
     // Show empty state
     return;
   }
-  
+
   // Create orders HTML
-  const ordersHTML = orders.map(order => `
+  const ordersHTML = orders
+    .map(
+      (order) => `
     <div class="pf-order-card">
       <div class="pf-order-header">
         <div class="pf-order-id">${order.id}</div>
-        <div class="pf-order-status pf-status-${order.status.toLowerCase()}">${order.status}</div>
+        <div class="pf-order-status pf-status-${order.status.toLowerCase()}">${
+        order.status
+      }</div>
       </div>
       <div class="pf-order-details">
-        <span class="pf-order-date">Date: ${new Date(order.date).toLocaleDateString()}</span>
+        <span class="pf-order-date">Date: ${new Date(
+          order.date
+        ).toLocaleDateString()}</span>
         <span class="pf-order-total">Total: $${order.total}</span>
         <span class="pf-order-items">${order.items} items</span>
       </div>
     </div>
-  `).join('');
-  
+  `
+    )
+    .join("");
+
   ordersContainer.innerHTML = ordersHTML;
 }

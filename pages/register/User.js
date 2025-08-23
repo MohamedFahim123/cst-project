@@ -64,8 +64,7 @@ class Customer extends User {
     this.cart = [];
   }
 
-  showOrders() {
-  }
+  showOrders() {}
 
   static fromJSON(obj) {
     const customer = new Customer(obj.username, obj.email, obj.password);
@@ -93,26 +92,9 @@ class Seller extends Customer {
     this.products = [];
   }
 
-  addProduct(
-    productName,
-    productPrice,
-    productDisc,
-    stockQuantity,
-    productCategory
-  ) {
-    const newProduct = {
-      id: Date.now(),
-      productName,
-      productPrice,
-      productDisc,
-      stockQuantity,
-      productCategory,
-    };
-    this.products.push(newProduct);
-  }
-
   static fromJSON(obj) {
     const seller = new Seller(obj.username, obj.email, obj.password);
+
     seller.role = "seller";
     seller.cart = obj.cart || [];
     seller.orders = obj.orders || [];
