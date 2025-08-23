@@ -10,3 +10,5 @@ export function showToast(message, type = "info") {
     toast.remove();
   }, 3000);
 }
+
+// type: success | error | warning | info

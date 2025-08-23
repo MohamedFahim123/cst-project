@@ -11,6 +11,9 @@ import {
 import { loginSubmitHandler } from "../pages/login/login.js";
 import { registerSubmitHandler } from "../pages/register/main.js";
 import { initializeProductDetailsFunctions } from "../pages/shop/product-details/product-details.js";
+import { initializeProfile } from "../pages/customer-dashboard/profile/profile.js";
+import { initializeUpdateProfile } from "../pages/customer-dashboard/update-profile/update-profile.js";
+import { initializeOrderDetails } from "../pages/customer-dashboard/order-details/order-details.js";
 import {
   handleFilterProductsIfExistFilters,
   initializeProductCards,
@@ -19,16 +22,17 @@ import {
 } from "../pages/shop/shop.js";
 import { router } from "./router.js";
 import { cartAndWishlistLogic } from "./shred.js";
+<<<<<<< HEAD
 import {
   initializeWishlist,
   refreshWishlist,
 } from "../pages/wishlist/mywishlist.js";
 import { addProductHandler } from "../pages/seller-dashboard/addProduct/addProduct.js";
+=======
+import { initializeWishlist, refreshWishlist } from "../pages/wishlist/mywishlist.js";
+>>>>>>> c4f49bfcc8b9d4c1180c1bf60d018f92ae4480a2
 
 export const PAGE_INITIALIZERS = {
-  "/shop/product-details": () => {
-    initializeProductDetailsFunctions();
-  },
   "/": async () => {
     const products = JSON.parse(localStorage.getItem("all-products"));
     if (!products) {
@@ -57,6 +61,18 @@ export const PAGE_INITIALIZERS = {
     inputsSetups();
     resetFilters();
     setTimeout(() => cartAndWishlistLogic(), 100);
+  },
+  "/shop/product-details": () => {
+    initializeProductDetailsFunctions();
+  },
+  "/customer-dashboard/profile": () => {
+    initializeProfile();
+  },
+  "/customer-dashboard/update-profile": () => {
+    initializeUpdateProfile();
+  },
+  "/customer-dashboard/order-details": () => {
+    initializeOrderDetails();
   },
   "/cart": () => {
     import("../pages/cart/mycart.js").then((module) => {
@@ -103,9 +119,7 @@ export const PAGE_INITIALIZERS = {
             },
             onApprove: function (data, actions) {
               return actions.order.capture().then(function (details) {
-                alert(
-                  "✅ Payment completed by " + details.payer.name.given_name
-                );
+                alert("✅ Payment completed by " + details.payer.name.given_name);
               });
             },
             onError: function (err) {

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
 
 <head>
     <meta charset="UTF-8">
@@ -8,3 +9,148 @@
 </head>
 
 </html>
+=======
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Update profile</title>
+  </head>
+  <body>
+    <div id="dashboard-grid">
+      <div class="pf-container">
+        <div class="container">
+          <div class="row">
+            <!-- Sidebar -->
+            <div class="col-lg-3 col-md-4 pf-sidebar-wrapper" id="pf-sidebar-wrapper"></div>
+
+            <!-- Main Content -->
+            <div class="col-lg-9 col-md-8 pf-main-content">
+              <!-- Update Profile Content -->
+              <div class="up-content-wrapper">
+                <div class="up-content-header">
+                  <h2 class="up-page-title">
+                    <i class="fas fa-edit up-title-icon"></i>
+                    Update Profile
+                  </h2>
+                  <p class="up-page-subtitle">Edit and update your personal information</p>
+                </div>
+
+                <div class="up-content-body">
+                  <form class="up-update-form" id="up-update-form">
+                    <div class="row">
+                      <!-- Profile Picture Section -->
+                      <div class="col-md-4 text-center mb-4">
+                        <div class="up-upload-avatar">
+                          <img src="../../../assets/avatar.jpg" alt="Profile Picture" id="up-upload-img" />
+                          <div class="up-upload-overlay">
+                            <label for="up-avatar-input" class="up-upload-label">
+                              <i class="fas fa-camera"></i>
+                              <span>Change Photo</span>
+                            </label>
+                            <input type="file" id="up-avatar-input" accept="image/*" style="display: none" />
+                          </div>
+                        </div>
+                        <div class="up-avatar-info">
+                          <h5 class="up-current-name" id="up-current-name">John Doe</h5>
+                          <p class="up-current-email" id="up-current-email">john.doe@example.com</p>
+                        </div>
+                      </div>
+
+                      <!-- Form Fields Section -->
+                      <div class="col-md-8">
+                        <div class="up-form-card">
+                          <div class="up-form-header">
+                            <h4 class="up-form-title">
+                              <i class="fas fa-user-edit up-form-title-icon"></i>
+                              Personal Information
+                            </h4>
+                            <p class="up-form-description">Update your profile details below</p>
+                          </div>
+
+                          <div class="up-form-body">
+                            <div class="row">
+                              <!-- Full Name -->
+                              <div class="col-md-6 mb-3">
+                                <label for="up-update-name" class="up-form-label">
+                                  <i class="fas fa-user up-form-icon"></i>
+                                  Full Name *
+                                </label>
+                                <input
+                                  type="text"
+                                  class="up-form-control"
+                                  id="up-update-name"
+                                  placeholder="Enter your full name"
+                                  required />
+                              </div>
+
+                              <!-- Email Address -->
+                              <div class="col-md-6 mb-3">
+                                <label for="up-update-email" class="up-form-label">
+                                  <i class="fas fa-envelope up-form-icon"></i>
+                                  Email Address *
+                                </label>
+                                <input
+                                  type="email"
+                                  class="up-form-control"
+                                  id="up-update-email"
+                                  placeholder="Enter your email address"
+                                  required />
+                              </div>
+
+                              <!-- Phone Number -->
+                              <div class="col-md-6 mb-3">
+                                <label for="up-update-phone" class="up-form-label">
+                                  <i class="fas fa-phone up-form-icon"></i>
+                                  Phone Number
+                                </label>
+                                <input
+                                  type="tel"
+                                  class="up-form-control"
+                                  id="up-update-phone"
+                                  placeholder="Enter your phone number" />
+                              </div>
+
+                              <!-- Address -->
+                              <div class="col-12 mb-3">
+                                <label for="up-update-address" class="up-form-label">
+                                  <i class="fas fa-map-marker-alt up-form-icon"></i>
+                                  Address
+                                </label>
+                                <textarea
+                                  class="up-form-control up-textarea"
+                                  id="up-update-address"
+                                  rows="3"
+                                  placeholder="Enter your address"></textarea>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="up-form-actions">
+                          <button type="submit" class="up-btn up-btn-primary">
+                            <i class="fas fa-save up-btn-icon"></i>
+                            Update
+                          </button>
+                          <button type="button" class="up-btn up-btn-secondary" id="up-cancel-btn">
+                            <i class="fas fa-times up-btn-icon"></i>
+                            Cancel
+                          </button>
+                          <button type="button" class="up-btn up-btn-outline" id="up-reset-btn">
+                            <i class="fas fa-undo up-btn-icon"></i>
+                            Reset
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+>>>>>>> c4f49bfcc8b9d4c1180c1bf60d018f92ae4480a2

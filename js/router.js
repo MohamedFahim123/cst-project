@@ -105,50 +105,38 @@ class Router {
       // Cart and wishlist elements
       const cartLink = document.querySelector('a[href="/cart"]');
       const wishlistLink = document.querySelector('a[href="/wishlist"]');
-      const mobileCartLink = document.querySelector(
-        '#mobileMenu a[href="/cart"]'
-      );
-      const mobileWishlistLink = document.querySelector(
-        '#mobileMenu a[href="/wishlist"]'
-      );
+      const mobileCartLink = document.querySelector('#mobileMenu a[href="/cart"]');
+      const mobileWishlistLink = document.querySelector('#mobileMenu a[href="/wishlist"]');
 
       if (isLoggedIn) {
         // User is logged in - show user menu, hide auth buttons
         if (authButtons) authButtons.classList.add("d-none");
         if (mobileAuthButtons) mobileAuthButtons.classList.add("d-none");
-        if (mobileUserMenu.length)
-          mobileUserMenu.forEach((item) => item.classList.remove("d-none"));
+        if (mobileUserMenu.length) mobileUserMenu.forEach((item) => item.classList.remove("d-none"));
 
         // Hide cart/wishlist for admin users
         if (isAdmin) {
           if (cartLink) cartLink.style.display = "none";
           if (wishlistLink) wishlistLink.style.display = "none";
-          if (mobileCartLink)
-            mobileCartLink.parentElement.style.display = "none";
-          if (mobileWishlistLink)
-            mobileWishlistLink.parentElement.style.display = "none";
+          if (mobileCartLink) mobileCartLink.parentElement.style.display = "none";
+          if (mobileWishlistLink) mobileWishlistLink.parentElement.style.display = "none";
         } else {
           if (cartLink) cartLink.style.display = "block";
           if (wishlistLink) wishlistLink.style.display = "block";
-          if (mobileCartLink)
-            mobileCartLink.parentElement.style.display = "block";
-          if (mobileWishlistLink)
-            mobileWishlistLink.parentElement.style.display = "block";
+          if (mobileCartLink) mobileCartLink.parentElement.style.display = "block";
+          if (mobileWishlistLink) mobileWishlistLink.parentElement.style.display = "block";
         }
       } else {
         // User is not logged in - show auth buttons, hide user menu
         if (authButtons) authButtons.classList.remove("d-none");
         if (mobileAuthButtons) mobileAuthButtons.classList.remove("d-none");
-        if (mobileUserMenu.length)
-          mobileUserMenu.forEach((item) => item.classList.add("d-none"));
+        if (mobileUserMenu.length) mobileUserMenu.forEach((item) => item.classList.add("d-none"));
 
         // Show cart/wishlist for non-logged in users
         if (cartLink) cartLink.style.display = "block";
         if (wishlistLink) wishlistLink.style.display = "block";
-        if (mobileCartLink)
-          mobileCartLink.parentElement.style.display = "block";
-        if (mobileWishlistLink)
-          mobileWishlistLink.parentElement.style.display = "block";
+        if (mobileCartLink) mobileCartLink.parentElement.style.display = "block";
+        if (mobileWishlistLink) mobileWishlistLink.parentElement.style.display = "block";
       }
     },
 
@@ -200,10 +188,7 @@ class Router {
       });
 
       // Listen for custom auth state changes
-      window.addEventListener(
-        "authStateChanged",
-        this.#authState.updateUI.bind(this)
-      );
+      window.addEventListener("authStateChanged", this.#authState.updateUI.bind(this));
     },
   };
 
@@ -228,11 +213,7 @@ class Router {
   }
 
   #getRouteMeta(path) {
-    return (
-      APP_ROUTES.find(
-        (route) => route.path.toLowerCase() === path.toLowerCase()
-      ) || null
-    );
+    return APP_ROUTES.find((route) => route.path.toLowerCase() === path.toLowerCase()) || null;
   }
 
   #normalizePath(path) {
@@ -283,10 +264,7 @@ class Router {
 
       // Check if admin is trying to access restricted routes
       const isAdmin = this.#authState.isAdmin();
-      if (
-        isAdmin &&
-        (normalizedPath === "/cart" || normalizedPath === "/wishlist")
-      ) {
+      if (isAdmin && (normalizedPath === "/cart" || normalizedPath === "/wishlist")) {
         // Redirect admin users to their dashboard instead of cart/wishlist
         return this.navigate("/admin-dashboard/profile");
       }
@@ -302,18 +280,12 @@ class Router {
 
   #findMatchingRoute(path) {
     const cleanPath = path.replace(/\/+$/, "");
-    return (
-      Object.keys(this.#routeMap).find(
-        (key) => key.replace(/\/+$/, "") === cleanPath
-      ) || null
-    );
+    return Object.keys(this.#routeMap).find((key) => key.replace(/\/+$/, "") === cleanPath) || null;
   }
 
   async #renderRoute(routeKey, normalizedPath) {
     document.querySelectorAll("[data-link]").forEach((link) => {
-      const linkPath = this.#normalizePath(
-        link.getAttribute("href").replace("#", "")
-      );
+      const linkPath = this.#normalizePath(link.getAttribute("href").replace("#", ""));
       link.classList.toggle("active", linkPath === normalizedPath);
     });
 
@@ -330,13 +302,11 @@ class Router {
 
       const isSellerOk =
         user.role.toLowerCase() === "seller" &&
-        (normalizedPath.includes("customer") ||
-          normalizedPath.includes("admin"));
+        (normalizedPath.includes("customer") || normalizedPath.includes("admin"));
 
       const isAdminOk =
         user.role.toLowerCase() === "admin" &&
-        (normalizedPath.includes("customer") ||
-          normalizedPath.includes("seller"));
+        (normalizedPath.includes("customer") || normalizedPath.includes("seller"));
 
       if (isCustomerOk) {
         return this.navigate("/customer-dashboard/profile");
@@ -351,15 +321,10 @@ class Router {
       this.#footerElement.innerHTML = "";
     }
 
-    if (
-      normalizedPath.includes("/login") ||
-      normalizedPath.includes("/register")
-    ) {
+    if (normalizedPath.includes("/login") || normalizedPath.includes("/register")) {
       const currentUser = JSON.parse(localStorage.getItem("currentUser"));
       if (currentUser) {
-        return this.navigate(
-          `/${currentUser.role.toLowerCase()}-dashboard/profile`
-        );
+        return this.navigate(`/${currentUser.role.toLowerCase()}-dashboard/profile`);
       }
     }
 
@@ -447,19 +412,14 @@ export const router = new Router({
   "/payment": "/pages/payment/payment.html",
 
   // customer Dashboard
-  "/customer-dashboard/profile":
-    "/pages/customer-dashboard/profile/profile.html",
+  "/customer-dashboard/profile": "/pages/customer-dashboard/profile/profile.html",
   "/customer-dashboard/orders": "/pages/customer-dashboard/orders/orders.html",
-  "/customer-dashboard/update-profile":
-    "/pages/customer-dashboard/update-profile/update-profile.html",
-  "/customer-dashboard/order-details":
-    "/pages/customer-dashboard/order-details/order-details.html",
+  "/customer-dashboard/update-profile": "/pages/customer-dashboard/update-profile/update-profile.html",
+  "/customer-dashboard/order-details": "/pages/customer-dashboard/order-details/order-details.html",
 
   // seller Dashboard
   "/seller-dashboard/profile": "/pages/seller-dashboard/profile/profile.html",
   "/seller-dashboard/addproduct": "/pages/seller-dashboard/addProduct/addProduct.html",
-  "/seller-dashboard/update-profile":
-    "/pages/seller-dashboard/update-profile/update-profile.html",
-  "/seller-dashboard/order-details":
-    "/pages/seller-dashboard/order-details/order-details.html",
+  "/seller-dashboard/update-profile": "/pages/seller-dashboard/update-profile/update-profile.html",
+  "/seller-dashboard/order-details": "/pages/seller-dashboard/order-details/order-details.html",
 });
