@@ -13,6 +13,7 @@ import { registerSubmitHandler } from "../pages/register/main.js";
 import { initializeProductDetailsFunctions } from "../pages/shop/product-details/product-details.js";
 import { initializeProfile } from "../pages/customer-dashboard/profile/profile.js";
 import { initializeUpdateProfile } from "../pages/customer-dashboard/update-profile/update-profile.js";
+import { initializeOrderDetails } from "../pages/customer-dashboard/order-details/order-details.js";
 import {
   handleFilterProductsIfExistFilters,
   initializeProductCards,
@@ -61,6 +62,9 @@ export const PAGE_INITIALIZERS = {
   },
   "/customer-dashboard/update-profile": () => {
     initializeUpdateProfile();
+  },
+  "/customer-dashboard/order-details": () => {
+    initializeOrderDetails();
   },
   "/cart": () => {
     import("../pages/cart/mycart.js").then((module) => {

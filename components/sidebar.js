@@ -29,10 +29,6 @@ const dasbhoardSidebarContent = {
       path: "/seller-dashboard/update-profile",
       title: "Update Profile",
     },
-    {
-      path: "/seller-dashboard/order-details",
-      title: "Order Details",
-    },
   ],
 };
 

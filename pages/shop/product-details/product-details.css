@@ -222,10 +222,6 @@
 
 /* Responsive Design */
 @media (max-width: 767.98px) {
-  .container-fluid {
-    padding: 1rem;
-  }
-
   .image-slider {
     height: 300px;
   }
