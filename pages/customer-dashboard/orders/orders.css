@@ -1,6 +1,15 @@
+/* CSS Variables matching website theme */
 :root {
   --pf-border-radius: 12px;
   --pf-border-color: #e5e7eb;
+  --bg-main-color: #634c9f;
+  --title-main-color: #2d3748;
+  --text-main-color: #4a5568;
+  --text-second-color: #718096;
+  --bg-white: #ffffff;
+  --bg-light: #f7fafc;
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --transition: all 0.3s ease;
 }
 
 /* Base Styles */
@@ -108,6 +117,36 @@
   font-size: 0.95rem;
 }
 
+/* Sidebar Footer */
+.pf-sidebar-footer {
+  border-top: 1px solid var(--pf-border-color);
+  padding-top: 2rem;
+}
+
+.pf-logout-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1rem;
+  background: transparent;
+  color: #dc3545;
+  border: 1px solid #dc3545;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.pf-logout-btn:hover {
+  background: #dc3545;
+  color: white;
+}
+
+.pf-logout-btn i {
+  margin-right: 0.5rem;
+}
+
 /* Main Content Styles */
 .pf-main-content {
   padding-left: 2rem;
@@ -136,7 +175,6 @@
   font-size: 1.1rem;
   margin-bottom: 0;
 }
-
 
 .pf-tab-content.active {
   animation: pf-fadeIn 0.3s ease-in;
@@ -422,7 +460,111 @@
   line-height: 1.6;
 }
 
+/* Orders Table Styles */
+.order-header {
+  margin-bottom: 1.5rem;
+}
+
+.filter-btn {
+  border: 1px solid var(--pf-border-color);
+  background: var(--bg-white);
+  color: var(--text-main-color);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+}
+
+.form-control-custom {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--pf-border-color);
+  border-radius: 8px;
+  background: var(--bg-white);
+}
+
+.search-box {
+  position: relative;
+  width: 100%;
+}
+
+.search-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-second-color);
+}
+
+.search-input {
+  padding-left: 2.5rem;
+}
+
+.invoice-table {
+  background: var(--bg-white);
+  border-radius: var(--pf-border-radius);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.invoice-table table {
+  margin-bottom: 0;
+}
+
+.invoice-table th {
+  background: var(--bg-light);
+  color: var(--title-main-color);
+  font-weight: 600;
+  padding: 1rem;
+  border-bottom: 1px solid var(--pf-border-color);
+}
+
+.invoice-table td {
+  padding: 1rem;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--pf-border-color);
+}
+
+.invoice-table tr:last-child td {
+  border-bottom: none;
+}
+
+.cell-rad-tl {
+  border-top-left-radius: var(--pf-border-radius);
+}
+
+.cell-rad-tr {
+  border-top-right-radius: var(--pf-border-radius);
+}
+
+.cell-rad-bl {
+  border-bottom-left-radius: var(--pf-border-radius);
+}
+
+.cell-rad-br {
+  border-bottom-right-radius: var(--pf-border-radius);
+}
+
+.total-amount {
+  color: var(--bg-main-color);
+  font-weight: 600;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.action-btn {
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+}
+
 /* Responsive Design */
+@media (max-width: 1199.98px) {
+  .pf-page-title {
+    font-size: 1.75rem;
+  }
+}
+
 @media (max-width: 991.98px) {
   .pf-main-content {
     padding-left: 0;
@@ -432,6 +574,10 @@
   .pf-sidebar {
     position: relative;
     top: 0;
+  }
+
+  .order-header .row > div {
+    margin-bottom: 1rem;
   }
 }
 
@@ -468,6 +614,18 @@
   .pf-form-card {
     padding: 1.5rem;
   }
+
+  .invoice-table {
+    overflow-x: auto;
+  }
+
+  .invoice-table table {
+    min-width: 600px;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
 }
 
 @media (max-width: 575.98px) {
@@ -479,6 +637,19 @@
 
   .pf-sidebar-header {
     padding-bottom: 1.5rem;
+  }
+
+  .pf-sidebar-footer {
+    padding-top: 1.5rem;
+  }
+
+  .pf-page-title {
+    font-size: 1.3rem;
+  }
+
+  .order-header .row > div {
+    flex: 0 0 100%;
+    max-width: 100%;
   }
 }
 

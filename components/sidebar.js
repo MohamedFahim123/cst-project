@@ -6,28 +6,62 @@ const dasbhoardSidebarContent = {
       icon: `<i class="fas fa-user pf-nav-icon"></i>`,
     },
     {
-      path: "/customer-dashboard/orders",
-      title: "Orders",
-      icon: `<i class="fas fa-shopping-bag pf-nav-icon"></i>`,
-    },
-    {
       path: "/customer-dashboard/update-profile",
       title: "Update Profile",
       icon: `<i class="fas fa-edit pf-nav-icon"></i>`,
+    },
+    {
+      path: "/customer-dashboard/orders",
+      title: "Orders",
+      icon: `<i class="fas fa-shopping-bag pf-nav-icon"></i>`,
     },
   ],
   seller: [
     {
       path: "/seller-dashboard/profile",
+      icon: `<i class="fas fa-user pf-nav-icon"></i>`,
       title: "Profile",
     },
     {
+      path: "/seller-dashboard/update-profile",
+      icon: `<i class="fas fa-edit pf-nav-icon"></i>`,
+      title: "Update Profile",
+    },
+    {
       path: "/seller-dashboard/orders",
+      icon: `<i class="fas fa-shopping-bag pf-nav-icon"></i>`,
       title: "Orders",
     },
     {
-      path: "/seller-dashboard/update-profile",
+      path: "/seller-dashboard/my-products",
+      title: "My Products",
+    },
+  ],
+  admin: [
+    {
+      path: "/admin-dashboard/profile",
+      icon: `<i class="fas fa-user pf-nav-icon"></i>`,
+      title: "Profile",
+    },
+    {
+      path: "/admin-dashboard/update-profile",
+      icon: `<i class="fas fa-edit pf-nav-icon"></i>`,
       title: "Update Profile",
+    },
+    {
+      path: "/admin-dashboard/orders",
+      icon: `<i class="fas fa-shopping-bag pf-nav-icon"></i>`,
+      title: "Orders",
+    },
+    {
+      path: "/admin-dashboard/sellers",
+      icon: `<i class="fa-solid fa-shop pf-nav-icon"></i>`,
+      title: "Sellers",
+    },
+    {
+      path: "/admin-dashboard/customers",
+      icon: `<i class="fa-solid fa-users pf-nav-icon"></i>`,
+      title: "Customers",
     },
   ],
 };
@@ -42,7 +76,8 @@ export const handleRenderingSideBarLinks = (path) => {
   const avatarImage = document.querySelector("#pf-avatar-img");
   const sideLinksContainer = document.querySelector(".pf-nav-list");
 
-  if (!sideLinksContainer || !sidebarName || !sidebarEmail || !avatarImage) return;
+  if (!sideLinksContainer || !sidebarName || !sidebarEmail || !avatarImage)
+    return;
 
   // Render User Info
   sidebarName.textContent = loginedUser.username;
@@ -63,8 +98,3 @@ export const handleRenderingSideBarLinks = (path) => {
   });
 };
 
-/*
-  id for container of ALl Dashboards => dashboard-grid 
-  id for the container of sidebar =>   pf-sidebar-wrappe
-  class for list of links => .pf-nav-list
-*/

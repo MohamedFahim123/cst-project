@@ -1,136 +1,116 @@
-import { cart } from "../../../../actions/cart.js";
-import { wishlist } from "../../../../actions/wishlist.js";
-
 // Related Products Functionality
-export async function initializeRelatedProducts() {
-  // get the products from local storage
+export async function initializeRelatedProducts(Swiper) {
   const products = JSON.parse(localStorage.getItem("all-products")) || [];
-  // get current product
   const currentProductId = +localStorage.getItem("curr-product");
-  const currentProduct = products.find((product) => product.id === currentProductId);
+  const currentProduct = products.find(
+    (product) => product.id === currentProductId
+  );
   let relatedProducts = [];
   if (currentProduct) {
     relatedProducts = products.filter(
-      (product) => product.brand === currentProduct.brand && product.id !== currentProductId
+      (product) =>
+        product.brand === currentProduct.brand &&
+        product.id !== currentProductId
     );
-    // Get 4 random products for related products
     relatedProducts = extractRandomList(relatedProducts, 4);
   }
 
-  renderRelatedProducts(relatedProducts);
+  renderRelatedProducts(relatedProducts, Swiper);
 }
 
-function renderRelatedProducts(products) {
-  const grid = document.getElementById("relatedProductsGrid");
-  if (!grid) return;
+function renderRelatedProducts(products, Swiper) {
+  const relatedProductsContainer = document.getElementById("relatedContainer");
+  if (!relatedProductsContainer) return;
 
-  grid.innerHTML = products
+  relatedProductsContainer.innerHTML = products
     .map((product) => {
-      const discountPercentage = Math.round(product.discountPercentage || 0);
-      const originalPrice = product.price;
-      const discountedPrice = (originalPrice * (1 - discountPercentage / 100)).toFixed(2);
-      const rating = product.rating || 0;
-      const fullStars = Math.floor(rating);
-      const hasHalfStar = rating % 1 >= 0.5;
-
       return `
-      <div class="col-12 col-md-6 col-lg-4 col-xl-3 ">
-        <div class="related-product-card">
-<div class="card-actions d-flex justify-content-between align-items-center">
-        <span class="py-1 px-2 shop-card-badge text-white c-fs-8 rounded-pill">
-          ${product.discountPercentage}%
-        </span>
-        <i data-id="${product.id}" data-thumbnail="${
-        product.thumbnail
-      }" title="Add to Wishlist" data-price="${product.price}" data-name="${product.title}" class=" ${
-        wishlist.has(+product.id) ? "text-danger fa-solid" : "fa-regular"
-      } add-to-wishlist-btn fa-heart add-to-fav  cursor-pointer fs-5"></i>
-      </div>
-          <div class="product-image-container">
-            <img src="${product.images[0]}" alt="${product.title}" class="product-image">
-          </div>
-          
-          <div class="pd-product-info-card">
-            <h3 class="product-name">${product.title}</h3>
-            
-            <div class="product-rating">
-              <div class="rating-stars">
-                ${generateStarRating(fullStars, hasHalfStar)}
-              </div>
-              <span class="rating-count">${product.reviews?.length || 0}</span>
-            </div>
-            
-            <div class="product-price">
-              <span class="current-price-card">$${discountedPrice}</span>
-              ${discountPercentage > 0 ? `<span class="original-price">$${originalPrice}</span>` : ""}
-            </div>
-            
-            <div class="stock-status-card">
-              <div class="stock-indicator"></div>
-              <span class="stock-text">IN STOCK</span>
-            </div>
-            
-             <button type="button" id="${product.id}" class="shop-cart-btn w-100 add-to-cart-btn ${
-        cart.has(+product.id) ? "in-cart" : ""
-      }" data-id="${product.id}" data-thumbnail="${product.thumbnail}" data-name="${
+      <div class="swiper-slide">
+        <div class="card" id="${product.id}">
+          <i  
+            class="add-to-wishlist-btn fa-regular fa-heart position-absolute z-3 pt-2 pe-3 end-0 top-0"
+            data-id="${product.id}"
+            data-thumbnail="${product.thumbnail}"
+            data-name="${product.title}"
+            data-price="${product.price}"
+          ></i>
+
+          <span class="badge text-bg-danger position-absolute z-3">
+            ${product.discountPercentage}%
+          </span>
+
+          <img src="${product.thumbnail}" class="card-img-top" alt="${
         product.title
-      }" data-price="${product.price}">
-                       <i class="fa-solid fa-cart-shopping"></i> ${
-                         cart.has(+product.id) ? "Remove from Cart" : "Add to Cart"
-                       }
-                     </button>
+      }" loading="lazy" />
+
+          <div class="card-body">
+            <h5 class="card-title fs-6" title="${product.title}">
+              ${
+                product.title.length > 30
+                  ? product.title.slice(0, 30) + "..."
+                  : product.title
+              }
+            </h5>
+
+            <p class="card-text fs-6 text-secondary mb-1" title="${
+              product.description
+            }">
+              ${product.description.slice(0, 95)}...
+            </p>
+
+            <div class="price">
+              <span class="me-2 fw-bold fs-5">${Math.ceil(product.price)}</span>
+              <span class="fw-light fs-6 text-decoration-line-through">${
+                product.deletedPrice
+              }</span>
+            </div>
+
+            <button 
+              data-id="${product.id}" 
+            data-thumbnail="${product.thumbnail}"
+              data-name="${product.title}" 
+              data-price="${product.price}" 
+              type="button" 
+              title="Add to cart" 
+              class="addtocart add-to-cart-btn"
+            >
+              Add to cart <i class="fa-solid fa-plus"></i>
+            </button>
           </div>
         </div>
       </div>
-    `;
+  `;
     })
     .join("");
 
-  // Add event listeners for related product actions
-  // addRelatedProductsEventListeners();
+  const relatedProducts = document.getElementById("relatedProducts");
+
+  relatedProducts.addEventListener("click", (e) => {
+     if (
+          e.target.classList.contains("card-img-top") ||
+          e.target.classList.contains("card-title")
+        ) {
+          localStorage.setItem("curr-product", e.target.closest(".card").id);
+          window.scrollTo(0, 0);
+          window.location.reload();
+        }
+  })
+
+  new Swiper(relatedProducts, {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    loop: true,
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    breakpoints: {
+      576: { slidesPerView: 2 },
+      992: { slidesPerView: 3 },
+      1200: { slidesPerView: 4 },
+    },
+  });
 }
-
-// function addRelatedProductsEventListeners() {
-//   // Wishlist buttons
-//   document.querySelectorAll(".wishlist-btn").forEach((btn) => {
-//     btn.addEventListener("click", function (e) {
-//       e.preventDefault();
-//       const icon = this.querySelector("i");
-
-//       if (icon.classList.contains("far")) {
-//         icon.classList.remove("far");
-//         icon.classList.add("fas");
-//         showNotification("Added to wishlist!");
-//       } else {
-//         icon.classList.remove("fas");
-//         icon.classList.add("far");
-//         showNotification("Removed from wishlist!");
-//       }
-//     });
-//   });
-
-// Add to cart buttons
-// document.querySelectorAll(".add-to-cart-btn-card").forEach((btn) => {
-//   btn.addEventListener("click", function () {
-//     const originalText = this.innerHTML;
-//     this.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-//     this.disabled = true;
-
-//     setTimeout(() => {
-//       this.innerHTML = '<i class="fas fa-check"></i> ADDED';
-//       this.style.background = "#28a745";
-
-//       setTimeout(() => {
-//         this.innerHTML = originalText;
-//         this.disabled = false;
-//         this.style.background = "";
-//       }, 2000);
-
-//       showNotification("Product added to cart!");
-//     }, 800);
-//   });
-// });
-// }
 
 // ---------- Resuable Functions ----------
 
@@ -138,29 +118,4 @@ function renderRelatedProducts(products) {
 function extractRandomList(items = [], count = 5) {
   const shuffled = [...items].sort(() => 0.5 - Math.random());
   return shuffled.slice(0, count);
-}
-
-//-----
-
-// Generate star rating HTML
-function generateStarRating(fullStars, hasHalfStar) {
-  let stars = "";
-
-  // Add full stars
-  for (let i = 0; i < fullStars; i++) {
-    stars += '<i class="fas fa-star"></i>';
-  }
-
-  // Add half star if needed
-  if (hasHalfStar) {
-    stars += '<i class="fas fa-star-half-alt"></i>';
-  }
-
-  // Add empty stars to make total of 5
-  const remainingStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
-  for (let i = 0; i < remainingStars; i++) {
-    stars += '<i class="far fa-star"></i>';
-  }
-
-  return stars;
 }

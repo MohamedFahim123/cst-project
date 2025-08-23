@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order Details</title>
+  </head>
+  <body>
+    <div id="dashboard-grid">
+      <div class="pf-container">
+        <div class="container">
+          <div class="row">
+            <!-- Sidebar -->
+            <div class="col-lg-3 col-md-4 pf-sidebar-wrapper" id="pf-sidebar-wrapper"></div>
+
+            <!-- Main Content -->
+            <div class="col-lg-9 col-md-8 pf-main-content">
+              <!-- Order Details Content -->
+              <div class="od-content-wrapper">
+                <!-- Header with Back Button -->
+                <div class="od-header">
+                  <div class="od-back-section">
+                    <!-- data-link is used to enable AJAX navigation without full page reload -->
+                    <a href="/seller-dashboard/orders" data-link class="od-back-btn">
+                      <i class="fas fa-arrow-left od-back-icon"></i>
+                      <span class="od-back-text">Back to My Orders</span>
+                    </a>
+                  </div>
+
+                  <div class="od-title-section">
+                    <h1 class="od-page-title">
+                      <i class="fas fa-receipt od-title-icon"></i>
+                      Order Details
+                    </h1>
+                    <p class="od-page-subtitle">Complete information about your order</p>
+                  </div>
+                </div>
+
+                <!-- Order Summary Card -->
+                <div class="od-summary-card">
+                  <div class="od-card-header">
+                    <div class="od-order-info">
+                      <h3 class="od-order-number">Order #ORD-2024-001</h3>
+                      <div class="od-order-meta">
+                        <span class="od-order-date">
+                          <i class="fas fa-calendar-alt"></i>
+                          January 15, 2024
+                        </span>
+                        <span class="od-order-status od-status-delivered">
+                          <i class="fas fa-check-circle"></i>
+                          Delivered
+                        </span>
+                      </div>
+                    </div>
+                    <div class="od-order-total">
+                      <span class="od-total-label">Total Amount</span>
+                      <span class="od-total-amount">$299.98</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Order Progress -->
+                <div class="od-progress-card">
+                  <h4 class="od-section-title">
+                    <i class="fas fa-truck od-section-icon"></i>
+                    Order Progress
+                  </h4>
+                  <div class="od-progress-timeline">
+                    <div class="od-timeline-item od-completed">
+                      <div class="od-timeline-marker">
+                        <i class="fas fa-check"></i>
+                      </div>
+                      <div class="od-timeline-content">
+                        <h6 class="od-timeline-title">Order Placed</h6>
+                        <p class="od-timeline-time">January 15, 2024 - 10:30 AM</p>
+                      </div>
+                    </div>
+                    <div class="od-timeline-item od-completed">
+                      <div class="od-timeline-marker">
+                        <i class="fas fa-check"></i>
+                      </div>
+                      <div class="od-timeline-content">
+                        <h6 class="od-timeline-title">Payment Confirmed</h6>
+                        <p class="od-timeline-time">January 15, 2024 - 10:32 AM</p>
+                      </div>
+                    </div>
+                    <div class="od-timeline-item od-completed">
+                      <div class="od-timeline-marker">
+                        <i class="fas fa-check"></i>
+                      </div>
+                      <div class="od-timeline-content">
+                        <h6 class="od-timeline-title">Order Processed</h6>
+                        <p class="od-timeline-time">January 16, 2024 - 9:15 AM</p>
+                      </div>
+                    </div>
+                    <div class="od-timeline-item od-completed">
+                      <div class="od-timeline-marker">
+                        <i class="fas fa-check"></i>
+                      </div>
+                      <div class="od-timeline-content">
+                        <h6 class="od-timeline-title">Shipped</h6>
+                        <p class="od-timeline-time">January 17, 2024 - 2:45 PM</p>
+                      </div>
+                    </div>
+                    <div class="od-timeline-item od-completed">
+                      <div class="od-timeline-marker">
+                        <i class="fas fa-check"></i>
+                      </div>
+                      <div class="od-timeline-content">
+                        <h6 class="od-timeline-title">Delivered</h6>
+                        <p class="od-timeline-time">January 20, 2024 - 3:20 PM</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Order Items -->
+                <div class="od-items-card">
+                  <h4 class="od-section-title">
+                    <i class="fas fa-box od-section-icon"></i>
+                    Order Items
+                  </h4>
+                  <div class="od-items-list">
+                    <!-- Item 1 -->
+                    <div class="od-item">
+                      <div class="od-item-image">
+                        <img src="../../../assets/product-img1.jpeg" alt="Product 1" class="od-product-img" />
+                      </div>
+                      <div class="od-item-details">
+                        <h5 class="od-item-name">Wireless Bluetooth Headphones</h5>
+                        <p class="od-item-description">
+                          Premium noise-canceling headphones with 30-hour battery life
+                        </p>
+                        <div class="od-item-specs">
+                          <span class="od-spec-item">Color: Black</span>
+                          <span class="od-spec-item">Size: Standard</span>
+                        </div>
+                      </div>
+                      <div class="od-item-quantity">
+                        <span class="od-qty-label">Qty:</span>
+                        <span class="od-qty-value">1</span>
+                      </div>
+                      <div class="od-item-price">
+                        <span class="od-unit-price">$149.99</span>
+                        <span class="od-total-price">$149.99</span>
+                      </div>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="od-item">
+                      <div class="od-item-image">
+                        <img src="../../../assets/product-img2.jpeg" alt="Product 2" class="od-product-img" />
+                      </div>
+                      <div class="od-item-details">
+                        <h5 class="od-item-name">Smart Fitness Watch</h5>
+                        <p class="od-item-description">
+                          Advanced fitness tracking with heart rate monitor and GPS
+                        </p>
+                        <div class="od-item-specs">
+                          <span class="od-spec-item">Color: Silver</span>
+                          <span class="od-spec-item">Band: Sport</span>
+                        </div>
+                      </div>
+                      <div class="od-item-quantity">
+                        <span class="od-qty-label">Qty:</span>
+                        <span class="od-qty-value">1</span>
+                      </div>
+                      <div class="od-item-price">
+                        <span class="od-unit-price">$149.99</span>
+                        <span class="od-total-price">$149.99</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Shipping & Billing Info -->
+                <div class="row">
+                  <!-- Shipping Information -->
+                  <div class="col-lg-6 mb-4">
+                    <div class="od-info-card">
+                      <h4 class="od-section-title">
+                        <i class="fas fa-shipping-fast od-section-icon"></i>
+                        Shipping Information
+                      </h4>
+                      <div class="od-info-content">
+                        <div class="od-address-section">
+                          <h6 class="od-address-title">Delivery Address</h6>
+                          <div class="od-address-details">
+                            <p class="od-address-name">John Doe</p>
+                            <p class="od-address-line">123 Main Street, Apt 4B</p>
+                            <p class="od-address-city">New York, NY 10001</p>
+                            <p class="od-address-phone">
+                              <i class="fas fa-phone"></i>
+                              +1 (555) 123-4567
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Billing Information -->
+                  <div class="col-lg-6 mb-4">
+                    <div class="od-info-card">
+                      <h4 class="od-section-title">
+                        <i class="fas fa-credit-card od-section-icon"></i>
+                        Billing Information
+                      </h4>
+                      <div class="od-info-content">
+                        <div class="od-address-section">
+                          <h6 class="od-address-title">Billing Address</h6>
+                          <div class="od-address-details">
+                            <p class="od-address-name">John Doe</p>
+                            <p class="od-address-line">123 Main Street, Apt 4B</p>
+                            <p class="od-address-city">New York, NY 10001</p>
+                          </div>
+                        </div>
+                        <div class="od-payment-method">
+                          <h6 class="od-payment-title">Payment Method</h6>
+                          <div class="od-payment-details">
+                            <i class="fab fa-cc-visa od-card-icon"></i>
+                            <span class="od-card-info">Visa ending in 1234</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="od-summary-breakdown">
+                  <h4 class="od-section-title">
+                    <i class="fas fa-calculator od-section-icon"></i>
+                    Order Summary
+                  </h4>
+                  <div class="od-summary-content">
+                    <div class="od-summary-row">
+                      <span class="od-summary-label">Subtotal</span>
+                      <span class="od-summary-value">$299.98</span>
+                    </div>
+                    <div class="od-summary-row">
+                      <span class="od-summary-label">Shipping</span>
+                      <span class="od-summary-value">$0.00</span>
+                    </div>
+                    <div class="od-summary-row">
+                      <span class="od-summary-label">Tax</span>
+                      <span class="od-summary-value">$0.00</span>
+                    </div>
+                    <div class="od-summary-row od-summary-total">
+                      <span class="od-summary-label">Total</span>
+                      <span class="od-summary-value">$299.98</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="od-actions">
+                  <button class="od-btn od-btn-primary">
+                    <i class="fas fa-headset"></i>
+                    Contact Support
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

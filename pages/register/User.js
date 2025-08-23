@@ -1,9 +1,10 @@
-import { cart } from "../../actions/cart.js";
+import { generateSecureId } from "../../actions/generateId.js";
 
 class User {
   #username;
   #email;
   #password;
+  #id = generateSecureId();
 
   constructor(username, email, password) {
     this.#username = username;
@@ -22,16 +23,15 @@ class User {
   checkPassword(password) {
     return this.#password === password;
   }
-  // will convert the Parsed String (localStorage) into the Obj
   static fromJSON(obj) {
     return new User(obj.username, obj.email, obj.password);
   }
-  // to store the Private Values in localStorage
   toJSON() {
     return {
       username: this.#username,
       email: this.#email,
       password: this.#password,
+      id: this.#id,
     };
   }
 }
@@ -64,8 +64,7 @@ class Customer extends User {
     this.cart = [];
   }
 
-  showOrders() {
-  }
+  showOrders() {}
 
   static fromJSON(obj) {
     const customer = new Customer(obj.username, obj.email, obj.password);
@@ -128,4 +127,4 @@ class Seller extends Customer {
   }
 }
 
-export { User, Customer, Seller };
+export { Customer, Seller, User };

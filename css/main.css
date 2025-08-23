@@ -20,6 +20,9 @@
   --shadow-md: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.175);
   --transition: all 0.3s ease;
+  --ap-main-color: #f5f3fe93;
+  --ap-font-size: 12px;
+  --main-border-radius: 12px;
 }
 
 * {
@@ -85,4 +88,9 @@ ul {
     opacity: 0;
     transform: translateX(100%);
   }
+}
+.add-more-than-one-to-cart {
+  padding: 15px !important;
+  font-weight: bold;
+  font-size: 20px;
 }

@@ -1,0 +1,137 @@
+.ap-sidebar-wrapper {
+  background-color: var(--ap-main-color);
+  border-radius: 12px;
+}
+
+.ap-nav-link {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  color: var(--text-main-color);
+  text-decoration: none;
+  border-radius: 8px;
+  transition: var(--transition);
+  font-weight: 500;
+}
+
+.ap-nav-link:hover {
+  background: rgba(99, 76, 159, 0.1);
+  color: var(--bg-main-color);
+  text-decoration: none;
+}
+.ap-nav-link.active {
+  background: var(--bg-main-color);
+  color: white;
+}
+
+/* =========Main Content Styles ================ */
+
+.ap-header-wrapper {
+  background-color: var(--ap-main-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: var(--main-border-radius);
+  font-size: var(--ap-font-size);
+}
+
+.addProductBtn {
+  border: none;
+  padding: 10px 7px;
+  color: white;
+  background: var(--bg-main-color);
+  font-weight: 500;
+  border-radius: var(--main-border-radius);
+}
+.text-gray {
+  color: rgb(47, 46, 46);
+}
+
+.ap-product-grid-wrapper {
+  background-color: var(--ap-main-color);
+  padding: 15px;
+  border-radius: var(--main-border-radius);
+  max-height: 75vh;
+  overflow-y: scroll;
+}
+
+/* =========================Product Card Styles =================== */
+.product-card {
+  background: #fff;
+  border-radius: var(--main-border-radius);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  padding: 16px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.product-card img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.product-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+.product-price {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.old-price {
+  text-decoration: line-through;
+  color: #999;
+  font-size: 13px;
+}
+
+.new-price {
+  font-size: 18px;
+  font-weight: bold;
+  color: #000;
+}
+
+.add-btn {
+  background: var(--bg-main-color);
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+.add-btn:hover {
+  background: #4a0072;
+}
+
+.delete-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #ff4d4d;
+  border: none;
+  color: #fff;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.delete-btn:hover {
+  background: #cc0000;
+}

@@ -34,36 +34,3 @@ export function initializeQuantityControls() {
     });
   }
 }
-
-// // Add to Cart Functionality
-// export function initializeAddToCart() {
-//   const addToCartBtn = document.querySelector(".add-to-cart-btn");
-//   const quantityInput = document.getElementById("quantity");
-
-//   if (addToCartBtn) {
-//     addToCartBtn.addEventListener("click", function () {
-//       const quantity = quantityInput ? parseInt(quantityInput.value) : 1;
-
-//       // Add loading state
-//       const originalText = this.textContent;
-//       this.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Adding...';
-//       this.disabled = true;
-
-//       // Simulate adding to cart
-//       setTimeout(() => {
-//         this.innerHTML = '<i class="fas fa-check me-2"></i>Added to Cart!';
-//         this.classList.remove("btn-warning");
-//         this.classList.add("btn-success");
-
-//         setTimeout(() => {
-//           this.textContent = originalText;
-//           this.disabled = false;
-//           this.classList.remove("btn-success");
-//           this.classList.add("btn-warning");
-//         }, 2000);
-
-//         showNotification(`Added ${quantity} item(s) to cart!`);
-//       }, 1000);
-//     });
-//   }
-// }

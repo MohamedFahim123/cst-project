@@ -1,7 +1,6 @@
 import { cart } from "../actions/cart.js";
 import { showToast } from "../actions/showToast.js";
 import { wishlist } from "../actions/wishlist.js";
-import { router } from "../js/router.js";
 
 let isInitialized = false;
 
@@ -27,31 +26,80 @@ export const cartAndWishlistLogic = () => {
   }
 
   document.addEventListener("click", (e) => {
+    const userLogin = JSON.parse(localStorage.getItem("currentUser")) || null;
+    const isLoggedIn = userLogin !== null;
+
+    const cartmultiElBtn = e.target.closest(".add-more-than-one-to-cart");
+    const quantity = document.getElementById("quantity");
+
+    if (cartmultiElBtn && quantity) {
+      if (!isLoggedIn) {
+        showToast("Please login to add to cart", "error");
+        return;
+      }
+
+      if (userLogin.role && userLogin.role === "admin") {
+        showToast("Admin can't add items to cart or wishlist", "error");
+        return;
+      }
+
+      const currentProductId = JSON.parse(localStorage.getItem("curr-product"));
+      const currentProduct = JSON.parse(
+        localStorage.getItem("all-products")
+      ).find((product) => +product.id === +currentProductId);
+
+      const product = {
+        id: currentProduct.id,
+        name: currentProduct.title,
+        price: parseFloat(currentProduct.price * quantity.value),
+      };
+
+      cart.add(product, +quantity.value);
+      updateButtonStates();
+      refreshCartPage();
+      return;
+    }
+
     const cartBtn = e.target.closest(".add-to-cart-btn");
     if (cartBtn) {
-      const userLogin = localStorage.getItem("currentUser");
-      if (userLogin) {
-        const product = {
-          id: cartBtn.dataset.id,
-          name: cartBtn.dataset.name,
-          price: parseFloat(cartBtn.dataset.price),
-        };
-
-        if (cart.has(product.id)) {
-          cart.remove(product.id);
-        } else {
-          cart.add(product, 1);
-        }
-        updateButtonStates();
-        refreshCartPage();
-      } else {
+      if (!isLoggedIn) {
         showToast("Please login to add to cart", "error");
+        return;
       }
+
+      if (userLogin.role && userLogin.role === "admin") {
+        showToast("Admin can't add items to cart or wishlist", "error");
+        return;
+      }
+
+      const product = {
+        id: cartBtn.dataset.id,
+        name: cartBtn.dataset.name,
+        price: parseFloat(cartBtn.dataset.price),
+      };
+
+      if (cart.has(product.id)) {
+        cart.remove(product.id);
+      } else {
+        cart.add(product, 1);
+      }
+      updateButtonStates();
+      refreshCartPage();
       return;
     }
 
     const wishlistBtn = e.target.closest(".add-to-wishlist-btn");
     if (wishlistBtn) {
+      if (!isLoggedIn) {
+        showToast("Please login to add to wishlist", "error");
+        return;
+      }
+
+      if (userLogin.role && userLogin.role === "admin") {
+        showToast("Admin can't add items to cart or wishlist", "error");
+        return;
+      }
+
       const product = {
         id: wishlistBtn.dataset.id,
         name: wishlistBtn.dataset.name,
@@ -79,7 +127,6 @@ export const cartAndWishlistLogic = () => {
   sync();
   isInitialized = true;
 };
-
 function updateButtonStates() {
   // Update cart buttons
   document.querySelectorAll(".add-to-cart-btn").forEach((btn) => {
