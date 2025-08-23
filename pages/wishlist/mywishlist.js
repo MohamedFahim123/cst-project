@@ -57,7 +57,7 @@ function handleWishlistChange() {
   toggleEmptyState(wishlistItems);
 }
 
-export function renderWishlistItems(items) {
+function renderWishlistItems(items) {
   const wishlistItemsContainer = document.getElementById("wishlist-items");
   if (!wishlistItemsContainer) return;
 
@@ -79,10 +79,7 @@ export function renderWishlistItems(items) {
         <td>
           <div class="d-flex align-items-center">
             <img src="${
-              product.thumbnail ||
-              product.image ||
-              product.img ||
-              "https://via.placeholder.com/80"
+              product.thumbnail || product.image || product.img || "https://via.placeholder.com/80"
             }" 
                  class="product-img me-3" alt="${
                    item.name
@@ -101,21 +98,13 @@ export function renderWishlistItems(items) {
           <button class="btn-move" data-id="${item.id}" 
                   ${!inStock || alreadyInCart ? "disabled" : ""} 
                   title="${
-                    !inStock
-                      ? "Product out of stock"
-                      : alreadyInCart
-                      ? "Already in cart"
-                      : "Add to cart"
+                    !inStock ? "Product out of stock" : alreadyInCart ? "Already in cart" : "Add to cart"
                   }">
-            <i class="fa-solid ${
-              alreadyInCart ? "fa-cart-shopping" : "fa-cart-plus"
-            }"></i>
+            <i class="fa-solid ${alreadyInCart ? "fa-cart-shopping" : "fa-cart-plus"}"></i>
           </button>
         </td>
         <td class="product-remove">
-          <button class="btn-remove" data-id="${
-            item.id
-          }" title="Remove from wishlist">
+          <button class="btn-remove" data-id="${item.id}" title="Remove from wishlist">
             <i class="fa-solid fa-trash"></i>
           </button>
         </td>
@@ -158,9 +147,7 @@ function moveToCart(productId) {
 }
 
 function updateButtonState(productId) {
-  const moveButton = document.querySelector(
-    `.btn-move[data-id="${productId}"]`
-  );
+  const moveButton = document.querySelector(`.btn-move[data-id="${productId}"]`);
   if (moveButton && cart.has(productId)) {
     moveButton.innerHTML = '<i class="fa-solid fa-cart-shopping"></i>';
     moveButton.title = "Already in cart";

@@ -1,22 +1,41 @@
 import { fetchData } from "../../actions/fetchData.js";
 import { router } from "../../js/router.js";
 
-export const getAllProducts = async () => {
-  const products = await fetchData("/json/products.json");
-  return products;
+export function initializeHome(swiper) {
+  initializeUsers();
+  initializeShopFilters();
+  initializeProducts();
+  getCategories();
+  bestSellingProducts(swiper);
+  handleRenderingRecommendedProducts(swiper);
+  renderBrands(swiper);
+}
+
+const initializeProducts = async () => {
+  const products = JSON.parse(localStorage.getItem("all-products"));
+  if (!products) {
+    const products = await fetchData("/json/products.json");
+    localStorage.setItem("all-products", JSON.stringify(products));
+  }
 };
 
-export const getShopFilters = async () => {
-  const filters = await fetchData("/json/shopFilters.json");
-  return filters;
+const initializeShopFilters = async () => {
+  const filters = JSON.parse(localStorage.getItem("shop-filters"));
+  if (!filters) {
+    const filters = await fetchData("/json/shopFilters.json");
+    localStorage.setItem("shop-filters", JSON.stringify(filters));
+  }
 };
 
-export const getAllUsers = async () => {
-  const users = await fetchData("/json/allusers.json");
-  return users;
+const initializeUsers = async () => {
+  const users = JSON.parse(localStorage.getItem("users"));
+  if (!users) {
+    const users = await fetchData("/json/allusers.json");
+    localStorage.setItem("users", JSON.stringify(users));
+  }
 };
 
-export const getCategories = async () => {
+const getCategories = async () => {
   const catBtns = document.querySelectorAll(".home-banner-category");
   catBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -40,7 +59,7 @@ export const getCategories = async () => {
   });
 };
 
-export const renderBrands = (Swiper) => {
+const renderBrands = (Swiper) => {
   const brandsContainer = document.getElementById("brandsContainer");
   const localFilters = JSON.parse(localStorage.getItem("shop-filters"));
   const brands = localFilters?.brands || [];
@@ -117,30 +136,20 @@ const productCard = (product) => {
             ${product.discountPercentage}%
           </span>
 
-          <img src="${product.thumbnail}" class="card-img-top" alt="${
-    product.title
-  }" loading="lazy" />
+          <img src="${product.thumbnail}" class="card-img-top" alt="${product.title}" loading="lazy" />
 
           <div class="card-body">
             <h5 class="card-title fs-6" title="${product.title}">
-              ${
-                product.title.length > 30
-                  ? product.title.slice(0, 30) + "..."
-                  : product.title
-              }
+              ${product.title.length > 30 ? product.title.slice(0, 30) + "..." : product.title}
             </h5>
 
-            <p class="card-text fs-6 text-secondary mb-1" title="${
-              product.description
-            }">
+            <p class="card-text fs-6 text-secondary mb-1" title="${product.description}">
               ${product.description.slice(0, 95)}...
             </p>
 
             <div class="price">
               <span class="me-2 fw-bold fs-5">${Math.ceil(product.price)}</span>
-              <span class="fw-light fs-6 text-decoration-line-through">${
-                product.deletedPrice
-              }</span>
+              <span class="fw-light fs-6 text-decoration-line-through">${product.deletedPrice}</span>
             </div>
 
             <button 
@@ -160,25 +169,15 @@ const productCard = (product) => {
   `;
 };
 
-export const handleRenderingRecommendedProducts = (Swiper) => {
+const handleRenderingRecommendedProducts = (Swiper) => {
   const products = JSON.parse(localStorage.getItem("all-products"));
-  const recommendedProductsContainer = document.getElementById(
-    "recommendedProductsContainer"
-  );
+  const recommendedProductsContainer = document.getElementById("recommendedProductsContainer");
 
   recommendedProductsContainer.innerHTML = "";
-  const mobiles = products
-    .filter((product) => product.category === "smartphones")
-    .slice(0, 3);
-  const tablets = products
-    .filter((product) => product.category === "tablets")
-    .slice(0, 3);
-  const laptops = products
-    .filter((product) => product.category === "laptops")
-    .slice(0, 3);
-  const desktops = products
-    .filter((product) => product.category === "desktops")
-    .slice(0, 3);
+  const mobiles = products.filter((product) => product.category === "smartphones").slice(0, 3);
+  const tablets = products.filter((product) => product.category === "tablets").slice(0, 3);
+  const laptops = products.filter((product) => product.category === "laptops").slice(0, 3);
+  const desktops = products.filter((product) => product.category === "desktops").slice(0, 3);
 
   mobiles.forEach((product) => {
     recommendedProductsContainer.innerHTML += productCard(product);
@@ -197,10 +196,7 @@ export const handleRenderingRecommendedProducts = (Swiper) => {
   });
 
   recommendedProductsContainer.addEventListener("click", (e) => {
-    if (
-      e.target.classList.contains("card-img-top") ||
-      e.target.classList.contains("card-title")
-    ) {
+    if (e.target.classList.contains("card-img-top") || e.target.classList.contains("card-title")) {
       localStorage.setItem("curr-product", e.target.closest(".card").id);
       window.scrollTo(0, 0);
       router.navigate(`/shop/product-details`);
@@ -224,10 +220,8 @@ export const handleRenderingRecommendedProducts = (Swiper) => {
   });
 };
 
-export const bestSellingProducts = (Swiper) => {
-  const bestSellingProductsContainer = document.getElementById(
-    "bestsellerContainer"
-  );
+const bestSellingProducts = (Swiper) => {
+  const bestSellingProductsContainer = document.getElementById("bestsellerContainer");
   const products = JSON.parse(localStorage.getItem("all-products"));
   products.sort((a, b) => b.rating - a.rating);
   bestSellingProductsContainer.innerHTML = "";
@@ -237,10 +231,7 @@ export const bestSellingProducts = (Swiper) => {
 
   const bestSellingSlider = document.getElementById("bestsellerProducts");
   bestSellingSlider.addEventListener("click", (e) => {
-    if (
-      e.target.classList.contains("card-img-top") ||
-      e.target.classList.contains("card-title")
-    ) {
+    if (e.target.classList.contains("card-img-top") || e.target.classList.contains("card-title")) {
       localStorage.setItem("curr-product", e.target.closest(".card").id);
       window.scrollTo(0, 0);
       router.navigate(`/shop/product-details`);

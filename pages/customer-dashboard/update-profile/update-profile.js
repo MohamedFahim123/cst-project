@@ -126,12 +126,12 @@ function handleProfileUpdate(e) {
       showNotification("Profile updated successfully!", "success");
 
       // Update sidebar info
-      upUpdateElement("pf-sidebar-name", updatedUser.name);
+      upUpdateElement("pf-sidebar-name", updatedUser.username);
       upUpdateElement("pf-sidebar-email", updatedUser.email);
       upUpdateImageElement("pf-avatar-img", updatedUser.avatar);
 
       // Update avatar info section
-      upUpdateElement("up-current-name", updatedUser.name);
+      upUpdateElement("up-current-name", updatedUser.username);
       upUpdateElement("up-current-email", updatedUser.email);
 
       // Scroll to top to show success message
