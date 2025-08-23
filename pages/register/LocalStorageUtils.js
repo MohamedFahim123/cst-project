@@ -17,6 +17,9 @@ function setCurrentUser(userobj) {
   localStorage.setItem("currentUser", JSON.stringify(userobj));
   showToast("new User Logged in ", "success");
 }
+function getCurrentUser() {
+  return JSON.parse(localStorage.getItem("currentUser")) || null;
+}
 
 // function that looks for a users array stored in local Storage
 function getUsersFromLocalStorage() {
@@ -53,4 +56,5 @@ export {
   getUsersFromLocalStorage,
   setCurrentUser,
   validateUserCredentials,
+  getCurrentUser,
 };

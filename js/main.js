@@ -1,4 +1,7 @@
 import Swiper from "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs";
+import { initializeOrderDetails } from "../pages/customer-dashboard/order-details/order-details.js";
+import { initializeProfile } from "../pages/customer-dashboard/profile/profile.js";
+import { initializeUpdateProfile } from "../pages/customer-dashboard/update-profile/update-profile.js";
 import {
   bestSellingProducts,
   getAllProducts,
@@ -10,21 +13,20 @@ import {
 } from "../pages/home/home.js";
 import { loginSubmitHandler } from "../pages/login/login.js";
 import { registerSubmitHandler } from "../pages/register/main.js";
+import { addProductHandler } from "../pages/seller-dashboard/my-products/my-products.js";
 import { initializeProductDetailsFunctions } from "../pages/shop/product-details/product-details.js";
-import { initializeUpdateProfile } from "../pages/customer-dashboard/update-profile/update-profile.js";
 import {
   handleFilterProductsIfExistFilters,
   initializeProductCards,
   inputsSetups,
   resetFilters,
 } from "../pages/shop/shop.js";
-import { router } from "./router.js";
-import { cartAndWishlistLogic } from "./shred.js";
 import {
   initializeWishlist,
   refreshWishlist,
 } from "../pages/wishlist/mywishlist.js";
-import { addProductHandler } from "../pages/seller-dashboard/my-products/my-products.js";
+import { router } from "./router.js";
+import { cartAndWishlistLogic } from "./shred.js";
 
 export const PAGE_INITIALIZERS = {
   "/": async () => {
