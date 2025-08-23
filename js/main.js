@@ -22,15 +22,8 @@ import {
 } from "../pages/shop/shop.js";
 import { router } from "./router.js";
 import { cartAndWishlistLogic } from "./shred.js";
-<<<<<<< HEAD
-import {
-  initializeWishlist,
-  refreshWishlist,
-} from "../pages/wishlist/mywishlist.js";
 import { addProductHandler } from "../pages/seller-dashboard/addProduct/addProduct.js";
-=======
 import { initializeWishlist, refreshWishlist } from "../pages/wishlist/mywishlist.js";
->>>>>>> c4f49bfcc8b9d4c1180c1bf60d018f92ae4480a2
 
 export const PAGE_INITIALIZERS = {
   "/": async () => {
