@@ -169,7 +169,7 @@ function removeFromCart(id) {
   }
 }
 
-function clearCart() {
+export function clearCart() {
   try {
     if (confirm("Are you sure you want to clear your cart?")) {
       cart.clear();
