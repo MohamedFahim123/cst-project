@@ -415,6 +415,7 @@ export const router = new Router({
     "/pages/seller-dashboard/my-products/my-products.html",
 
   // admin Dashboard
+  "/admin-dashboard/dashboard": "/pages/admin-dashboard/dashboard/dashboard.html",
   "/admin-dashboard/profile": "/pages/admin-dashboard/profile/profile.html",
   "/admin-dashboard/orders": "/pages/admin-dashboard/orders/orders.html",
   "/admin-dashboard/update-profile":
@@ -424,4 +425,6 @@ export const router = new Router({
   "/admin-dashboard/sellers": "/pages/admin-dashboard/sellers/sellers.html",
   "/admin-dashboard/customers":
     "/pages/admin-dashboard/customers/customers.html",
+  "/admin-dashboard/add-new-user":
+    "/pages/admin-dashboard/add-new-user/add-new-user.html",
 });

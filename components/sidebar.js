@@ -39,6 +39,11 @@ const dasbhoardSidebarContent = {
   ],
   admin: [
     {
+      path: "/admin-dashboard/dashboard",
+      icon: `<i class="fa-solid fa-chart-bar pf-nav-icon"></i>`,
+      title: "Dashboard",
+    },
+    {
       path: "/admin-dashboard/profile",
       icon: `<i class="fas fa-user pf-nav-icon"></i>`,
       title: "Profile",
@@ -62,6 +67,11 @@ const dasbhoardSidebarContent = {
       path: "/admin-dashboard/customers",
       icon: `<i class="fa-solid fa-users pf-nav-icon"></i>`,
       title: "Customers",
+    },
+    {
+      path: "/admin-dashboard/add-new-user",
+      icon: `<i class="fa-solid fa-user-plus pf-nav-icon"></i>`,
+      title: "Add New User",
     },
   ],
 };

@@ -5,16 +5,27 @@ import { initializeUpdateProfile } from "../pages/customer-dashboard/update-prof
 
 import { addProductHandler } from "../pages/seller-dashboard/my-products/my-products.js";
 
+import { initializeAddUser } from "../pages/admin-dashboard/add-new-user/add-new-user.js";
+import { initializeCustomers } from "../pages/admin-dashboard/customers/customers.js";
+import { dashboardInit } from "../pages/admin-dashboard/dashboard/dashboard.js";
+import { initializeSellers } from "../pages/admin-dashboard/sellers/sellers.js";
+import { initializeCart } from "../pages/cart/mycart.js";
 import { initializeHome } from "../pages/home/home.js";
 import { loginSubmitHandler } from "../pages/login/login.js";
+import displayProductSummary, {
+  initializePayment,
+  paymentStutusFn,
+  validateBuiltPayment,
+} from "../pages/payment/payment.js";
 import { registerSubmitHandler } from "../pages/register/main.js";
 import { initializeProductDetailsFunctions } from "../pages/shop/product-details/product-details.js";
 import { initializeShop } from "../pages/shop/shop.js";
-import { initializeWishlist, refreshWishlist } from "../pages/wishlist/mywishlist.js";
+import {
+  initializeWishlist,
+  refreshWishlist,
+} from "../pages/wishlist/mywishlist.js";
 import { router } from "./router.js";
 import { cartAndWishlistLogic } from "./shred.js";
-import displayProductSummary, { initializePayment, paymentStutusFn, validateBuiltPayment } from "../pages/payment/payment.js";
-import { initializeCart } from "../pages/cart/mycart.js";
 
 //------------------------------------------------------------//
 
@@ -87,14 +98,25 @@ export const PAGE_INITIALIZERS = {
     registerSubmitHandler();
   },
 
-  "/payment": ()=>{
-     initializePayment() ;
-    displayProductSummary() ;
-    validateBuiltPayment() ;
+  "/payment": () => {
+    initializePayment();
+    displayProductSummary();
+    validateBuiltPayment();
     paymentStutusFn();
   },
-  
-  
+
+  "/admin-dashboard/sellers": () => {
+    initializeSellers();
+  },
+  "/admin-dashboard/customers": () => {
+    initializeCustomers();
+  },
+  "/admin-dashboard/add-new-user": () => {
+    initializeAddUser();
+  },
+  "/admin-dashboard/dashboard": () => {
+    dashboardInit();
+  },
 };
 
 document.addEventListener("click", (e) => {

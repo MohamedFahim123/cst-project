@@ -23,6 +23,23 @@
   --ap-main-color: #f5f3fe93;
   --ap-font-size: 12px;
   --main-border-radius: 12px;
+  --pf-border-color: #e2e8f0;
+  --pf-border-radius: 12px;
+  --pf-primary: #634c9f;
+  --pf-secondary: #8a75c1;
+  --pf-light: #f7fafc;
+  --pf-dark: #2d3748;
+  --pf-gray: #718096;
+  --pf-border: #e5e7eb;
+  --pf-success: #48bb78;
+  --pf-danger: #e53e3e;
+  --pf-warning: #ed8936;
+  --pf-info: #4299e1;
+  --pf-white: #ffffff;
+  --pf-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --pf-radius: 12px;
+  --pf-transition: all 0.3s ease;
 }
 
 * {
