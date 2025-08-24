@@ -39,7 +39,7 @@ export async function initializePayment() {
   document.body.appendChild(paypalScript);
 }
 
-function paypalGateway() {
+export function paypalGateway() {
   const total = 15.89;
 
   paypal
@@ -75,12 +75,31 @@ function paypalGateway() {
 // ///////////        display order summary          //////////////////////////////////////// 
 
 
-let orders =[];
+
+
+
+
+
+
+
+let orders = [];
 
 export default function displayProductSummary() {
+  const user = JSON.parse(localStorage.getItem("currentUser"));
+  const userProductsItems = user.cart;
   const tbody = document.querySelector("tbody");
-  const userProductsItems = JSON.parse(localStorage.getItem("currentUser")).cart;
-  orders=[... userProductsItems] 
+
+  // ✅ Create ONE new order object
+  const newOrder = {
+    userID: user.id,
+    date: new Date().toISOString(), // optional for history
+    products: [...userProductsItems]
+  };
+
+  // put into orders array (so popup can use it later)
+  orders = [newOrder];
+
+  console.log("Current order:", newOrder);
 
   // Clear old rows first
   tbody.innerHTML = "";
@@ -103,10 +122,8 @@ export default function displayProductSummary() {
     const productTotal = product.quantity * product.price;
     totalCell.textContent = `$${productTotal.toFixed(2)}`;
 
-    // Add to grand total (keep as number)
     grandTotal += productTotal;
 
-    // Append cells in the right order
     row.appendChild(nameCell);
     row.appendChild(qtyCell);
     row.appendChild(priceCell);
@@ -119,7 +136,7 @@ export default function displayProductSummary() {
   const totalRow = document.createElement("tr");
 
   const labelCell = document.createElement("td");
-  labelCell.setAttribute("colspan", "3"); // merge 3 cells
+  labelCell.setAttribute("colspan", "3");
   labelCell.style.textAlign = "right";
   labelCell.style.fontWeight = "bold";
   labelCell.style.color = "#634c9f";
@@ -129,7 +146,6 @@ export default function displayProductSummary() {
   grandTotalCell.style.fontWeight = "bold";
   grandTotalCell.innerHTML = `<span style="color: green;">$${grandTotal.toFixed(2)}</span>`;
 
-  // Append to total row
   totalRow.appendChild(labelCell);
   totalRow.appendChild(grandTotalCell);
 
@@ -138,22 +154,11 @@ export default function displayProductSummary() {
 
 
 
-// built payment validayion :
-
-
- export function validateBuiltPayment(){
-// don't apply it for make testing easy and save time ;
-}
-
-
-
-// popup success payment or failed
+// ✅ Save order to history on payment success
 export function paymentStutusFn() {
- 
   const paymentStatusBtn = document.getElementById("paymentStatusBtn");
   const popup = document.getElementById("popup");
 
-  // overlay
   const createdOverlay = document.createElement("div");
   createdOverlay.style.width = "100vw";
   createdOverlay.style.height = "100vh";
@@ -166,7 +171,6 @@ export function paymentStutusFn() {
   createdOverlay.style.alignItems = "center";
   createdOverlay.style.justifyContent = "center";
 
-  // popup box
   const createdPopupBox = document.createElement("div");
   createdPopupBox.style.width = "600px";
   createdPopupBox.style.minHeight = "400px";
@@ -180,14 +184,20 @@ export function paymentStutusFn() {
   createdPopupBox.style.flexDirection = "column";
   createdPopupBox.style.justifyContent = "center";
   createdPopupBox.style.alignItems = "center";
+  createdPopupBox.style.opacity = "0";
+  createdPopupBox.style.transition = "all 1s";
 
-  // success message
+// Wait a tiny bit then show
+setTimeout(() => {
+  createdPopupBox.style.opacity = "1";
+}, 10);
+
+
   const message = document.createElement("h2");
   message.innerText = "✅ Payment Successful!";
   message.style.color = "var(--title-second-color)";
   message.style.marginBottom = "20px";
 
-  // close button
   const closeBtn = document.createElement("button");
   closeBtn.innerText = "Close";
   closeBtn.style.padding = "10px 20px";
@@ -200,29 +210,39 @@ export function paymentStutusFn() {
 
   closeBtn.addEventListener("click", () => {
     createdOverlay.remove();
-    window.location.href ="/" ;
-    cart.clear()
+    window.location.href = "/";
+    cart.clear();
   });
 
   createdPopupBox.appendChild(message);
   createdPopupBox.appendChild(closeBtn);
   createdOverlay.appendChild(createdPopupBox);
 
-  
   paymentStatusBtn.addEventListener("click", function () {
     console.log("payment status");
+
+    // get existing history
     let existingOrders = JSON.parse(localStorage.getItem("orders")) || [];
 
-  // merge with new cart items
-  let updatedOrders = [...existingOrders, ...orders];
+    // append the new order(s)
+    let updatedOrders = [...existingOrders, ...orders];
 
-    localStorage.setItem("orders" , JSON.stringify(updatedOrders));
+    // save to localStorage
+    localStorage.setItem("orders", JSON.stringify(updatedOrders));
+
     popup.appendChild(createdOverlay);
 
-
-    
+    console.log("Updated orders:", updatedOrders);
   });
 }
+
+
+ export function validateBuiltPayment(){
+// don't apply it for make testing easy and save time ;
+}
+
+
+
 
 
 
