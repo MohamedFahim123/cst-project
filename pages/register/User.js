@@ -44,6 +44,9 @@ class Customer extends User {
     this.role = "customer";
     this.cart = [];
     this.orders = [];
+    this.avatar = "../../assets/avatar.jpg";
+    this.address = "";
+    this.phone = "";
   }
 
   addToCart(productID, productName, productPrice, quantity) {

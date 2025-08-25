@@ -1,4 +1,5 @@
 import { showToast } from "../../actions/showToast.js";
+import { getTotalOrderPrice } from "../../actions/helperFuncitons.js";
 
 // Pagination constants
 const ORDERS_PER_PAGE = 8;
@@ -17,8 +18,7 @@ function renderOrdersTable(page = 1) {
   }
 
   const allUserOrders = getOrdersByUserId(currentUser.id);
-  const userName = currentUser.name;
-  const userId = currentUser.id;
+  const userName = currentUser.username;
 
   // Calculate pagination
   const totalOrders = allUserOrders.length;
@@ -39,7 +39,7 @@ function renderOrdersTable(page = 1) {
   // Generate table rows for paginated orders
   const tableRows = paginatedOrders
     .map((order, index) => {
-      const totalPrice = getTotalPrice(order);
+      const totalPrice = getTotalOrderPrice(order);
       const isFirstRow = index === 0;
       const isLastRow = index === paginatedOrders.length - 1;
 
@@ -204,11 +204,6 @@ function attachOrderEventListeners() {
 function getOrdersByUserId(userId) {
   const orders = JSON.parse(localStorage.getItem("orders")) || [];
   return orders.filter((order) => order.userId === userId);
-}
-
-// pass the order object and get the total price of the order
-function getTotalPrice(order) {
-  return order.products.reduce((total, product) => total + product.price * product.quantity, 0).toFixed(2);
 }
 
 // Helper function to format order date

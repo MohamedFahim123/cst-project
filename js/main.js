@@ -1,8 +1,8 @@
 import Swiper from "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs";
 import { initializeOrdersPage } from "./globalJs/orders.js";
-import { initializeOrderDetails } from "../pages/customer-dashboard/order-details/order-details.js";
-import { initializeProfile } from "../pages/customer-dashboard/profile/profile.js";
-import { initializeUpdateProfile } from "../pages/customer-dashboard/update-profile/update-profile.js";
+import { initializeOrderDetails } from "./globalJs/order-details.js";
+import { initializeProfile } from "./globalJs/profile.js";
+import { initializeUpdateProfile } from "./globalJs/update-profile.js";
 
 import { addProductHandler } from "../pages/seller-dashboard/my-products/my-products.js";
 
