@@ -1,3 +1,4 @@
+import { initializeLocalStorage } from "../actions/initializeLocalstorage.js";
 import { handleRenderingSideBarLinks } from "../components/sidebar.js";
 import { APP_ROUTES } from "./AppRoutes.js";
 import { PAGE_INITIALIZERS } from "./main.js";
@@ -213,6 +214,9 @@ class Router {
       const hashPath = window.location.hash.slice(1) || "/";
       const normalizedPath = this.#normalizePath(hashPath);
 
+      // if navigate to any path this will be called
+      initializeLocalStorage();
+
       if (
         this.#currentPath === normalizedPath &&
         !normalizedPath.includes("/shop/product-details")
@@ -415,7 +419,8 @@ export const router = new Router({
     "/pages/seller-dashboard/my-products/my-products.html",
 
   // admin Dashboard
-  "/admin-dashboard/dashboard": "/pages/admin-dashboard/dashboard/dashboard.html",
+  "/admin-dashboard/dashboard":
+    "/pages/admin-dashboard/dashboard/dashboard.html",
   "/admin-dashboard/profile": "/pages/admin-dashboard/profile/profile.html",
   "/admin-dashboard/orders": "/pages/admin-dashboard/orders/orders.html",
   "/admin-dashboard/update-profile":

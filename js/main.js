@@ -15,6 +15,7 @@ import { loginSubmitHandler } from "../pages/login/login.js";
 import displayProductSummary, {
   initializePayment,
   paymentStutusFn,
+  paypalGateway,
   validateBuiltPayment,
 } from "../pages/payment/payment.js";
 import { registerSubmitHandler } from "../pages/register/main.js";
@@ -103,6 +104,7 @@ export const PAGE_INITIALIZERS = {
     displayProductSummary();
     validateBuiltPayment();
     paymentStutusFn();
+    paypalGateway();
   },
 
   "/admin-dashboard/sellers": () => {
