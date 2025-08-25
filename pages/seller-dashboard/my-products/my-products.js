@@ -15,7 +15,21 @@ function addProductHandler() {
     img: document.getElementById("productImg"),
   };
 
+  const editInputs = {
+    title: document.getElementById("editProductTitle"),
+    status: document.getElementById("editAvailabilityStatus"),
+    brand: document.getElementById("editBrand"),
+    quantity: document.getElementById("editQuantityInStock"),
+    description: document.getElementById("editDescription"),
+    category: document.getElementById("editCategory"),
+    price: document.getElementById("editPrice"),
+    discount: document.getElementById("editDiscount"),
+    img: document.getElementById("editProductImg"),
+  };
+
   const cardContainer = document.getElementById("products-cards-container");
+  const addProductForm = document.getElementById("addProductForm");
+  const editProductForm = document.getElementById("editProductForm");
 
   // --- Local Storage Helpers ---
   function getProducts() {
@@ -90,6 +104,21 @@ function addProductHandler() {
     });
   }
 
+  function showEditValidationErrors(errors) {
+    // remove old alerts
+    document.querySelectorAll(".error-alert").forEach((e) => e.remove());
+
+    Object.entries(errors).forEach(([key, message]) => {
+      const inputEl = editInputs[key];
+      if (inputEl) {
+        const alert = document.createElement("div");
+        alert.className = "alert alert-danger mt-2 p-1 error-alert";
+        alert.innerText = message;
+        inputEl.insertAdjacentElement("afterend", alert);
+      }
+    });
+  }
+
   // --- Product-CRUD ---
   function createProductData({
     title,
@@ -110,7 +139,7 @@ function addProductHandler() {
       description,
       availabilityStatus: status,
       category,
-      price: Number(price - (price * discount) / 100), // ✅ corrected discount logic
+      price: Number(price - (price * discount) / 100),
       discountPercentage: Number(discount),
       deletedPrice: Number(price),
       thumbnail: img,
@@ -137,10 +166,11 @@ function addProductHandler() {
     );
     saveProducts(updatedProducts);
   }
+  // function that return Product detailed Obj
   function getProductDetails(productID) {
     const productDetails = getProducts().filter(
       (product) => product.id === productID
-    );
+    )[0];
     return productDetails;
   }
 
@@ -185,7 +215,7 @@ function addProductHandler() {
   renderSellerProducts(getCurrentUser().id);
 
   // --- Form Submit ---
-  document.getElementById("addProductForm").addEventListener("submit", (e) => {
+  addProductForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
     const productData = {
@@ -209,6 +239,11 @@ function addProductHandler() {
     const newProduct = createProductData(productData);
     addProduct(newProduct);
     renderSellerProducts(getCurrentUser().id);
+    // close the modal
+    const modal = bootstrap.Modal.getInstance(
+      document.getElementById("addProduct")
+    );
+    modal.hide();
   });
 
   // --- Stock Availability ---
@@ -228,16 +263,105 @@ function addProductHandler() {
       renderSellerProducts(getCurrentUser().id);
     }
   });
-  // -------------UpdateBtn Handler --------------
-  document
-    .getElementById("editProductForm")
-    .addEventListener("submit", function (e) {
-      e.preventDefault();
-      console.log(e.target.dataset.id);
-      if (e.target.dataset.id) {
-        console.log(e.target.dataset.id);
+
+  cardContainer.addEventListener("click", (e) => {
+    if (e.target.classList.contains("edit-btn")) {
+      const productId = Number(e.target.dataset.id);
+      // passing the selected product to the updateproduct form
+      document.getElementById("editProductId").value = productId;
+      const product = getProductDetails(productId);
+      if (product) {
+        const {
+          title,
+          description,
+          thumbnail,
+          stock,
+          price,
+          discountPercentage,
+          category,
+          brand,
+          availabilityStatus,
+        } = product;
+        editInputs.title.value = title;
+        editInputs.description.value = description;
+        editInputs.img.value = thumbnail;
+        editInputs.quantity.value = stock;
+        editInputs.price.value = price;
+        editInputs.discount.value = discountPercentage;
+        editInputs.category.value = category;
+        editInputs.brand.value = brand;
+        editInputs.status.value = availabilityStatus;
       }
-    });
+    }
+  });
+
+  // -------------UpdateBtn Handler --------------
+
+  // --- Update Product ---
+  editProductForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    // getting the productId from the Hidden Input
+    const productId = Number(document.getElementById("editProductId").value);
+
+    // getting updated values from the form
+    const updatedData = {
+      title: editInputs.title.value.trim(),
+      status: editInputs.status.value,
+      brand: editInputs.brand.value.trim(),
+      quantity: editInputs.quantity.value,
+      description: editInputs.description.value.trim(),
+      category: editInputs.category.value,
+      price: editInputs.price.value,
+      discount: editInputs.discount.value,
+      img: editInputs.img.value.trim(),
+    };
+
+    // 3. apply validation
+    const validation = validateProduct(updatedData);
+    if (!validation.isValid) {
+      showEditValidationErrors(validation.errors);
+      return;
+    }
+
+    // 4. getting the selected product index
+    const products = getProducts();
+    const index = products.findIndex((p) => p.id === productId);
+
+    if (index !== -1) {
+      // 5. apply update
+      products[index] = {
+        ...products[index], // خلى الـ id و sellerID زي ما هما
+        title: updatedData.title,
+        brand: updatedData.brand,
+        stock: Number(updatedData.quantity),
+        description: updatedData.description,
+        availabilityStatus: updatedData.status,
+        category: updatedData.category,
+        price: Number(
+          updatedData.price - (updatedData.price * updatedData.discount) / 100
+        ),
+        discountPercentage: Number(updatedData.discount),
+        deletedPrice: Number(updatedData.price),
+        thumbnail: updatedData.img,
+        images: [updatedData.img],
+      };
+
+      //    save back to localstorage
+      saveProducts(products);
+
+      // 7.  render
+      renderSellerProducts(getCurrentUser().id);
+
+      const modal = bootstrap.Modal.getInstance(
+        document.getElementById("editProduct")
+      );
+      modal.hide();
+
+      // 9. show Toast
+      showToast("Product Updated Successfully ✅", "success");
+    }
+  });
 }
 
 export { addProductHandler };
