@@ -2,7 +2,6 @@ export const dashboardInit = () => {
   // Sales Chart
   const salesCtx = document.getElementById("salesChart").getContext("2d");
 
-  console.log(document.getElementById("salesChart"));
   const salesChart = new Chart(salesCtx, {
     type: "line",
     data: {

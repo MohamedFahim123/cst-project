@@ -75,11 +75,10 @@ export function initializeOrderDetails() {
 
 function loadOrderData() {
   // OrderId from localStorage
-  const orderId = localStorage.getItem("selectedOrder") || odOrderData.id;
-  const orders = JSON.parse(localStorage.getItem("orders")) || [];
-  const order = orders.find((order) => order.id === +orderId);
-  console.log(orders, "hellooooooooo", order);
-  displayOrderData(order);
+  // const orderId = localStorage.getItem("selectedOrder") || odOrderData.id;
+  // const orders = JSON.parse(localStorage.getItem("orders")) || [];
+  // const order = orders.find((order) => order.id === +orderId);
+  displayOrderData(odOrderData);
 }
 
 // Display order data
@@ -101,7 +100,7 @@ function displayOrderData(order) {
   `;
 
   // Update total
-  document.querySelector(".od-total-amount").textContent = `$${getTotalOrderPrice(order)}`;
+  document.querySelector(".od-total-amount").textContent = `$${order.total}`;
 
   // Update timeline
   displayTimeline(order.timeline);

@@ -144,8 +144,8 @@ document.addEventListener("click", (e) => {
 window.addEventListener("scroll", () => {
   const header = document.getElementById("navbar-nav");
   if (window.scrollY > 0) {
-    header.classList.add("position-fixed", "w-100", "z-3");
+    header.classList.add("position-fixed", "w-100", "z-3","top-0");
   } else {
-    header.classList.remove("position-fixed", "w-100", "z-3");
+    header.classList.remove("position-fixed", "w-100", "z-3","top-0");
   }
 });

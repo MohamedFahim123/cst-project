@@ -1,32 +1,34 @@
-[
-  {
-    "id": 1,
-    "username": "mohamed fahim",
-    "email": "mohamed@fahim.com",
-    "password": "mohamed1",
-    "role": "admin",
-    "phone": "+1 (555) 987-6543",
-    "address": "123 Main St",
-    "avatar": "../../assets/avatar.jpg"
-  },
-  {
-    "id": 2,
-    "username": "Antonette",
-    "password": "customer1",
-    "email": "customer@example.com",
-    "role": "customer",
-    "phone": "+1 (555) 987-6543",
-    "address": "123 Main St",
-    "avatar": "../../assets/avatar.jpg"
-  },
-  {
-    "id": 3,
-    "username": "Samantha",
-    "password": "seller1",
-    "email": "seller@example.com",
-    "role": "seller",
-    "phone": "+1 (555) 987-6543",
-    "address": "123 Main St",
-    "avatar": "../../assets/avatar.jpg"
-  }
-]
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "mohamed fahim",
+      "email": "mohamed@fahim.com",
+      "password": "mohamed1",
+      "role": "admin",
+      "phone": "+1 (555) 987-6543",
+      "address": "123 Main St",
+      "avatar": "../../assets/avatar.jpg"
+    },
+    {
+      "id": 2,
+      "username": "Antonette",
+      "password": "customer1",
+      "email": "customer@example.com",
+      "role": "customer",
+      "phone": "+1 (555) 987-6543",
+      "address": "123 Main St",
+      "avatar": "../../assets/avatar.jpg"
+    },
+    {
+      "id": 3,
+      "username": "Samantha",
+      "password": "seller1",
+      "email": "seller@example.com",
+      "role": "seller",
+      "phone": "+1 (555) 987-6543",
+      "address": "123 Main St",
+      "avatar": "../../assets/avatar.jpg"
+    }
+  ]
+}

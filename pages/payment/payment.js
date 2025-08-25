@@ -1,10 +1,10 @@
 import { cart } from "../../actions/cart.js";
 
-
 export async function initializePayment() {
   // Load PayPal SDK dynamically
   const paypalScript = document.createElement("script");
-  paypalScript.src ="https://www.sandbox.paypal.com/sdk/js?client-id=AWwGica7qOijXlw0dsQ_OYl-Tft5VkdJTDPPM5_cchS4tD-0Dk0Jayd0C53wHKoXHdsIbsqsOaAwzfSq&currency=USD"
+  paypalScript.src =
+    "https://www.sandbox.paypal.com/sdk/js?client-id=AWwGica7qOijXlw0dsQ_OYl-Tft5VkdJTDPPM5_cchS4tD-0Dk0Jayd0C53wHKoXHdsIbsqsOaAwzfSq&currency=USD";
 
   paypalScript.onload = () => {
     if (window.paypal) {
@@ -60,7 +60,6 @@ export function paypalGateway() {
       onApprove: function (data, actions) {
         return actions.order.capture().then(function (details) {
           alert("✅ Payment completed by " + details.payer.name.given_name);
-          console.log(details);
         });
       },
       onError: function (err) {
@@ -71,16 +70,7 @@ export function paypalGateway() {
     .render("#paypal-button-container");
 }
 
-
-// ///////////        display order summary          //////////////////////////////////////// 
-
-
-
-
-
-
-
-
+// ///////////        display order summary          ////////////////////////////////////////
 
 let orders = [];
 
@@ -93,20 +83,18 @@ export default function displayProductSummary() {
   const newOrder = {
     userID: user.id,
     date: new Date().toISOString(), // optional for history
-    products: [...userProductsItems]
+    products: [...userProductsItems],
   };
 
   // put into orders array (so popup can use it later)
   orders = [newOrder];
-
-  console.log("Current order:", newOrder);
 
   // Clear old rows first
   tbody.innerHTML = "";
 
   let grandTotal = 0;
 
-  userProductsItems.forEach(product => {
+  userProductsItems.forEach((product) => {
     const row = document.createElement("tr");
 
     const nameCell = document.createElement("td");
@@ -144,15 +132,15 @@ export default function displayProductSummary() {
 
   const grandTotalCell = document.createElement("td");
   grandTotalCell.style.fontWeight = "bold";
-  grandTotalCell.innerHTML = `<span style="color: green;">$${grandTotal.toFixed(2)}</span>`;
+  grandTotalCell.innerHTML = `<span style="color: green;">$${grandTotal.toFixed(
+    2
+  )}</span>`;
 
   totalRow.appendChild(labelCell);
   totalRow.appendChild(grandTotalCell);
 
   tbody.appendChild(totalRow);
 }
-
-
 
 // ✅ Save order to history on payment success
 export function paymentStutusFn() {
@@ -187,11 +175,10 @@ export function paymentStutusFn() {
   createdPopupBox.style.opacity = "0";
   createdPopupBox.style.transition = "all 1s";
 
-// Wait a tiny bit then show
-setTimeout(() => {
-  createdPopupBox.style.opacity = "1";
-}, 10);
-
+  // Wait a tiny bit then show
+  setTimeout(() => {
+    createdPopupBox.style.opacity = "1";
+  }, 10);
 
   const message = document.createElement("h2");
   message.innerText = "✅ Payment Successful!";
@@ -231,20 +218,9 @@ setTimeout(() => {
     localStorage.setItem("orders", JSON.stringify(updatedOrders));
 
     popup.appendChild(createdOverlay);
-
-    console.log("Updated orders:", updatedOrders);
   });
 }
 
-
- export function validateBuiltPayment(){
-// don't apply it for make testing easy and save time ;
+export function validateBuiltPayment() {
+  // don't apply it for make testing easy and save time ;
 }
-
-
-
-
-
-
-
-

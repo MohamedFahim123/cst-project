@@ -272,7 +272,7 @@ function initializeImageUpload() {
           localStorage.setItem("currentUser", JSON.stringify(currentUser));
           // add this user to users array in local storage
           const users = JSON.parse(localStorage.getItem("users")) || [];
-          const userIndex = users.findIndex((user) => user.id == currentUser.id);
+          const userIndex = users.users.findIndex((user) => user.id == currentUser.id);
           if (userIndex !== -1) {
             users[userIndex] = currentUser;
             localStorage.setItem("users", JSON.stringify(users));
