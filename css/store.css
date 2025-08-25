@@ -10,10 +10,10 @@
 @import url("../pages/register/register.css");
 @import url("../pages/login/login.css");
 
-@import url("../pages/customer-dashboard/profile/profile.css");
-@import url("../pages/customer-dashboard/orders/orders.css");
-@import url("../pages/customer-dashboard/update-profile/update-profile.css");
-@import url("../pages/customer-dashboard/order-details/order-details.css");
+@import url("../css/globalCss/profile.css");
+@import url("../css/globalCss/orders.css");
+@import url("../css/globalCss/update-profile.css");
+@import url("../css/globalCss/order-details.css");
 
 @import url("../pages/seller-dashboard/my-products/my-products.css");
 
@@ -23,4 +23,3 @@
 @import url("../pages/admin-dashboard/dashboard/dashboard.css");
 
 @import url("../pages/payment/payment.css");
-

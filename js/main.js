@@ -1,7 +1,8 @@
 import Swiper from "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs";
-import { initializeOrderDetails } from "../pages/customer-dashboard/order-details/order-details.js";
-import { initializeProfile } from "../pages/customer-dashboard/profile/profile.js";
-import { initializeUpdateProfile } from "../pages/customer-dashboard/update-profile/update-profile.js";
+import { initializeOrdersPage } from "./globalJs/orders.js";
+import { initializeOrderDetails } from "./globalJs/order-details.js";
+import { initializeProfile } from "./globalJs/profile.js";
+import { initializeUpdateProfile } from "./globalJs/update-profile.js";
 
 import { addProductHandler } from "../pages/seller-dashboard/my-products/my-products.js";
 
@@ -55,6 +56,9 @@ export const PAGE_INITIALIZERS = {
   "/customer-dashboard/update-profile": () => {
     initializeUpdateProfile();
   },
+  "/customer-dashboard/orders": () => {
+    initializeOrdersPage();
+  },
   "/customer-dashboard/order-details": () => {
     initializeOrderDetails();
   },
@@ -63,6 +67,9 @@ export const PAGE_INITIALIZERS = {
   },
   "/admin-dashboard/update-profile": () => {
     initializeUpdateProfile();
+  },
+  "/admin-dashboard/orders": () => {
+    initializeOrdersPage();
   },
   "/admin-dashboard/order-details": () => {
     initializeOrderDetails();
@@ -73,9 +80,13 @@ export const PAGE_INITIALIZERS = {
   "/seller-dashboard/update-profile": () => {
     initializeUpdateProfile();
   },
+  "/seller-dashboard/orders": () => {
+    initializeOrdersPage();
+  },
   "/seller-dashboard/order-details": () => {
     initializeOrderDetails();
   },
+
   "/seller-dashboard/my-products": () => {
     addProductHandler();
   },

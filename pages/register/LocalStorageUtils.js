@@ -24,7 +24,7 @@ function getCurrentUser() {
 // function that looks for a users array stored in local Storage
 function getUsersFromLocalStorage() {
   const users = JSON.parse(localStorage.getItem("users")) || { users: [] };
-  return users?.users;
+  return users;
 }
 
 function checkIfUserExists(email) {

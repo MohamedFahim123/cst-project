@@ -1,7 +1,8 @@
+import { getTotalOrderPrice } from "../../actions/helperFuncitons.js";
 // Temporary order data for demonstration
 const odOrderData = {
   id: "ORD-2024-001",
-  date: "January 15, 2024",
+  date: "2023-10-01T12:00:00Z",
   status: "delivered", // delivered, processing, shipped, cancelled
   total: 299.98,
   items: [
@@ -15,18 +16,6 @@ const odOrderData = {
       specs: {
         color: "Black",
         size: "Standard",
-      },
-    },
-    {
-      id: 2,
-      name: "Smart Fitness Watch",
-      description: "Advanced fitness tracking with heart rate monitor and GPS",
-      image: "../../../assets/product-img2.jpeg",
-      price: 149.99,
-      quantity: 1,
-      specs: {
-        color: "Silver",
-        band: "Sport",
       },
     },
   ],
@@ -86,8 +75,11 @@ export function initializeOrderDetails() {
 
 function loadOrderData() {
   // OrderId from localStorage
-  const orderId = localStorage.getItem("orderId") || odOrderData.id;
-  displayOrderData(odOrderData);
+  const orderId = localStorage.getItem("selectedOrder") || odOrderData.id;
+  const orders = JSON.parse(localStorage.getItem("orders")) || [];
+  const order = orders.find((order) => order.id === +orderId);
+  console.log(orders, "hellooooooooo", order);
+  displayOrderData(order);
 }
 
 // Display order data
@@ -109,7 +101,7 @@ function displayOrderData(order) {
   `;
 
   // Update total
-  document.querySelector(".od-total-amount").textContent = `$${order.total.toFixed(2)}`;
+  document.querySelector(".od-total-amount").textContent = `$${getTotalOrderPrice(order)}`;
 
   // Update timeline
   displayTimeline(order.timeline);

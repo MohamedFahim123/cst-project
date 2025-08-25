@@ -39,7 +39,7 @@
 .invoice-table {
   background: var(--bg-white);
   border-radius: var(--pf-border-radius);
-  box-shadow: var(--shadow-md);
+  /* box-shadow: var(--shadow-md); */
   overflow: hidden;
 }
 
@@ -115,6 +115,89 @@
 
   .action-buttons {
     flex-direction: column;
+  }
+}
+/* Orders Pagination Styles */
+.or-pagination-container {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.or-pagination-list {
+  margin-bottom: 0;
+  gap: 0.25rem;
+}
+
+.or-pagination-list .page-item .page-link {
+  color: var(--text-color);
+  background-color: var(--bg-white);
+  border: 1px solid var(--pf-border-color);
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 40px;
+}
+
+.or-pagination-list .page-item .page-link:hover {
+  background-color: var(--bg-main-color);
+  color: var(--bg-white);
+  border-color: var(--bg-main-color);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.or-pagination-list .page-item.active .page-link {
+  background-color: var(--bg-main-color);
+  border-color: var(--bg-main-color);
+  color: var(--bg-white);
+  box-shadow: var(--shadow-md);
+}
+
+.or-pagination-list .page-item.active .page-link:hover {
+  background-color: var(--bg-main-color);
+  border-color: var(--bg-main-color);
+  transform: none;
+}
+
+.or-pagination-list .page-item.disabled .page-link {
+  color: var(--gray-400);
+  background-color: var(--bg-light);
+  border-color: var(--pf-border-color);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.or-pagination-list .page-item.disabled .page-link:hover {
+  background-color: var(--bg-light);
+  color: var(--gray-400);
+  border-color: var(--pf-border-color);
+  transform: none;
+  box-shadow: none;
+}
+
+.or-pagination-list .page-item .page-link i {
+  font-size: 0.75rem;
+}
+
+/* Responsive pagination */
+@media (max-width: 576px) {
+  .or-pagination-container {
+    margin-top: 1.5rem;
+  }
+
+  .or-pagination-list .page-item .page-link {
+    padding: 0.4rem 0.6rem;
+    min-width: 36px;
+    height: 36px;
+    font-size: 0.8rem;
   }
 }
 

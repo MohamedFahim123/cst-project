@@ -4,6 +4,7 @@ export function initializeLocalStorage() {
   initializeUsers();
   initializeShopFilters();
   initializeProducts();
+  initializeOrders();
   // can add extra initialization functions here
 }
 
@@ -28,5 +29,13 @@ async function initializeUsers() {
   if (!users) {
     const users = await fetchData("/json/allusers.json");
     localStorage.setItem("users", JSON.stringify(users));
+  }
+}
+
+async function initializeOrders() {
+  const orders = JSON.parse(localStorage.getItem("orders"));
+  if (!orders) {
+    const orders = await fetchData("/json/orders.json");
+    localStorage.setItem("orders", JSON.stringify(orders));
   }
 }
