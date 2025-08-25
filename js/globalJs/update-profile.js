@@ -1,3 +1,4 @@
+import { showToast } from "../../actions/showToast.js";
 const upUserData = {
   id: 1,
   username: "John Doe",
@@ -6,6 +7,7 @@ const upUserData = {
   address: "123 Main Street, ",
   avatar: "../../assets/avatar.jpg",
 };
+const defaultAvatar = "../../assets/avatar.jpg";
 
 // Initialize update profile functionality
 export function initializeUpdateProfile() {
@@ -24,7 +26,7 @@ function loadUserData() {
   // Update avatar info section
   upUpdateElement("up-current-name", currentUser.username);
   upUpdateElement("up-current-email", currentUser.email);
-  upUpdateImageElement("up-upload-img", currentUser.avatar || "../../assets/avatar.jpg");
+  upUpdateImageElement("up-upload-img", currentUser.avatar || defaultAvatar);
 
   // Update form fields - only the basic profile fields
   upUpdateInputValue("up-update-name", currentUser.username);
@@ -72,18 +74,6 @@ function initializeFormHandlers() {
   if (updateForm) {
     updateForm.addEventListener("submit", handleProfileUpdate);
   }
-
-  // Cancel button
-  const cancelBtn = document.getElementById("up-cancel-btn");
-  if (cancelBtn) {
-    cancelBtn.addEventListener("click", handleFormCancel);
-  }
-
-  // Reset button
-  const resetBtn = document.getElementById("up-reset-btn");
-  if (resetBtn) {
-    resetBtn.addEventListener("click", handleFormReset);
-  }
 }
 
 // Handle profile update
@@ -98,7 +88,7 @@ function handleProfileUpdate(e) {
     address: document.getElementById("up-update-address").value.trim(),
     avatar: document.getElementById("up-avatar-input").files[0]
       ? URL.createObjectURL(document.getElementById("up-avatar-input").files[0])
-      : upUserData.avatar,
+      : defaultAvatar,
   };
 
   // Validate form data
@@ -123,7 +113,7 @@ function handleProfileUpdate(e) {
       hideLoadingState();
 
       // Show success message
-      showNotification("Profile updated successfully!", "success");
+      showToast("Profile updated successfully!", "success");
 
       // Update sidebar info
       upUpdateElement("pf-sidebar-name", updatedUser.username);
@@ -139,7 +129,7 @@ function handleProfileUpdate(e) {
     } catch (error) {
       console.error("Error updating profile:", error);
       hideLoadingState();
-      showNotification("Error updating profile. Please try again.", "error");
+      showToast("Error updating profile. Please try again.", "error");
     }
   }, 2000);
 }
@@ -217,27 +207,6 @@ function clearValidationStates() {
   });
 }
 
-// Handle form cancel
-function handleFormCancel() {
-  if (confirm("Are you sure you want to cancel? Any unsaved changes will be lost.")) {
-    loadUserData();
-    clearValidationStates();
-    showNotification("Changes cancelled", "info");
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
-}
-
-// Handle form reset
-function handleFormReset() {
-  if (
-    confirm("Are you sure you want to reset the form? This will restore all fields to their original values.")
-  ) {
-    loadUserData();
-    clearValidationStates();
-    showNotification("Form reset to original values", "info");
-  }
-}
-
 // Initialize image upload
 function initializeImageUpload() {
   const avatarInput = document.getElementById("up-avatar-input");
@@ -248,13 +217,13 @@ function initializeImageUpload() {
       if (file) {
         // Validate file type
         if (!file.type.startsWith("image/")) {
-          showNotification("Please select a valid image file", "error");
+          showToast("Please select a valid image file", "error");
           return;
         }
 
         // Validate file size (max 5MB)
         if (file.size > 5 * 1024 * 1024) {
-          showNotification("Image size should be less than 5MB", "error");
+          showToast("Image size should be less than 5MB", "error");
           return;
         }
 
@@ -268,7 +237,7 @@ function initializeImageUpload() {
           // Save to user data (will be saved with form submission)
           const currentUser = JSON.parse(localStorage.getItem("currentUser")) || upUserData;
           // currentUser.avatar = imageUrl;
-          currentUser.avatar = "../../assets/avatar.jpg"; // Use a placeholder or default image path
+          currentUser.avatar = defaultAvatar; // Use a placeholder or default image path
           localStorage.setItem("currentUser", JSON.stringify(currentUser));
           // add this user to users array in local storage
           const users = JSON.parse(localStorage.getItem("users")) || [];
@@ -277,8 +246,7 @@ function initializeImageUpload() {
             users[userIndex] = currentUser;
             localStorage.setItem("users", JSON.stringify(users));
           }
-
-          showNotification("Profile picture updated!", "success");
+          showToast("Profile picture updated!", "success");
         };
         reader.readAsDataURL(file);
       }
@@ -359,20 +327,4 @@ function hideLoadingState() {
     submitBtn.disabled = false;
     submitBtn.innerHTML = '<i class="fas fa-save up-btn-icon"></i>Update Profile';
   }
-}
-
-// Get notification icon based on type
-function getNotificationIcon(type) {
-  const icons = {
-    success: "fa-check-circle",
-    error: "fa-exclamation-circle",
-    warning: "fa-exclamation-triangle",
-    info: "fa-info-circle",
-  };
-  return icons[type] || icons.info;
-}
-
-// showNotification
-function showNotification(message, type) {
-  alert(message, type);
 }

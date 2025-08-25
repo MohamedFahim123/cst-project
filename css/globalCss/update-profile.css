@@ -348,18 +348,6 @@
   background: linear-gradient(135deg, var(--title-main-color), var(--bg-main-color));
 }
 
-.up-btn-secondary {
-  background: var(--bg-light);
-  color: var(--text-main-color);
-  border: 2px solid #e5e7eb;
-}
-
-.up-btn-secondary:hover {
-  background: #e5e7eb;
-  color: var(--text-main-color);
-  transform: translateY(-1px);
-}
-
 .up-btn-outline {
   background: transparent;
   color: var(--bg-main-color);
