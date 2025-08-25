@@ -1,188 +1,243 @@
+import { showToast } from "../../../actions/showToast.js";
+import { getCurrentUser } from "../../register/LocalStorageUtils.js";
+
 function addProductHandler() {
-  const productTitleInput = document.getElementById("productTitle");
-  const availabilityStatusInput = document.getElementById("availabilityStatus");
-  const brandInput = document.getElementById("brand");
-  const StockQuantityInput = document.getElementById("quantityInStock");
-  const descriptionInput = document.getElementById("description");
-  const categoryInput = document.getElementById("category");
-  const priceInput = document.getElementById("price");
-  const discountInput = document.getElementById("discount");
-  const ImgInput = document.getElementById("productImg");
+  // form inputs
+  const inputs = {
+    title: document.getElementById("productTitle"),
+    status: document.getElementById("availabilityStatus"),
+    brand: document.getElementById("brand"),
+    quantity: document.getElementById("quantityInStock"),
+    description: document.getElementById("description"),
+    category: document.getElementById("category"),
+    price: document.getElementById("price"),
+    discount: document.getElementById("discount"),
+    img: document.getElementById("productImg"),
+  };
 
-  // get all products stored in local storage
+  const cardContainer = document.getElementById("products-cards-container");
+
+  // --- Local Storage Helpers ---
   function getProducts() {
-    const products = localStorage.getItem("all-products") || [];
-    return JSON.parse(products);
+    try {
+      return JSON.parse(localStorage.getItem("all-products")) || [];
+    } catch {
+      return [];
+    }
   }
 
-  function SaveTolocalStorage(productArr) {
-    localStorage.setItem("all-products", JSON.stringify(productArr));
+  function saveProducts(products) {
+    localStorage.setItem("all-products", JSON.stringify(products));
   }
 
-  // function that validate the Product Properties before Adding to the Market
-  function ValidateProductAddition(
+  // --- Validation ---
+  function validateProduct({
     title,
     status,
     quantity,
-    disc,
+    description,
     price,
-    discount
-  ) {
-    // object that contain validation errors
-    const validationErrors = {};
-
+    discount,
+  }) {
+    const errors = {};
     const titleRegex = /^[A-Za-z0-9\s\-']{3,45}$/;
-    const discRegex = /^.{8,150}$/;
+    const descRegex = /^.{8,150}$/;
 
-    // Title
     if (!titleRegex.test(title)) {
-      validationErrors.title =
-        "Please Enter a valid Product title , 3-45 characters";
+      errors.title =
+        "Title must be 3–45 characters (letters, numbers, spaces, - ' allowed)";
+    }
+    if (!descRegex.test(description)) {
+      errors.description = "Description must be 8–150 characters long";
     }
 
-    // Description
-    if (!discRegex.test(disc)) {
-      validationErrors.disc =
-        "Please Enter a valid Product Description (8-150 characters)";
-    }
-
-    // Stock & Quantity
+    quantity = Number(quantity);
     if (status === "inStock" && quantity === 0) {
-      validationErrors.quantity =
-        "Please enter a valid Stock Quantity greater than 0";
+      errors.quantity = "Quantity must be greater than 0 if in stock";
     }
-    if (status === "outOfStock" && quantity > 0) {
-      validationErrors.quantity =
-        "Out of stock products must have quantity = 0";
-    }
-    if (quantity <= 0 || quantity > 1000000) {
-      validationErrors.quantity = "Enter reasonable Quantity (1 - 1,000,000)";
+    if (quantity < 0 || quantity > 1_000_000) {
+      errors.quantity = "Quantity must be between 1 and 1,000,000";
     }
 
-    // Price
-    if (price <= 0 || price > 1000000000) {
-      validationErrors.price =
-        "Enter reasonable price (greater than 0, less than 1B)";
+    price = Number(price);
+    if (price <= 0 || price > 1_000_000_000) {
+      errors.price = "Price must be greater than 0 and less than 1B";
     }
 
-    // Discount
+    discount = Number(discount);
     if (discount < 0 || discount >= 100) {
-      validationErrors.discount = "Discount must be between 0 and 99%";
+      errors.discount = "Discount must be between 0–99%";
     }
 
     return {
-      isValid: Object.keys(validationErrors).length === 0,
-      errors: validationErrors,
+      isValid: Object.keys(errors).length === 0,
+      errors,
     };
   }
 
-  // function that Display Alerts
-  function DisplayValidationAlerts(validationErrors) {
-    // امسح أي Alerts قديمة
+  function showValidationErrors(errors) {
+    // remove old alerts
     document.querySelectorAll(".error-alert").forEach((e) => e.remove());
 
-    // map بين أسماء ال validationErrors والـ inputs
-    const inputs = {
-      title: document.getElementById("productTitle"),
-      status: document.getElementById("availabilityStatus"),
-      quantity: document.getElementById("quantityInStock"),
-      disc: document.getElementById("description"),
-      category: document.getElementById("category"),
-      price: document.getElementById("price"),
-      discount: document.getElementById("discount"),
-    };
-
-    // Loop على كل Error
-    Object.entries(validationErrors).forEach(([key, message]) => {
-      const inputElement = inputs[key];
-
-      if (inputElement) {
+    Object.entries(errors).forEach(([key, message]) => {
+      const inputEl = inputs[key];
+      if (inputEl) {
         const alert = document.createElement("div");
-        alert.classList.add(
-          "alert",
-          "alert-danger",
-          "mt-2",
-          "p-1",
-          "error-alert"
-        );
+        alert.className = "alert alert-danger mt-2 p-1 error-alert";
         alert.innerText = message;
-
-        // أضف ال Alert بعد الـ input
-        inputElement.insertAdjacentElement("afterend", alert);
+        inputEl.insertAdjacentElement("afterend", alert);
       }
     });
   }
-  // function that add newProduct to Products array
-  function AddProduct(
+
+  // --- Product-CRUD ---
+  function createProductData({
     title,
-    disc,
-    status,
     brand,
     quantity,
+    description,
+    status,
     category,
     price,
     discount,
-    imgUrl
-  ) {
-    const newProduct = {
+    img,
+  }) {
+    return {
       id: Date.now(),
       title,
       brand,
-      stock: quantity,
-      description: disc,
+      stock: Number(quantity),
+      description,
       availabilityStatus: status,
       category,
-      price: Number(price),
+      price: Number(price - (price * discount) / 100), // ✅ corrected discount logic
       discountPercentage: Number(discount),
       deletedPrice: Number(price),
-      thumbnail: imgUrl,
-      images: [imgUrl],
+      thumbnail: img,
+      images: [img],
+      sellerID: getCurrentUser().id,
     };
-    const Allproducts = getProducts();
-    Allproducts.push(newProduct);
-    SaveTolocalStorage(Allproducts);
-    alert("added");
   }
 
-  function sellerProducts(email) {}
+  function addProduct(product) {
+    const products = getProducts();
+    products.push(product);
+    saveProducts(products);
+    showToast("Product Added Successfully", "success");
+  }
 
+  function deleteProduct(productID) {
+    const deleteConfirm = confirm(
+      "are You sure you want to Delete this product"
+    );
+    if (!deleteConfirm) return;
+    const products = getProducts();
+    const updatedProducts = products.filter(
+      (product) => product.id !== productID
+    );
+    saveProducts(updatedProducts);
+  }
+  function getProductDetails(productID) {
+    const productDetails = getProducts().filter(
+      (product) => product.id === productID
+    );
+    return productDetails;
+  }
+
+  // --- Rendering ---
+  function createProductCard(product) {
+    return `
+      <div class="col-lg-3 col-md-6">
+        <div class="product-card">
+         <button class="delete-btn" data-id="${product.id}">&times;</button>
+          <img src="${product.thumbnail}" alt="${product.title}">
+          <h6 class="mb-0">${product.title}</h6>
+          <div>
+            <span class="text-muted text-decoration-line-through">${product.deletedPrice}</span>
+            <span class="fw-bold ms-2">${product.price}</span>
+          </div>
+          <button class="edit-btn mt-auto" data-id=${product.id} data-bs-toggle="modal" data-bs-target="#editProduct" >Edit Product</button>
+        </div>
+      </div>
+    `;
+  }
+
+  function renderSellerProducts(sellerID) {
+    const sellerProducts = getProducts().filter((p) => p.sellerID === sellerID);
+    cardContainer.innerHTML = "";
+
+    if (!sellerProducts.length) {
+      cardContainer.innerHTML = `
+        <div class="col-12 text-center py-5">
+          <h5 class="text-muted">No products yet</h5>
+          <p class="text-muted">Start by adding your first product 🚀</p>
+        </div>
+      `;
+      return;
+    }
+
+    sellerProducts.forEach((product) => {
+      cardContainer.insertAdjacentHTML("beforeend", createProductCard(product));
+    });
+  }
+
+  // --- Init ---
+  renderSellerProducts(getCurrentUser().id);
+
+  // --- Form Submit ---
+  document.getElementById("addProductForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const productData = {
+      title: inputs.title.value.trim(),
+      status: inputs.status.value,
+      brand: inputs.brand.value.trim(),
+      quantity: inputs.quantity.value,
+      description: inputs.description.value.trim(),
+      category: inputs.category.value,
+      price: inputs.price.value,
+      discount: inputs.discount.value,
+      img: inputs.img.value.trim(),
+    };
+
+    const validation = validateProduct(productData);
+    if (!validation.isValid) {
+      showValidationErrors(validation.errors);
+      return;
+    }
+
+    const newProduct = createProductData(productData);
+    addProduct(newProduct);
+    renderSellerProducts(getCurrentUser().id);
+  });
+
+  // --- Stock Availability ---
+  inputs.status.addEventListener("change", function () {
+    if (this.value === "outOfStock") {
+      inputs.quantity.value = 0;
+      inputs.quantity.disabled = true;
+    } else {
+      inputs.quantity.disabled = false;
+    }
+  });
+  // ---------Delete Btn Handler -----------
+  cardContainer.addEventListener("click", (e) => {
+    if (e.target.classList.contains("delete-btn")) {
+      const productID = Number(e.target.dataset.id);
+      deleteProduct(productID);
+      renderSellerProducts(getCurrentUser().id);
+    }
+  });
+  // -------------UpdateBtn Handler --------------
   document
-    .getElementById("updateProductForm")
+    .getElementById("editProductForm")
     .addEventListener("submit", function (e) {
       e.preventDefault();
-      const title = productTitleInput.value.trim();
-      const disc = descriptionInput.value.trim();
-      const status = availabilityStatusInput.value;
-      const brand = brandInput.value;
-      const quantity = StockQuantityInput.value;
-      const category = categoryInput.value;
-      const price = priceInput.value;
-      const discount = discountInput.value;
-      const img = ImgInput.value.trim();
-
-      const validateResult = ValidateProductAddition(
-        title,
-        status,
-        quantity,
-        disc,
-        price,
-        discount
-      );
-      if (validateResult.isValid) {
-        AddProduct(
-          title,
-          disc,
-          status,
-          brand,
-          quantity,
-          category,
-          price,
-          discount,
-          img
-        );
-      } else {
-        DisplayValidationAlerts(validateResult.errors);
+      console.log(e.target.dataset.id);
+      if (e.target.dataset.id) {
+        console.log(e.target.dataset.id);
       }
     });
 }
+
 export { addProductHandler };
