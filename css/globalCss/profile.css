@@ -61,6 +61,9 @@
 }
 
 /* Navigation Styles */
+.pf-sidebar-wrapper {
+  min-width: 200px;
+}
 .pf-sidebar-nav {
   margin-bottom: 2rem;
 }
@@ -156,7 +159,7 @@
   background: var(--bg-white);
   border-radius: var(--pf-border-radius);
   box-shadow: var(--shadow-md);
-  padding: 2rem;
+  padding: 1rem;
 }
 
 /* Profile Avatar Styles */
@@ -432,10 +435,6 @@
     margin-bottom: 2rem;
   }
   .pf-sidebar {
-    padding: 1.5rem;
-  }
-
-  .pf-content-body {
     padding: 1.5rem;
   }
 
