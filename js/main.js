@@ -13,7 +13,11 @@ import { initializeShop } from "../pages/shop/shop.js";
 import { initializeWishlist, refreshWishlist } from "../pages/wishlist/mywishlist.js";
 import { router } from "./router.js";
 import { cartAndWishlistLogic } from "./shred.js";
-import displayProductSummary, { initializePayment, paymentStutusFn, paypalGateway, validateBuiltPayment } from "../pages/payment/payment.js";
+import displayProductSummary, {
+  initializePayment,
+  paymentStutusFn,
+  validateBuiltPayment,
+} from "../pages/payment/payment.js";
 import { initializeCart } from "../pages/cart/mycart.js";
 
 //------------------------------------------------------------//
@@ -87,15 +91,12 @@ export const PAGE_INITIALIZERS = {
     registerSubmitHandler();
   },
 
-  "/payment": ()=>{
-     initializePayment() ;
-     paypalGateway ();
-    displayProductSummary() ;
-    validateBuiltPayment() ;
+  "/payment": () => {
+    initializePayment();
+    displayProductSummary();
+    validateBuiltPayment();
     paymentStutusFn();
   },
-  
-  
 };
 
 document.addEventListener("click", (e) => {
