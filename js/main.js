@@ -17,6 +17,7 @@ import displayProductSummary, {
   initializePayment,
   paymentStutusFn,
   validateBuiltPayment,
+  paypalGateway,
 } from "../pages/payment/payment.js";
 import { initializeCart } from "../pages/cart/mycart.js";
 
@@ -96,6 +97,7 @@ export const PAGE_INITIALIZERS = {
     displayProductSummary();
     validateBuiltPayment();
     paymentStutusFn();
+    paypalGateway();
   },
 };
 
