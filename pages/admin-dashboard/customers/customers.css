@@ -1,4 +1,3 @@
-/* Base Styles */
 .pf-container {
   min-height: 100vh;
   background: var(--bg-light);
@@ -208,6 +207,28 @@
   color: var(--text-main-color);
 }
 
+/* Empty State Styles */
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--text-second-color);
+}
+
+.empty-state-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  color: #cbd5e0;
+}
+
+.empty-state h3 {
+  color: var(--title-main-color);
+  margin-bottom: 0.5rem;
+}
+
+.empty-state p {
+  margin-bottom: 0;
+}
+
 /* Table wrapper for horizontal scrolling */
 .table-wrapper {
   width: 100%;
@@ -411,7 +432,6 @@
     justify-content: flex-end;
   }
 
-  /* Adjust table for very small screens */
   .customers-table td,
   .customers-table th {
     padding: 0.75rem 0.5rem;

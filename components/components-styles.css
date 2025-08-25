@@ -1,6 +1,10 @@
 .navbar {
   box-shadow: var(--shadow-sm);
 }
+.navbar-logo {
+  width: 120px;
+  height: 50px;
+}
 .navbar-title {
   color: var(--bg-main-color);
 }

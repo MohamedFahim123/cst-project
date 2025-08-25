@@ -68,6 +68,11 @@ export const APP_ROUTES = [
 
   // admin Dashboard
   {
+    path: "/admin-dashboard/dashboard",
+    title: "Dashboard",
+    description: "Admin Dashboard Page",
+  },
+  {
     path: "/admin-dashboard/profile",
     title: "Profile",
     description: "Admin Profile Page",
@@ -96,5 +101,10 @@ export const APP_ROUTES = [
     path: "/admin-dashboard/customers",
     title: "Customers",
     description: "All Customers Page",
+  },
+  {
+    path: "/admin-dashboard/add-new-user",
+    title: "Add New User",
+    description: "Add New User Page",
   },
 ];
