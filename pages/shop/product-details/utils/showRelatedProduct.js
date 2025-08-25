@@ -33,6 +33,7 @@ function renderRelatedProducts(products, Swiper) {
             data-thumbnail="${product.thumbnail}"
             data-name="${product.title}"
             data-price="${product.price}"
+              data-seller="${product.seller}"
           ></i>
 
           <span class="badge text-bg-danger position-absolute z-3">
@@ -70,6 +71,7 @@ function renderRelatedProducts(products, Swiper) {
             data-thumbnail="${product.thumbnail}"
               data-name="${product.title}" 
               data-price="${product.price}" 
+              data-seller="${product.seller}"
               type="button" 
               title="Add to cart" 
               class="addtocart add-to-cart-btn"
@@ -86,15 +88,15 @@ function renderRelatedProducts(products, Swiper) {
   const relatedProducts = document.getElementById("relatedProducts");
 
   relatedProducts.addEventListener("click", (e) => {
-     if (
-          e.target.classList.contains("card-img-top") ||
-          e.target.classList.contains("card-title")
-        ) {
-          localStorage.setItem("curr-product", e.target.closest(".card").id);
-          window.scrollTo(0, 0);
-          window.location.reload();
-        }
-  })
+    if (
+      e.target.classList.contains("card-img-top") ||
+      e.target.classList.contains("card-title")
+    ) {
+      localStorage.setItem("curr-product", e.target.closest(".card").id);
+      window.scrollTo(0, 0);
+      window.location.reload();
+    }
+  });
 
   new Swiper(relatedProducts, {
     slidesPerView: 1,

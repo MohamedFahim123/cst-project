@@ -373,6 +373,10 @@ class Router {
     }
   }
 
+  getPath() {
+    return window.location.hash.replace(/^#+/, "#");
+  }
+
   navigate(path) {
     if (!path.startsWith("#")) {
       path = "#" + path;

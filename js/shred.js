@@ -61,6 +61,7 @@ export const cartAndWishlistLogic = () => {
     }
 
     const cartBtn = e.target.closest(".add-to-cart-btn");
+    console.log(cartBtn)
     if (cartBtn) {
       if (!isLoggedIn) {
         showToast("Please login to add to cart", "error");
@@ -76,6 +77,7 @@ export const cartAndWishlistLogic = () => {
         id: cartBtn.dataset.id,
         name: cartBtn.dataset.name,
         price: parseFloat(cartBtn.dataset.price),
+        sellerID: cartBtn.dataset.seller,
       };
 
       if (cart.has(product.id)) {
@@ -104,6 +106,7 @@ export const cartAndWishlistLogic = () => {
         id: wishlistBtn.dataset.id,
         name: wishlistBtn.dataset.name,
         price: parseFloat(wishlistBtn.dataset.price),
+        sellerID: wishlistBtn.dataset.seller,
       };
 
       if (wishlist.has(product.id)) {
@@ -157,7 +160,6 @@ function updateButtonStates() {
   updateCartAndWishlistBadges();
 }
 
-// Function to update authentication-related buttons
 function updateAuthButtons() {
   const isLoggedIn = localStorage.getItem("currentUser");
 

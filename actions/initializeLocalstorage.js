@@ -5,7 +5,7 @@ export function initializeLocalStorage() {
   initializeShopFilters();
   initializeProducts();
   initializeOrders();
-  // can add extra initialization functions here
+
 }
 
 async function initializeProducts() {
