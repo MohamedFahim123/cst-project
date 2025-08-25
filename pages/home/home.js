@@ -1,39 +1,11 @@
-import { fetchData } from "../../actions/fetchData.js";
 import { router } from "../../js/router.js";
 
 export function initializeHome(swiper) {
-  initializeUsers();
-  initializeShopFilters();
-  initializeProducts();
   getCategories();
   bestSellingProducts(swiper);
   handleRenderingRecommendedProducts(swiper);
   renderBrands(swiper);
 }
-
-const initializeProducts = async () => {
-  const products = JSON.parse(localStorage.getItem("all-products"));
-  if (!products) {
-    const products = await fetchData("/json/products.json");
-    localStorage.setItem("all-products", JSON.stringify(products));
-  }
-};
-
-const initializeShopFilters = async () => {
-  const filters = JSON.parse(localStorage.getItem("shop-filters"));
-  if (!filters) {
-    const filters = await fetchData("/json/shopFilters.json");
-    localStorage.setItem("shop-filters", JSON.stringify(filters));
-  }
-};
-
-const initializeUsers = async () => {
-  const users = JSON.parse(localStorage.getItem("users"));
-  if (!users) {
-    const users = await fetchData("/json/allusers.json");
-    localStorage.setItem("users", JSON.stringify(users));
-  }
-};
 
 const getCategories = async () => {
   const catBtns = document.querySelectorAll(".home-banner-category");
