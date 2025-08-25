@@ -9,12 +9,12 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg bg-white py-3 border-bottom">
+  <nav id="navbar-nav" class="navbar navbar-expand-lg bg-white py-3 border-bottom">
     <div class="container">
       <div class="d-flex align-items-center">
         <a class="navbar-brand me-3" href="/" data-link>
           <!-- <span class="fw-bold navbar-title">JinStore</span> -->
-           <img src="/assets//logo.svg" class="navbar-logo" alt="TecNo Logo" />
+          <img src="/assets//logo.svg" class="navbar-logo" alt="TecNo Logo" />
         </a>
       </div>
 
@@ -70,7 +70,9 @@
 
   <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileMenu">
     <div class="offcanvas-header border-bottom">
-      <h5 class="offcanvas-title navbar-title">JinStore</h5>
+      <h5 class="offcanvas-title navbar-title"><a href="/" data-link><img class="navbar-logo" src="/assets/logo.svg"
+            alt="TecNo Logo"></a>
+      </h5>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
     </div>
     <div class="offcanvas-body">
@@ -82,11 +84,11 @@
 
         <li class="nav-item mt-3">
           <a class="nav-link" href="/wishlist" data-link><i class="fas fa-heart me-2"></i> Wishlist
-            <span id="mobile-wishlist-count" class="badge ms-2" style="background-color: var(--red-color)">0</span></a>
+            <span id="wishlist-count-mobile" class="badge ms-2" style="background-color: var(--red-color)">0</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/cart" data-link><i class="fas fa-shopping-cart me-2"></i> Cart
-            <span id="mobile-cart-count" class="badge ms-2" style="background-color: var(--red-color)">0</span></a>
+            <span id="cart-count-mobile" class="badge ms-2" style="background-color: var(--red-color)">0</span></a>
         </li>
 
         <div id="mobile-auth-buttons">

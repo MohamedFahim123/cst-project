@@ -129,3 +129,12 @@ document.addEventListener("click", (e) => {
     router.navigate(pathname.trim());
   }
 });
+
+window.addEventListener("scroll", () => {
+  const header = document.getElementById("navbar-nav");
+  if (window.scrollY > 0) {
+    header.classList.add("position-fixed", "w-100", "z-3");
+  } else {
+    header.classList.remove("position-fixed", "w-100", "z-3");
+  }
+});
