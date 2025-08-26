@@ -34,6 +34,7 @@ const dasbhoardSidebarContent = {
     },
     {
       path: "/seller-dashboard/my-products",
+      icon: `<i class="fa-solid fa-box  pf-nav-icon"></i>`,
       title: "My Products",
     },
   ],
@@ -73,6 +74,11 @@ const dasbhoardSidebarContent = {
       icon: `<i class="fa-solid fa-user-plus pf-nav-icon"></i>`,
       title: "Add New User",
     },
+    {
+      path: "/admin-dashboard/products",
+      icon: `<i class="fa-solid fa-box  pf-nav-icon"></i>`,
+      title: "Products",
+    },
   ],
 };
 
@@ -107,4 +113,3 @@ export const handleRenderingSideBarLinks = (path) => {
       </li>`);
   });
 };
-

@@ -280,7 +280,6 @@ const updateBrandCheckboxes = () => {
 };
 
 const inputsSetups = () => {
-  const shopFilters = JSON.parse(localStorage.getItem("shop-filters"));
   const defaultFilters = {
     min: 0,
     max: 0,
@@ -289,13 +288,20 @@ const inputsSetups = () => {
     ...JSON.parse(localStorage.getItem("curr-filters")),
   };
   localStorage.removeItem("curr-filters");
+  const products = JSON.parse(localStorage.getItem("all-products"));
+  const minProductsPrice = Math.floor(
+    Math.min(...products.map((product) => product.price))
+  );
+  const maxProductsPrice = Math.ceil(
+    Math.max(...products.map((product) => product.price))
+  );
 
   if (defaultFilters) {
     filters = { ...defaultFilters };
   }
 
-  filters.min = Math.floor(shopFilters["min-price"]);
-  filters.max = Math.ceil(shopFilters["max-price"]);
+  filters.min = Math.floor(minProductsPrice);
+  filters.max = Math.ceil(maxProductsPrice);
 
   updateMinPrice(filters.min, filters.max);
   updateMaxPrice(filters.max, filters.min);

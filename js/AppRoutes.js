@@ -107,4 +107,9 @@ export const APP_ROUTES = [
     title: "Add New User",
     description: "Add New User Page",
   },
+  {
+    path: "/admin-dashboard/products",
+    title: "Products",
+    description: "All Products Page",
+  },
 ];
