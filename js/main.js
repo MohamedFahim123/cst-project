@@ -28,6 +28,7 @@ import {
 } from "../pages/wishlist/mywishlist.js";
 import { router } from "./router.js";
 import { cartAndWishlistLogic } from "./shred.js";
+import { initializeProducts } from "../pages/admin-dashboard/products/products.js";
 
 //------------------------------------------------------------//
 
@@ -129,6 +130,9 @@ export const PAGE_INITIALIZERS = {
   },
   "/admin-dashboard/dashboard": () => {
     dashboardInit();
+  },
+  "/admin-dashboard/products": () => {
+    initializeProducts();
   },
 };
 

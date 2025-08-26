@@ -233,7 +233,6 @@ function addProductHandler() {
     .getElementById("editProductForm")
     .addEventListener("submit", function (e) {
       e.preventDefault();
-      console.log(e.target.dataset.id);
       if (e.target.dataset.id) {
         console.log(e.target.dataset.id);
       }

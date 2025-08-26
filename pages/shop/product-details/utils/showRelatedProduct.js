@@ -33,7 +33,7 @@ function renderRelatedProducts(products, Swiper) {
             data-thumbnail="${product.thumbnail}"
             data-name="${product.title}"
             data-price="${product.price}"
-              data-seller="${product.seller}"
+            data-seller="${product.seller}"
           ></i>
 
           <span class="badge text-bg-danger position-absolute z-3">

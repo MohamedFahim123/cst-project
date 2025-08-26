@@ -24,7 +24,7 @@
       "https://cdn.dummyjson.com/product-images/smartphones/iphone-5s/3.webp"
     ],
     "thumbnail": "https://cdn.dummyjson.com/product-images/smartphones/iphone-5s/thumbnail.webp",
-    "sellerID": 1
+    "sellerID": 3
   },
   {
     "id": 122,
@@ -56,7 +56,8 @@
       "https://cdn.dummyjson.com/product-images/smartphones/iphone-6/2.webp",
       "https://cdn.dummyjson.com/product-images/smartphones/iphone-6/3.webp"
     ],
-    "thumbnail": "https://cdn.dummyjson.com/product-images/smartphones/iphone-6/thumbnail.webp"
+    "thumbnail": "https://cdn.dummyjson.com/product-images/smartphones/iphone-6/thumbnail.webp",
+    "sellerID": 3
   },
   {
     "id": 123,
@@ -88,7 +89,8 @@
       "https://cdn.dummyjson.com/product-images/smartphones/iphone-13-pro/2.webp",
       "https://cdn.dummyjson.com/product-images/smartphones/iphone-13-pro/3.webp"
     ],
-    "thumbnail": "https://cdn.dummyjson.com/product-images/smartphones/iphone-13-pro/thumbnail.webp"
+    "thumbnail": "https://cdn.dummyjson.com/product-images/smartphones/iphone-13-pro/thumbnail.webp",
+    "sellerID": 3
   },
   {
     "id": 124,
@@ -120,7 +122,8 @@
       "https://cdn.dummyjson.com/product-images/smartphones/iphone-x/2.webp",
       "https://cdn.dummyjson.com/product-images/smartphones/iphone-x/3.webp"
     ],
-    "thumbnail": "https://cdn.dummyjson.com/product-images/smartphones/iphone-x/thumbnail.webp"
+    "thumbnail": "https://cdn.dummyjson.com/product-images/smartphones/iphone-x/thumbnail.webp",
+    "sellerID": 3
   },
   {
     "id": 125,
@@ -152,7 +155,8 @@
       "https://cdn.dummyjson.com/product-images/smartphones/oppo-a57/2.webp",
       "https://cdn.dummyjson.com/product-images/smartphones/oppo-a57/3.webp"
     ],
-    "thumbnail": "https://cdn.dummyjson.com/product-images/smartphones/oppo-a57/thumbnail.webp"
+    "thumbnail": "https://cdn.dummyjson.com/product-images/smartphones/oppo-a57/thumbnail.webp",
+    "sellerID": 3
   },
   {
     "id": 126,
@@ -184,7 +188,8 @@
       "https://cdn.dummyjson.com/product-images/smartphones/oppo-f19-pro-plus/2.webp",
       "https://cdn.dummyjson.com/product-images/smartphones/oppo-f19-pro-plus/3.webp"
     ],
-    "thumbnail": "https://cdn.dummyjson.com/product-images/smartphones/oppo-f19-pro-plus/thumbnail.webp"
+    "thumbnail": "https://cdn.dummyjson.com/product-images/smartphones/oppo-f19-pro-plus/thumbnail.webp",
+    "sellerID": 3
   },
   {
     "id": 127,
@@ -217,7 +222,8 @@
       "https://cdn.dummyjson.com/product-images/smartphones/oppo-k1/3.webp",
       "https://cdn.dummyjson.com/product-images/smartphones/oppo-k1/4.webp"
     ],
-    "thumbnail": "https://cdn.dummyjson.com/product-images/smartphones/oppo-k1/thumbnail.webp"
+    "thumbnail": "https://cdn.dummyjson.com/product-images/smartphones/oppo-k1/thumbnail.webp",
+    "sellerID": 3
   },
   {
     "id": 128,
@@ -249,7 +255,8 @@
       "https://cdn.dummyjson.com/product-images/smartphones/realme-c35/2.webp",
       "https://cdn.dummyjson.com/product-images/smartphones/realme-c35/3.webp"
     ],
-    "thumbnail": "https://cdn.dummyjson.com/product-images/smartphones/realme-c35/thumbnail.webp"
+    "thumbnail": "https://cdn.dummyjson.com/product-images/smartphones/realme-c35/thumbnail.webp",
+    "sellerID": 3
   },
   {
     "id": 129,
@@ -281,7 +288,8 @@
       "https://cdn.dummyjson.com/product-images/smartphones/realme-x/2.webp",
       "https://cdn.dummyjson.com/product-images/smartphones/realme-x/3.webp"
     ],
-    "thumbnail": "https://cdn.dummyjson.com/product-images/smartphones/realme-x/thumbnail.webp"
+    "thumbnail": "https://cdn.dummyjson.com/product-images/smartphones/realme-x/thumbnail.webp",
+    "sellerID": 3
   },
   {
     "id": 130,
@@ -313,7 +321,8 @@
       "https://cdn.dummyjson.com/product-images/smartphones/realme-xt/2.webp",
       "https://cdn.dummyjson.com/product-images/smartphones/realme-xt/3.webp"
     ],
-    "thumbnail": "https://cdn.dummyjson.com/product-images/smartphones/realme-xt/thumbnail.webp"
+    "thumbnail": "https://cdn.dummyjson.com/product-images/smartphones/realme-xt/thumbnail.webp",
+    "sellerID": 3
   },
   {
     "id": 131,
@@ -345,7 +354,8 @@
       "https://cdn.dummyjson.com/product-images/smartphones/samsung-galaxy-s7/2.webp",
       "https://cdn.dummyjson.com/product-images/smartphones/samsung-galaxy-s7/3.webp"
     ],
-    "thumbnail": "https://cdn.dummyjson.com/product-images/smartphones/samsung-galaxy-s7/thumbnail.webp"
+    "thumbnail": "https://cdn.dummyjson.com/product-images/smartphones/samsung-galaxy-s7/thumbnail.webp",
+    "sellerID": 3
   },
   {
     "id": 132,
@@ -377,7 +387,8 @@
       "https://cdn.dummyjson.com/product-images/smartphones/samsung-galaxy-s8/2.webp",
       "https://cdn.dummyjson.com/product-images/smartphones/samsung-galaxy-s8/3.webp"
     ],
-    "thumbnail": "https://cdn.dummyjson.com/product-images/smartphones/samsung-galaxy-s8/thumbnail.webp"
+    "thumbnail": "https://cdn.dummyjson.com/product-images/smartphones/samsung-galaxy-s8/thumbnail.webp",
+    "sellerID": 3
   },
   {
     "id": 133,
@@ -409,7 +420,8 @@
       "https://cdn.dummyjson.com/product-images/smartphones/samsung-galaxy-s10/2.webp",
       "https://cdn.dummyjson.com/product-images/smartphones/samsung-galaxy-s10/3.webp"
     ],
-    "thumbnail": "https://cdn.dummyjson.com/product-images/smartphones/samsung-galaxy-s10/thumbnail.webp"
+    "thumbnail": "https://cdn.dummyjson.com/product-images/smartphones/samsung-galaxy-s10/thumbnail.webp",
+    "sellerID": 3
   },
   {
     "id": 134,
@@ -441,7 +453,8 @@
       "https://cdn.dummyjson.com/product-images/smartphones/vivo-s1/2.webp",
       "https://cdn.dummyjson.com/product-images/smartphones/vivo-s1/3.webp"
     ],
-    "thumbnail": "https://cdn.dummyjson.com/product-images/smartphones/vivo-s1/thumbnail.webp"
+    "thumbnail": "https://cdn.dummyjson.com/product-images/smartphones/vivo-s1/thumbnail.webp",
+    "sellerID": 3
   },
   {
     "id": 135,
@@ -473,7 +486,8 @@
       "https://cdn.dummyjson.com/product-images/smartphones/vivo-v9/2.webp",
       "https://cdn.dummyjson.com/product-images/smartphones/vivo-v9/3.webp"
     ],
-    "thumbnail": "https://cdn.dummyjson.com/product-images/smartphones/vivo-v9/thumbnail.webp"
+    "thumbnail": "https://cdn.dummyjson.com/product-images/smartphones/vivo-v9/thumbnail.webp",
+    "sellerID": 3
   },
   {
     "id": 136,
@@ -505,7 +519,8 @@
       "https://cdn.dummyjson.com/product-images/smartphones/vivo-x21/2.webp",
       "https://cdn.dummyjson.com/product-images/smartphones/vivo-x21/3.webp"
     ],
-    "thumbnail": "https://cdn.dummyjson.com/product-images/smartphones/vivo-x21/thumbnail.webp"
+    "thumbnail": "https://cdn.dummyjson.com/product-images/smartphones/vivo-x21/thumbnail.webp",
+    "sellerID": 3
   },
   {
     "id": 78,
@@ -537,7 +552,8 @@
       "https://cdn.dummyjson.com/product-images/laptops/apple-macbook-pro-14-inch-space-grey/2.webp",
       "https://cdn.dummyjson.com/product-images/laptops/apple-macbook-pro-14-inch-space-grey/3.webp"
     ],
-    "thumbnail": "https://cdn.dummyjson.com/product-images/laptops/apple-macbook-pro-14-inch-space-grey/thumbnail.webp"
+    "thumbnail": "https://cdn.dummyjson.com/product-images/laptops/apple-macbook-pro-14-inch-space-grey/thumbnail.webp",
+    "sellerID": 3
   },
   {
     "id": 79,
@@ -569,7 +585,8 @@
       "https://cdn.dummyjson.com/product-images/laptops/asus-zenbook-pro-dual-screen-laptop/2.webp",
       "https://cdn.dummyjson.com/product-images/laptops/asus-zenbook-pro-dual-screen-laptop/3.webp"
     ],
-    "thumbnail": "https://cdn.dummyjson.com/product-images/laptops/asus-zenbook-pro-dual-screen-laptop/thumbnail.webp"
+    "thumbnail": "https://cdn.dummyjson.com/product-images/laptops/asus-zenbook-pro-dual-screen-laptop/thumbnail.webp",
+    "sellerID": 3
   },
   {
     "id": 80,
@@ -601,7 +618,8 @@
       "https://cdn.dummyjson.com/product-images/laptops/huawei-matebook-x-pro/2.webp",
       "https://cdn.dummyjson.com/product-images/laptops/huawei-matebook-x-pro/3.webp"
     ],
-    "thumbnail": "https://cdn.dummyjson.com/product-images/laptops/huawei-matebook-x-pro/thumbnail.webp"
+    "thumbnail": "https://cdn.dummyjson.com/product-images/laptops/huawei-matebook-x-pro/thumbnail.webp",
+    "sellerID": 3
   },
   {
     "id": 81,
@@ -633,7 +651,8 @@
       "https://cdn.dummyjson.com/product-images/laptops/lenovo-yoga-920/2.webp",
       "https://cdn.dummyjson.com/product-images/laptops/lenovo-yoga-920/3.webp"
     ],
-    "thumbnail": "https://cdn.dummyjson.com/product-images/laptops/lenovo-yoga-920/thumbnail.webp"
+    "thumbnail": "https://cdn.dummyjson.com/product-images/laptops/lenovo-yoga-920/thumbnail.webp",
+    "sellerID": 3
   },
   {
     "id": 82,
@@ -665,7 +684,8 @@
       "https://cdn.dummyjson.com/product-images/laptops/new-dell-xps-13-9300-laptop/2.webp",
       "https://cdn.dummyjson.com/product-images/laptops/new-dell-xps-13-9300-laptop/3.webp"
     ],
-    "thumbnail": "https://cdn.dummyjson.com/product-images/laptops/new-dell-xps-13-9300-laptop/thumbnail.webp"
+    "thumbnail": "https://cdn.dummyjson.com/product-images/laptops/new-dell-xps-13-9300-laptop/thumbnail.webp",
+    "sellerID": 3
   },
   {
     "id": 159,
@@ -698,7 +718,8 @@
       "https://cdn.dummyjson.com/product-images/tablets/ipad-mini-2021-starlight/3.webp",
       "https://cdn.dummyjson.com/product-images/tablets/ipad-mini-2021-starlight/4.webp"
     ],
-    "thumbnail": "https://cdn.dummyjson.com/product-images/tablets/ipad-mini-2021-starlight/thumbnail.webp"
+    "thumbnail": "https://cdn.dummyjson.com/product-images/tablets/ipad-mini-2021-starlight/thumbnail.webp",
+    "sellerID": 3
   },
   {
     "id": 160,
@@ -731,7 +752,8 @@
       "https://cdn.dummyjson.com/product-images/tablets/samsung-galaxy-tab-s8-plus-grey/3.webp",
       "https://cdn.dummyjson.com/product-images/tablets/samsung-galaxy-tab-s8-plus-grey/4.webp"
     ],
-    "thumbnail": "https://cdn.dummyjson.com/product-images/tablets/samsung-galaxy-tab-s8-plus-grey/thumbnail.webp"
+    "thumbnail": "https://cdn.dummyjson.com/product-images/tablets/samsung-galaxy-tab-s8-plus-grey/thumbnail.webp",
+    "sellerID": 3
   },
   {
     "id": 161,
@@ -764,6 +786,7 @@
       "https://cdn.dummyjson.com/product-images/tablets/samsung-galaxy-tab-white/3.webp",
       "https://cdn.dummyjson.com/product-images/tablets/samsung-galaxy-tab-white/4.webp"
     ],
-    "thumbnail": "https://cdn.dummyjson.com/product-images/tablets/samsung-galaxy-tab-white/thumbnail.webp"
+    "thumbnail": "https://cdn.dummyjson.com/product-images/tablets/samsung-galaxy-tab-white/thumbnail.webp",
+    "sellerID": 3
   }
 ]
