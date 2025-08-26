@@ -52,6 +52,7 @@ export const cartAndWishlistLogic = () => {
         id: currentProduct.id,
         name: currentProduct.title,
         price: parseFloat(currentProduct.price * quantity.value),
+        sellerID: currentProduct.seller,
       };
 
       cart.add(product, +quantity.value);
@@ -61,7 +62,6 @@ export const cartAndWishlistLogic = () => {
     }
 
     const cartBtn = e.target.closest(".add-to-cart-btn");
-    console.log(cartBtn)
     if (cartBtn) {
       if (!isLoggedIn) {
         showToast("Please login to add to cart", "error");
