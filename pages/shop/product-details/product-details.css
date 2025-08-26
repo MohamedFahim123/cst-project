@@ -221,7 +221,7 @@
 }
 
 /* Responsive Design */
-@media (max-width: 767.98px) {
+@media (max-width: 768px) {
   .image-slider {
     height: 300px;
   }

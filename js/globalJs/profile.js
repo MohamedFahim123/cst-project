@@ -1,3 +1,5 @@
+import imageDB from "../../actions/indexedDB.js";
+
 // Profile Page JavaScript Functionality
 const userData = {
   id: 1,
@@ -8,22 +10,23 @@ const userData = {
   avatar: "",
 };
 
-export function initializeProfile() {
-  loadUserProfile();
+export async function initializeProfile() {
+  await loadUserProfile();
 }
 
 // Load user profile data
-function loadUserProfile() {
+async function loadUserProfile() {
   // Try to get user data from localStorage first
   const storedUser = localStorage.getItem("currentUser");
   const currentUser = storedUser ? JSON.parse(storedUser) : userData;
 
+  const imgSrc = (await imageDB.getImageBlobUrl(currentUser.avatar)) || "../../assets/avatar.jpg";
   // Update profile display
   updateElement("pf-display-name", currentUser.username);
   updateElement("pf-display-email", currentUser.email);
   updateElement("pf-display-phone", currentUser.phone || "Not provided");
   updateElement("pf-display-address", currentUser.address || "Not provided");
-  updateImageElement("pf-profile-img", currentUser.avatar || "../../assets/avatar.jpg");
+  updateImageElement("pf-profile-img", imgSrc);
 }
 
 // Update element text content

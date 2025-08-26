@@ -5,7 +5,6 @@ export function initializeLocalStorage() {
   initializeShopFilters();
   initializeProducts();
   initializeOrders();
-
 }
 
 async function initializeProducts() {

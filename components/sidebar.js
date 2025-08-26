@@ -1,3 +1,5 @@
+import imageDB from "../actions/indexedDB.js";
+
 const dasbhoardSidebarContent = {
   customer: [
     {
@@ -77,7 +79,7 @@ const dasbhoardSidebarContent = {
 };
 
 export function renderSidebarUserInfo() {}
-export const handleRenderingSideBarLinks = (path) => {
+export const handleRenderingSideBarLinks = async (path) => {
   const loginedUser = JSON.parse(localStorage.getItem("currentUser"));
   if (!loginedUser) return;
 
@@ -86,13 +88,12 @@ export const handleRenderingSideBarLinks = (path) => {
   const avatarImage = document.querySelector("#pf-avatar-img");
   const sideLinksContainer = document.querySelector(".pf-nav-list");
 
-  if (!sideLinksContainer || !sidebarName || !sidebarEmail || !avatarImage)
-    return;
+  if (!sideLinksContainer || !sidebarName || !sidebarEmail || !avatarImage) return;
 
   // Render User Info
   sidebarName.textContent = loginedUser.username;
   sidebarEmail.textContent = loginedUser.email;
-  avatarImage.src = loginedUser.avatar || "../../assets/avatar.jpg";
+  avatarImage.src = (await imageDB.getImageBlobUrl(loginedUser.avatar)) || "../../assets/avatar.jpg";
 
   // Render Side List
   const sidebarLinks = dasbhoardSidebarContent[loginedUser.role.toLowerCase()];
@@ -107,4 +108,3 @@ export const handleRenderingSideBarLinks = (path) => {
       </li>`);
   });
 };
-

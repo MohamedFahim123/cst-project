@@ -1,6 +1,9 @@
 /* Orders Table Styles */
 .order-header {
   margin-bottom: 1.5rem;
+  h3 {
+    white-space: nowrap;
+  }
 }
 
 .filter-btn {
@@ -17,6 +20,10 @@
   border: 1px solid var(--pf-border-color);
   border-radius: 8px;
   background: var(--bg-white);
+  &:focus {
+    box-shadow: 0 0 0 0.2rem #007bff40;
+    outline: none;
+  }
 }
 
 .search-box {
@@ -59,6 +66,7 @@
   padding: 1rem;
   vertical-align: middle;
   border-bottom: 1px solid var(--pf-border-color);
+  white-space: nowrap;
 }
 
 .invoice-table tr:last-child td {
@@ -98,23 +106,12 @@
 
 /* Responsive Design */
 
-@media (max-width: 991.98px) {
-  .order-header .row > div {
-    margin-bottom: 1rem;
+@media (max-width: 768px) {
+  .order-header .row > div:first-child {
+    display: none;
   }
-}
-
-@media (max-width: 767.98px) {
   .invoice-table {
     overflow-x: auto;
-  }
-
-  .invoice-table table {
-    min-width: 600px;
-  }
-
-  .action-buttons {
-    flex-direction: column;
   }
 }
 /* Orders Pagination Styles */
@@ -202,8 +199,8 @@
 }
 
 @media (max-width: 575.98px) {
-  .order-header .row > div {
+  /* .order-header .row > div {
     flex: 0 0 100%;
     max-width: 100%;
-  }
+  } */
 }

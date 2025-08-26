@@ -90,11 +90,14 @@
 }
 
 .up-upload-label {
+  height: 100%;
+  width: 100%;
   color: white;
-  text-align: center;
   cursor: pointer;
-  margin: 0;
-  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .up-upload-label i {
@@ -187,28 +190,25 @@
 }
 
 /* Form Controls */
-.up-form-control {
+.up-form-control,
+#up-update-email {
   width: 100%;
   padding: 0.875rem 1rem;
   border: 2px solid #e5e7eb;
   border-radius: 8px;
   font-size: 0.95rem;
-  transition: var(--transition);
   background: var(--bg-white);
   color: var(--text-main-color);
 }
-
 .up-form-control:focus {
+  outline: 2px solid var(--bg-main-color);
+  outline-offset: 2px;
+}
+
+#up-update-email {
+  background-color: #e5e7eb;
   outline: none;
-  border-color: var(--bg-main-color);
-  box-shadow: 0 0 0 3px rgba(99, 76, 159, 0.15);
-  transform: translateY(-1px);
 }
-
-.up-form-control:hover {
-  border-color: var(--bg-main-color);
-}
-
 .up-textarea {
   resize: vertical;
   min-height: 100px;
@@ -382,12 +382,12 @@
 /* Form Validation */
 .up-form-control.invalid {
   border-color: var(--red-color);
-  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15);
+  box-shadow: 0 0 0 3px #dc262626;
 }
 
 .up-form-control.valid {
   border-color: var(--green-color);
-  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.15);
+  box-shadow: 0 0 0 3px #16a34a26;
 }
 
 .up-error-message {
@@ -431,7 +431,7 @@
   }
 }
 
-@media (max-width: 767.98px) {
+@media (max-width: 768px) {
   .up-page-title {
     font-size: 1.5rem;
   }
@@ -477,39 +477,4 @@
   }
 }
 
-/* Print Styles */
-@media print {
-  .up-form-actions,
-  .up-upload-overlay {
-    display: none !important;
-  }
-
-  .up-content-body {
-    box-shadow: none;
-    border: 1px solid #e5e7eb;
-  }
-}
-
 /* Accessibility */
-.up-btn:focus,
-.up-form-control:focus,
-.up-checkbox:focus + .up-checkbox-custom {
-  outline: 2px solid var(--bg-main-color);
-  outline-offset: 2px;
-}
-
-/* High contrast mode */
-@media (prefers-contrast: high) {
-  .up-form-control {
-    border-width: 3px;
-  }
-
-  .up-btn {
-    border-width: 2px;
-    border-style: solid;
-  }
-
-  .up-btn-primary {
-    border-color: var(--bg-main-color);
-  }
-}

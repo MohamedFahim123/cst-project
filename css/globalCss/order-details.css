@@ -549,7 +549,7 @@
   }
 }
 
-@media (max-width: 767.98px) {
+@media (max-width: 768px) {
   .od-page-title {
     font-size: 2rem;
     flex-direction: column;
