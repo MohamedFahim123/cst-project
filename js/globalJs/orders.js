@@ -19,14 +19,18 @@ function renderOrdersTable(page = 1) {
   const endIndex = startIndex + ORDERS_PER_PAGE;
   const paginatedOrders = filteredOrders.slice(startIndex, endIndex);
 
+  const emptyState = document.getElementById("or-empty-state");
+  const invoiceTableContainer = document.querySelector(".invoice-table");
+  if (paginatedOrders.length === 0) {
+    emptyState.style.display = "block";
+    invoiceTableContainer.style.display = "none";
+  } else {
+    emptyState.style.display = "none";
+    invoiceTableContainer.style.display = "block";
+  }
+
   // Update current page
   currentPage = page;
-
-  // Select the container
-  const invoiceTableContainer = document.querySelector(".invoice-table");
-  if (!invoiceTableContainer) {
-    return console.error("Invoice table container not found.");
-  }
 
   // Generate table rows for paginated orders
   const tableRows = paginatedOrders

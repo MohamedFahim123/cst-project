@@ -1,20 +1,338 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us</title>
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>contact</title>
-    <link rel="stylesheet" href="contact.css">
+  <body>
+    <!-- Navigation -->
+    <nav id="navbar-placeholder"></nav>
 
-</head>
+    <!-- Contact Hero Section -->
+    <section class="cu-hero-section">
+      <div class="container">
+        <div class="row justify-content-center text-center">
+          <div class="col-lg-8">
+            <div class="cu-hero-content">
+              <h1 class="cu-hero-title">Get In Touch</h1>
+              <p class="cu-hero-subtitle">
+                Have questions about our products or need support? We're here to help you find the perfect
+                tech solution.
+              </p>
+              <div class="cu-hero-divider"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<body>
-    <div class="vh-100 bg-danger text-white d-flex justify-content-center align-items-center">
-        <h1>
-            Contact Page
-        </h1>
-    </div>
-</body>
+    <!-- Contact Main Content -->
+    <section class="cu-main-section">
+      <div class="pf-container container">
+        <div class="row g-4">
+          <!-- Contact Information -->
+          <div class="col-lg-5 col-md-5">
+            <div class="cu-info-card h-100">
+              <div class="cu-info-header">
+                <div class="cu-info-icon">
+                  <i class="fas fa-headset"></i>
+                </div>
+                <h3 class="cu-info-title">Contact Information</h3>
+                <p class="cu-info-subtitle">Get in touch with us through any of these channels</p>
+              </div>
 
+              <div class="cu-info-list">
+                <!-- Phone -->
+                <div class="cu-info-item">
+                  <div class="cu-info-item-icon">
+                    <i class="fas fa-phone-alt"></i>
+                  </div>
+                  <div class="cu-info-item-content">
+                    <h5 class="cu-info-item-title">Phone</h5>
+                    <p class="cu-info-item-text">+1 (555) 123-4567</p>
+                    <p class="cu-info-item-text">+1 (555) 987-6543</p>
+                  </div>
+                </div>
+
+                <!-- Email -->
+                <div class="cu-info-item">
+                  <div class="cu-info-item-icon">
+                    <i class="fas fa-envelope"></i>
+                  </div>
+                  <div class="cu-info-item-content">
+                    <h5 class="cu-info-item-title">Email</h5>
+                    <p class="cu-info-item-text">support@tecnostore.com</p>
+                    <p class="cu-info-item-text">sales@tecnostore.com</p>
+                  </div>
+                </div>
+
+                <!-- Address -->
+                <div class="cu-info-item">
+                  <div class="cu-info-item-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                  </div>
+                  <div class="cu-info-item-content">
+                    <h5 class="cu-info-item-title">Address</h5>
+                    <p class="cu-info-item-text">
+                      123 Tech Street<br />Silicon Valley, CA 94025<br />United States
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Hours -->
+                <div class="cu-info-item">
+                  <div class="cu-info-item-icon">
+                    <i class="fas fa-clock"></i>
+                  </div>
+                  <div class="cu-info-item-content">
+                    <h5 class="cu-info-item-title">Business Hours</h5>
+                    <p class="cu-info-item-text">Monday - Friday: 9:00 AM - 6:00 PM</p>
+                    <p class="cu-info-item-text">Saturday: 10:00 AM - 4:00 PM</p>
+                    <p class="cu-info-item-text">Sunday: Closed</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Social Media -->
+              <div class="cu-social-section">
+                <h5 class="cu-social-title">Follow Us</h5>
+                <div class="cu-social-links">
+                  <a href="#contact" class="cu-social-link" title="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                  </a>
+                  <a href="#contact" class="cu-social-link" title="Twitter">
+                    <i class="fab fa-twitter"></i>
+                  </a>
+                  <a href="#contact" class="cu-social-link" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                  </a>
+                  <a href="#contact" class="cu-social-link" title="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="col-lg-7 col-md-7">
+            <div class="cu-form-card">
+              <div class="cu-form-header">
+                <h2 class="cu-form-title">Send Us a Message</h2>
+                <p class="cu-form-subtitle">
+                  Fill out the form below and we'll get back to you as soon as possible.
+                </p>
+              </div>
+
+              <form id="cu-contact-form" class="cu-contact-form" novalidate>
+                <div class="row g-3">
+                  <!-- First Name -->
+                  <div class="col-lg-6 col-md-12">
+                    <div class="cu-form-group">
+                      <label for="cu-first-name" class="cu-form-label">
+                        First Name <span class="cu-required">*</span>
+                      </label>
+                      <input type="text" class="form-control cu-form-control" id="cu-first-name" required />
+                    </div>
+                  </div>
+
+                  <!-- Last Name -->
+                  <div class="col-lg-6 col-md-12">
+                    <div class="cu-form-group">
+                      <label for="cu-last-name" class="cu-form-label">
+                        Last Name <span class="cu-required">*</span>
+                      </label>
+                      <input type="text" class="form-control cu-form-control" id="cu-last-name" required />
+                    </div>
+                  </div>
+
+                  <!-- Email -->
+                  <div class="col-lg-6 col-md-12">
+                    <div class="cu-form-group">
+                      <label for="cu-email" class="cu-form-label">
+                        Email Address <span class="cu-required">*</span>
+                      </label>
+                      <input type="email" class="form-control cu-form-control" id="cu-email" required />
+                    </div>
+                  </div>
+
+                  <!-- Phone -->
+                  <div class="col-lg-6 col-md-12">
+                    <div class="cu-form-group">
+                      <label for="cu-phone" class="cu-form-label">Phone Number</label>
+                      <input type="tel" class="form-control cu-form-control" id="cu-phone" />
+                    </div>
+                  </div>
+
+                  <!-- Subject -->
+                  <div class="col-12">
+                    <div class="cu-form-group">
+                      <label for="cu-subject" class="cu-form-label">
+                        Subject <span class="cu-required">*</span>
+                      </label>
+                      <select class="form-select cu-form-control" id="cu-subject" required>
+                        <option value="">Select a subject</option>
+                        <option value="general">General Inquiry</option>
+                        <option value="support">Technical Support</option>
+                        <option value="sales">Sales Question</option>
+                        <option value="billing">Billing Issue</option>
+                        <option value="partnership">Partnership Opportunity</option>
+                        <option value="feedback">Feedback</option>
+                        <option value="other">Other</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- Message -->
+                  <div class="col-12">
+                    <div class="cu-form-group">
+                      <label for="cu-message" class="cu-form-label">
+                        Message <span class="cu-required">*</span>
+                      </label>
+                      <textarea
+                        class="form-control cu-form-control"
+                        id="cu-message"
+                        rows="6"
+                        placeholder="Tell us more about your inquiry..."
+                        required></textarea>
+
+                      <small class="cu-form-helper">Minimum 10 characters required</small>
+                    </div>
+                  </div>
+
+                  <!-- Privacy Policy -->
+                  <div class="col-12">
+                    <div class="cu-form-group">
+                      <div class="form-check cu-form-check">
+                        <input
+                          class="form-check-input cu-form-check-input"
+                          type="checkbox"
+                          id="cu-privacy"
+                          required />
+                        <label class="form-check-label cu-form-check-label" for="cu-privacy">
+                          I agree to the <a href="#" class="cu-link">Privacy Policy</a> and
+                          <a href="#" class="cu-link">Terms of Service</a> <span class="cu-required">*</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Submit Button -->
+                  <div class="col-12">
+                    <div class="cu-form-actions">
+                      <button type="submit" class="btn cu-btn-primary" id="cu-submit-btn">
+                        <i class="fas fa-paper-plane cu-btn-icon"></i>
+                        Send Message
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="cu-faq-section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-10">
+            <div class="cu-faq-header text-center">
+              <h2 class="cu-faq-title">Frequently Asked Questions</h2>
+              <p class="cu-faq-subtitle">Find quick answers to common questions</p>
+            </div>
+
+            <div class="cu-faq-accordion">
+              <div class="accordion" id="cu-faq-list">
+                <!-- FAQ Item 1 -->
+                <div class="accordion-item cu-faq-item">
+                  <h2 class="accordion-header">
+                    <button
+                      class="accordion-button cu-faq-button"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#cu-faq-1">
+                      <i class="fas fa-shipping-fast cu-faq-icon"></i>
+                      What are your shipping options and delivery times?
+                    </button>
+                  </h2>
+                  <div id="cu-faq-1" class="accordion-collapse collapse show" data-bs-parent="#cu-faq-list">
+                    <div class="accordion-body cu-faq-content">
+                      We offer multiple shipping options including standard (5-7 business days), expedited
+                      (2-3 business days), and overnight delivery. Free shipping is available on orders over
+                      $50.
+                    </div>
+                  </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="accordion-item cu-faq-item">
+                  <h2 class="accordion-header">
+                    <button
+                      class="accordion-button collapsed cu-faq-button"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#cu-faq-2">
+                      <i class="fas fa-undo cu-faq-icon"></i>
+                      What is your return and exchange policy?
+                    </button>
+                  </h2>
+                  <div id="cu-faq-2" class="accordion-collapse collapse" data-bs-parent="#cu-faq-list">
+                    <div class="accordion-body cu-faq-content">
+                      We accept returns within 30 days of purchase. Items must be in original condition with
+                      all packaging. Exchanges are available for defective items or size/color changes.
+                    </div>
+                  </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="accordion-item cu-faq-item">
+                  <h2 class="accordion-header">
+                    <button
+                      class="accordion-button collapsed cu-faq-button"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#cu-faq-3">
+                      <i class="fas fa-shield-alt cu-faq-icon"></i>
+                      Do you offer warranty on your products?
+                    </button>
+                  </h2>
+                  <div id="cu-faq-3" class="accordion-collapse collapse" data-bs-parent="#cu-faq-list">
+                    <div class="accordion-body cu-faq-content">
+                      Yes, all our products come with manufacturer warranty. Electronics typically have 1-2
+                      years warranty, and we also offer extended warranty options for additional protection.
+                    </div>
+                  </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="accordion-item cu-faq-item">
+                  <h2 class="accordion-header">
+                    <button
+                      class="accordion-button collapsed cu-faq-button"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#cu-faq-4">
+                      <i class="fas fa-credit-card cu-faq-icon"></i>
+                      What payment methods do you accept?
+                    </button>
+                  </h2>
+                  <div id="cu-faq-4" class="accordion-collapse collapse" data-bs-parent="#cu-faq-list">
+                    <div class="accordion-body cu-faq-content">
+                      We accept all major credit cards, PayPal, Apple Pay, Google Pay, and bank transfers. All
+                      payments are processed securely with SSL encryption.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
 </html>
