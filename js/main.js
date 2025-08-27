@@ -5,6 +5,8 @@ import { initializeProfile } from "./globalJs/profile.js";
 import { initializeUpdateProfile } from "./globalJs/update-profile.js";
 
 import { addProductHandler } from "../pages/seller-dashboard/my-products/my-products.js";
+import { dashboardInitSeller } from "../pages/seller-dashboard/dashboard/dashboard.js";
+import { showBookedOrders } from "../pages/seller-dashboard/booked-orders/booked-orders.js";
 
 import { initializeAddUser } from "../pages/admin-dashboard/add-new-user/add-new-user.js";
 import { initializeCustomers } from "../pages/admin-dashboard/customers/customers.js";
@@ -13,19 +15,11 @@ import { initializeSellers } from "../pages/admin-dashboard/sellers/sellers.js";
 import { initializeCart } from "../pages/cart/mycart.js";
 import { initializeHome } from "../pages/home/home.js";
 import { loginSubmitHandler } from "../pages/login/login.js";
-import displayProductSummary, {
-  initializePayment,
-  paymentStutusFn,
-  paypalGateway,
-  validateBuiltPayment,
-} from "../pages/payment/payment.js";
+import displayProductSummary, { initializePayment, paymentStutusFn, paypalGateway, validateBuiltPayment } from "../pages/payment/payment.js";
 import { registerSubmitHandler } from "../pages/register/main.js";
 import { initializeProductDetailsFunctions } from "../pages/shop/product-details/product-details.js";
 import { initializeShop } from "../pages/shop/shop.js";
-import {
-  initializeWishlist,
-  refreshWishlist,
-} from "../pages/wishlist/mywishlist.js";
+import { initializeWishlist, refreshWishlist } from "../pages/wishlist/mywishlist.js";
 import { router } from "./router.js";
 import { cartAndWishlistLogic } from "./shred.js";
 
@@ -50,6 +44,7 @@ export const PAGE_INITIALIZERS = {
       console.error("Failed to initialize product details:", error);
     }
   },
+
   "/customer-dashboard/profile": () => {
     initializeProfile();
   },
@@ -62,6 +57,7 @@ export const PAGE_INITIALIZERS = {
   "/customer-dashboard/order-details": () => {
     initializeOrderDetails();
   },
+
   "/admin-dashboard/profile": () => {
     initializeProfile();
   },
@@ -74,6 +70,7 @@ export const PAGE_INITIALIZERS = {
   "/admin-dashboard/order-details": () => {
     initializeOrderDetails();
   },
+
   "/seller-dashboard/profile": () => {
     initializeProfile();
   },
@@ -90,6 +87,13 @@ export const PAGE_INITIALIZERS = {
   "/seller-dashboard/my-products": () => {
     addProductHandler();
   },
+  '/seller-dashboard/dashboard': () => {
+    dashboardInitSeller();
+  },
+  "/seller-dashboard/booked-orders": () => {
+    showBookedOrders();
+  },
+  
   "/cart": () => {
     initializeCart();
     cartAndWishlistLogic();
