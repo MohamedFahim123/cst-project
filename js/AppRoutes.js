@@ -112,4 +112,9 @@ export const APP_ROUTES = [
     title: "Products",
     description: "All Products Page",
   },
+  {
+    path: "/admin-dashboard/products/product-details",
+    title: "Product Details",
+    description: "Product Details Page",
+  },
 ];

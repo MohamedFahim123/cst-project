@@ -1,8 +1,5 @@
-// Import statements would be handled by your build system
-// import { showToast } from "../../../actions/showToast.js";
-// import { router } from "../../../js/router.js";
+import { router } from "../../../js/router.js";
 
-// Pagination configuration
 const ITEMS_PER_PAGE = 10;
 let currentPage = 1;
 let filteredProducts = [];
@@ -18,6 +15,7 @@ const productCell = (product) => {
            onerror="this.src='https://via.placeholder.com/50'">
     </td>
     <td>${product.title}</td>
+    <td class="ps-4">${product.sellerID || "N/A"}</td>
     <td>${product.category || "N/A"}</td>
     <td>$${product.price ? product.price.toFixed(2) : "0.00"}</td>
     <td>${product.stock !== undefined ? product.stock : "N/A"}</td>
@@ -26,7 +24,10 @@ const productCell = (product) => {
         ${getStatusText(product)}
       </span>
     </td>
-    <td class="action-buttons">
+    <td class="action-buttons py-5 d-flex align-items-center">
+      <button class="btn btn-action viewProductDetails btn-outline-success" title="Edit Product">
+        <i class="fa-solid fa-eye viewProductEye" data-id="${product.id}"></i>
+      </button>
       <button class="btn-action btn-delete" title="Delete Product" data-id="${
         product.id
       }">
@@ -61,7 +62,6 @@ const renderAllProducts = (products) => {
     return;
   }
 
-  // Show empty state if no products
   if (!products || products.length === 0) {
     emptyState.style.display = "block";
     tableWrapper.style.display = "none";
@@ -69,23 +69,19 @@ const renderAllProducts = (products) => {
     return;
   }
 
-  // Hide empty state and show table
   emptyState.style.display = "none";
   tableWrapper.style.display = "block";
 
-  // Apply pagination
   const totalPages = Math.ceil(products.length / ITEMS_PER_PAGE);
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const endIndex = Math.min(startIndex + ITEMS_PER_PAGE, products.length);
   const paginatedProducts = products.slice(startIndex, endIndex);
 
-  // Render table
   tableBody.innerHTML = "";
   paginatedProducts.forEach((product) => {
     tableBody.innerHTML += productCell(product);
   });
 
-  // Render pagination if needed
   if (products.length > ITEMS_PER_PAGE) {
     paginationContainer.style.display = "flex";
     renderPagination(products.length, totalPages);
@@ -105,29 +101,24 @@ const renderPagination = (totalItems, totalPages) => {
     return;
   }
 
-  // Update pagination info
   const startItem = (currentPage - 1) * ITEMS_PER_PAGE + 1;
   const endItem = Math.min(currentPage * ITEMS_PER_PAGE, totalItems);
   paginationInfo.textContent = `Showing ${startItem} to ${endItem} of ${totalItems} products`;
 
-  // Create pagination controls
   let paginationHTML = "";
 
-  // Previous button
   paginationHTML += `<button class="page-btn ${
     currentPage === 1 ? "disabled" : ""
   }" ${currentPage === 1 ? "disabled" : ""} id="prev-page">
     <i class="fas fa-chevron-left"></i>
   </button>`;
 
-  // Page numbers
   for (let i = 1; i <= totalPages; i++) {
     paginationHTML += `<button class="page-btn ${
       currentPage === i ? "active" : ""
     }" data-page="${i}">${i}</button>`;
   }
 
-  // Next button
   paginationHTML += `<button class="page-btn ${
     currentPage === totalPages ? "disabled" : ""
   }" ${currentPage === totalPages ? "disabled" : ""} id="next-page">
@@ -136,7 +127,6 @@ const renderPagination = (totalItems, totalPages) => {
 
   paginationControls.innerHTML = paginationHTML;
 
-  // Add event listeners to pagination buttons
   document.querySelectorAll(".page-btn[data-page]").forEach((button) => {
     button.addEventListener("click", () => {
       currentPage = parseInt(button.dataset.page);
@@ -173,7 +163,6 @@ const renderPagination = (totalItems, totalPages) => {
 };
 
 export const RenderProducts = () => {
-  // Get products from localStorage
   try {
     const productsData = JSON.parse(localStorage.getItem("all-products")) || [];
     allProducts = Array.isArray(productsData) ? productsData : [];
@@ -219,13 +208,11 @@ export const productsSearch = () => {
 const addActionListeners = () => {
   const tableBody = document.getElementById("products-table-body");
   if (tableBody) {
-    tableBody.removeEventListener("click", handleTableClick);
-    tableBody.addEventListener("click", handleTableClick);
+    tableBody.addEventListener("click", handleAssignEventToTable);
   }
 };
 
-const handleTableClick = (e) => {
-  // Check if delete button was clicked
+const handleAssignEventToTable = (e) => {
   if (
     e.target.classList.contains("btn-delete") ||
     e.target.closest(".btn-delete")
@@ -236,6 +223,18 @@ const handleTableClick = (e) => {
     const productId = deleteBtn.dataset.id;
     openDeleteModal(productId);
     return;
+  }
+
+  if (e.target.classList.contains("viewProductDetails")) {
+    const eye = e.target.querySelector(".viewProductEye");
+    if (eye) {
+      localStorage.setItem("curr-product", eye.dataset.id);
+    }
+    router.navigate("/admin-dashboard/products/product-details");
+  }
+  if (e.target.classList.contains("viewProductEye")) {
+    localStorage.setItem("curr-product", e.target.dataset.id);
+    router.navigate("/admin-dashboard/products/product-details");
   }
 };
 
@@ -265,7 +264,6 @@ const handleDeleteProduct = () => {
 
   const productId = deleteProductIdInput.value;
 
-  // Remove product from the array
   allProducts = allProducts.filter(
     (product) =>
       product && product.id && product.id.toString() !== productId.toString()
@@ -275,7 +273,6 @@ const handleDeleteProduct = () => {
       product && product.id && product.id.toString() !== productId.toString()
   );
 
-  // Update localStorage with the modified array
   localStorage.setItem("all-products", JSON.stringify(allProducts));
 
   renderAllProducts(

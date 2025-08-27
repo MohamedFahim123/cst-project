@@ -6,9 +6,7 @@
 /* Base Styles */
 .pf-container {
   min-height: calc(100vh - 100px);
-  padding: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  padding-block: 2rem;
 }
 
 /* Sidebar Styles */
@@ -424,11 +422,7 @@
 }
 
 /* Responsive Design */
-@media (max-width: 992px) {
-  .pf-container {
-    max-width: 990px;
-  }
-}
+
 
 @media (max-width: 768px) {
   .pf-sidebar-wrapper {

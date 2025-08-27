@@ -29,6 +29,7 @@ import {
 import { router } from "./router.js";
 import { cartAndWishlistLogic } from "./shred.js";
 import { initializeProducts } from "../pages/admin-dashboard/products/products.js";
+import { initializeDashboardProductDetailsFunctions } from "../pages/admin-dashboard/products/product-details/product-details.js";
 
 //------------------------------------------------------------//
 
@@ -133,6 +134,9 @@ export const PAGE_INITIALIZERS = {
   },
   "/admin-dashboard/products": () => {
     initializeProducts();
+  },
+  "/admin-dashboard/products/product-details": () => {
+    initializeDashboardProductDetailsFunctions();
   },
 };
 

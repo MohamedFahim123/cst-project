@@ -437,4 +437,6 @@ export const router = new Router({
   "/admin-dashboard/add-new-user":
     "/pages/admin-dashboard/add-new-user/add-new-user.html",
   "/admin-dashboard/products": "/pages/admin-dashboard/products/products.html",
+  "/admin-dashboard/products/product-details":
+    "/pages/admin-dashboard/products/product-details/product-details.html",
 });
