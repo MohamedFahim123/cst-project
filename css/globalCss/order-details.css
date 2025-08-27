@@ -302,21 +302,6 @@
   line-height: 1.4;
 }
 
-.od-item-specs {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.od-spec-item {
-  background: rgba(99, 76, 159, 0.1);
-  color: var(--bg-main-color);
-  padding: 0.2rem 0.6rem;
-  border-radius: 15px;
-  font-size: 0.8rem;
-  font-weight: 500;
-}
-
 .od-item-quantity {
   text-align: center;
   margin: 0 1rem;
@@ -638,11 +623,6 @@
   .od-back-btn {
     padding: 0.4rem 0.8rem;
     font-size: 0.9rem;
-  }
-
-  .od-spec-item {
-    font-size: 0.75rem;
-    padding: 0.15rem 0.5rem;
   }
 }
 

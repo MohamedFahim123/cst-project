@@ -25,7 +25,7 @@ export function initializeSlider() {
 
   // Start auto-slide
   function startSlider() {
-    slideInterval = setInterval(nextSlide, 5000);
+    slideInterval = setInterval(nextSlide, 3000);
   }
 
   // Stop auto-slide
