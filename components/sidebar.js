@@ -20,6 +20,11 @@ const dasbhoardSidebarContent = {
   ],
   seller: [
     {
+      path: "/seller-dashboard/dashboard",
+      icon: `<i class="fa-solid fa-chart-bar pf-nav-icon"></i>`,
+      title: "Dashboard",
+    },
+    {
       path: "/seller-dashboard/profile",
       icon: `<i class="fas fa-user pf-nav-icon"></i>`,
       title: "Profile",
@@ -38,6 +43,11 @@ const dasbhoardSidebarContent = {
       path: "/seller-dashboard/my-products",
       icon: `<i class="fa-solid fa-box  pf-nav-icon"></i>`,
       title: "My Products",
+    },
+    {
+      path: "/seller-dashboard/booked-orders",
+      icon: `<i class="fas fa-shopping-bag pf-nav-icon"></i>`,
+      title: "Booked Orders",
     },
   ],
   admin: [
@@ -104,7 +114,8 @@ export const handleRenderingSideBarLinks = async (path) => {
   // Render Side List
   const sidebarLinks = dasbhoardSidebarContent[loginedUser.role.toLowerCase()];
   sidebarLinks.forEach((link) => {
-    return (sideLinksContainer.innerHTML += `<li class="pf-nav-item">
+    return (sideLinksContainer.innerHTML += `
+      <li class="pf-nav-item">
         <a href=${link.path} class="pf-nav-link ${
       path === link.path ? "active" : ""
     }" data-link data-tab="orders">

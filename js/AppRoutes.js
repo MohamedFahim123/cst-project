@@ -2,11 +2,7 @@ export const APP_ROUTES = [
   { path: "/404", title: "404", description: "This Page Does Not Exist" },
   { path: "/", title: "Home", description: "Our Home Page" },
   { path: "/shop", title: "Shop", description: "Shop Page" },
-  {
-    path: "/shop/product-details",
-    title: "Shop Details",
-    description: "Shop Details Page",
-  },
+  { path: "/shop/product-details", title: "Shop Details", description: "Shop Details Page" },
   { path: "/blogs", title: "Blogs", description: "Blog Page" },
   { path: "/contact", title: "Contact", description: "Our Contact Page" },
   { path: "/cart", title: "Cart", description: "Cart Page" },
@@ -41,6 +37,11 @@ export const APP_ROUTES = [
 
   // Seller Dashboard
   {
+    path: "/seller-dashboard/dashboard",
+    title: "Dashboard",
+    description: "Seller Dashboard Page",
+  },
+  {
     path: "/seller-dashboard/profile",
     title: "Profile",
     description: "User Profile Page",
@@ -64,6 +65,11 @@ export const APP_ROUTES = [
     path: "/seller-dashboard/my-products",
     title: "My Products",
     description: "My Products Page",
+  },
+  {
+    path: "/seller-dashboard/booked-orders",
+    title: "Booked Orders",
+    description: "Booked Orders Page",    
   },
 
   // admin Dashboard

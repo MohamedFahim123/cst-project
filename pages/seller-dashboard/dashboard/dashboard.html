@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <div id="dashboard-grid">
+        <div class="pf-container">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-4 pf-sidebar-wrapper" id="pf-sidebar-wrapper">
+
+                    </div>
+                    <div class=" col-lg-9 col-md-8">
+                        <!-- Header -->
+                        <header class="pf-header pf-fade-in">
+                            <h1>Overview</h1>
+                            <div class="pf-header-actions">
+                                <div class="pf-user">
+                                    <div class="pf-user-avatar">
+                                        <img src="../../assets/avatar.jpg" alt="User Avatar">
+                                    </div>
+                                    <span>John Doe</span>
+                                </div>
+                            </div>
+                        </header>
+
+                        <!-- Main Content -->
+                        <div class="pf-main-content-dashboard">
+
+                            <!-- Sales Chart -->
+                            <div class="pf-card pf-sales-chart pf-slide-up">
+                                <div class="pf-card-header">
+                                    <h2 class="pf-card-title">Sales Chart</h2>
+                                </div>
+                                <div class="pf-sales-info">
+                                    <div class="pf-sales-amount">$10,552.40</div>
+                                    <div class="pf-sales-change">
+                                        <i class="fas fa-arrow-up"></i>
+                                        8.00% <span class="text-muted">May</span>
+                                    </div>
+                                </div>
+                                <div class="pf-chart-container">
+                                    <canvas id="salesChart"></canvas>
+                                </div>
+                            </div>
+
+                            <!-- Channels -->
+                            <div class="pf-card pf-channels pf-slide-up">
+                                <div class="pf-card-header">
+                                    <h2 class="pf-card-title">Sales Chart</h2>
+                                    <span class="cursor-pointer pf-card-more">View all</span>
+                                </div>
+                                <div class="pf-channel-item">
+                                    <div class="pf-channel-info">
+                                        <div class="pf-channel-icon primary">
+                                            <i class="fas fa-desktop"></i>
+                                        </div>
+                                        <div class="pf-channel-details">
+                                            <h4>48%</h4>
+                                            <p>↑ 28.00%</p>
+                                        </div>
+                                    </div>
+                                    <div class="pf-channel-percent">$0.001 Mvs/30</div>
+                                </div>
+                                <div class="pf-channel-item">
+                                    <div class="pf-channel-info">
+                                        <div class="pf-channel-icon success">
+                                            <i class="fas fa-mobile-alt"></i>
+                                        </div>
+                                        <div class="pf-channel-details">
+                                            <h4>28.00%</h4>
+                                            <p>Direct</p>
+                                        </div>
+                                    </div>
+                                    <div class="pf-channel-percent">$0.000</div>
+                                </div>
+                                <div class="pf-channel-item">
+                                    <div class="pf-channel-info">
+                                        <div class="pf-channel-icon warning">
+                                            <i class="fas fa-tablet-alt"></i>
+                                        </div>
+                                        <div class="pf-channel-details">
+                                            <h4>44.00%</h4>
+                                            <p>↑ 11.00%</p>
+                                        </div>
+                                    </div>
+                                    <div class="pf-channel-percent">6 Total</div>
+                                </div>
+                            </div>
+
+                            <!-- Orders -->
+                            <div class="pf-card pf-orders pf-slide-up">
+                                <div class="pf-card-header">
+                                    <h2 class="pf-card-title">Order</h2>
+                                </div>
+                                <div class="pf-order-stats">
+                                    <div class="pf-order-stat">
+                                        <div class="pf-order-number">310</div>
+                                        <div class="pf-order-label">Orders</div>
+                                        <small class="text-muted">Over last month ↑</small>
+                                    </div>
+                                    <div class="pf-order-stat">
+                                        <div class="pf-order-number">$3,759.00</div>
+                                        <div class="pf-order-label">Sales</div>
+                                        <small class="text-muted">Over last month ↑</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Activity Overview -->
+                            <div class="activity-overview pf-slide-up">
+                                <div class="pf-card-header">
+                                    <h2 class="pf-card-title">Activity Overview</h2>
+                                </div>
+                                <div class="activity-item">
+                                    <div class="activity-icon">
+                                        <i class="fas fa-truck"></i>
+                                    </div>
+                                    <div class="activity-info">
+                                        <h4>Delivered</h4>
+                                        <p>16 Navy Packages</p>
+                                    </div>
+                                </div>
+                                <div class="activity-item">
+                                    <div class="activity-icon">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </div>
+                                    <div class="activity-info">
+                                        <h4>Ordered</h4>
+                                        <p>72 New Terres</p>
+                                    </div>
+                                </div>
+                                <div class="activity-item">
+                                    <div class="activity-icon">
+                                        <i class="fas fa-headset"></i>
+                                    </div>
+                                    <div class="activity-info">
+                                        <h4>Reported</h4>
+                                        <p>90 Supporter New Course</p>
+                                    </div>
+                                </div>
+                                <div class="activity-item">
+                                    <div class="activity-icon">
+                                        <i class="fas fa-box"></i>
+                                    </div>
+                                    <div class="activity-info">
+                                        <h4>Arrived</h4>
+                                        <p>34 Upgraded Served</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Products Sold -->
+                            <div class="pf-card pf-products-sold pf-slide-up">
+                                <div class="pf-card-header">
+                                    <h2 class="pf-card-title">Products Sold</h2>
+                                    <span class="cursor-pointer pf-card-more">View report</span>
+                                </div>
+                                <div class="pf-product-item">
+                                    <div class="pf-product-icon">
+                                        <i class="fas fa-tshirt"></i>
+                                    </div>
+                                    <div class="pf-product-info">
+                                        <h4>United States</h4>
+                                        <p>Top country</p>
+                                    </div>
+                                    <div class="pf-product-amount">$1,017.00</div>
+                                </div>
+                                <div class="pf-product-item">
+                                    <div class="pf-product-icon">
+                                        <i class="fas fa-laptop"></i>
+                                    </div>
+                                    <div class="pf-product-info">
+                                        <h4>Venezuela</h4>
+                                        <p>Top country</p>
+                                    </div>
+                                    <div class="pf-product-amount">$1,054.75</div>
+                                </div>
+                                <div class="pf-product-item">
+                                    <div class="pf-product-icon">
+                                        <i class="fas fa-mobile-alt"></i>
+                                    </div>
+                                    <div class="pf-product-info">
+                                        <h4>Lancashire</h4>
+                                        <p>Top country</p>
+                                    </div>
+                                    <div class="pf-product-amount">$1,018.88</div>
+                                </div>
+                                <div class="pf-product-item">
+                                    <div class="pf-product-icon">
+                                        <i class="fas fa-headphones"></i>
+                                    </div>
+                                    <div class="pf-product-info">
+                                        <h4>Rugby</h4>
+                                        <p>Top country</p>
+                                    </div>
+                                    <div class="pf-product-amount">$1,042.00</div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

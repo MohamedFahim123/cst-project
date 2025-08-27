@@ -79,7 +79,7 @@
 .pf-nav-link {
   display: flex;
   align-items: center;
-  padding: 1rem;
+  padding: 10px 9px;
   color: var(--text-main-color);
   text-decoration: none;
   border-radius: 8px;
