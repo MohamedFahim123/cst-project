@@ -1,6 +1,7 @@
 export const dashboardInit = () => {
   // Sales Chart
   const salesCtx = document.getElementById("salesChart").getContext("2d");
+  const overviewCtx = document.getElementById("dataChart").getContext("2d");
 
   const salesChart = new Chart(salesCtx, {
     type: "line",
@@ -37,6 +38,63 @@ export const dashboardInit = () => {
         x: {
           grid: {
             display: false,
+          },
+        },
+      },
+    },
+  });
+
+  let ordersLength = JSON.parse(localStorage.getItem("orders")).length;
+  let allProducts = JSON.parse(localStorage.getItem("all-products")).length;
+  let users = JSON.parse(localStorage.getItem("users"))["users"];
+
+  let customers = 0;
+  let sellers = 0;
+
+  users.forEach((u) => {
+    if (u.role == "customer") {
+      customers++;
+    } else if (u.role == "seller") {
+      sellers++;
+    }
+  });
+
+  const overviewChart = new Chart(overviewCtx, {
+    type: "doughnut",
+    data: {
+      labels: ["Customers", "Sellers", "Products", "Orders"],
+      datasets: [
+        {
+          label: "E-commerce Overview",
+          data: [customers, sellers, allProducts, ordersLength], // Example values
+          backgroundColor: [
+            "#634c9f", // Customers
+            "#ff6384", // Sellers
+            "#36a2eb", // Products
+            "#ffce56", // Orders
+          ],
+          borderColor: "#fff",
+          borderWidth: 2,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: "bottom",
+          labels: {
+            usePointStyle: true,
+            padding: 20,
+          },
+        },
+        tooltip: {
+          callbacks: {
+            label: function (context) {
+              let label = context.label || "";
+              let value = context.parsed;
+              return `${label}: ${value}`;
+            },
           },
         },
       },

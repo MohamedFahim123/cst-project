@@ -76,7 +76,7 @@ body {
 }
 
 .pf-sales-chart {
-  grid-column: span 8;
+  grid-column: span 6;
 }
 
 .pf-sales-info {
