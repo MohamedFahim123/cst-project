@@ -82,7 +82,7 @@ export const cartAndWishlistLogic = () => {
         name: cartBtn.dataset.name,
         price: parseFloat(cartBtn.dataset.price),
         sellerID: cartBtn.dataset.seller,
-        stock: currentProduct.stock,
+        stock: cartBtn.dataset.stock,
       };
 
       if (cart.has(product.id)) {
@@ -112,7 +112,7 @@ export const cartAndWishlistLogic = () => {
         name: wishlistBtn.dataset.name,
         price: parseFloat(wishlistBtn.dataset.price),
         sellerID: wishlistBtn.dataset.seller,
-        stock: currentProduct.stock,
+        stock: wishlistBtn.dataset.stock,
       };
 
       if (wishlist.has(product.id)) {
