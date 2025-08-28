@@ -3,7 +3,7 @@ export const APP_ROUTES = [
   { path: "/", title: "Home", description: "Our Home Page" },
   { path: "/shop", title: "Shop", description: "Shop Page" },
   { path: "/shop/product-details", title: "Shop Details", description: "Shop Details Page" },
-  { path: "/blogs", title: "Blogs", description: "Blog Page" },
+  { path: "/our-team", title: "Our Team", description: "Our Team Page" },
   { path: "/contact", title: "Contact", description: "Our Contact Page" },
   { path: "/cart", title: "Cart", description: "Cart Page" },
   { path: "/profile", title: "Profile", description: "User Profile Page" },
@@ -69,7 +69,7 @@ export const APP_ROUTES = [
   {
     path: "/seller-dashboard/booked-orders",
     title: "Booked Orders",
-    description: "Booked Orders Page",    
+    description: "Booked Orders Page",
   },
 
   // admin Dashboard
