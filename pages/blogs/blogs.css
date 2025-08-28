@@ -1,8 +1,60 @@
-.blogs {
+.team {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-color: rgb(64, 158, 116);
+}
+
+.team-badge {
+  padding: 7px;
+  background-color: #eeeaff;
+  border-radius: 12px;
+  color: #5946a5;
+}
+
+.team-header {
+  font-size: 3.5rem;
+}
+
+.light-gray {
+  color: #868b8d;
+}
+
+.contactus-btn {
+  padding: 10px 25px;
+  border-radius: 12px;
+  background-color: #5946a5;
+  color: white;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 300ms ease;
+}
+
+.contactus-btn:hover {
+  background-color: #745bd7;
+}
+
+.member {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.member-1 {
+  background-image: url(../../assets/person1.png);
+}
+.member-2 {
+  background-image: url(../../assets/person2.png);
+}
+.member-3 {
+  background-image: url(../../assets/person3.png);
+}
+
+.card-jobtitle {
+  color: #866ee6;
+}
+
+@media screen and (max-width: 600px) {
+  .team-header {
+    font-size: 2.5rem;
+  }
 }
