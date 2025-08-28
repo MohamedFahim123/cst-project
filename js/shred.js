@@ -53,9 +53,13 @@ export const cartAndWishlistLogic = () => {
         name: currentProduct.title,
         price: parseFloat(currentProduct.price * quantity.value),
         sellerID: currentProduct.sellerID,
+        stock: currentProduct.stock,
       };
 
       cart.add(product, +quantity.value);
+      // re initialize input
+      quantity.value = 1;
+
       updateButtonStates();
       refreshCartPage();
       return;
@@ -78,6 +82,7 @@ export const cartAndWishlistLogic = () => {
         name: cartBtn.dataset.name,
         price: parseFloat(cartBtn.dataset.price),
         sellerID: cartBtn.dataset.seller,
+        stock: currentProduct.stock,
       };
 
       if (cart.has(product.id)) {
@@ -107,6 +112,7 @@ export const cartAndWishlistLogic = () => {
         name: wishlistBtn.dataset.name,
         price: parseFloat(wishlistBtn.dataset.price),
         sellerID: wishlistBtn.dataset.seller,
+        stock: currentProduct.stock,
       };
 
       if (wishlist.has(product.id)) {

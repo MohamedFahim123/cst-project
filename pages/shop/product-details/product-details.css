@@ -90,6 +90,7 @@
 }
 
 /* Stock Status Styles */
+
 .stock-status .out-of-stock {
   color: #dc3545;
 }
@@ -100,6 +101,17 @@
 
 .stock-status .in-stock {
   color: var(--green-color);
+}
+
+.pd-stock-quantity {
+  width: auto;
+  font-weight: bold;
+  color: #fff;
+  background-color: #28a745;
+  padding: 10px;
+  text-align: center;
+  border-radius: 50%;
+  user-select: none;
 }
 
 .product-title {

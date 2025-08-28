@@ -2,15 +2,12 @@
 export async function initializeRelatedProducts(Swiper) {
   const products = JSON.parse(localStorage.getItem("all-products")) || [];
   const currentProductId = +localStorage.getItem("curr-product");
-  const currentProduct = products.find(
-    (product) => product.id === currentProductId
-  );
+  const currentProduct = products.find((product) => product.id === currentProductId);
   let relatedProducts = [];
   if (currentProduct) {
     relatedProducts = products.filter(
       (product) =>
-        product.brand === currentProduct.brand &&
-        product.id !== currentProductId
+        product.brand === currentProduct.brand && product.id !== currentProductId && product.stock > 0
     );
     relatedProducts = extractRandomList(relatedProducts, 4);
   }
@@ -40,30 +37,20 @@ function renderRelatedProducts(products, Swiper) {
             ${product.discountPercentage}%
           </span>
 
-          <img src="${product.thumbnail}" class="card-img-top" alt="${
-        product.title
-      }" loading="lazy" />
+          <img src="${product.thumbnail}" class="card-img-top" alt="${product.title}" loading="lazy" />
 
           <div class="card-body">
             <h5 class="card-title fs-6" title="${product.title}">
-              ${
-                product.title.length > 30
-                  ? product.title.slice(0, 30) + "..."
-                  : product.title
-              }
+              ${product.title.length > 30 ? product.title.slice(0, 30) + "..." : product.title}
             </h5>
 
-            <p class="card-text fs-6 text-secondary mb-1" title="${
-              product.description
-            }">
+            <p class="card-text fs-6 text-secondary mb-1" title="${product.description}">
               ${product.description.slice(0, 95)}...
             </p>
 
             <div class="price">
               <span class="me-2 fw-bold fs-5">${Math.ceil(product.price)}</span>
-              <span class="fw-light fs-6 text-decoration-line-through">${
-                product.deletedPrice
-              }</span>
+              <span class="fw-light fs-6 text-decoration-line-through">${product.deletedPrice}</span>
             </div>
 
             <button 
@@ -88,10 +75,7 @@ function renderRelatedProducts(products, Swiper) {
   const relatedProducts = document.getElementById("relatedProducts");
 
   relatedProducts.addEventListener("click", (e) => {
-    if (
-      e.target.classList.contains("card-img-top") ||
-      e.target.classList.contains("card-title")
-    ) {
+    if (e.target.classList.contains("card-img-top") || e.target.classList.contains("card-title")) {
       localStorage.setItem("curr-product", e.target.closest(".card").id);
       window.scrollTo(0, 0);
       window.location.reload();

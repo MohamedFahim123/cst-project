@@ -67,15 +67,22 @@ class Cart {
     const userData = this._getUserData();
     const cart = userData.cart || [];
     const existing = cart.find((item) => +item.id === +product.id);
+    // "existing"  is a reference so editing it will affect the cart directly
 
     if (existing) {
-      existing.quantity += quantity;
+      if (existing.quantity + quantity <= product.stock) {
+        existing.quantity += quantity;
+        showToast(`${product.name} added to cart`, "success");
+      } else {
+        existing.quantity = product.stock;
+        showToast("Quantity can't exceed available stock", "error");
+      }
     } else {
       cart.push({ ...product, quantity });
+      showToast(`${product.name} added to cart`, "success");
     }
 
     this.#save(cart);
-    showToast(`${product.name} added to cart`, "success");
   }
 
   has(productId) {
@@ -99,10 +106,7 @@ class Cart {
   updateQuantity(productId, quantity) {
     const userData = this._getUserData();
     const cart = userData.cart || [];
-    const item = cart.find(
-      (i) =>
-        i.id.toString().toLowerCase() === productId.toString().toLowerCase()
-    );
+    const item = cart.find((i) => i.id.toString().toLowerCase() === productId.toString().toLowerCase());
 
     if (!item) return;
 
@@ -128,10 +132,7 @@ class Cart {
   get totalPrice() {
     const userData = this._getUserData();
     const cart = userData.cart || [];
-    return cart.reduce(
-      (sum, item) => sum + item.quantity * (item.price || 0),
-      0
-    );
+    return cart.reduce((sum, item) => sum + item.quantity * (item.price || 0), 0);
   }
 
   get items() {

@@ -1,5 +1,5 @@
-import { initializeProductInfo } from "./js/single-product-info.js";
-import { initializeSlider } from "./js/slider.js";
+import { initializeProductInfo } from "../../../../js/globalJs/single-product-info.js";
+import { initializeSlider } from "../../../../js/globalJs/slider.js";
 
 export function initializeDashboardProductDetailsFunctions() {
   initializeProductInfo();
