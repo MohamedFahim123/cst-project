@@ -167,7 +167,6 @@ function attachSearchListener() {
     return console.error("No current user found.");
   }
   const userOrders = getOrdersByUserId(currentUser.id);
-  console.log("🔥🔥", userOrders);
   filteredOrders = [...userOrders];
 
   const searchInput = document.querySelector(".form-control-custom");

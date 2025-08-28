@@ -53,6 +53,9 @@ body {
   color: var(--pf-dark);
 }
 
+#app {
+  min-height: calc(100vh - 150px);
+}
 ul {
   list-style: none;
 }
