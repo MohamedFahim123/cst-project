@@ -102,7 +102,6 @@ const productCard = (product) => {
             data-thumbnail="${product.thumbnail}"
             data-name="${product.title}"
             data-price="${product.price}"
-            data-seller="${product.sellerID}"
           ></i>
 
           <span class="badge text-bg-danger position-absolute z-3">
@@ -140,7 +139,6 @@ const productCard = (product) => {
               data-thumbnail="${product.thumbnail}"
               data-name="${product.title}"
               data-price="${product.price}"
-              data-seller="${product.sellerID}"
               type="button" 
               title="Add to cart" 
               class="addtocart add-to-cart-btn"
