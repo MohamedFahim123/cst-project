@@ -14,19 +14,15 @@ function loadProductFromLocalStorage() {
     }
 
     // Get all products from localStorage
-    const allProductsData = localStorage.getItem("all-products");
+    const allProducts = JSON.parse(localStorage.getItem("all-products"));
 
-    if (!allProductsData) {
+    if (!allProducts) {
       console.error("No products data found in localStorage");
       return;
     }
 
-    const allProducts = JSON.parse(allProductsData);
-
     // Find the current product by ID
-    const currentProduct = allProducts.find(
-      (product) => product.id == currentProductId
-    );
+    const currentProduct = allProducts.find((product) => product.id == currentProductId);
 
     if (!currentProduct) {
       console.error("Product not found with ID:", currentProductId);
@@ -76,21 +72,23 @@ function populateProductInfo(product) {
     }
   }
 
-  const stockStatus = document.getElementById("stockStatus");
-  if (stockStatus) {
-    if (product.stock > 0) {
-      stockStatus.textContent = "In Stock";
-    } else {
-      stockStatus.textContent = "Out of Stock";
-      stockStatus.classList.add("text-danger");
-    }
-  }
-
   // Update product description
   const productDescription = document.querySelector(".product-description p");
   if (productDescription) {
-    productDescription.textContent =
-      product.description || "No description available.";
+    productDescription.textContent = product.description || "No description available.";
+  }
+
+  const productSeller = document.querySelector(".product-seller p");
+  if (productSeller) {
+    const users = JSON.parse(localStorage.getItem("users")).users;
+    const seller = users.find(
+      (user) => user.id.toString() === product.sellerID.toString() && user.role.toLowerCase() === "seller"
+    );
+
+    if (seller) {
+      productSeller.innerHTML =
+        `<strong>Seller:</strong> ${seller.username}` || "No seller information available.";
+    }
   }
 
   // Update rating
@@ -99,11 +97,11 @@ function populateProductInfo(product) {
   // Update stock status
   updateStockStatus(product);
 
-  // Update quantity max value based on stock
-  const quantityInput = document.getElementById("quantity");
-  if (quantityInput && product.stock) {
-    quantityInput.setAttribute("max", Math.min(product.stock, 10));
-  }
+  // // Update quantity max value based on stock
+  // const quantityInput = document.getElementById("quantity");
+  // if (quantityInput && product.stock) {
+  //   quantityInput.setAttribute("max", Math.min(product.stock, 10));
+  // }
 }
 
 function updateProductRating(product) {
@@ -138,9 +136,7 @@ function updateProductRating(product) {
   const writeReviewLink = document.querySelector(".write-review");
   if (writeReviewLink && product.reviews) {
     const reviewCount = product.reviews.length;
-    writeReviewLink.textContent = `${reviewCount} Review${
-      reviewCount !== 1 ? "s" : ""
-    }`;
+    writeReviewLink.textContent = `${reviewCount} Review${reviewCount !== 1 ? "s" : ""}`;
   }
 }
 
@@ -170,7 +166,8 @@ function updateStockStatus(product) {
     <span class="${stockClass}">
       <i class="fas fa-circle" style="color: ${iconColor}"></i>
       ${stockText}
-    </span>
+      </span>
+      ${stock === 0 ? "" : `<span class="pd-stock-quantity ms-3">${stock}</span>`}
   `;
 
   stockStatusContainer.innerHTML = stockHTML;
@@ -213,11 +210,7 @@ function getProductImages(product) {
   ];
 
   // Check if product has images property
-  if (
-    product.images &&
-    Array.isArray(product.images) &&
-    product.images.length > 0
-  ) {
+  if (product.images && Array.isArray(product.images) && product.images.length > 0) {
     return product.images;
   }
 

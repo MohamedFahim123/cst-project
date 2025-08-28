@@ -1,7 +1,7 @@
-import { initializeSlider } from "./utils/slider.js";
+import { initializeSlider } from "../../../js/globalJs/slider.js";
+import { initializeProductInfo } from "../../../js/globalJs/single-product-info.js";
 import { initializeRelatedProducts } from "./utils/showRelatedProduct.js";
 import { initializeQuantityControls } from "./utils/product-details-cart.js";
-import { initializeProductInfo } from "./utils/single-product-info.js";
 
 export function initializeProductDetailsFunctions(Swiper) {
   initializeProductInfo();

@@ -1,4 +1,6 @@
 import { cart } from "../../actions/cart.js";
+import { generateSecureId } from "../../actions/generateId.js";
+import { showToast } from "../../actions/showToast.js";
 
 export async function initializePayment() {
   // Load PayPal SDK dynamically
@@ -72,22 +74,28 @@ export function paypalGateway() {
 
 // ///////////        display order summary          ////////////////////////////////////////
 
-let orders = [];
+let newOrder;
 
 export default function displayProductSummary() {
   const user = JSON.parse(localStorage.getItem("currentUser"));
   const userProductsItems = user.cart;
   const tbody = document.querySelector("tbody");
 
+  console.log(userProductsItems);
+  const newProducts = userProductsItems.map((item) => ({
+    id: item.id,
+    quantity: item.quantity,
+    sellerID: item.sellerID,
+  }));
+
   // ✅ Create ONE new order object
-  const newOrder = {
+  newOrder = {
+    id: generateSecureId(),
     userID: user.id,
     date: new Date().toISOString(), // optional for history
-    products: [...userProductsItems],
+    status: "processing",
+    products: [...newProducts],
   };
-
-  // put into orders array (so popup can use it later)
-  orders = [newOrder];
 
   // Clear old rows first
   tbody.innerHTML = "";
@@ -132,9 +140,7 @@ export default function displayProductSummary() {
 
   const grandTotalCell = document.createElement("td");
   grandTotalCell.style.fontWeight = "bold";
-  grandTotalCell.innerHTML = `<span style="color: green;">$${grandTotal.toFixed(
-    2
-  )}</span>`;
+  grandTotalCell.innerHTML = `<span style="color: green;">$${grandTotal.toFixed(2)}</span>`;
 
   totalRow.appendChild(labelCell);
   totalRow.appendChild(grandTotalCell);
@@ -206,12 +212,13 @@ export function paymentStutusFn() {
   createdOverlay.appendChild(createdPopupBox);
 
   paymentStatusBtn.addEventListener("click", function () {
-
     // get existing history
     let existingOrders = JSON.parse(localStorage.getItem("orders")) || [];
 
+    updateStock(newOrder);
+
     // append the new order(s)
-    let updatedOrders = [...existingOrders, ...orders];
+    let updatedOrders = [...existingOrders, newOrder];
 
     // save to localStorage
     localStorage.setItem("orders", JSON.stringify(updatedOrders));
@@ -222,4 +229,21 @@ export function paymentStutusFn() {
 
 export function validateBuiltPayment() {
   // don't apply it for make testing easy and save time ;
+}
+
+function updateStock(order) {
+  const products = order.products;
+  products.forEach((product) => {
+    const { id, quantity } = product;
+    // get products from localstorage
+    const allProducts = JSON.parse(localStorage.getItem("all-products")) || [];
+    // Find the product in the inventory and reduce the stock
+    const inventoryItem = allProducts.find((item) => item.id === id);
+    if (inventoryItem && inventoryItem.stock >= quantity) {
+      inventoryItem.stock -= quantity;
+      localStorage.setItem("all-products", JSON.stringify(allProducts));
+    } else {
+      showToast("No enough stock");
+    }
+  });
 }

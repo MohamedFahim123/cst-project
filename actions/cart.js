@@ -69,7 +69,12 @@ class Cart {
     const existing = cart.find((item) => +item.id === +product.id);
 
     if (existing) {
-      existing.quantity += quantity;
+      if (existing.quantity + quantity <= existing.stock) {
+        existing.quantity += quantity;
+      } else {
+        showToast("Cannot add more than available stock", "info");
+        existing.quantity = existing.stock;
+      }
     } else {
       cart.push({ ...product, quantity });
     }
@@ -99,10 +104,7 @@ class Cart {
   updateQuantity(productId, quantity) {
     const userData = this._getUserData();
     const cart = userData.cart || [];
-    const item = cart.find(
-      (i) =>
-        i.id.toString().toLowerCase() === productId.toString().toLowerCase()
-    );
+    const item = cart.find((i) => i.id.toString().toLowerCase() === productId.toString().toLowerCase());
 
     if (!item) return;
 
@@ -128,10 +130,7 @@ class Cart {
   get totalPrice() {
     const userData = this._getUserData();
     const cart = userData.cart || [];
-    return cart.reduce(
-      (sum, item) => sum + item.quantity * (item.price || 0),
-      0
-    );
+    return cart.reduce((sum, item) => sum + item.quantity * (item.price || 0), 0);
   }
 
   get items() {

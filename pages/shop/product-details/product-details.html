@@ -1,107 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Details - product</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Product Details - product</title>
-</head>
+  <body>
+    <div class="container py-4">
+      <!-- Product Details -->
+      <div class="row">
+        <!-- Product Images Section -->
+        <div class="col-12 col-md-6 mb-4">
+          <!-- Main Product Image -->
+          <div id="imageSlider" class="image-slider">
+            <div class="slider-container">
+              <img src="assets/product-img1.jpeg" class="slider-image active" alt="product" />
+              <img src="assets/product-img2.jpeg" class="slider-image" alt="product" />
+              <img src="assets/product-img3.jpeg" class="slider-image" alt="product" />
+              <img src="assets/product-img4.jpeg" class="slider-image" alt="product" />
+            </div>
+          </div>
 
-<body>
-  <div class="container py-4">
-    <!-- Product Details -->
-    <div class="row">
-      <!-- Product Images Section -->
-      <div class="col-12 col-md-6 mb-4">
-        <!-- Main Product Image -->
-        <div id="imageSlider" class="image-slider">
-          <div class="slider-container">
-            <img src="assets/product-img1.jpeg" class="slider-image active" alt="product" />
-            <img src="assets/product-img2.jpeg" class="slider-image" alt="product" />
-            <img src="assets/product-img3.jpeg" class="slider-image" alt="product" />
-            <img src="assets/product-img4.jpeg" class="slider-image" alt="product" />
+          <!-- Thumbnail Images -->
+          <div class="thumbnail-images">
+            <div class="thumb-wrapper">
+              <img
+                src="assets/product-img1.jpeg"
+                class="img-thumbnail active"
+                data-slide="0"
+                alt="Thumbnail 1" />
+            </div>
+            <div class="thumb-wrapper">
+              <img src="assets/product-img2.jpeg" class="img-thumbnail" data-slide="1" alt="Thumbnail 2" />
+            </div>
+            <div class="thumb-wrapper">
+              <img src="assets/product-img3.jpeg" class="img-thumbnail" data-slide="2" alt="Thumbnail 3" />
+            </div>
+            <div class="thumb-wrapper">
+              <img src="assets/product-img4.jpeg" class="img-thumbnail" data-slide="3" alt="Thumbnail 4" />
+            </div>
           </div>
         </div>
 
-        <!-- Thumbnail Images -->
-        <div class="thumbnail-images">
-          <div class="thumb-wrapper">
-            <img src="assets/product-img1.jpeg" class="img-thumbnail active" data-slide="0" alt="Thumbnail 1" />
-          </div>
-          <div class="thumb-wrapper">
-            <img src="assets/product-img2.jpeg" class="img-thumbnail" data-slide="1" alt="Thumbnail 2" />
-          </div>
-          <div class="thumb-wrapper">
-            <img src="assets/product-img3.jpeg" class="img-thumbnail" data-slide="2" alt="Thumbnail 3" />
-          </div>
-          <div class="thumb-wrapper">
-            <img src="assets/product-img4.jpeg" class="img-thumbnail" data-slide="3" alt="Thumbnail 4" />
-          </div>
-        </div>
-      </div>
-
-      <!-- Product Information Section -->
-      <div class="col-12 col-md-6">
-        <div class="pd-product-info">
-          <!-- Price -->
-          <div class="price mb-2">
-            <span class="current-price">$180</span>
-          </div>
-
-          <!-- Product Title -->
-          <h1 class="product-title mb-3">product</h1>
-
-          <!-- Stock Status -->
-          <div class="stock-status mb-4">
-            <span class="in-stock" id="stockStatus">
-              <i class="fas fa-circle"></i>
-              In Stock
-            </span>
-          </div>
-
-          <!-- Product Description -->
-          <div class="product-description mb-4">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid quae eveniet culpa officia
-              quidem mollitia impedit iste asperiores nisi reprehenderit consequatur, autem, nostrum
-              pariatur enim?
-            </p>
-          </div>
-
-
-          <!-- Quantity and Add to Cart -->
-          <div class="purchase-section">
-            <div class="quantity-selector mb-3">
-              <label for="quantity" class="form-label">Qty</label>
-              <div class="quantity-controls">
-                <button type="button" class="btn btn-outline-secondary qty-btn" id="decreaseQty">
-                  <i class="fas fa-minus"></i>
-                </button>
-                <input type="number" class="form-control qty-input" name="quantity" autocomplete="off" id="quantity" value="1" min="1" max="10" />
-                <button type="button" class="btn btn-outline-secondary qty-btn" id="increaseQty">
-                  <i class="fas fa-plus"></i>
-                </button>
-              </div>
+        <!-- Product Information Section -->
+        <div class="col-12 col-md-6">
+          <div class="pd-product-info">
+            <!-- Price -->
+            <div class="price mb-2">
+              <span class="current-price">$180</span>
             </div>
 
-            <!-- Add to Cart Button -->
-            <button type="button" class="signIn-btn add-to-cart-btn add-more-than-one-to-cart w-100">Add to cart</button>
+            <!-- Product Title -->
+            <h1 class="product-title mb-3">product</h1>
+
+            <!-- Stock Status -->
+            <div class="stock-status mb-4">
+              <span class="in-stock" id="stockStatus">
+                <i class="fas fa-circle"></i>
+                In Stock
+              </span>
+              <span class="pd-stock-quantity">4</span>
+            </div>
+
+            <!-- Product Description -->
+            <div class="product-description mb-4">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid quae eveniet culpa officia
+                quidem mollitia impedit iste asperiores nisi reprehenderit consequatur, autem, nostrum
+                pariatur enim?
+              </p>
+            </div>
+
+            <!-- Quantity and Add to Cart -->
+            <div class="purchase-section">
+              <div class="quantity-selector mb-3">
+                <label for="quantity" class="form-label">Qty</label>
+                <div class="quantity-controls">
+                  <button type="button" class="btn btn-outline-secondary qty-btn" id="decreaseQty">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <input
+                    type="number"
+                    class="form-control qty-input"
+                    name="quantity"
+                    autocomplete="off"
+                    id="quantity"
+                    value="1"
+                    min="1" />
+                  <button type="button" class="btn btn-outline-secondary qty-btn" id="increaseQty">
+                    <i class="fas fa-plus"></i>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Add to Cart Button -->
+              <button type="button" class="signIn-btn add-to-cart-btn add-more-than-one-to-cart w-100">
+                Add to cart
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Related Products Section -->
-    <div class="mt-5">
-       <h1 class="fw-bold mb-4">Related Products</h1>
-    <div class="swiper pb-5 px-2" id="relatedProducts">
-      <div class="swiper-wrapper" id="relatedContainer">
+      <!-- Related Products Section -->
+      <div class="mt-5">
+        <h1 class="fw-bold mb-4">Related Products</h1>
+        <div class="swiper pb-5 px-2" id="relatedProducts">
+          <div class="swiper-wrapper" id="relatedContainer"></div>
+        </div>
       </div>
-
     </div>
-    </div>
-  </div>
-
-</body>
-
+  </body>
 </html>

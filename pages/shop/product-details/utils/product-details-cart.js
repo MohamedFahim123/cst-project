@@ -1,9 +1,12 @@
-
 // Quantity Controls
 export function initializeQuantityControls() {
   const decreaseBtn = document.getElementById("decreaseQty");
   const increaseBtn = document.getElementById("increaseQty");
   const quantityInput = document.getElementById("quantity");
+
+  const currentProductId = JSON.parse(localStorage.getItem("curr-product"));
+  const allProducts = JSON.parse(localStorage.getItem("all-products"));
+  const currentProduct = allProducts.find((product) => product.id === currentProductId);
 
   if (decreaseBtn && increaseBtn && quantityInput) {
     decreaseBtn.addEventListener("click", function () {
@@ -15,7 +18,7 @@ export function initializeQuantityControls() {
 
     increaseBtn.addEventListener("click", function () {
       let currentValue = parseInt(quantityInput.value);
-      let maxValue = parseInt(quantityInput.getAttribute("max")) || 10;
+      let maxValue = currentProduct.stock;
       if (currentValue < maxValue) {
         quantityInput.value = currentValue + 1;
       }
@@ -23,13 +26,12 @@ export function initializeQuantityControls() {
 
     quantityInput.addEventListener("change", function () {
       let value = parseInt(this.value);
-      let min = parseInt(this.getAttribute("min")) || 1;
-      let max = parseInt(this.getAttribute("max")) || 10;
-
-      if (isNaN(value) || value < min) {
-        this.value = min;
-      } else if (value > max) {
+      let min = 1;
+      let max = currentProduct.stock;
+      if (value > max) {
         this.value = max;
+      } else {
+        this.value = value;
       }
     });
   }
