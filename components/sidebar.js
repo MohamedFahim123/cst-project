@@ -95,6 +95,81 @@ const dasbhoardSidebarContent = {
 };
 
 export function renderSidebarUserInfo() {}
+
+// Initialize sidebar toggle functionality
+export function initializeSidebarToggle() {
+  const toggleBtn = document.getElementById("pf-sidebar-toggle");
+  const sidebar = document.getElementById("pf-sidebar");
+  const sidebarContent = document.getElementById("pf-sidebar-content");
+
+  if (!toggleBtn || !sidebar || !sidebarContent) return;
+
+  // Set initial state - collapsed on mobile, expanded on desktop
+  const updateSidebarState = () => {
+    if (window.innerWidth > 768) {
+      // Desktop: always expanded
+      sidebar.classList.add("expanded");
+    } else {
+      // Mobile: start collapsed
+      sidebar.classList.remove("expanded");
+    }
+  };
+
+  // Initialize state
+  updateSidebarState();
+
+  // Toggle sidebar
+  toggleBtn.addEventListener("click", () => {
+    toggleSidebar();
+  });
+
+  // Handle window resize
+  window.addEventListener("resize", () => {
+    updateSidebarState();
+  });
+
+  // Close sidebar when clicking nav links on mobile (optional)
+  document.addEventListener("click", (e) => {
+    if (e.target.closest(".pf-nav-link") && window.innerWidth <= 768) {
+      // Optional: collapse after navigation on mobile
+      setTimeout(() => {
+        sidebar.classList.remove("expanded");
+      }, 300);
+    }
+  });
+}
+
+// Toggle sidebar up/down
+function toggleSidebar() {
+  const sidebar = document.getElementById("pf-sidebar");
+  
+  if (sidebar) {
+    if (sidebar.classList.contains("expanded")) {
+      sidebar.classList.remove("expanded");
+    } else {
+      sidebar.classList.add("expanded");
+    }
+  }
+}
+
+// Open sidebar (expand)
+export function openSidebar() {
+  const sidebar = document.getElementById("pf-sidebar");
+  
+  if (sidebar) {
+    sidebar.classList.add("expanded");
+  }
+}
+
+// Close sidebar (collapse)
+export function closeSidebar() {
+  const sidebar = document.getElementById("pf-sidebar");
+  
+  if (sidebar) {
+    sidebar.classList.remove("expanded");
+  }
+}
+
 export const handleRenderingSideBarLinks = async (path) => {
   const loginedUser = JSON.parse(localStorage.getItem("currentUser"));
   if (!loginedUser) return;
@@ -124,4 +199,12 @@ export const handleRenderingSideBarLinks = async (path) => {
         </a>
       </li>`);
   });
+
+  // Initialize toggle functionality after rendering
+  setTimeout(() => {
+    initializeSidebarToggle();
+  }, 100);
 };
+
+// Export additional functions for manual use
+// export { initializeSidebarToggle };

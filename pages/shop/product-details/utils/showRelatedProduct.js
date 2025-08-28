@@ -31,6 +31,7 @@ function renderRelatedProducts(products, Swiper) {
             data-name="${product.title}"
             data-price="${product.price}"
             data-seller="${product.sellerID}"
+            data-stock="${product.stock}"
           ></i>
 
           <span class="badge text-bg-danger position-absolute z-3">
@@ -59,6 +60,7 @@ function renderRelatedProducts(products, Swiper) {
               data-name="${product.title}" 
               data-price="${product.price}" 
               data-seller="${product.sellerID}"
+              data-stock="${product.stock}"
               type="button" 
               title="Add to cart" 
               class="addtocart add-to-cart-btn"

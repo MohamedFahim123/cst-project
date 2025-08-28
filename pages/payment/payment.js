@@ -81,7 +81,6 @@ export default function displayProductSummary() {
   const userProductsItems = user.cart;
   const tbody = document.querySelector("tbody");
 
-  console.log(userProductsItems);
   const newProducts = userProductsItems.map((item) => ({
     id: item.id,
     quantity: item.quantity,
@@ -232,18 +231,16 @@ export function validateBuiltPayment() {
 }
 
 function updateStock(order) {
-  const products = order.products;
-  products.forEach((product) => {
+  const orderProducts = order.products;
+  const allProducts = JSON.parse(localStorage.getItem("all-products")) || [];
+
+  orderProducts.forEach((product) => {
     const { id, quantity } = product;
-    // get products from localstorage
-    const allProducts = JSON.parse(localStorage.getItem("all-products")) || [];
     // Find the product in the inventory and reduce the stock
     const inventoryItem = allProducts.find((item) => item.id === id);
     if (inventoryItem && inventoryItem.stock >= quantity) {
       inventoryItem.stock -= quantity;
       localStorage.setItem("all-products", JSON.stringify(allProducts));
-    } else {
-      showToast("No enough stock");
     }
   });
 }

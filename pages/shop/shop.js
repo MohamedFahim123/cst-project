@@ -16,17 +16,15 @@ let filteredProducts = [];
 const productCard = (product) => {
   return product.stock > 0
     ? `
-    <div class="product-card p-3 border border-gray" data-product-id="${
-      product.id
-    }">
+    <div class="product-card p-3 border border-gray" data-product-id="${product.id}">
       <div class="card-actions d-flex justify-content-between align-items-center">
         <span class="py-1 px-2 shop-card-badge text-white c-fs-8 rounded-pill">
           ${product.discountPercentage}%
         </span>
         <i data-id="${product.id}" data-thumbnail="${
         product.thumbnail
-      }" title="Add to Wishlist" data-price="${product.price}" data-name="${
-        product.title
+      }" title="Add to Wishlist" data-price="${product.price}" data-name="${product.title}" data-stock="${
+        product.stock
       }" data-seller="${product.sellerID}" class=" ${
         wishlist.has(+product.id) ? "text-danger fa-solid" : "fa-regular"
       } add-to-wishlist-btn fa-heart add-to-fav  cursor-pointer fs-5"></i>
@@ -42,19 +40,16 @@ const productCard = (product) => {
         </p>
         <div class="d-flex align-items-center gap-2 fw-bold my-1">
           <p class="shop-card-price fs-4 m-0">$${Math.ceil(product.price)}</p>
-          <p class="fs-6 text-decoration-line-through m-0">$${
-            product.deletedPrice
-          }</p>
+          <p class="fs-6 text-decoration-line-through m-0">$${product.deletedPrice}</p>
         </div>
         <div>
-          <button type="button" id="${
-            product.id
-          }" class="shop-cart-btn w-100 add-to-cart-btn ${
+          <button type="button" id="${product.id}" class="shop-cart-btn w-100 add-to-cart-btn ${
         cart.has(+product.id) ? "in-cart" : ""
-      }" data-id="${product.id}" data-thumbnail="${
-        product.thumbnail
-      }" data-name="${product.title}" data-price="${product.price}"
+      }" data-id="${product.id}" data-thumbnail="${product.thumbnail}" data-name="${
+        product.title
+      }" data-price="${product.price}"
             data-seller="${product.sellerID}"
+            data-stock="${product.stock}"
             >
             <i class="fa-solid fa-cart-shopping"></i> ${
               cart.has(+product.id) ? "Remove from Cart" : "Add to Cart"
@@ -74,10 +69,7 @@ const initializeProductCards = () => {
 
     const productId = productCard.dataset.productId;
 
-    if (
-      e.target.classList.contains("product-image") ||
-      e.target.closest(".product-image-container")
-    ) {
+    if (e.target.classList.contains("product-image") || e.target.closest(".product-image-container")) {
       navigateToProductDetails(productId);
     }
 
@@ -85,10 +77,7 @@ const initializeProductCards = () => {
       navigateToProductDetails(productId);
     }
 
-    if (
-      e.target.classList.contains("add-to-cart-btn") ||
-      e.target.closest(".add-to-cart-btn")
-    ) {
+    if (e.target.classList.contains("add-to-cart-btn") || e.target.closest(".add-to-cart-btn")) {
       //   addToCart(productId);
     }
   });
@@ -133,9 +122,7 @@ const renderProducts = (products) => {
       });
     }
   } else {
-    productsContainer.innerHTML = paginatedProducts
-      .map((product) => productCard(product))
-      .join("");
+    productsContainer.innerHTML = paginatedProducts.map((product) => productCard(product)).join("");
   }
 
   renderPagination(products.length);
@@ -157,17 +144,13 @@ const filterProductAndRenderThem = (_localFilters) => {
     const { min, max, brand, category } = filters;
 
     const matchesPrice =
-      (!min || Math.ceil(product.price) >= min) &&
-      (!max || Math.ceil(product.price) <= max);
+      (!min || Math.ceil(product.price) >= min) && (!max || Math.ceil(product.price) <= max);
 
     const matchesBrand =
-      !brand.length ||
-      (Array.isArray(brand) && brand.includes(product.brand.toLowerCase()));
+      !brand.length || (Array.isArray(brand) && brand.includes(product.brand.toLowerCase()));
 
     const matchesCategory =
-      !category.length ||
-      (Array.isArray(category) &&
-        category.includes(product.category.toLowerCase()));
+      !category.length || (Array.isArray(category) && category.includes(product.category.toLowerCase()));
     if (matchesPrice && matchesBrand && matchesCategory) {
       return product;
     }
@@ -220,9 +203,7 @@ const updatePriceRange = (min, max) => {
 };
 
 const updateCategoryCheckboxes = () => {
-  const categoryContainers = document.querySelectorAll(
-    ".productCategoriesContainer"
-  );
+  const categoryContainers = document.querySelectorAll(".productCategoriesContainer");
   const shopFilters = JSON.parse(localStorage.getItem("shop-filters"));
   const categories = shopFilters.categories;
 
@@ -235,17 +216,13 @@ const updateCategoryCheckboxes = () => {
               <input class="form-check-input c-check-purple" checked="true" type="checkbox" data-id="${category}" id="${category}-${
             idx + 1
           }">
-              <label class="form-check-label text-capitalize" for="${category}-${
-            idx + 1
-          }">${category}</label>
+              <label class="form-check-label text-capitalize" for="${category}-${idx + 1}">${category}</label>
           </div>`
         : `<div class="form-check my-1" id="cat-container">
               <input class="form-check-input c-check-purple" type="checkbox" data-id="${category}" id="${category}-${
             idx + 1
           }">
-              <label class="form-check-label text-capitalize" for="${category}-${
-            idx + 1
-          }">${category}</label>
+              <label class="form-check-label text-capitalize" for="${category}-${idx + 1}">${category}</label>
           </div> `;
     });
   });
@@ -265,17 +242,13 @@ const updateBrandCheckboxes = () => {
               <input class="form-check-input c-check-purple" checked="true" data-id="${brand}" type="checkbox" id="${brand}-${
             idx + 1
           }">
-              <label class="form-check-label" for="${brand}-${
-            idx + 1
-          }">${brand}</label>
+              <label class="form-check-label" for="${brand}-${idx + 1}">${brand}</label>
           </div>`
         : `<div class="form-check my-1">
               <input class="form-check-input c-check-purple" data-id="${brand}" type="checkbox" id="${brand}-${
             idx + 1
           }">
-              <label class="form-check-label" for="${brand}-${
-            idx + 1
-          }">${brand}</label>
+              <label class="form-check-label" for="${brand}-${idx + 1}">${brand}</label>
           </div> `;
     });
   });
@@ -291,12 +264,8 @@ const inputsSetups = () => {
   };
   localStorage.removeItem("curr-filters");
   const products = JSON.parse(localStorage.getItem("all-products"));
-  const minProductsPrice = Math.floor(
-    Math.min(...products.map((product) => product.price))
-  );
-  const maxProductsPrice = Math.ceil(
-    Math.max(...products.map((product) => product.price))
-  );
+  const minProductsPrice = Math.floor(Math.min(...products.map((product) => product.price)));
+  const maxProductsPrice = Math.ceil(Math.max(...products.map((product) => product.price)));
 
   if (defaultFilters) {
     filters = { ...defaultFilters };
@@ -328,22 +297,15 @@ const inputsSetups = () => {
     });
   });
 
-  const categoryContainers = document.querySelectorAll(
-    ".productCategoriesContainer"
-  );
+  const categoryContainers = document.querySelectorAll(".productCategoriesContainer");
   categoryContainers.forEach((container) => {
     container.addEventListener("change", (e) => {
       if (e.target.classList.contains("form-check-input")) {
         if (e.target.checked) {
-          filters.category = [
-            ...filters.category,
-            e.target.dataset.id.toLowerCase(),
-          ];
+          filters.category = [...filters.category, e.target.dataset.id.toLowerCase()];
           handleFilterProductsIfExistFilters();
         } else if (!e.target.checked) {
-          filters.category = filters.category.filter(
-            (cat) => cat !== e.target.dataset.id.toLowerCase()
-          );
+          filters.category = filters.category.filter((cat) => cat !== e.target.dataset.id.toLowerCase());
           const localFilters = JSON.parse(localStorage.getItem("curr-filters"));
           if (localFilters) {
             localFilters.category = filters.category;
@@ -353,10 +315,7 @@ const inputsSetups = () => {
             if (Object.keys(localFilters).length === 0) {
               localStorage.removeItem("curr-filters");
             } else {
-              localStorage.setItem(
-                "curr-filters",
-                JSON.stringify(localFilters)
-              );
+              localStorage.setItem("curr-filters", JSON.stringify(localFilters));
             }
           }
           handleFilterProductsIfExistFilters();
@@ -375,9 +334,7 @@ const inputsSetups = () => {
           filters.brand = [...filters.brand, e.target.dataset.id.toLowerCase()];
           handleFilterProductsIfExistFilters();
         } else if (!e.target.checked) {
-          filters.brand = filters.brand.filter(
-            (brand) => brand !== e.target.dataset.id.toLowerCase()
-          );
+          filters.brand = filters.brand.filter((brand) => brand !== e.target.dataset.id.toLowerCase());
           const localFilters = JSON.parse(localStorage.getItem("curr-filters"));
           if (localFilters) {
             localFilters.brand = filters.brand;
@@ -387,10 +344,7 @@ const inputsSetups = () => {
             if (Object.keys(localFilters).length === 0) {
               localStorage.removeItem("curr-filters");
             } else {
-              localStorage.setItem(
-                "curr-filters",
-                JSON.stringify(localFilters)
-              );
+              localStorage.setItem("curr-filters", JSON.stringify(localFilters));
             }
           }
           handleFilterProductsIfExistFilters();
@@ -402,9 +356,7 @@ const inputsSetups = () => {
 };
 
 const resetFilters = () => {
-  const resetPriceFilterBtns = document.querySelectorAll(
-    "[id^='resetPriceFilter']"
-  );
+  const resetPriceFilterBtns = document.querySelectorAll("[id^='resetPriceFilter']");
   const reset = () => {
     filters = { ...filters, brand: [], category: [] };
     handleFilterProductsIfExistFilters();

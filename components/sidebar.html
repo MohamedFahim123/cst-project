@@ -7,18 +7,35 @@
   </head>
 
   <body>
-    <div class="pf-sidebar">
-      <div class="pf-sidebar-header">
-        <div class="pf-user-avatar">
-          <img src="../assets/avatar.jpg" alt="User Avatar" id="pf-avatar-img" />
+    <!-- Sidebar -->
+    <div class="pf-sidebar" id="pf-sidebar">
+      <!-- Sidebar Header - Always visible -->
+      <div class="pf-sidebar-header" id="pf-sidebar-header">
+        <div class="pf-sidebar-header-content">
+          <div class="pf-user-info">
+            <div class="pf-user-avatar">
+              <img src="../assets/avatar.jpg" alt="User Avatar" id="pf-avatar-img" />
+            </div>
+            <div class="pf-user-details">
+              <h5 class="pf-user-name" id="pf-sidebar-name">John Doe</h5>
+              <p class="pf-user-email" id="pf-sidebar-email">john.doe@example.com</p>
+            </div>
+          </div>
+          
+          <!-- Toggle Button -->
+          <button class="pf-sidebar-toggle d-md-none" type="button" id="pf-sidebar-toggle">
+            <i class="fas fa-chevron-down pf-toggle-icon"></i>
+            <span class="pf-toggle-text">Menu</span>
+          </button>
         </div>
-        <h5 class="pf-user-name" id="pf-sidebar-name">John Doe</h5>
-        <p class="pf-user-email" id="pf-sidebar-email">john.doe@example.com</p>
       </div>
 
-      <nav class="pf-sidebar-nav">
-        <ul class="pf-nav-list"></ul>
-      </nav>
+      <!-- Collapsible Navigation -->
+      <div class="pf-sidebar-content" id="pf-sidebar-content">
+        <nav class="pf-sidebar-nav">
+          <ul class="pf-nav-list"></ul>
+        </nav>
+      </div>
     </div>
   </body>
 </html>

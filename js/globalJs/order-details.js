@@ -20,7 +20,7 @@ function loadOrderData() {
 // Display order data
 function displayOrderData(order) {
   // Update order header
-  document.querySelector(".od-order-number").textContent = `Order #${order.id}`;
+  document.querySelector(".od-order-number").textContent = `Order #${order.id.slice(-5)}`;
   document.querySelector(".od-order-date").innerHTML = `
     <i class="fas fa-calendar-alt"></i>
     ${order.date}
@@ -37,7 +37,7 @@ function displayOrderData(order) {
 
   // Update total
   const totalPrice = getTotalOrderPrice(order);
-  document.querySelector(".od-total-amount").textContent = `$${totalPrice}`;
+  document.querySelector(".od-total-amount").textContent = `$${totalPrice.toFixed(2)}`;
 
   // Update timeline
   displayTimeline("processing" || order.status);
