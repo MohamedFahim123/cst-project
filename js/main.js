@@ -168,16 +168,23 @@ document.addEventListener("click", (e) => {
   }
 });
 
+let ticking = false;
+
 window.addEventListener("scroll", () => {
-  if (!router.getPath().includes("dashboard")) {
-    const header = document.getElementById("navbar-nav");
-    const arrow = document.getElementById("arrowUp");
-    if (window.scrollY > 0) {
-      header.classList.add("position-fixed", "w-100", "z-3", "top-0");
-      arrow.classList.remove("d-none");
-    } else {
-      header.classList.remove("position-fixed", "w-100", "z-3", "top-0");
-      arrow.classList.add("d-none");
-    }
+  if (router.getPath().includes("dashboard")) return;
+
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
+      const header = document.getElementById("navbar-nav");
+      const arrow = document.getElementById("arrowUp");
+      const scrollY = window.scrollY;
+
+      header.classList.toggle("navbar-fixed", scrollY > 120);
+
+      arrow.classList.toggle("visible", scrollY > 200);
+
+      ticking = false;
+    });
+    ticking = true;
   }
 });

@@ -72,6 +72,8 @@ const renderBrands = (Swiper) => {
 
   brandsContainer.addEventListener("click", (e) => {
     if (e.target.classList.contains("brand-slide")) {
+      const arrow = document.getElementById("arrowUp");
+      arrow.classList.add("d-none");
       let filters = JSON.parse(localStorage.getItem("curr-filters"));
       if (filters) {
         filters = {
