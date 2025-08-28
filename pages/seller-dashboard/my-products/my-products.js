@@ -263,6 +263,7 @@ function addProductHandler() {
       renderSellerProducts(getCurrentUser().id);
     }
   });
+<<<<<<< HEAD
 
   cardContainer.addEventListener("click", (e) => {
     if (e.target.classList.contains("edit-btn")) {
@@ -291,6 +292,14 @@ function addProductHandler() {
         editInputs.category.value = category;
         editInputs.brand.value = brand;
         editInputs.status.value = availabilityStatus;
+=======
+  // -------------UpdateBtn Handler --------------
+  document
+    .getElementById("editProductForm")
+    .addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (e.target.dataset.id) {
+>>>>>>> 5646a8f9f184934b2f4ec8f77e83ece8e0a92b84
       }
     }
   });

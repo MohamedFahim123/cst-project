@@ -24,7 +24,9 @@ function loadProductFromLocalStorage() {
     const allProducts = JSON.parse(allProductsData);
 
     // Find the current product by ID
-    const currentProduct = allProducts.find((product) => product.id == currentProductId);
+    const currentProduct = allProducts.find(
+      (product) => product.id == currentProductId
+    );
 
     if (!currentProduct) {
       console.error("Product not found with ID:", currentProductId);
@@ -74,10 +76,21 @@ function populateProductInfo(product) {
     }
   }
 
+  const stockStatus = document.getElementById("stockStatus");
+  if (stockStatus) {
+    if (product.stock > 0) {
+      stockStatus.textContent = "In Stock";
+    } else {
+      stockStatus.textContent = "Out of Stock";
+      stockStatus.classList.add("text-danger");
+    }
+  }
+
   // Update product description
   const productDescription = document.querySelector(".product-description p");
   if (productDescription) {
-    productDescription.textContent = product.description || "No description available.";
+    productDescription.textContent =
+      product.description || "No description available.";
   }
 
   // Update rating
@@ -125,7 +138,9 @@ function updateProductRating(product) {
   const writeReviewLink = document.querySelector(".write-review");
   if (writeReviewLink && product.reviews) {
     const reviewCount = product.reviews.length;
-    writeReviewLink.textContent = `${reviewCount} Review${reviewCount !== 1 ? "s" : ""}`;
+    writeReviewLink.textContent = `${reviewCount} Review${
+      reviewCount !== 1 ? "s" : ""
+    }`;
   }
 }
 
@@ -198,7 +213,11 @@ function getProductImages(product) {
   ];
 
   // Check if product has images property
-  if (product.images && Array.isArray(product.images) && product.images.length > 0) {
+  if (
+    product.images &&
+    Array.isArray(product.images) &&
+    product.images.length > 0
+  ) {
     return product.images;
   }
 

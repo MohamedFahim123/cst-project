@@ -86,8 +86,8 @@ function renderCartItems(items) {
 
   // Add event listeners to quantity inputs for real-time updates
   document.querySelectorAll(".quantity-input").forEach((input) => {
-    input.addEventListener("change", function () {
-      updateSingleItemQuantity(this.dataset.id, parseInt(this.value));
+    input.addEventListener("change", function (e) {
+      updateSingleItemQuantity(this.dataset.id, parseInt(this.value),e.target);
     });
 
     input.addEventListener("input", function () {
@@ -96,10 +96,23 @@ function renderCartItems(items) {
   });
 }
 
-function updateSingleItemQuantity(productId, quantity) {
+function updateSingleItemQuantity(productId, quantity,input) {
   if (quantity > 0) {
-    cart.updateQuantity(productId, quantity);
-    showToast("Quantity updated", "success");
+    const allProducts = JSON.parse(
+      localStorage.getItem("all-products") || "[]"
+    );
+    const item = allProducts.find(
+      (p) => p.id.toString().toLowerCase() === productId.toLowerCase()
+    );
+
+    if (+quantity > +item.stock) {
+      showToast("Quantity exceeds stock", "error");
+      input.value = item.stock;
+      return;
+    } else {
+      cart.updateQuantity(productId, quantity);
+      showToast("Quantity updated", "success");
+    }
   }
 }
 

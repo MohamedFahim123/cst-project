@@ -1,7 +1,6 @@
 import { showToast } from "../../../actions/showToast.js";
 import { router } from "../../../js/router.js";
 
-// Pagination configuration
 const ITEMS_PER_PAGE = 10;
 let currentPage = 1;
 let filteredSellers = [];
@@ -9,7 +8,9 @@ let allSellers = [];
 
 const sellerCell = (cell) => {
   return `<tr>
-    <td class="text-trancate" title="${cell.id}">${cell.id ? cell.id : "N/A"}</td>
+    <td class="text-trancate" title="${cell.id}">${
+    cell.id ? cell.id : "N/A"
+  }</td>
     <td class="text-trancate">${cell.username}</td>
     <td class="text-trancate">${cell.email}</td>
     <td class="text-trancate">${cell.phone ? cell.phone : "N/A"}</td>
@@ -268,13 +269,22 @@ const handleSaveSeller = () => {
   }
 };
 
-// Delete seller
 const setupDeleteSellerHandler = () => {
   const deleteBtn = document.getElementById("confirmDeleteSeller");
   if (deleteBtn) {
     deleteBtn.removeEventListener("click", handleDeleteSeller);
     deleteBtn.addEventListener("click", handleDeleteSeller);
   }
+};
+
+const removeProductsRelatedToSeller = () => {
+  const sellerId = document.getElementById("deleteSellerId").value;
+
+  const productsData = JSON.parse(localStorage.getItem("all-products"));
+  const newProducts = productsData.filter(
+    (product) => product.sellerID.toString() !== sellerId.toString()
+  );
+  localStorage.setItem("all-products", JSON.stringify(newProducts));
 };
 
 const handleDeleteSeller = () => {
@@ -288,24 +298,21 @@ const handleDeleteSeller = () => {
 
   localStorage.setItem("users", JSON.stringify(usersData));
 
-  // Refresh the table
   RenderSellers();
 
-  // Close the modal properly
   const deleteModal = bootstrap.Modal.getInstance(
     document.getElementById("deleteSellerModal")
   );
   if (deleteModal) {
     deleteModal.hide();
-    // Manually remove backdrop if needed
     const backdrops = document.querySelectorAll(".modal-backdrop");
     backdrops.forEach((backdrop) => backdrop.remove());
     document.body.classList.remove("modal-open");
     document.body.style.overflow = "";
     document.body.style.paddingRight = "";
   }
+  removeProductsRelatedToSeller();
 
-  // Show success message
   showToast("Seller deleted successfully!", "success");
 
   if (currentUser && currentUser.id.toString() === sellerId.toString()) {

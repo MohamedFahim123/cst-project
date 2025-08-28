@@ -342,7 +342,6 @@
 /* Start Service */
 .home-services {
   background-color: var(--bg-section);
-  margin-bottom: 20px;
 }
 
 .home-services .icon {

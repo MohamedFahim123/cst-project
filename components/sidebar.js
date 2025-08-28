@@ -1,3 +1,5 @@
+import imageDB from "../actions/indexedDB.js";
+
 const dasbhoardSidebarContent = {
   customer: [
     {
@@ -18,6 +20,11 @@ const dasbhoardSidebarContent = {
   ],
   seller: [
     {
+      path: "/seller-dashboard/dashboard",
+      icon: `<i class="fa-solid fa-chart-bar pf-nav-icon"></i>`,
+      title: "Dashboard",
+    },
+    {
       path: "/seller-dashboard/profile",
       icon: `<i class="fas fa-user pf-nav-icon"></i>`,
       title: "Profile",
@@ -34,7 +41,13 @@ const dasbhoardSidebarContent = {
     },
     {
       path: "/seller-dashboard/my-products",
+      icon: `<i class="fa-solid fa-box  pf-nav-icon"></i>`,
       title: "My Products",
+    },
+    {
+      path: "/seller-dashboard/booked-orders",
+      icon: `<i class="fas fa-shopping-bag pf-nav-icon"></i>`,
+      title: "Booked Orders",
     },
   ],
   admin: [
@@ -73,11 +86,16 @@ const dasbhoardSidebarContent = {
       icon: `<i class="fa-solid fa-user-plus pf-nav-icon"></i>`,
       title: "Add New User",
     },
+    {
+      path: "/admin-dashboard/products",
+      icon: `<i class="fa-solid fa-box  pf-nav-icon"></i>`,
+      title: "Products",
+    },
   ],
 };
 
 export function renderSidebarUserInfo() {}
-export const handleRenderingSideBarLinks = (path) => {
+export const handleRenderingSideBarLinks = async (path) => {
   const loginedUser = JSON.parse(localStorage.getItem("currentUser"));
   if (!loginedUser) return;
 
@@ -86,18 +104,18 @@ export const handleRenderingSideBarLinks = (path) => {
   const avatarImage = document.querySelector("#pf-avatar-img");
   const sideLinksContainer = document.querySelector(".pf-nav-list");
 
-  if (!sideLinksContainer || !sidebarName || !sidebarEmail || !avatarImage)
-    return;
+  if (!sideLinksContainer || !sidebarName || !sidebarEmail || !avatarImage) return;
 
   // Render User Info
   sidebarName.textContent = loginedUser.username;
   sidebarEmail.textContent = loginedUser.email;
-  avatarImage.src = loginedUser.avatar || "../../assets/avatar.jpg";
+  avatarImage.src = (await imageDB.getImageBlobUrl(loginedUser.avatar)) || "../../assets/avatar.jpg";
 
   // Render Side List
   const sidebarLinks = dasbhoardSidebarContent[loginedUser.role.toLowerCase()];
   sidebarLinks.forEach((link) => {
-    return (sideLinksContainer.innerHTML += `<li class="pf-nav-item">
+    return (sideLinksContainer.innerHTML += `
+      <li class="pf-nav-item">
         <a href=${link.path} class="pf-nav-link ${
       path === link.path ? "active" : ""
     }" data-link data-tab="orders">
@@ -107,4 +125,3 @@ export const handleRenderingSideBarLinks = (path) => {
       </li>`);
   });
 };
-

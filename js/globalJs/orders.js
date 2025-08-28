@@ -4,37 +4,33 @@ import { getTotalOrderPrice } from "../../actions/helperFuncitons.js";
 // Pagination constants
 const ORDERS_PER_PAGE = 8;
 let currentPage = 1;
+let filteredOrders = [];
 
 export function initializeOrdersPage() {
+  attachSearchListener();
   renderOrdersTable();
-  // Initialization extra code can go here
 }
 
 function renderOrdersTable(page = 1) {
-  // get current user from localstorage
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-  if (!currentUser) {
-    return console.error("No current user found in localStorage.");
-  }
-
-  const allUserOrders = getOrdersByUserId(currentUser.id);
-  const userName = currentUser.username;
-
   // Calculate pagination
-  const totalOrders = allUserOrders.length;
+  const totalOrders = filteredOrders.length;
   const totalPages = Math.ceil(totalOrders / ORDERS_PER_PAGE);
   const startIndex = (page - 1) * ORDERS_PER_PAGE;
   const endIndex = startIndex + ORDERS_PER_PAGE;
-  const paginatedOrders = allUserOrders.slice(startIndex, endIndex);
+  const paginatedOrders = filteredOrders.slice(startIndex, endIndex);
+
+  const emptyState = document.getElementById("or-empty-state");
+  const invoiceTableContainer = document.querySelector(".invoice-table");
+  if (paginatedOrders.length === 0) {
+    emptyState.style.display = "block";
+    invoiceTableContainer.style.display = "none";
+  } else {
+    emptyState.style.display = "none";
+    invoiceTableContainer.style.display = "block";
+  }
 
   // Update current page
   currentPage = page;
-
-  // Select the container
-  const invoiceTableContainer = document.querySelector(".invoice-table");
-  if (!invoiceTableContainer) {
-    return console.error("Invoice table container not found.");
-  }
 
   // Generate table rows for paginated orders
   const tableRows = paginatedOrders
@@ -46,7 +42,6 @@ function renderOrdersTable(page = 1) {
       return `
       <tr>
         <td${isLastRow ? ' class="cell-rad-bl"' : ""}>#${order.id}</td>
-        <td>${userName}</td>
         <td>${formatOrderDate(order.date)}</td>
         <td class="total-amount">$${totalPrice}</td>
         <td${isLastRow ? ' class="cell-rad-br"' : ""}>
@@ -75,7 +70,6 @@ function renderOrdersTable(page = 1) {
       <thead>
         <tr>
           <th class="cell-rad-tl">ID</th>
-          <th>NAME</th>
           <th>DATE</th>
           <th>TOTAL</th>
           <th class="cell-rad-tr">ACTIONS</th>
@@ -165,6 +159,23 @@ function removePagination() {
   if (paginationContainer) {
     paginationContainer.innerHTML = "";
   }
+}
+
+// Function to attach search listener
+function attachSearchListener() {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  if (!currentUser) {
+    return console.error("No current user found.");
+  }
+  const userOrders = getOrdersByUserId(currentUser.id);
+  filteredOrders = [...userOrders];
+
+  const searchInput = document.querySelector(".form-control-custom");
+  searchInput.addEventListener("input", function () {
+    const query = this.value.toLowerCase();
+    filteredOrders = userOrders.filter((order) => String(order.id).toLowerCase().includes(query));
+    renderOrdersTable();
+  });
 }
 
 // Function to attach pagination event listeners

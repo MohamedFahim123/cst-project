@@ -4,8 +4,7 @@ class Cart {
   static STORAGE_KEY = "currentUser";
   #listeners = [];
 
-  constructor() {
-  }
+  constructor() {}
 
   #load() {
     try {
@@ -100,7 +99,10 @@ class Cart {
   updateQuantity(productId, quantity) {
     const userData = this._getUserData();
     const cart = userData.cart || [];
-    const item = cart.find((i) => +i.id === +productId);
+    const item = cart.find(
+      (i) =>
+        i.id.toString().toLowerCase() === productId.toString().toLowerCase()
+    );
 
     if (!item) return;
 

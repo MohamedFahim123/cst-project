@@ -206,7 +206,6 @@ export function paymentStutusFn() {
   createdOverlay.appendChild(createdPopupBox);
 
   paymentStatusBtn.addEventListener("click", function () {
-    console.log("payment status");
 
     // get existing history
     let existingOrders = JSON.parse(localStorage.getItem("orders")) || [];

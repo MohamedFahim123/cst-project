@@ -5,6 +5,8 @@ import { initializeProfile } from "./globalJs/profile.js";
 import { initializeUpdateProfile } from "./globalJs/update-profile.js";
 
 import { addProductHandler } from "../pages/seller-dashboard/my-products/my-products.js";
+import { dashboardInitSeller } from "../pages/seller-dashboard/dashboard/dashboard.js";
+import { showBookedOrders } from "../pages/seller-dashboard/booked-orders/booked-orders.js";
 
 import { initializeAddUser } from "../pages/admin-dashboard/add-new-user/add-new-user.js";
 import { initializeCustomers } from "../pages/admin-dashboard/customers/customers.js";
@@ -28,6 +30,8 @@ import {
 } from "../pages/wishlist/mywishlist.js";
 import { router } from "./router.js";
 import { cartAndWishlistLogic } from "./shred.js";
+import { initializeProducts } from "../pages/admin-dashboard/products/products.js";
+import { initializeDashboardProductDetailsFunctions } from "../pages/admin-dashboard/products/product-details/product-details.js";
 
 //------------------------------------------------------------//
 
@@ -50,6 +54,7 @@ export const PAGE_INITIALIZERS = {
       console.error("Failed to initialize product details:", error);
     }
   },
+
   "/customer-dashboard/profile": () => {
     initializeProfile();
   },
@@ -62,6 +67,7 @@ export const PAGE_INITIALIZERS = {
   "/customer-dashboard/order-details": () => {
     initializeOrderDetails();
   },
+
   "/admin-dashboard/profile": () => {
     initializeProfile();
   },
@@ -74,6 +80,7 @@ export const PAGE_INITIALIZERS = {
   "/admin-dashboard/order-details": () => {
     initializeOrderDetails();
   },
+
   "/seller-dashboard/profile": () => {
     initializeProfile();
   },
@@ -90,6 +97,13 @@ export const PAGE_INITIALIZERS = {
   "/seller-dashboard/my-products": () => {
     addProductHandler();
   },
+  "/seller-dashboard/dashboard": () => {
+    dashboardInitSeller();
+  },
+  "/seller-dashboard/booked-orders": () => {
+    showBookedOrders();
+  },
+
   "/cart": () => {
     initializeCart();
     cartAndWishlistLogic();
@@ -130,6 +144,12 @@ export const PAGE_INITIALIZERS = {
   "/admin-dashboard/dashboard": () => {
     dashboardInit();
   },
+  "/admin-dashboard/products": () => {
+    initializeProducts();
+  },
+  "/admin-dashboard/products/product-details": () => {
+    initializeDashboardProductDetailsFunctions();
+  },
 };
 
 document.addEventListener("click", (e) => {
@@ -139,15 +159,32 @@ document.addEventListener("click", (e) => {
     const pathname = `/${user.role.toLowerCase()}-dashboard/profile`;
     router.navigate(pathname.trim());
   }
+  if (
+    e.target.id == "arrowUp" ||
+    e.target.classList.contains("containerArrow") ||
+    e.target.classList.contains("arrowUpIcon")
+  ) {
+    window.scrollTo(0, 0);
+  }
 });
 
+let ticking = false;
+
 window.addEventListener("scroll", () => {
-  if (!router.getPath().includes("dashboard")) {
-    const header = document.getElementById("navbar-nav");
-    if (window.scrollY > 0) {
-      header.classList.add("position-fixed", "w-100", "z-3", "top-0");
-    } else {
-      header.classList.remove("position-fixed", "w-100", "z-3", "top-0");
-    }
+  if (router.getPath().includes("dashboard")) return;
+
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
+      const header = document.getElementById("navbar-nav");
+      const arrow = document.getElementById("arrowUp");
+      const scrollY = window.scrollY;
+
+      header.classList.toggle("navbar-fixed", scrollY > 120);
+
+      arrow.classList.toggle("visible", scrollY > 200);
+
+      ticking = false;
+    });
+    ticking = true;
   }
 });

@@ -8,157 +8,162 @@
 
   <body>
     <div id="dashboard-grid">
-      <div class="pf-container">
-        <div class="container">
-          <div class="row">
-            <!-- Sidebar -->
-            <div class="col-lg-3 col-md-4 pf-sidebar-wrapper" id="pf-sidebar-wrapper"></div>
+      <div class="pf-container container">
+        <div class="row">
+          <!-- Sidebar -->
+          <div class="col-lg-3 col-md-4 pf-sidebar-wrapper" id="pf-sidebar-wrapper"></div>
 
-            <!-- Main Content -->
-            <div class="col-lg-9 col-md-8 pf-main-content">
-              <!-- Orders Tab Content -->
-              <div class="pf-tab-content" id="orders-tab">
-                <div class="pf-content-header">
-                  <h2 class="pf-page-title">
-                    <i class="fas fa-shopping-bag title-icon"></i>
-                    Order History
-                  </h2>
-                  <p class="pf-page-subtitle">View your past orders and purchases</p>
-                </div>
+          <!-- Main Content -->
+          <div class="col-lg-9 col-md-8 pf-main-content">
+            <!-- Orders Tab Content -->
+            <div class="pf-tab-content" id="orders-tab">
+              <div class="pf-content-header">
+                <h2 class="pf-page-title">
+                  <i class="fas fa-shopping-bag title-icon"></i>
+                  Order History
+                </h2>
+                <p class="pf-page-subtitle">View your past orders and purchases</p>
+              </div>
 
-                <div class="pf-content-body">
-                  <!-- Order Header -->
-                  <div class="order-header">
-                    <div class="row align-items-center">
-                      <!-- All Orders -->
-                      <div class="col-xl-4 col-lg-4 col-md-4 mb-4 mb-md-0">
-                        <h3><i class="fas fa-list-check me-2"></i>All Orders</h3>
-                      </div>
+              <div class="pf-content-body">
+                <!-- Order Header -->
+                <div class="order-header">
+                  <div class="row align-items-center">
+                    <!-- All Orders -->
+                    <div class="col-xl-4 col-lg-4 col-md-4 mb-4 mb-md-0">
+                      <h3><i class="fas fa-list-check me-2"></i>Orders</h3>
+                    </div>
 
-                      <!-- Search -->
-                      <div class="col-xl-8 col-lg-8 col-md-8 mb-8">
-                        <div class="search-box">
-                          <i class="fas fa-search search-icon"></i>
-                          <input
-                            type="search"
-                            class="form-control-custom search-input"
-                            placeholder="Search orders..." />
-                        </div>
+                    <!-- Search -->
+                    <div class="col-xl-8 col-lg-8 col-md-8 mb-8">
+                      <div class="search-box">
+                        <i class="fas fa-search search-icon"></i>
+                        <input
+                          type="search"
+                          class="form-control-custom search-input"
+                          placeholder="Search orders..." />
                       </div>
                     </div>
                   </div>
+                </div>
 
-                  <!-- Table of orders -->
-                  <div class="invoice-table table-responsive">
-                    <table class="table table-hover mb-0">
-                      <thead>
-                        <tr>
-                          <th class="cell-rad-tl">ID</th>
-                          <th>NAME</th>
-                          <th>DATE</th>
-                          <th>TOTAL</th>
-                          <th class="cell-rad-tr">ACTIONS</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>#3:30</td>
-                          <td>Cortile Sermson</td>
-                          <td>May 23, 2021</td>
-                          <td class="total-amount">$238.00</td>
-                          <td>
-                            <div class="action-buttons">
-                              <a
-                                href="/customer-dashboard/order-details"
-                                data-link
-                                class="btn btn-sm btn-outline-primary action-btn">
-                                <i class="fa-solid fa-eye"></i>
-                              </a>
-                              <button class="btn btn-sm btn-outline-danger action-btn">
-                                <i class="fa-solid fa-trash-can"></i>
-                              </button>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>#3:30</td>
-                          <td>Mothtide Turnison</td>
-                          <td>May 15, 2021</td>
-                          <td class="total-amount">$650.50</td>
-                          <td>
-                            <div class="action-buttons">
-                              <a
-                                href="/customer-dashboard/order-details"
-                                data-link
-                                class="btn btn-sm btn-outline-primary action-btn">
-                                <i class="fa-solid fa-eye"></i>
-                              </a>
-                              <button class="btn btn-sm btn-outline-danger action-btn">
-                                <i class="fa-solid fa-trash-can"></i>
-                              </button>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>#3:30</td>
-                          <td>Audrye Headford</td>
-                          <td>Apr 24, 2021</td>
-                          <td class="total-amount">$100.00</td>
-                          <td>
-                            <div class="action-buttons">
-                              <a
-                                href="/customer-dashboard/order-details"
-                                data-link
-                                class="btn btn-sm btn-outline-primary action-btn">
-                                <i class="fa-solid fa-eye"></i>
-                              </a>
-                              <button class="btn btn-sm btn-outline-danger action-btn">
-                                <i class="fa-solid fa-trash-can"></i>
-                              </button>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>#3:30</td>
-                          <td>Brontley Melt</td>
-                          <td>Apr 10, 2021</td>
-                          <td class="total-amount">$19.00</td>
-                          <td>
-                            <div class="action-buttons">
-                              <a
-                                href="/customer-dashboard/order-details"
-                                data-link
-                                class="btn btn-sm btn-outline-primary action-btn">
-                                <i class="fa-solid fa-eye"></i>
-                              </a>
-                              <button class="btn btn-sm btn-outline-danger action-btn">
-                                <i class="fa-solid fa-trash-can"></i>
-                              </button>
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="cell-rad-bl">#3:30</td>
-                          <td>Dominique Enriques</td>
-                          <td>March 5, 2021</td>
-                          <td class="total-amount">$150.00</td>
-                          <td class="cell-rad-br">
-                            <div class="action-buttons">
-                              <a
-                                href="/customer-dashboard/order-details"
-                                data-link
-                                class="btn btn-sm btn-outline-primary action-btn">
-                                <i class="fa-solid fa-eye"></i>
-                              </a>
-                              <button class="btn btn-sm btn-outline-danger action-btn">
-                                <i class="fa-solid fa-trash-can"></i>
-                              </button>
-                            </div>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+                <!-- Empty State -->
+                <div id="or-empty-state" class="empty-state" style="display: none">
+                  <div class="empty-state-icon">
+                    <i class="fas fa-box-open"></i>
                   </div>
+                  <h3>No Orders Found</h3>
+                  <p>There are no orders to display at the moment.</p>
+                </div>
+
+                <!-- Table of orders -->
+                <div class="invoice-table table-responsive">
+                  <table class="table table-hover mb-0">
+                    <thead>
+                      <tr>
+                        <th class="cell-rad-tl">ID</th>
+                        <th>DATE</th>
+                        <th>TOTAL</th>
+                        <th class="cell-rad-tr">ACTIONS</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>#3:30</td>
+                        <td>May 23, 2021</td>
+                        <td class="total-amount">$238.00</td>
+                        <td>
+                          <div class="action-buttons">
+                            <a
+                              href="/customer-dashboard/order-details"
+                              data-link
+                              class="btn btn-sm btn-outline-primary action-btn">
+                              <i class="fa-solid fa-eye"></i>
+                            </a>
+                            <button class="btn btn-sm btn-outline-danger action-btn">
+                              <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>#3:30</td>
+                        <td>Mothtide Turnison</td>
+                        <td>May 15, 2021</td>
+                        <td class="total-amount">$650.50</td>
+                        <td>
+                          <div class="action-buttons">
+                            <a
+                              href="/customer-dashboard/order-details"
+                              data-link
+                              class="btn btn-sm btn-outline-primary action-btn">
+                              <i class="fa-solid fa-eye"></i>
+                            </a>
+                            <button class="btn btn-sm btn-outline-danger action-btn">
+                              <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>#3:30</td>
+                        <td>Audrye Headford</td>
+                        <td>Apr 24, 2021</td>
+                        <td class="total-amount">$100.00</td>
+                        <td>
+                          <div class="action-buttons">
+                            <a
+                              href="/customer-dashboard/order-details"
+                              data-link
+                              class="btn btn-sm btn-outline-primary action-btn">
+                              <i class="fa-solid fa-eye"></i>
+                            </a>
+                            <button class="btn btn-sm btn-outline-danger action-btn">
+                              <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>#3:30</td>
+                        <td>Brontley Melt</td>
+                        <td>Apr 10, 2021</td>
+                        <td class="total-amount">$19.00</td>
+                        <td>
+                          <div class="action-buttons">
+                            <a
+                              href="/customer-dashboard/order-details"
+                              data-link
+                              class="btn btn-sm btn-outline-primary action-btn">
+                              <i class="fa-solid fa-eye"></i>
+                            </a>
+                            <button class="btn btn-sm btn-outline-danger action-btn">
+                              <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="cell-rad-bl">#3:30</td>
+                        <td>Dominique Enriques</td>
+                        <td>March 5, 2021</td>
+                        <td class="total-amount">$150.00</td>
+                        <td class="cell-rad-br">
+                          <div class="action-buttons">
+                            <a
+                              href="/customer-dashboard/order-details"
+                              data-link
+                              class="btn btn-sm btn-outline-primary action-btn">
+                              <i class="fa-solid fa-eye"></i>
+                            </a>
+                            <button class="btn btn-sm btn-outline-danger action-btn">
+                              <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>

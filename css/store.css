@@ -16,10 +16,13 @@
 @import url("../css/globalCss/order-details.css");
 
 @import url("../pages/seller-dashboard/my-products/my-products.css");
+@import url("../pages/seller-dashboard/dashboard/dashboard.css");
+@import url("../pages/seller-dashboard/booked-orders/booked-orders.css");
 
 @import url("../pages/admin-dashboard/sellers/sellers.css");
 @import url("../pages/admin-dashboard/customers/customers.css");
 @import url("../pages/admin-dashboard/add-new-user/add-new-user.css");
 @import url("../pages/admin-dashboard/dashboard/dashboard.css");
+@import url("../pages/admin-dashboard/products/products.css");
 
 @import url("../pages/payment/payment.css");

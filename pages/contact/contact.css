@@ -1,8 +1,546 @@
-.contact {
+/* Hero Section */
+.cu-hero-section {
+  background: linear-gradient(135deg, var(--bg-main-color) 0%, var(--title-main-color) 100%);
+  padding: 6rem 0 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.cu-hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.cu-hero-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--bg-white);
+  margin-bottom: 1.5rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.cu-hero-subtitle {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cu-hero-divider {
+  width: 100px;
+  height: 4px;
+  background: var(--title-second-color);
+  margin: 0 auto;
+  border-radius: 2px;
+}
+
+/* Main Section */
+.cu-main-section {
+  padding: 5rem 0;
+  background: var(--bg-light);
+  position: relative;
+}
+
+/* Info Card */
+.cu-info-card {
+  background: var(--bg-white);
+  border-radius: var(--main-border-radius);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--pf-border-color);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.cu-info-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--bg-main-color), var(--title-second-color));
+}
+
+.cu-info-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.cu-info-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.cu-info-icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, var(--bg-main-color), var(--title-main-color));
+  color: var(--bg-white);
+  border-radius: 50%;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-color: green;
+  justify-content: center;
+  font-size: 2rem;
+  margin: 0 auto 1.5rem;
+  box-shadow: var(--shadow-md);
+}
+
+.cu-info-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--title-main-color);
+  margin-bottom: 0.75rem;
+}
+
+.cu-info-subtitle {
+  color: var(--text-second-color);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Info List */
+.cu-info-list {
+  margin-bottom: 2.5rem;
+}
+
+.cu-info-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--pf-border-color);
+}
+
+.cu-info-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.cu-info-item-icon {
+  width: 50px;
+  height: 50px;
+  background: var(--ap-main-color);
+  color: var(--bg-main-color);
+  border-radius: var(--main-border-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  margin-right: 1rem;
+  flex-shrink: 0;
+  transition: var(--transition);
+}
+
+.cu-info-item:hover .cu-info-item-icon {
+  background: var(--bg-main-color);
+  color: var(--bg-white);
+  transform: scale(1.1);
+}
+
+.cu-info-item-content {
+  flex: 1;
+}
+
+.cu-info-item-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--title-main-color);
+  margin-bottom: 0.5rem;
+}
+
+.cu-info-item-text {
+  color: var(--text-main-color);
+  margin-bottom: 0.25rem;
+  line-height: 1.5;
+}
+
+.cu-info-item-text:last-child {
+  margin-bottom: 0;
+}
+
+/* Social Section */
+.cu-social-section {
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid var(--pf-border-color);
+}
+
+.cu-social-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--title-main-color);
+  margin-bottom: 1rem;
+}
+
+.cu-social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.cu-social-link {
+  width: 50px;
+  height: 50px;
+  background: var(--bg-light);
+  color: var(--text-second-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 1.25rem;
+  transition: var(--transition);
+  border: 2px solid transparent;
+}
+
+.cu-social-link:hover {
+  background: var(--bg-main-color);
+  color: var(--bg-white);
+  border-color: var(--bg-main-color);
+  transform: translateY(-3px);
+}
+
+/* Form Card */
+.cu-form-card {
+  background: var(--bg-white);
+  border-radius: var(--main-border-radius);
+  padding: 3rem;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--pf-border-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.cu-form-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--title-second-color), var(--bg-main-color));
+}
+
+.cu-form-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.cu-form-title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--title-main-color);
+  margin-bottom: 1rem;
+}
+
+.cu-form-subtitle {
+  color: var(--text-second-color);
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+/* Form Elements */
+.cu-form-group {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.cu-form-label {
+  font-weight: 600;
+  color: var(--title-main-color);
+  margin-bottom: 0.5rem;
+  display: block;
+  font-size: 0.95rem;
+}
+
+.cu-required {
+  color: var(--red-color);
+  font-weight: 700;
+}
+
+.cu-form-control {
+  border: 2px solid var(--pf-border-color);
+  border-radius: var(--main-border-radius);
+  padding: 0.875rem 1rem;
+  font-size: 1rem;
+  transition: var(--transition);
+  background-color: var(--bg-white);
+  color: var(--text-main-color);
+}
+
+.cu-form-control:focus {
+  border-color: var(--bg-main-color);
+  box-shadow: 0 0 0 0.2rem rgba(99, 76, 159, 0.25);
+  background-color: var(--bg-white);
+  color: var(--text-main-color);
+}
+
+.cu-form-control:hover {
+  border-color: var(--pf-secondary);
+}
+
+.cu-form-helper {
+  color: var(--text-second-color);
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+/* Checkbox Styles */
+.cu-form-check {
+  margin: 1rem 0;
+}
+
+.cu-form-check-input {
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid var(--pf-border-color);
+  border-radius: 4px;
+}
+
+.cu-form-check-input:checked {
+  background-color: var(--bg-main-color);
+  border-color: var(--bg-main-color);
+}
+
+.cu-form-check-input:focus {
+  box-shadow: 0 0 0 0.2rem rgba(99, 76, 159, 0.25);
+}
+
+.cu-form-check-label {
+  color: var(--text-main-color);
+  line-height: 1.5;
+  margin-left: 0.5rem;
+}
+
+.cu-link {
+  color: var(--bg-main-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.cu-link:hover {
+  color: var(--title-main-color);
+  text-decoration: underline;
+}
+
+/* Form Actions */
+.cu-form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.cu-btn-primary {
+  background: linear-gradient(135deg, var(--bg-main-color), var(--title-main-color));
+  border: none;
+  color: var(--bg-white);
+  padding: 0.875rem 2rem;
+  border-radius: var(--main-border-radius);
+  font-weight: 600;
+  font-size: 1rem;
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cu-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  background: linear-gradient(135deg, var(--title-main-color), var(--bg-main-color));
+}
+
+.cu-btn-primary:active {
+  transform: translateY(0);
+}
+
+.cu-btn-icon {
+  font-size: 0.9rem;
+}
+
+/* FAQ Section */
+.cu-faq-section {
+  padding: 5rem 0;
+  background: var(--bg-white);
+}
+
+.cu-faq-header {
+  margin-bottom: 3rem;
+}
+
+.cu-faq-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--title-main-color);
+  margin-bottom: 1rem;
+}
+
+.cu-faq-subtitle {
+  color: var(--text-second-color);
+  font-size: 1.1rem;
+}
+
+.cu-faq-accordion {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.cu-faq-item {
+  border: 1px solid var(--pf-border-color);
+  border-radius: var(--main-border-radius);
+  margin-bottom: 1rem;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.cu-faq-item:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.cu-faq-button {
+  background: var(--bg-white);
+  border: none;
+  color: var(--title-main-color);
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 1.5rem;
+  width: 100%;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: var(--transition);
+}
+
+.cu-faq-button:not(.collapsed) {
+  background: var(--ap-main-color);
+  color: var(--bg-main-color);
+}
+
+.cu-faq-button:hover {
+  background: var(--bg-light);
+}
+
+.cu-faq-button:focus {
+  box-shadow: 0 0 0 0.2rem rgba(99, 76, 159, 0.25);
+}
+
+.cu-faq-icon {
+  color: var(--title-second-color);
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.cu-faq-content {
+  padding: 1.5rem;
+  color: var(--text-main-color);
+  line-height: 1.6;
+  border-top: 1px solid var(--pf-border-color);
+  background: var(--bg-light);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .cu-hero-section {
+    padding: 4rem 0 3rem;
+  }
+
+  .cu-hero-title {
+    font-size: 2.5rem;
+  }
+
+  .cu-hero-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .cu-main-section {
+    padding: 3rem 0;
+  }
+
+  .cu-info-card,
+  .cu-form-card {
+    padding: 2rem;
+  }
+
+  .cu-form-title {
+    font-size: 1.75rem;
+  }
+
+  .cu-form-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cu-btn-primary {
+    justify-content: center;
+  }
+
+  .cu-faq-title {
+    font-size: 2rem;
+  }
+
+  .cu-faq-button {
+    font-size: 1rem;
+    padding: 1rem;
+  }
+
+  .cu-social-links {
+    gap: 0.75rem;
+  }
+
+  .cu-social-link {
+    width: 45px;
+    height: 45px;
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .cu-hero-title {
+    font-size: 2rem;
+  }
+
+  .cu-hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .cu-info-card,
+  .cu-form-card {
+    padding: 1.5rem 1rem;
+  }
+
+  .cu-info-header {
+    margin-bottom: 2rem;
+  }
+
+  .cu-info-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+
+  .cu-info-title {
+    font-size: 1.5rem;
+  }
+
+  .cu-form-title {
+    font-size: 1.5rem;
+  }
+
+  .cu-faq-section {
+    padding: 3rem 0;
+  }
+
+  .cu-faq-title {
+    font-size: 1.75rem;
+  }
 }

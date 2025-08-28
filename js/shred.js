@@ -44,14 +44,15 @@ export const cartAndWishlistLogic = () => {
       }
 
       const currentProductId = JSON.parse(localStorage.getItem("curr-product"));
-      const currentProduct = JSON.parse(
-        localStorage.getItem("all-products")
-      ).find((product) => +product.id === +currentProductId);
+      const currentProduct = JSON.parse(localStorage.getItem("all-products")).find(
+        (product) => +product.id === +currentProductId
+      );
 
       const product = {
         id: currentProduct.id,
         name: currentProduct.title,
         price: parseFloat(currentProduct.price * quantity.value),
+        sellerID: currentProduct.sellerID,
       };
 
       cart.add(product, +quantity.value);
@@ -61,7 +62,6 @@ export const cartAndWishlistLogic = () => {
     }
 
     const cartBtn = e.target.closest(".add-to-cart-btn");
-    console.log(cartBtn)
     if (cartBtn) {
       if (!isLoggedIn) {
         showToast("Please login to add to cart", "error");
@@ -177,6 +177,5 @@ export function updateCartAndWishlistBadges() {
   if (cartCount) cartCount.textContent = cart.allItemsCount;
   if (wishlistCount) wishlistCount.textContent = wishlist.allItemsCount;
   if (cartCountMobile) cartCountMobile.textContent = cart.allItemsCount;
-  if (wishlistCountMobile)
-    wishlistCountMobile.textContent = wishlist.allItemsCount;
+  if (wishlistCountMobile) wishlistCountMobile.textContent = wishlist.allItemsCount;
 }

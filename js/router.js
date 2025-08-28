@@ -160,6 +160,8 @@ class Router {
       const link = e.target.closest("[data-link]");
       if (link) {
         e.preventDefault();
+        const arrow = document.getElementById("arrowUp");
+        arrow.classList.add("d-none");
         this.navigate(link.getAttribute("href"));
       }
     });
@@ -411,6 +413,8 @@ export const router = new Router({
     "/pages/customer-dashboard/order-details/order-details.html",
 
   // seller Dashboard
+  "/seller-dashboard/dashboard":
+    "/pages/seller-dashboard/dashboard/dashboard.html",
   "/seller-dashboard/profile": "/pages/seller-dashboard/profile/profile.html",
   "/seller-dashboard/orders": "/pages/seller-dashboard/orders/orders.html",
   "/seller-dashboard/order-details":
@@ -421,6 +425,8 @@ export const router = new Router({
     "/pages/seller-dashboard/addProduct/addProduct.html",
   "/seller-dashboard/my-products":
     "/pages/seller-dashboard/my-products/my-products.html",
+  "/seller-dashboard/booked-orders":
+    "/pages/seller-dashboard/booked-orders/booked-orders.html",
 
   // admin Dashboard
   "/admin-dashboard/dashboard":
@@ -436,4 +442,7 @@ export const router = new Router({
     "/pages/admin-dashboard/customers/customers.html",
   "/admin-dashboard/add-new-user":
     "/pages/admin-dashboard/add-new-user/add-new-user.html",
+  "/admin-dashboard/products": "/pages/admin-dashboard/products/products.html",
+  "/admin-dashboard/products/product-details":
+    "/pages/admin-dashboard/products/product-details/product-details.html",
 });
