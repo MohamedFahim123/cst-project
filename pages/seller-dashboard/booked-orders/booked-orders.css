@@ -1,0 +1,26 @@
+.invoice-table {
+  overflow-x: scroll;
+}
+
+#status {
+  padding: 4px 10px;
+  border-radius: 14px;
+  font-weight: 500;
+  color: white;
+}
+
+.bg-red {
+  background-color: red;
+}
+
+.bg-green {
+  background-color: green;
+}
+
+.bg-black {
+  background-color: black;
+}
+
+.bg-orange {
+  background-color: #ff6c00;
+}
