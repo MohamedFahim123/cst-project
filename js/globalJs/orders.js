@@ -36,14 +36,13 @@ function renderOrdersTable(page = 1) {
   const tableRows = paginatedOrders
     .map((order, index) => {
       const totalPrice = getTotalOrderPrice(order);
-      const isFirstRow = index === 0;
       const isLastRow = index === paginatedOrders.length - 1;
 
       return `
       <tr>
-        <td${isLastRow ? ' class="cell-rad-bl"' : ""}>#${order.id}</td>
+        <td${isLastRow ? ' class="cell-rad-bl"' : ""}>#${order.id.slice(-5)}</td>
         <td>${formatOrderDate(order.date)}</td>
-        <td class="total-amount">$${totalPrice}</td>
+        <td class="total-amount">$${totalPrice.toFixed(2)}</td>
         <td${isLastRow ? ' class="cell-rad-br"' : ""}>
           <div class="action-buttons">
             <a
@@ -168,6 +167,7 @@ function attachSearchListener() {
     return console.error("No current user found.");
   }
   const userOrders = getOrdersByUserId(currentUser.id);
+  console.log("🔥🔥", userOrders);
   filteredOrders = [...userOrders];
 
   const searchInput = document.querySelector(".form-control-custom");
@@ -214,7 +214,7 @@ function attachOrderEventListeners() {
 // Helper function to get orders by user ID
 function getOrdersByUserId(userId) {
   const orders = JSON.parse(localStorage.getItem("orders")) || [];
-  return orders.filter((order) => order.userId === userId);
+  return orders.filter((order) => order.userID === userId);
 }
 
 // Helper function to format order date
