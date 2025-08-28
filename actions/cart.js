@@ -67,20 +67,22 @@ class Cart {
     const userData = this._getUserData();
     const cart = userData.cart || [];
     const existing = cart.find((item) => +item.id === +product.id);
+    // "existing"  is a reference so editing it will affect the cart directly
 
     if (existing) {
-      if (existing.quantity + quantity <= existing.stock) {
+      if (existing.quantity + quantity <= product.stock) {
         existing.quantity += quantity;
+        showToast(`${product.name} added to cart`, "success");
       } else {
-        showToast("Cannot add more than available stock", "info");
-        existing.quantity = existing.stock;
+        existing.quantity = product.stock;
+        showToast("Quantity can't exceed available stock", "error");
       }
     } else {
       cart.push({ ...product, quantity });
+      showToast(`${product.name} added to cart`, "success");
     }
 
     this.#save(cart);
-    showToast(`${product.name} added to cart`, "success");
   }
 
   has(productId) {
