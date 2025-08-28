@@ -52,7 +52,7 @@ export const cartAndWishlistLogic = () => {
         id: currentProduct.id,
         name: currentProduct.title,
         price: parseFloat(currentProduct.price * quantity.value),
-        sellerID: currentProduct.seller,
+        sellerID: currentProduct.sellerID,
       };
 
       cart.add(product, +quantity.value);

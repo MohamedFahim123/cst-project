@@ -14,7 +14,8 @@ let itemsPerPage = 10;
 let filteredProducts = [];
 
 const productCard = (product) => {
-  return `
+  return product.stock > 0
+    ? `
     <div class="product-card p-3 border border-gray" data-product-id="${
       product.id
     }">
@@ -23,12 +24,12 @@ const productCard = (product) => {
           ${product.discountPercentage}%
         </span>
         <i data-id="${product.id}" data-thumbnail="${
-    product.thumbnail
-  }" title="Add to Wishlist" data-price="${product.price}" data-name="${
-    product.title
-  }" data-seller="${product.seller}" class=" ${
-    wishlist.has(+product.id) ? "text-danger fa-solid" : "fa-regular"
-  } add-to-wishlist-btn fa-heart add-to-fav  cursor-pointer fs-5"></i>
+        product.thumbnail
+      }" title="Add to Wishlist" data-price="${product.price}" data-name="${
+        product.title
+      }" data-seller="${product.sellerID}" class=" ${
+        wishlist.has(+product.id) ? "text-danger fa-solid" : "fa-regular"
+      } add-to-wishlist-btn fa-heart add-to-fav  cursor-pointer fs-5"></i>
       </div>
       <div class="product-image-container">
         <img src="${product.thumbnail}"
@@ -49,11 +50,11 @@ const productCard = (product) => {
           <button type="button" id="${
             product.id
           }" class="shop-cart-btn w-100 add-to-cart-btn ${
-    cart.has(+product.id) ? "in-cart" : ""
-  }" data-id="${product.id}" data-thumbnail="${product.thumbnail}" data-name="${
-    product.title
-  }" data-price="${product.price}"
-            data-seller="${product.seller}"
+        cart.has(+product.id) ? "in-cart" : ""
+      }" data-id="${product.id}" data-thumbnail="${
+        product.thumbnail
+      }" data-name="${product.title}" data-price="${product.price}"
+            data-seller="${product.sellerID}"
             >
             <i class="fa-solid fa-cart-shopping"></i> ${
               cart.has(+product.id) ? "Remove from Cart" : "Add to Cart"
@@ -62,7 +63,8 @@ const productCard = (product) => {
         </div>
       </div>
     </div>
-  `;
+  `
+    : "";
 };
 
 const initializeProductCards = () => {

@@ -234,7 +234,6 @@ function addProductHandler() {
     .addEventListener("submit", function (e) {
       e.preventDefault();
       if (e.target.dataset.id) {
-        console.log(e.target.dataset.id);
       }
     });
 }

@@ -93,7 +93,8 @@ const renderBrands = (Swiper) => {
 };
 
 const productCard = (product) => {
-  return `
+  return product.stock > 0
+    ? `
       <div class="swiper-slide">
         <div class="card" id="${product.id}">
           <i  
@@ -102,7 +103,7 @@ const productCard = (product) => {
             data-thumbnail="${product.thumbnail}"
             data-name="${product.title}"
             data-price="${product.price}"
-            data-seller="${product.seller}"
+            data-seller="${product.sellerID}"
           ></i>
 
           <span class="badge text-bg-danger position-absolute z-3">
@@ -110,8 +111,8 @@ const productCard = (product) => {
           </span>
 
           <img src="${product.thumbnail}" class="card-img-top" alt="${
-    product.title
-  }" loading="lazy" />
+        product.title
+      }" loading="lazy" />
 
           <div class="card-body">
             <h5 class="card-title fs-6" title="${product.title}">
@@ -140,7 +141,7 @@ const productCard = (product) => {
               data-thumbnail="${product.thumbnail}"
               data-name="${product.title}"
               data-price="${product.price}"
-              data-seller="${product.seller}"
+              data-seller="${product.sellerID}"
               type="button" 
               title="Add to cart" 
               class="addtocart add-to-cart-btn"
@@ -150,7 +151,8 @@ const productCard = (product) => {
           </div>
         </div>
       </div>
-  `;
+  `
+    : "";
 };
 
 const handleRenderingRecommendedProducts = (Swiper) => {

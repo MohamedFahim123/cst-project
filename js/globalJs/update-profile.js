@@ -74,7 +74,6 @@ async function cleanupOldAvatars(userId) {
       for (const img of imagesToDelete) {
         await imageDB.deleteImage(img.id);
       }
-      console.log(`Cleaned up ${imagesToDelete.length} old avatar images for user ${userId}`);
     }
   } catch (error) {
     console.error("Error cleaning up old avatars:", error);

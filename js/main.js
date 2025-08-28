@@ -15,11 +15,19 @@ import { initializeSellers } from "../pages/admin-dashboard/sellers/sellers.js";
 import { initializeCart } from "../pages/cart/mycart.js";
 import { initializeHome } from "../pages/home/home.js";
 import { loginSubmitHandler } from "../pages/login/login.js";
-import displayProductSummary, { initializePayment, paymentStutusFn, paypalGateway, validateBuiltPayment } from "../pages/payment/payment.js";
+import displayProductSummary, {
+  initializePayment,
+  paymentStutusFn,
+  paypalGateway,
+  validateBuiltPayment,
+} from "../pages/payment/payment.js";
 import { registerSubmitHandler } from "../pages/register/main.js";
 import { initializeProductDetailsFunctions } from "../pages/shop/product-details/product-details.js";
 import { initializeShop } from "../pages/shop/shop.js";
-import { initializeWishlist, refreshWishlist } from "../pages/wishlist/mywishlist.js";
+import {
+  initializeWishlist,
+  refreshWishlist,
+} from "../pages/wishlist/mywishlist.js";
 import { router } from "./router.js";
 import { cartAndWishlistLogic } from "./shred.js";
 import { initializeProducts } from "../pages/admin-dashboard/products/products.js";
@@ -89,13 +97,13 @@ export const PAGE_INITIALIZERS = {
   "/seller-dashboard/my-products": () => {
     addProductHandler();
   },
-  '/seller-dashboard/dashboard': () => {
+  "/seller-dashboard/dashboard": () => {
     dashboardInitSeller();
   },
   "/seller-dashboard/booked-orders": () => {
     showBookedOrders();
   },
-  
+
   "/cart": () => {
     initializeCart();
     cartAndWishlistLogic();
@@ -151,15 +159,25 @@ document.addEventListener("click", (e) => {
     const pathname = `/${user.role.toLowerCase()}-dashboard/profile`;
     router.navigate(pathname.trim());
   }
+  if (
+    e.target.id == "arrowUp" ||
+    e.target.classList.contains("containerArrow") ||
+    e.target.classList.contains("arrowUpIcon")
+  ) {
+    window.scrollTo(0, 0);
+  }
 });
 
 window.addEventListener("scroll", () => {
   if (!router.getPath().includes("dashboard")) {
     const header = document.getElementById("navbar-nav");
+    const arrow = document.getElementById("arrowUp");
     if (window.scrollY > 0) {
       header.classList.add("position-fixed", "w-100", "z-3", "top-0");
+      arrow.classList.remove("d-none");
     } else {
       header.classList.remove("position-fixed", "w-100", "z-3", "top-0");
+      arrow.classList.add("d-none");
     }
   }
 });

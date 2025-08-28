@@ -35,7 +35,6 @@ class ImageDBManager {
           const store = db.createObjectStore(this.storeName, { keyPath: "id" });
           store.createIndex("userId", "userId", { unique: false });
           store.createIndex("timestamp", "timestamp", { unique: false });
-          console.log("Object store created");
         }
       };
     });
@@ -65,7 +64,6 @@ class ImageDBManager {
         const request = store.put(imageRecord);
 
         request.onsuccess = () => {
-          console.log("Image stored successfully:", imageRecord.id);
           resolve(imageRecord.id);
         };
 
@@ -134,7 +132,6 @@ class ImageDBManager {
         const request = store.delete(imageId);
 
         request.onsuccess = () => {
-          console.log("Image deleted successfully:", imageId);
           resolve(true);
         };
 
@@ -217,7 +214,6 @@ class ImageDBManager {
         const request = store.clear();
 
         request.onsuccess = () => {
-          console.log("All images cleared successfully");
           resolve(true);
         };
 
