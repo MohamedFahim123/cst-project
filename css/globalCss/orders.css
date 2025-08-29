@@ -104,6 +104,14 @@
   border-radius: 6px;
 }
 
+.view-btn {
+  background-color: var(--bg-main-color);
+  color: #fff;
+  &:hover {
+    background-color: var(--title-main-color);
+    color: #fff;
+  }
+}
 /* Responsive Design */
 
 @media (max-width: 768px) {

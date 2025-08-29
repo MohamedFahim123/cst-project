@@ -40,10 +40,10 @@ const showBookedOrders = () => {
         <td>${userID}</td>
         <td>${userName}</td>
         <td>$${totalPrice}</td>
-        <td><span id="status" class="${bg}">${status}</span></td>
+        <td><span class="status-bg ${bg}">${status}</span></td>
         <td>
           <a href="/seller-dashboard/booked-orders-details" data-link>
-            <button class="btn btn-primary bo-view-btn" data-orderid="${order.id}">View</button>
+            <button class="btn view-btn  bo-view-btn" data-orderid="${order.id}">View</button> 
           </a>
         </td>
       </tr>

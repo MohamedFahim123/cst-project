@@ -52,7 +52,7 @@ function displayOrderData(order) {
   }
 
   // Update timeline
-  displayTimeline("processing" || order.status);
+  displayTimeline(order.status);
 
   // Update items
   const orderedProducts = getOrderedProducts(order);
@@ -94,7 +94,7 @@ function displayOrderItems(products) {
       </div>
       <div class="od-item-details">
         <h5 class="od-item-name">${item.title}</h5>
-        <p class="od-item-description">${item.description.slice(0, 100)}...</p>
+        <p class="od-item-description">${item.description.slice(0, 60)}...</p>
 
       </div>
       <div class="od-item-quantity">

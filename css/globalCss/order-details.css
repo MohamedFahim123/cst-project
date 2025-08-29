@@ -138,19 +138,25 @@
 }
 
 .od-status-delivered {
-  background: rgba(22, 163, 74, 0.2);
-  color: #059669;
+  background: rgba(22, 163, 74, 0.3);
+  color: #00b97f;
   border: 1px solid rgba(22, 163, 74, 0.3);
 }
 
 .od-status-processing {
-  background: rgba(245, 158, 11, 0.2);
-  color: #d97706;
-  border: 1px solid rgba(245, 158, 11, 0.3);
+  background: rgba(245, 158, 11, 0.3);
+  color: #ff8902;
+  border: 1px solid rgba(255, 190, 79, 0.3);
+}
+
+.od-status-shipped {
+  background: rgba(0, 0, 0, 0.8);
+  color: #dfdfdf;
+  border: 1px solid rgba(59, 130, 246, 0.3);
 }
 
 .od-status-cancelled {
-  background: rgba(220, 38, 38, 0.2);
+  background: rgba(220, 38, 38, 0.3);
   color: #dc2626;
   border: 1px solid rgba(220, 38, 38, 0.3);
 }
@@ -334,13 +340,20 @@
 }
 
 .od-item-quantity {
+  display: flex;
+  flex-direction: column;
   text-align: center;
   margin: 0 1rem;
 }
 
 .od-qty-label {
-  color: var(--text-second-color);
-  font-size: 0.9rem;
+  color: var(--title-main-color);
+  font-size: 1rem;
+  font-weight: 600;
+  background-color: #5d4796b2;
+  color: #fff;
+  border-radius: 10px;
+  padding: 0.1rem 0.5rem;
   display: block;
   margin-bottom: 0.25rem;
 }
@@ -592,9 +605,10 @@
   }
 
   .od-item {
-    flex-direction: column;
-    text-align: center;
     gap: 1rem;
+    & .od-item-description {
+      display: none;
+    }
   }
 
   .od-item-details {
@@ -630,18 +644,12 @@
   }
 
   .od-timeline-item {
-    flex-direction: column;
-    text-align: center;
+    gap: 1rem;
   }
 
   .od-timeline-marker {
     margin-right: 0;
     margin-bottom: 0.5rem;
-  }
-
-  .od-timeline-item::after {
-    left: 50%;
-    transform: translateX(-50%);
   }
 }
 
@@ -654,5 +662,16 @@
   .od-back-btn {
     padding: 0.4rem 0.8rem;
     font-size: 0.9rem;
+  }
+  .od-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 0;
+    border-bottom: 1px solid #b9b9b9;
+  }
+  .od-item-quantity {
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
   }
 }
