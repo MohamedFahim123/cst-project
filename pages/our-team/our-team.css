@@ -38,9 +38,59 @@
   background-size: cover;
   background-repeat: no-repeat;
 }
+.member ul li {
+  width: 40px;
+  height: 40px;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+.member ul li:first-child {
+  background-color: #000000;
+  border: 1px solid #000000;
+}
+.member ul li:nth-child(2) {
+  background-color: #0077b5;
+  border: 1px solid #0077b5;
+}
+.member ul li i {
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+}
+.member .gitHubIcon {
+  color: #fff;
+}
+.member .linkedInIcon {
+  color: #fff;
+}
+.member ul li:first-child:hover {
+  background-color: #fff;
+}
+.member ul li:first-child:hover i {
+  color: #000000;
+}
+.member ul li:nth-child(2):hover {
+  background-color: #fff;
+}
+.member ul li:nth-child(2):hover i {
+  color: #0077b5;
+}
 
 .member-1 {
-  background-image: url(../../assets/person1.png);
+  background-image: url(../../assets/OurTeam/MohamedFahim.jpg);
 }
 .member-2 {
   background-image: url(../../assets/person2.png);

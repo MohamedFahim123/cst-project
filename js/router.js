@@ -146,7 +146,7 @@ class Router {
       if (link) {
         e.preventDefault();
         const arrow = document.getElementById("arrowUp");
-        arrow.classList.add("d-none");
+        arrow.classList.remove("d-none");
         this.navigate(link.getAttribute("href"));
       }
     });

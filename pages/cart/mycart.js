@@ -75,7 +75,6 @@ function renderCartItems(items) {
     })
     .join("");
 
-  // Add event listeners to delete buttons
   document.querySelectorAll(".delete-row").forEach((btn) => {
     btn.addEventListener("click", function (e) {
       e.preventDefault();
@@ -84,10 +83,9 @@ function renderCartItems(items) {
     });
   });
 
-  // Add event listeners to quantity inputs for real-time updates
   document.querySelectorAll(".quantity-input").forEach((input) => {
     input.addEventListener("change", function (e) {
-      updateSingleItemQuantity(this.dataset.id, parseInt(this.value),e.target);
+      updateSingleItemQuantity(this.dataset.id, parseInt(this.value), e.target);
     });
 
     input.addEventListener("input", function () {
@@ -96,7 +94,7 @@ function renderCartItems(items) {
   });
 }
 
-function updateSingleItemQuantity(productId, quantity,input) {
+function updateSingleItemQuantity(productId, quantity, input) {
   if (quantity > 0) {
     const allProducts = JSON.parse(
       localStorage.getItem("all-products") || "[]"
@@ -184,10 +182,17 @@ function removeFromCart(id) {
 
 export function clearCart() {
   try {
-    if (confirm("Are you sure you want to clear your cart?")) {
+    const modal = new bootstrap.Modal(
+      document.getElementById("deleteCartModal")
+    );
+    modal.show();
+
+    const confirmBtn = document.getElementById("confirmDeleteCart");
+    confirmBtn.onclick = () => {
       cart.clear();
       showToast("Cart cleared", "success");
-    }
+      modal.hide();
+    };
   } catch (e) {
     console.error("Error clearing cart:", e);
     showToast("Error clearing cart", "error");

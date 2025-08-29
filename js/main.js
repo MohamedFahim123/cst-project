@@ -171,17 +171,17 @@ document.addEventListener("click", (e) => {
 let ticking = false;
 
 window.addEventListener("scroll", () => {
-  if (router.getPath().includes("dashboard")) return;
-
   if (!ticking) {
     window.requestAnimationFrame(() => {
       const header = document.getElementById("navbar-nav");
       const arrow = document.getElementById("arrowUp");
       const scrollY = window.scrollY;
 
-      header.classList.toggle("navbar-fixed", scrollY > 120);
+      if (!router.getPath().includes("dashboard")) {
+        header.classList.toggle("navbar-fixed", scrollY > 120);
+      }
 
-      arrow.classList.toggle("visible", scrollY > 200);
+      arrow.classList.toggle("visible", scrollY > 150);
 
       ticking = false;
     });

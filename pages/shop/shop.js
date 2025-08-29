@@ -76,10 +76,6 @@ const initializeProductCards = () => {
     if (e.target.classList.contains("product-title")) {
       navigateToProductDetails(productId);
     }
-
-    if (e.target.classList.contains("add-to-cart-btn") || e.target.closest(".add-to-cart-btn")) {
-      //   addToCart(productId);
-    }
   });
 };
 
@@ -89,7 +85,7 @@ const navigateToProductDetails = (productId) => {
 };
 
 const renderProducts = (products) => {
-  filteredProducts = products;
+  filteredProducts = products.filter((product) => product.stock > 0);
   const startIdx = (currentPage - 1) * itemsPerPage;
   const endIdx = startIdx + itemsPerPage;
   const paginatedProducts = products.slice(startIdx, endIdx);
@@ -125,7 +121,9 @@ const renderProducts = (products) => {
     productsContainer.innerHTML = paginatedProducts.map((product) => productCard(product)).join("");
   }
 
-  renderPagination(products.length);
+  const productsFinal = products.filter((product) => product.stock > 0);
+
+  renderPagination(productsFinal.length);
 };
 
 const filterProductAndRenderThem = (_localFilters) => {
