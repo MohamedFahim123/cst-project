@@ -76,5 +76,49 @@ export const dashboardInitSeller = () => {
       card.style.transform = "translateY(0)";
     });
   });
-};
 
+  let all_products = JSON.parse(localStorage.getItem("all-products"));
+  let orders = JSON.parse(localStorage.getItem("orders"));
+  let pfCard = document.getElementById("pfCard");
+
+  let ids = [],
+    imgs = [],
+    titles = [],
+    brands = [],
+    prices = [];
+
+  // ! Orders
+  orders.forEach((order) => {
+    order.products.forEach((prOrder) => {
+      ids.push(prOrder.id);
+    });
+  });
+
+  // ! Products
+  all_products.forEach((product) => {
+    ids.forEach((id) => {
+      if (id == product["id"]) {
+        imgs.push(product["images"][0]);
+        prices.push(product.price);
+        brands.push(product.brand);
+        titles.push(product.title);
+      }
+    });
+  });
+
+  // ! Show last three orderas
+  for (var x = ids.length - 1; x > 7; x--) {
+    let produxtItem = document.createElement("div");
+    produxtItem.className = "pf-product-item";
+    produxtItem.innerHTML = `
+                              <div class="pf-product-icon">
+                                  <img src="${imgs[x]}" alt="${titles[x]}" style="width:40px;height:40px;object-fit:cover;">
+                              </div>
+                              <div class="pf-product-info">
+                                  <h4>${titles[x]}</h4>
+                                  <p>${brands[x]}</p>
+                              </div>
+                              <div class="pf-product-amount">${prices[x]}</div>`;
+    pfCard.appendChild(produxtItem);
+  }
+};

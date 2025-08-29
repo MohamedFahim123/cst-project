@@ -109,8 +109,10 @@ body {
   margin-right: 0.25rem;
 }
 
-.pf-channels {
-  grid-column: span 4;
+@media (min-width: 992px) {
+  .pf-channels {
+    grid-column: span 6;
+  }
 }
 
 .pf-channel-item {
