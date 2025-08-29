@@ -1,8 +1,24 @@
 import { showToast } from "../../../actions/showToast.js";
 import { getCurrentUser } from "../../register/LocalStorageUtils.js";
+import { getProducts, saveProducts } from "./helpers.js";
+
+import {
+  validateProduct,
+  showEditValidationErrors,
+  showValidationErrors,
+} from "./validation.js";
+
+import {
+  createProductData,
+  addProduct,
+  deleteProduct,
+  getProductDetails,
+  createProductCard,
+  fileToBase64,
+} from "./productCrud.js";
 
 function addProductHandler() {
-  // form inputs
+  // add form inputs
   const inputs = {
     title: document.getElementById("productTitle"),
     status: document.getElementById("availabilityStatus"),
@@ -14,7 +30,7 @@ function addProductHandler() {
     discount: document.getElementById("discount"),
     img: document.getElementById("productImg"),
   };
-
+  // edit form inputs
   const editInputs = {
     title: document.getElementById("editProductTitle"),
     status: document.getElementById("editAvailabilityStatus"),
@@ -26,176 +42,19 @@ function addProductHandler() {
     discount: document.getElementById("editDiscount"),
     img: document.getElementById("editProductImg"),
   };
-
+  // forms
   const cardContainer = document.getElementById("products-cards-container");
   const addProductForm = document.getElementById("addProductForm");
   const editProductForm = document.getElementById("editProductForm");
 
-  // --- Local Storage Helpers ---
-  function getProducts() {
-    try {
-      return JSON.parse(localStorage.getItem("all-products")) || [];
-    } catch {
-      return [];
-    }
-  }
+  // number of rendered Items in Each page
+  const NUMBER_ITEM_PER_PAGE = 8;
 
-  function saveProducts(products) {
-    localStorage.setItem("all-products", JSON.stringify(products));
-  }
-
-  // --- Validation ---
-  function validateProduct({
-    title,
-    status,
-    quantity,
-    description,
-    price,
-    discount,
-  }) {
-    const errors = {};
-    const titleRegex = /^[A-Za-z0-9\s\-']{3,45}$/;
-    const descRegex = /^.{8,150}$/;
-
-    if (!titleRegex.test(title)) {
-      errors.title =
-        "Title must be 3–45 characters (letters, numbers, spaces, - ' allowed)";
-    }
-    if (!descRegex.test(description)) {
-      errors.description = "Description must be 8–150 characters long";
-    }
-
-    quantity = Number(quantity);
-    if (status === "inStock" && quantity === 0) {
-      errors.quantity = "Quantity must be greater than 0 if in stock";
-    }
-    if (quantity < 0 || quantity > 1_000_000) {
-      errors.quantity = "Quantity must be between 1 and 1,000,000";
-    }
-
-    price = Number(price);
-    if (price <= 0 || price > 1_000_000_000) {
-      errors.price = "Price must be greater than 0 and less than 1B";
-    }
-
-    discount = Number(discount);
-    if (discount < 0 || discount >= 100) {
-      errors.discount = "Discount must be between 0–99%";
-    }
-
-    return {
-      isValid: Object.keys(errors).length === 0,
-      errors,
-    };
-  }
-
-  function showValidationErrors(errors) {
-    // remove old alerts
-    document.querySelectorAll(".error-alert").forEach((e) => e.remove());
-
-    Object.entries(errors).forEach(([key, message]) => {
-      const inputEl = inputs[key];
-      if (inputEl) {
-        const alert = document.createElement("div");
-        alert.className = "alert alert-danger mt-2 p-1 error-alert";
-        alert.innerText = message;
-        inputEl.insertAdjacentElement("afterend", alert);
-      }
-    });
-  }
-
-  function showEditValidationErrors(errors) {
-    // remove old alerts
-    document.querySelectorAll(".error-alert").forEach((e) => e.remove());
-
-    Object.entries(errors).forEach(([key, message]) => {
-      const inputEl = editInputs[key];
-      if (inputEl) {
-        const alert = document.createElement("div");
-        alert.className = "alert alert-danger mt-2 p-1 error-alert";
-        alert.innerText = message;
-        inputEl.insertAdjacentElement("afterend", alert);
-      }
-    });
-  }
-
-  // --- Product-CRUD ---
-  function createProductData({
-    title,
-    brand,
-    quantity,
-    description,
-    status,
-    category,
-    price,
-    discount,
-    img,
-  }) {
-    return {
-      id: Date.now(),
-      title,
-      brand,
-      stock: Number(quantity),
-      description,
-      availabilityStatus: status,
-      category,
-      price: Number(price - (price * discount) / 100),
-      discountPercentage: Number(discount),
-      deletedPrice: Number(price),
-      thumbnail: img,
-      images: [img],
-      sellerID: getCurrentUser().id,
-    };
-  }
-
-  function addProduct(product) {
-    const products = getProducts();
-    products.push(product);
-    saveProducts(products);
-    showToast("Product Added Successfully", "success");
-  }
-
-  function deleteProduct(productID) {
-    const deleteConfirm = confirm(
-      "are You sure you want to Delete this product"
-    );
-    if (!deleteConfirm) return;
-    const products = getProducts();
-    const updatedProducts = products.filter(
-      (product) => product.id !== productID
-    );
-    saveProducts(updatedProducts);
-  }
-  // function that return Product detailed Obj
-  function getProductDetails(productID) {
-    const productDetails = getProducts().filter(
-      (product) => product.id === productID
-    )[0];
-    return productDetails;
-  }
-
-  // --- Rendering ---
-  function createProductCard(product) {
-    return `
-      <div class="col-lg-3 col-md-6">
-        <div class="product-card">
-         <button class="delete-btn" data-id="${product.id}">&times;</button>
-          <img src="${product.thumbnail}" alt="${product.title}">
-          <h6 class="mb-0">${product.title}</h6>
-          <div>
-            <span class="text-muted text-decoration-line-through">${product.deletedPrice}</span>
-            <span class="fw-bold ms-2">${product.price}</span>
-          </div>
-          <button class="edit-btn mt-auto" data-id=${product.id} data-bs-toggle="modal" data-bs-target="#editProduct" >Edit Product</button>
-        </div>
-      </div>
-    `;
-  }
-
-  function renderSellerProducts(sellerID) {
+  function renderSellerProducts(sellerID, page = 1) {
     const sellerProducts = getProducts().filter((p) => p.sellerID === sellerID);
     cardContainer.innerHTML = "";
 
+    // if there is no product to the current seller
     if (!sellerProducts.length) {
       cardContainer.innerHTML = `
         <div class="col-12 text-center py-5">
@@ -206,17 +65,108 @@ function addProductHandler() {
       return;
     }
 
-    sellerProducts.forEach((product) => {
-      cardContainer.insertAdjacentHTML("beforeend", createProductCard(product));
-    });
+    // if number of item less/equal to 8
+    if (sellerProducts.length <= NUMBER_ITEM_PER_PAGE) {
+      sellerProducts.forEach((product) => {
+        cardContainer.insertAdjacentHTML(
+          "beforeend",
+          createProductCard(product)
+        );
+      });
+    } else {
+      const startIndex = (page - 1) * NUMBER_ITEM_PER_PAGE;
+      const stopIndex = startIndex + NUMBER_ITEM_PER_PAGE;
+      const currentPageProducts = sellerProducts.slice(startIndex, stopIndex);
+      // render the Current Page Products
+      currentPageProducts.forEach((product) => {
+        cardContainer.insertAdjacentHTML(
+          "beforeend",
+          createProductCard(product)
+        );
+      });
+      // --- Pagination ---
+      const paginationContainer = document.getElementById(
+        "pagination-container"
+      );
+      if (sellerProducts.length > NUMBER_ITEM_PER_PAGE) {
+        paginationContainer.classList.remove("d-none");
+        paginationContainer.innerHTML = "";
+        const totalPages = Math.ceil(
+          sellerProducts.length / NUMBER_ITEM_PER_PAGE
+        );
+
+        for (let i = 1; i <= totalPages; i++) {
+          const btn = document.createElement("button");
+          btn.textContent = i;
+          btn.className = `btn btn-sm me-1 ${
+            i === page ? "btn-purple" : "btn-secondary"
+          }`;
+          btn.addEventListener("click", () =>
+            renderSellerProducts(sellerID, i)
+          );
+          paginationContainer.appendChild(btn);
+        }
+      } else {
+        paginationContainer.innerHTML = "";
+        paginationContainer.classList.add("d-none");
+      }
+    }
   }
 
   // --- Init ---
   renderSellerProducts(getCurrentUser().id);
 
+  // images previeww handler
+  inputs.img.addEventListener("change", function () {
+    const previewContainer = document.querySelector(".images-view");
+    previewContainer.classList.replace("d-none", "d-flex");
+    previewContainer.innerHTML = "";
+
+    // display each image in small card
+    Array.from(inputs.img.files).forEach((file) => {
+      const imgURL = URL.createObjectURL(file);
+
+      const imgEl = document.createElement("img");
+      imgEl.src = imgURL;
+      imgEl.classList.add("me-2"); // bootstrap margin right صغيرة
+      imgEl.style.width = "100px";
+      imgEl.style.height = "100px";
+      imgEl.style.objectFit = "cover";
+      imgEl.style.borderRadius = "8px";
+
+      previewContainer.appendChild(imgEl);
+    });
+  });
+
+  editInputs.img.addEventListener("change", function () {
+    const previewContainer = document.querySelector(".images-view");
+    previewContainer.classList.replace("d-none", "d-flex");
+    previewContainer.innerHTML = "";
+
+    // display each image in small card
+    Array.from(inputs.img.files).forEach((file) => {
+      const imgURL = URL.createObjectURL(file);
+
+      const imgEl = document.createElement("img");
+      imgEl.src = imgURL;
+      imgEl.classList.add("me-2"); // bootstrap margin right صغيرة
+      imgEl.style.width = "100px";
+      imgEl.style.height = "100px";
+      imgEl.style.objectFit = "cover";
+      imgEl.style.borderRadius = "8px";
+
+      previewContainer.appendChild(imgEl);
+    });
+  });
+
   // --- Form Submit ---
-  addProductForm.addEventListener("submit", (e) => {
+  addProductForm.addEventListener("submit", async (e) => {
     e.preventDefault();
+    const files = Array.from(inputs.img.files);
+    // convert images to Base64
+    const base64Images = await Promise.all(
+      files.map((file) => fileToBase64(file))
+    );
 
     const productData = {
       title: inputs.title.value.trim(),
@@ -227,7 +177,7 @@ function addProductHandler() {
       category: inputs.category.value,
       price: inputs.price.value,
       discount: inputs.discount.value,
-      img: inputs.img.value.trim(),
+      imgs: base64Images,
     };
 
     const validation = validateProduct(productData);
@@ -255,6 +205,15 @@ function addProductHandler() {
       inputs.quantity.disabled = false;
     }
   });
+  editInputs.status.addEventListener("change", function () {
+    if (this.value === "outOfStock") {
+      editInputs.quantity.value = 0;
+      editInputs.quantity.disabled = true;
+    } else {
+      editInputs.quantity.disabled = false;
+    }
+  });
+
   // ---------Delete Btn Handler -----------
   cardContainer.addEventListener("click", (e) => {
     if (e.target.classList.contains("delete-btn")) {
@@ -294,11 +253,15 @@ function addProductHandler() {
       }
     }
   });
-  // -------------UpdateBtn Handler --------------
 
-  // --- Update Product ---
-  editProductForm.addEventListener("submit", function (e) {
+  // --- Update Product Handlers ---
+  editProductForm.addEventListener("submit", async (e) => {
     e.preventDefault();
+    const files = Array.from(editInputs.img.files);
+    // convert images to Base64
+    const base64Images = await Promise.all(
+      files.map((file) => fileToBase64(file))
+    );
 
     // getting the productId from the Hidden Input
     const productId = Number(document.getElementById("editProductId").value);
@@ -313,7 +276,7 @@ function addProductHandler() {
       category: editInputs.category.value,
       price: editInputs.price.value,
       discount: editInputs.discount.value,
-      img: editInputs.img.value.trim(),
+      img: base64Images,
     };
 
     // 3. apply validation
@@ -342,8 +305,8 @@ function addProductHandler() {
         ),
         discountPercentage: Number(updatedData.discount),
         deletedPrice: Number(updatedData.price),
-        thumbnail: updatedData.img,
-        images: [updatedData.img],
+        thumbnail: updatedData.img[0],
+        images: updatedData.img,
       };
 
       //    save back to localstorage

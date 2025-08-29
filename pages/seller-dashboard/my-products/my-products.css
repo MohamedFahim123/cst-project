@@ -52,8 +52,7 @@
   background-color: var(--ap-main-color);
   padding: 15px;
   border-radius: var(--main-border-radius);
-  max-height: 75vh;
-  overflow-y: scroll;
+  height: 65vh;
 }
 
 /* =========================Product Card Styles =================== */
@@ -135,4 +134,19 @@
 
 .delete-btn:hover {
   background: #cc0000;
+}
+
+.product-img {
+  max-height: 100px;
+}
+
+/* pagination  */
+.btn-purple {
+  background-color: var(--bg-main-color);
+  color: white;
+}
+
+.btn-purple:hover {
+  background-color: var(--title-main-color);
+  color: white;
 }
