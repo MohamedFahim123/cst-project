@@ -20,7 +20,7 @@ function loadOrderData() {
 // Display order data
 function displayOrderData(order) {
   // Update order header
-  document.querySelector(".od-order-number").textContent = `Order #${order.id.slice(-5)}`;
+  document.querySelector(".od-order-number").textContent = `Order #${order.id.slice(0, 5)}`;
   document.querySelector(".od-order-date").innerHTML = `
     <i class="fas fa-calendar-alt"></i>
     ${order.date}
@@ -46,10 +46,10 @@ function displayOrderData(order) {
   const orderedProducts = getOrderedProducts(order);
   displayOrderItems(orderedProducts);
 
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const user = getUserById(order.userID);
   // Update addresses and payment of the user
-  displayShippingInfo(currentUser);
-  displayBillingInfo(currentUser);
+  displayShippingInfo(user);
+  displayBillingInfo(user);
 
   // Update summary
   displayOrderSummary(totalPrice);
@@ -170,6 +170,9 @@ function initializeEventHandlers() {
 }
 
 // Event handlers
+function getUserById(userId) {
+  return JSON.parse(localStorage.getItem("users")).users.find((user) => user.id === userId);
+}
 
 function handleContactSupport() {
   showToast("Opening support chat...");

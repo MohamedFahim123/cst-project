@@ -5,13 +5,15 @@ import { getTotalOrderPrice } from "../../actions/helperFuncitons.js";
 const ORDERS_PER_PAGE = 8;
 let currentPage = 1;
 let filteredOrders = [];
+let orders = [];
 
 export function initializeOrdersPage() {
+  updateAllOrdersVariable();
   attachSearchListener();
-  renderOrdersTable();
+  renderOrdersTable(filteredOrders);
 }
 
-function renderOrdersTable(page = 1) {
+function renderOrdersTable(filteredOrders, page = 1) {
   // Calculate pagination
   const totalOrders = filteredOrders.length;
   const totalPages = Math.ceil(totalOrders / ORDERS_PER_PAGE);
@@ -29,6 +31,9 @@ function renderOrdersTable(page = 1) {
     invoiceTableContainer.style.display = "block";
   }
 
+  // current user
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
   // Update current page
   currentPage = page;
 
@@ -40,13 +45,16 @@ function renderOrdersTable(page = 1) {
 
       return `
       <tr>
-        <td${isLastRow ? ' class="cell-rad-bl"' : ""}>#${order.id.slice(-5)}</td>
+        <td${isLastRow ? ' class="cell-rad-bl"' : ""}>#${order.id.slice(0, 5)}</td>
+        ${currentUser.role === "admin" ? `<td>${getUserById(order.userID)?.username || "N/A"}</td>` : ""}
+        <td>${`${order.userID}`.slice(0, 5) || "N/A"}</td>
+        <td>${order.status || "N/A"}</td>
         <td>${formatOrderDate(order.date)}</td>
         <td class="total-amount">$${totalPrice.toFixed(2)}</td>
         <td${isLastRow ? ' class="cell-rad-br"' : ""}>
           <div class="action-buttons">
             <a
-              href="/customer-dashboard/order-details"
+              href="/${currentUser.role}-dashboard/order-details"
               data-link
               class="btn btn-sm btn-outline-primary action-btn or-view-order-btn"
               data-order-id="${order.id}">
@@ -68,7 +76,10 @@ function renderOrdersTable(page = 1) {
     <table class="table table-hover mb-0">
       <thead>
         <tr>
-          <th class="cell-rad-tl">ID</th>
+          <th class="cell-rad-tl">ORDER ID</th>
+          ${currentUser.role === "admin" ? `<th>USER</th>` : ""}
+          ${currentUser.role === "admin" ? `<th>USER ID</th>` : ""}
+          <th>STATUS</th>
           <th>DATE</th>
           <th>TOTAL</th>
           <th class="cell-rad-tr">ACTIONS</th>
@@ -162,19 +173,26 @@ function removePagination() {
 
 // Function to attach search listener
 function attachSearchListener() {
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-  if (!currentUser) {
-    return console.error("No current user found.");
-  }
-  const userOrders = getOrdersByUserId(currentUser.id);
-  filteredOrders = [...userOrders];
-
+  filteredOrders = [...orders];
   const searchInput = document.querySelector(".form-control-custom");
   searchInput.addEventListener("input", function () {
     const query = this.value.toLowerCase();
-    filteredOrders = userOrders.filter((order) => String(order.id).toLowerCase().includes(query));
-    renderOrdersTable();
+    if (!query) {
+      filteredOrders = [...orders];
+    } else {
+      filteredOrders = orders.filter((order) => String(order.id).toLowerCase().includes(query));
+    }
+    renderOrdersTable(filteredOrders);
   });
+}
+function getFilteredOrders() {
+  const searchInput = document.querySelector(".form-control-custom");
+  const query = searchInput.value.toLowerCase();
+  if (!query) {
+    return [...orders];
+  } else {
+    return orders.filter((order) => String(order.id).toLowerCase().includes(query));
+  }
 }
 
 // Function to attach pagination event listeners
@@ -185,7 +203,7 @@ function attachPaginationEventListeners() {
     button.addEventListener("click", function () {
       const page = parseInt(this.dataset.page);
       if (page && page !== currentPage) {
-        renderOrdersTable(page);
+        renderOrdersTable(filteredOrders, page);
       }
     });
   });
@@ -202,18 +220,36 @@ function attachOrderEventListeners() {
   // Add event listeners for delete order buttons
   const deleteOrderButtons = document.querySelectorAll(".or-delete-order-btn");
   deleteOrderButtons.forEach((button) => {
-    button.addEventListener("click", handleDeleteOrder);
+    button.addEventListener("click", showDeleteModal);
   });
 }
 
 // --------------------------------------
 // ---------Helper functions-------------
 // --------------------------------------
+function updateAllOrdersVariable() {
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  if (!currentUser) {
+    return console.error("No current user found.");
+  }
+  if (currentUser.role == "admin") {
+    const allOrders = JSON.parse(localStorage.getItem("orders")) || [];
+    orders = [...allOrders];
+  } else {
+    const userOrders = getOrdersByUserId(currentUser.id);
+    orders = [...userOrders];
+  }
+}
 
 // Helper function to get orders by user ID
 function getOrdersByUserId(userId) {
   const orders = JSON.parse(localStorage.getItem("orders")) || [];
   return orders.filter((order) => order.userID === userId);
+}
+
+function getUserById(userId) {
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+  return users.users.find((user) => user.id === userId);
 }
 
 // Helper function to format order date
@@ -232,18 +268,25 @@ function storeOrderInStorage(event) {
   localStorage.setItem("selectedOrderId", orderId);
 }
 
-// Handle delete order button click
-function handleDeleteOrder(event) {
+function showDeleteModal(event) {
   const orderId = event.currentTarget.dataset.orderId;
-  deleteOrderById(orderId);
+  const deleteModal = new bootstrap.Modal(document.getElementById("deleteOrderModal"));
+  deleteModal.show();
+  // Attach event listener to confirm delete button
+  const confirmDeleteButton = document.getElementById("confirmDeleteOrder");
+  confirmDeleteButton.onclick = function () {
+    deleteOrderById(orderId);
+    deleteModal.hide();
+  };
 }
 
 // delete order by id
 function deleteOrderById(orderId) {
-  let orders = JSON.parse(localStorage.getItem("orders")) || [];
-  orders = orders.filter((order) => order.id !== +orderId);
-  localStorage.setItem("orders", JSON.stringify(orders));
+  const newAllOrders = orders.filter((order) => order.id != orderId);
+  localStorage.setItem("orders", JSON.stringify(newAllOrders));
+  updateAllOrdersVariable();
   // Re-render the table
-  renderOrdersTable();
-  showToast(`Order #${orderId} deleted successfully`);
+  filteredOrders = getFilteredOrders();
+  renderOrdersTable(filteredOrders);
+  showToast(`Order #${orderId.slice(0, 5)} deleted successfully`, "success");
 }
