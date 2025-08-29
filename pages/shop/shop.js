@@ -121,9 +121,8 @@ const renderProducts = (products) => {
     productsContainer.innerHTML = paginatedProducts.map((product) => productCard(product)).join("");
   }
 
-  const productsFinal = products.filter((product) => product.stock > 0);
 
-  renderPagination(productsFinal.length);
+  renderPagination(filteredProducts.length);
 };
 
 const filterProductAndRenderThem = (_localFilters) => {
@@ -154,7 +153,7 @@ const filterProductAndRenderThem = (_localFilters) => {
     }
   });
   currentPage = 1;
-  renderProducts(filteredProducts);
+  renderProducts(filteredProducts.filter((product) => product.stock > 0));
 };
 
 const handleFilterProductsIfExistFilters = () => {
