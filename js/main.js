@@ -30,6 +30,7 @@ import { cartAndWishlistLogic } from "./shred.js";
 import { initializeProducts } from "../pages/admin-dashboard/products/products.js";
 import { initializeDashboardProductDetailsFunctions } from "../pages/admin-dashboard/products/product-details/product-details.js";
 import { shuffleTeamMembers } from "../pages/our-team/our-team.js";
+import { checkoutValidation } from "../pages/checkout/checkout.js";
 
 //------------------------------------------------------------//
 
@@ -120,6 +121,7 @@ export const PAGE_INITIALIZERS = {
   },
   "/checkout": () => {
     cartAndWishlistLogic();
+    checkoutValidation();
   },
   "/login": () => {
     loginSubmitHandler();
