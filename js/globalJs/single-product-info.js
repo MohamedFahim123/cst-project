@@ -55,21 +55,13 @@ function populateProductInfo(product) {
   // Update price
   const currentPrice = document.querySelector(".current-price");
   if (currentPrice) {
-    const discountPercentage = product.discountPercentage || 0;
-    const originalPrice = product.price;
-    const discountedPrice =
-      discountPercentage > 0
-        ? (originalPrice * (1 - discountPercentage / 100)).toFixed(2)
-        : originalPrice.toFixed(2);
+    const originalPrice = Math.ceil(product.deletedPrice);
+    const discountedPrice = Math.ceil(product.price);
 
-    if (discountPercentage > 0) {
-      currentPrice.innerHTML = `
+    currentPrice.innerHTML = `
         <span class="discounted-price">$${discountedPrice}</span>
         <span class="original-price ms-2">$${originalPrice}</span>
       `;
-    } else {
-      currentPrice.textContent = `$${discountedPrice}`;
-    }
   }
 
   // Update product description

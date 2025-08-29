@@ -47,8 +47,8 @@ function renderOrdersTable(filteredOrders, page = 1) {
       <tr>
         <td${isLastRow ? ' class="cell-rad-bl"' : ""}>#${order.id.slice(0, 5)}</td>
         ${currentUser.role === "admin" ? `<td>${getUserById(order.userID)?.username || "N/A"}</td>` : ""}
-        <td>${`${order.userID}`.slice(0, 5) || "N/A"}</td>
-        <td>${order.status || "N/A"}</td>
+        ${currentUser.role === "admin" ? `<td>${`${order.userID}`.slice(0, 5) || "N/A"}</td>` : ""}
+        <td style="color: ${getStatusColor(order.status)}">${order.status || "N/A"}</td>
         <td>${formatOrderDate(order.date)}</td>
         <td class="total-amount">$${totalPrice.toFixed(2)}</td>
         <td${isLastRow ? ' class="cell-rad-br"' : ""}>
@@ -60,10 +60,7 @@ function renderOrdersTable(filteredOrders, page = 1) {
               data-order-id="${order.id}">
               <i class="fa-solid fa-eye"></i>
             </a>
-            <button class="btn btn-sm btn-outline-danger action-btn or-delete-order-btn"
-                    data-order-id="${order.id}">
-              <i class="fa-solid fa-trash-can"></i>
-            </button>
+            
           </div>
         </td>
       </tr>
@@ -216,12 +213,6 @@ function attachOrderEventListeners() {
   viewOrderButtons.forEach((button) => {
     button.addEventListener("click", storeOrderInStorage);
   });
-
-  // Add event listeners for delete order buttons
-  const deleteOrderButtons = document.querySelectorAll(".or-delete-order-btn");
-  deleteOrderButtons.forEach((button) => {
-    button.addEventListener("click", showDeleteModal);
-  });
 }
 
 // --------------------------------------
@@ -238,6 +229,20 @@ function updateAllOrdersVariable() {
   } else {
     const userOrders = getOrdersByUserId(currentUser.id);
     orders = [...userOrders];
+  }
+}
+
+// get admin status colors (processing - delivered - shipped)
+function getStatusColor(status) {
+  switch (status) {
+    case "processing":
+      return "orange";
+    case "delivered":
+      return "green";
+    case "shipped":
+      return "blue";
+    default:
+      return "black";
   }
 }
 
@@ -268,17 +273,17 @@ function storeOrderInStorage(event) {
   localStorage.setItem("selectedOrderId", orderId);
 }
 
-function showDeleteModal(event) {
-  const orderId = event.currentTarget.dataset.orderId;
-  const deleteModal = new bootstrap.Modal(document.getElementById("deleteOrderModal"));
-  deleteModal.show();
-  // Attach event listener to confirm delete button
-  const confirmDeleteButton = document.getElementById("confirmDeleteOrder");
-  confirmDeleteButton.onclick = function () {
-    deleteOrderById(orderId);
-    deleteModal.hide();
-  };
-}
+// function showDeleteModal(event) {
+//   const orderId = event.currentTarget.dataset.orderId;
+//   const deleteModal = new bootstrap.Modal(document.getElementById("deleteOrderModal"));
+//   deleteModal.show();
+//   // Attach event listener to confirm delete button
+//   const confirmDeleteButton = document.getElementById("confirmDeleteOrder");
+//   confirmDeleteButton.onclick = function () {
+//     deleteOrderById(orderId);
+//     deleteModal.hide();
+//   };
+// }
 
 // delete order by id
 function deleteOrderById(orderId) {

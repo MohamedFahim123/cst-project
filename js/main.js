@@ -24,14 +24,12 @@ import displayProductSummary, {
 import { registerSubmitHandler } from "../pages/register/main.js";
 import { initializeProductDetailsFunctions } from "../pages/shop/product-details/product-details.js";
 import { initializeShop } from "../pages/shop/shop.js";
-import {
-  initializeWishlist,
-  refreshWishlist,
-} from "../pages/wishlist/mywishlist.js";
+import { initializeWishlist, refreshWishlist } from "../pages/wishlist/mywishlist.js";
 import { router } from "./router.js";
 import { cartAndWishlistLogic } from "./shred.js";
 import { initializeProducts } from "../pages/admin-dashboard/products/products.js";
 import { initializeDashboardProductDetailsFunctions } from "../pages/admin-dashboard/products/product-details/product-details.js";
+import { shuffleTeamMembers } from "../pages/our-team/our-team.js";
 
 //------------------------------------------------------------//
 
@@ -39,6 +37,9 @@ export const PAGE_INITIALIZERS = {
   "/": async () => {
     initializeHome(Swiper);
     cartAndWishlistLogic();
+  },
+  "/our-team": () => {
+    shuffleTeamMembers();
   },
   "/shop": () => {
     initializeShop();
