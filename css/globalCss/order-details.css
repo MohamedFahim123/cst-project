@@ -78,7 +78,9 @@
 }
 
 /* Cards Base Styles */
+
 .od-summary-card,
+.od-status-change,
 .od-progress-card,
 .od-items-card,
 .od-info-card,
@@ -168,6 +170,35 @@
   color: white;
   font-size: 2rem;
   font-weight: 700;
+}
+
+/* Order Status Change */
+.od-status-change {
+  padding: 2rem;
+}
+
+.od-status-select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: white;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  &:valid {
+    outline: 1px solid var(--bg-main-color);
+  }
+}
+.od-status-update-btn {
+  background: var(--bg-main-color);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: var(--transition);
 }
 
 /* Section Titles */
@@ -623,26 +654,5 @@
   .od-back-btn {
     padding: 0.4rem 0.8rem;
     font-size: 0.9rem;
-  }
-}
-
-/* Print Styles */
-@media print {
-  .od-back-section,
-  .od-actions {
-    display: none;
-  }
-
-  .od-content-wrapper {
-    box-shadow: none;
-  }
-
-  .od-summary-card,
-  .od-progress-card,
-  .od-items-card,
-  .od-info-card,
-  .od-summary-breakdown {
-    box-shadow: none;
-    border: 1px solid #ddd;
   }
 }

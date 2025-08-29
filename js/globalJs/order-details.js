@@ -8,10 +8,16 @@ export function initializeOrderDetails() {
 }
 
 function loadOrderData() {
-  // OrderId from localStorage
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   const orderId = localStorage.getItem("selectedOrderId");
   const orders = JSON.parse(localStorage.getItem("orders")) || [];
-  const order = orders.find((order) => order.id == orderId);
+  let order;
+  if (currentUser.role == "seller") {
+    order = JSON.parse(localStorage.getItem("selectedSellerOrder"));
+  } else {
+    order = orders.find((order) => order.id == orderId);
+  }
+
   if (order) {
     displayOrderData(order);
   }
@@ -38,6 +44,12 @@ function displayOrderData(order) {
   // Update total
   const totalPrice = getTotalOrderPrice(order);
   document.querySelector(".od-total-amount").textContent = `$${totalPrice.toFixed(2)}`;
+
+  // Update status change
+  const statusSelect = document.querySelector(`.od-status-select option[value="${order.status}"]`);
+  if (statusSelect) {
+    statusSelect.selected = true;
+  }
 
   // Update timeline
   displayTimeline("processing" || order.status);
@@ -167,6 +179,35 @@ function initializeEventHandlers() {
   if (supportBtn) {
     supportBtn.addEventListener("click", handleContactSupport);
   }
+
+  const updateStatusBtn = document.querySelector(".od-status-update-btn");
+  if (updateStatusBtn) {
+    updateStatusBtn.addEventListener("click", () => {
+      const statusSelect = document.querySelector(".od-status-select");
+      if (statusSelect) {
+        const newStatus = statusSelect.value;
+        const orderId = JSON.parse(localStorage.getItem("selectedSellerOrder"))?.id;
+        updateOrderStatus(orderId, newStatus);
+        loadOrderData();
+      }
+      showToast("Order status updated successfully!");
+    });
+  }
+}
+// update order status function
+function updateOrderStatus(orderId, newStatus) {
+  if (!orderId) return;
+  const orders = JSON.parse(localStorage.getItem("orders")) || [];
+  const order = orders.find((o) => o.id === orderId);
+  if (order) {
+    order.status = newStatus;
+    localStorage.setItem("orders", JSON.stringify(orders));
+  }
+  const sellerOrder = JSON.parse(localStorage.getItem("selectedSellerOrder"));
+  if (sellerOrder) {
+    sellerOrder.status = newStatus;
+  }
+  localStorage.setItem("selectedSellerOrder", JSON.stringify(sellerOrder));
 }
 
 // Event handlers

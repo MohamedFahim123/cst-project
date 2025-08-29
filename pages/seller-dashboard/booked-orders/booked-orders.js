@@ -1,68 +1,82 @@
-export const showBookedOrders = () => {
-  let all_products = JSON.parse(localStorage.getItem("all-products"));
+import { getTotalOrderPrice } from "../../../actions/helperFuncitons.js";
+
+let sellerOrders = [];
+
+export function intiateBookedOrders() {
+  showBookedOrders();
+  addEventListeners();
+}
+
+const showBookedOrders = () => {
   let orders = JSON.parse(localStorage.getItem("orders"));
   let tbody = document.getElementById("table-body");
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
-  let ids = [],
-    quantity = [],
-    sellerId = [],
-    status = [],
-    imgs = [],
-    prices = [],
-    brands = [],
-    titles = [];
-
-  // ! Orders
+  // clear previous seller orders
+  sellerOrders = [];
   orders.forEach((order) => {
-    let numOfProductsOfOrder = order.products.length;
-    for (var x = 0; x < numOfProductsOfOrder; x++) {
-      status.push(order.status.charAt(0).toUpperCase() + order.status.slice(1));
-    }
-    order.products.forEach((prOrder) => {
-      ids.push(prOrder.id);
-      quantity.push(prOrder.quantity);
-      sellerId.push(prOrder.sellerID);
-    });
-  });
-
-  // ! Products
-  all_products.forEach((product) => {
-    ids.forEach((id) => {
-      if (id == product["id"]) {
-        imgs.push(product["images"][0]); 
-        prices.push(product.price);  
-        brands.push(product.brand);
-        titles.push(product.title);
+    const newProducts = [];
+    order.products.forEach((product) => {
+      if (product.sellerID == currentUser.id) {
+        newProducts.push(product);
       }
     });
+    if (newProducts.length > 0) {
+      sellerOrders.push({ ...order, products: newProducts });
+    }
   });
 
-  ids.forEach((id, i) => {
-    // ? Row
+  sellerOrders.forEach((order) => {
+    const orderID = order.id.slice(0, 5);
+    const userID = order.userID;
+    const userName = getUserNameByID(userID);
+    const totalPrice = getTotalOrderPrice(order);
+    const status = order.status;
+    const bg = getStatusBackground(status);
 
-    // * Style of status
-    let bg;
-    if (status[i] == "Processing") {
-      bg = "bg-orange";
-    } else if (status[i] == "Shipped") {
-      bg = "bg-black";
-    } else if (status[i] == "Delivered") {
-      bg = "bg-green";
-    } else {
-      bg = "bg-red";
-    }
-
-    const row = document.createElement("tr");
-    row.innerHTML = `
-      <td>${id}</td>
-      <td><img src="${imgs[i]}" alt="${titles[i]}" style="width:40px;height:40px;object-fit:cover;"></td>
-      <td>${brands[i]}</td>
-      <td>${titles[i]}</td>
-      <td>${quantity[i]}</td>
-      <td>${prices[i]}</td>
-      <td>${sellerId[i]}</td>
-      <td><span id="status" class="${bg}">${status[i]}</span></td>
-    `;
-    tbody.appendChild(row);
+    const row = `
+      <tr>
+        <td>#${orderID}</td>
+        <td>${userID}</td>
+        <td>${userName}</td>
+        <td>$${totalPrice}</td>
+        <td><span id="status" class="${bg}">${status}</span></td>
+        <td>
+          <a href="/seller-dashboard/booked-orders-details" data-link>
+            <button class="btn btn-primary bo-view-btn" data-orderid="${order.id}">View</button>
+          </a>
+        </td>
+      </tr>
+      `;
+    tbody.innerHTML += row;
   });
 };
+
+function addEventListeners() {
+  const viewButtons = document.querySelectorAll(".bo-view-btn");
+  viewButtons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      const orderId = e.target.dataset.orderid;
+      const order = sellerOrders.find((order) => order.id === orderId);
+      localStorage.setItem("selectedSellerOrder", JSON.stringify(order));
+    });
+  });
+}
+
+function getUserNameByID(userID) {
+  const users = JSON.parse(localStorage.getItem("users"));
+  const user = users.users.find((user) => user.id === userID);
+  return user ? user.username : "Unknown";
+}
+
+function getStatusBackground(status) {
+  if (status == "processing") {
+    return "bg-orange";
+  } else if (status == "shipped") {
+    return "bg-black";
+  } else if (status == "delivered") {
+    return "bg-green";
+  } else {
+    return "bg-red";
+  }
+}
