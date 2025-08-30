@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Order Summary</title>
- <link rel="stylesheet" href="payment.css">
+  <link rel="stylesheet" href="payment.css">
 </head>
+
 <body>
- <div class="order-summary">
+  <div class="order-summary">
     <h4>Order Summary</h4>
 
     <table>
@@ -20,69 +22,112 @@
         </tr>
       </thead>
       <tbody>
-      
+
       </tbody>
     </table>
 
- 
 
- 
+
+
   </div>
 
 
 
   <!-- Buit payment methode -->
 
-  <div class="payment-container">
-  <h2>Payment Details</h2>
-  <form id="paymentForm"  novalidate>
-    <!-- Cardholder Name -->
-    <div class="input-group">
-      <label for="cardName">Cardholder Name</label>
-      <input type="text" id="cardName" placeholder="John Doe" required>
-      <small class="error"></small>
+  <div class="wrapper_creditCart" id="app">
+    <div class="card-form_creditCart">
+      <div class="card-list">
+        <div class="card-item" id="card-item">
+          <!-- Front Side -->
+          <div class="card-item__side -front">
+            <div class="card-item__focus" id="focus-element"></div>
+            <div class="card-item__cover">
+              <img id="card-bg" src="" class="card-item__bg">
+            </div>
+            <div class="card-item__wrapper">
+              <div class="card-item__top">
+                <img
+                  src="https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/chip.png"
+                  class="card-item__chip">
+                <div class="card-item__type">
+                  <img id="card-type" src="" class="card-item__typeImg" alt="">
+                </div>
+              </div>
+              <div class="card-item__number" id="card-number">#### #### #### ####</div>
+              <div class="card-item__content">
+                <div class="card-item__info">
+                  <div class="card-item__holder">Card Holder</div>
+                  <div class="card-item__name" id="card-name">FULL NAME</div>
+                </div>
+                <div class="card-item__date">
+                  <div class="card-item__dateTitle">Expires</div>
+                  <div class="card-item__dateItem" id="card-month">MM</div>/
+                  <div class="card-item__dateItem" id="card-year">YY</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Back Side -->
+          <div class="card-item__side -back">
+            <div class="card-item__cover">
+              <img id="card-bg-back" src="" class="card-item__bg">
+            </div>
+            <div class="card-item__band"></div>
+            <div class="card-item__cvv">
+              <div class="card-item__cvvTitle">CVV</div>
+              <div class="card-item__cvvBand" id="card-cvv">***</div>
+              <div class="card-item__type">
+                <img id="card-type-back" src="" class="card-item__typeImg" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <form class="card-form__inner">
+        <div class="card-input">
+          <label for="input-number" class="card-input__label">Card Number</label>
+          <input type="text" id="input-number" class="card-input__input" maxlength="19" autocomplete="off">
+        </div>
+        <div class="card-input">
+          <label for="input-name" class="card-input__label">Card Holder</label>
+          <input type="text" id="input-name" class="card-input__input" autocomplete="off">
+        </div>
+        <div class="card-form__row">
+          <div class="card-form__col -exp">
+            <label for="input-month" class="card-input__label">Expiration Date</label>
+            <div class="card-form__exp">
+              <select id="input-month" class="card-input__input -select">
+                <option value="">Month</option>
+              </select>
+              <select id="input-year" class="card-input__input -select">
+                <option value="">Year</option>
+              </select>
+            </div>
+          </div>
+          <div class="card-form__col -cvv">
+            <label for="input-cvv" class="card-input__label">CVV</label>
+            <input type="text" id="input-cvv" class="card-input__input" maxlength="4" autocomplete="off">
+          </div>
+        </div>
+
+        <button class="card-form__button">Submit</button>
+      </form>
     </div>
-
-    <!-- Card Number -->
-    <div class="input-group">
-      <label for="cardNumber">Card Number</label>
-      <input type="text" id="cardNumber" maxlength="19" placeholder="1234 5678 9012 3456" required>
-      <small class="error"></small>
-    </div>
-
-    <!-- Expiry Date -->
-    <div class="input-group">
-      <label for="expiry">Expiry Date (MM/YY)</label>
-      <input type="text" id="expiry" maxlength="5" placeholder="MM/YY" required>
-      <small class="error"></small>
-    </div>
-
-    <!-- CVV -->
-    <div class="input-group">
-      <label for="cvv">CVV</label>
-      <input type="text" id="cvv" maxlength="4" placeholder="123" required>
-      <small class="error"></small>
-    </div>
-
-    <button type="submit" id="paymentStatusBtn">Pay Now</button>
-  </form>
-</div>
-
-
-  
-  <!-- PayPal Button Container -->
-<div>
-  
-    <div id="paypal-button-container" class="w-50 mx-auto"></div>
   </div>
+
+
 
 
   <!-- pop up -->
 
   <div id="popup"></div>
- 
+
 
 
 
 </body>
+
 </html>

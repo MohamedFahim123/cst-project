@@ -16,10 +16,8 @@ import { initializeCart } from "../pages/cart/mycart.js";
 import { initializeHome } from "../pages/home/home.js";
 import { loginSubmitHandler } from "../pages/login/login.js";
 import displayProductSummary, {
-  initializePayment,
-  paymentStutusFn,
-  paypalGateway,
-  validateBuiltPayment,
+ 
+  updatedCreditCaerd,
 } from "../pages/payment/payment.js";
 import { registerSubmitHandler } from "../pages/register/main.js";
 import { initializeProductDetailsFunctions } from "../pages/shop/product-details/product-details.js";
@@ -131,11 +129,9 @@ export const PAGE_INITIALIZERS = {
   },
 
   "/payment": () => {
-    initializePayment();
     displayProductSummary();
-    validateBuiltPayment();
-    paymentStutusFn();
-    paypalGateway();
+   
+    updatedCreditCaerd() ;
   },
 
   "/admin-dashboard/sellers": () => {
