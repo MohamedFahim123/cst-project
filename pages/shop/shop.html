@@ -1,135 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Shop</title>
-    <link rel="stylesheet" href="shop.css">
+    <link rel="stylesheet" href="shop.css" />
+  </head>
 
-</head>
-
-<body>
-    <div class="container mt-4">
+  <body>
+    <section>
+      <div class="container mt-4">
         <div class="row">
-            <!-- filters appears only in Large Screens and Above -->
-            <div id="filters" class="col-lg-3 d-none d-lg-block">
-
-                <!-- widget price filter -->
-                <div class="shop-filter-container">
-                    <p class="shop-filters-header d-flex justify-content-between">Price Filter
-                        <button id="resetPriceFilter1"
-                            class="btn btn-sm text-black bg-gray px-3 py-2 fw-bold">Reset</button>
-                    </p>
-                    <div class="row g-2 mb-2">
-                        <div class="col-6">
-                            <label for="minRange1" class="form-label small text-muted">Min</label>
-                            <input type="number" id="minRange1" disabled name="minRange" class="form-control form-control-sm minRange"
-                                step="1" value="0">
-                        </div>
-                        <div class="col-6">
-                            <label for="maxRange1" class="form-label small text-muted">Max</label>
-                            <input type="number" disabled name="maxRange" class="maxRange form-control form-control-sm"
-                                id="maxRange1" step="1" value="100">
-                        </div>
-                    </div>
-                    <input class="form-range mb-2 customRange" type="range" name="customRange" step="1" id="customRange1">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <p class="mb-0 small text-muted priceRangeText">Price $0 - $30</p>
-                    </div>
-                </div>
-
-                <!-- product categories -->
-                <div class="shop-filter-container">
-                    <p class="shop-filters-header">Product Categories</p>
-                    <div class="px-1 small productCategoriesContainer">
-
-                    </div>
-                </div>
-
-                <!-- product brands -->
-                <div class="shop-filter-container">
-                    <p class="shop-filters-header">Brands</p>
-                    <div class="px-1 small productBrandsContainer">
-
-                    </div>
-                </div>
-            </div>
-
-            <!-- Main Product Catalog  -->
-            <div class="col-12 col-lg-9">
-                <!-- stats bar  -->
-                <div class="py-2 px-3 bg-gray rounded w-100 d-flex justify-content-between align-items-center small ">
-                    <!-- left -->
-                    <div class="d-flex align-items-center">
-                        <!-- mobile Filter Toggler  -->
-                        <div class="d-lg-none">
-                            <button class="btn small" type="button" id="filterOffcanvasToggler"
-                                data-bs-toggle="offcanvas" data-bs-target="#filterSidebar">
-                                <i class="fa-solid fa-filter"></i>
-                            </button>
-                        </div>
-                        <p class="m-0 fw-semibold  text-muted" id="productCountText"></p>
-                    </div>
-                </div>
-                <!-- product grid container -->
-                <div id="product-grid-container" class="product-grid-container">
-                </div>
-                <div id="pagination-container" class="pagination-container"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Mobile filters offcanvas (appear only in mobile/tablets)  -->
-    <div class="offcanvas offcanvas-start" tabindex="-1" id="filterSidebar">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title text-center">Filters</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
-        </div>
-        <div id="filterSidebarBody" class="offcanvas-body px-3">
-
+          <!-- filters appears only in Large Screens and Above -->
+          <div id="filters" class="col-lg-3 d-none d-lg-block">
             <!-- widget price filter -->
             <div class="shop-filter-container">
-                <p class="shop-filters-header d-flex justify-content-between">Price Filter
-                    <button id="resetPriceFilter2"
-                        class="btn btn-sm text-black bg-gray px-3 py-2 fw-bold">Reset</button>
+              <p class="shop-filters-header d-flex justify-content-between">
+                Price Filter
+                <button
+                  id="resetPriceFilter1"
+                  class="btn btn-sm text-black bg-gray px-3 py-2 fw-bold"
+                >
+                  Reset
+                </button>
+              </p>
+              <div class="row g-2 mb-2">
+                <div class="col-6">
+                  <label for="minRange1" class="form-label small text-muted"
+                    >Min</label
+                  >
+                  <input
+                    type="number"
+                    id="minRange1"
+                    disabled
+                    name="minRange"
+                    class="form-control form-control-sm minRange"
+                    step="1"
+                    value="0"
+                  />
+                </div>
+                <div class="col-6">
+                  <label for="maxRange1" class="form-label small text-muted"
+                    >Max</label
+                  >
+                  <input
+                    type="number"
+                    disabled
+                    name="maxRange"
+                    class="maxRange form-control form-control-sm"
+                    id="maxRange1"
+                    step="1"
+                    value="100"
+                  />
+                </div>
+              </div>
+              <input
+                class="form-range mb-2 customRange"
+                type="range"
+                name="customRange"
+                step="1"
+                id="customRange1"
+              />
+              <div class="d-flex justify-content-between align-items-center">
+                <p class="mb-0 small text-muted priceRangeText">
+                  Price $0 - $30
                 </p>
-                <div class="row g-2 mb-2">
-                    <div class="col-6">
-                        <label for="minRange2" class="form-label small text-muted">Min</label>
-                        <input type="number" disabled name="minRange" class="form-control form-control-sm minRange" id="minRange2"
-                            step="1" value="0">
-                    </div>
-                    <div class="col-6">
-                        <label for="maxRange2" class="form-label small text-muted">Max</label>
-                        <input type="number" disabled name="maxRange" class="maxRange form-control form-control-sm" id="maxRange2"
-                            step="1" value="100">
-                    </div>
-                </div>
-                <input class="form-range mb-2 customRange" type="range" name="customRange" step="1" id="customRange2">
-                <div class="d-flex justify-content-between align-items-center">
-                    <p class="mb-0 small text-muted priceRangeText">Price $0 - $30</p>
-                </div>
+              </div>
             </div>
 
             <!-- product categories -->
             <div class="shop-filter-container">
-                <p class="shop-filters-header">Product Categories</p>
-                <div class="px-1 small productCategoriesContainer">
-
-                </div>
+              <p class="shop-filters-header">Product Categories</p>
+              <div class="px-1 small productCategoriesContainer"></div>
             </div>
 
             <!-- product brands -->
             <div class="shop-filter-container">
-                <p class="shop-filters-header">Brands</p>
-                <div class="px-1 small productBrandsContainer">
-
-                </div>
+              <p class="shop-filters-header">Brands</p>
+              <div class="px-1 small productBrandsContainer"></div>
             </div>
+          </div>
 
+          <!-- Main Product Catalog  -->
+          <div class="col-12 col-lg-9">
+            <!-- stats bar  -->
+            <div
+              class="py-2 px-3 bg-gray rounded w-100 d-flex justify-content-between align-items-center small"
+            >
+              <!-- left -->
+              <div class="d-flex align-items-center">
+                <!-- mobile Filter Toggler  -->
+                <div class="d-lg-none">
+                  <button
+                    class="btn small"
+                    type="button"
+                    id="filterOffcanvasToggler"
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#filterSidebar"
+                  >
+                    <i class="fa-solid fa-filter"></i>
+                  </button>
+                </div>
+                <p class="m-0 fw-semibold text-muted" id="productCountText"></p>
+              </div>
+            </div>
+            <!-- product grid container -->
+            <div
+              id="product-grid-container"
+              class="product-grid-container"
+            ></div>
+            <div id="pagination-container" class="pagination-container"></div>
+          </div>
         </div>
-    </div>
-</body>
+      </div>
+    </section>
 
+    <aside>
+      <!-- Mobile filters offcanvas (appear only in mobile/tablets)  -->
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="filterSidebar">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title text-center">Filters</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="offcanvas"
+          ></button>
+        </div>
+        <div id="filterSidebarBody" class="offcanvas-body px-3">
+          <!-- widget price filter -->
+          <div class="shop-filter-container">
+            <p class="shop-filters-header d-flex justify-content-between">
+              Price Filter
+              <button
+                id="resetPriceFilter2"
+                class="btn btn-sm text-black bg-gray px-3 py-2 fw-bold"
+              >
+                Reset
+              </button>
+            </p>
+            <div class="row g-2 mb-2">
+              <div class="col-6">
+                <label for="minRange2" class="form-label small text-muted"
+                  >Min</label
+                >
+                <input
+                  type="number"
+                  disabled
+                  name="minRange"
+                  class="form-control form-control-sm minRange"
+                  id="minRange2"
+                  step="1"
+                  value="0"
+                />
+              </div>
+              <div class="col-6">
+                <label for="maxRange2" class="form-label small text-muted"
+                  >Max</label
+                >
+                <input
+                  type="number"
+                  disabled
+                  name="maxRange"
+                  class="maxRange form-control form-control-sm"
+                  id="maxRange2"
+                  step="1"
+                  value="100"
+                />
+              </div>
+            </div>
+            <input
+              class="form-range mb-2 customRange"
+              type="range"
+              name="customRange"
+              step="1"
+              id="customRange2"
+            />
+            <div class="d-flex justify-content-between align-items-center">
+              <p class="mb-0 small text-muted priceRangeText">Price $0 - $30</p>
+            </div>
+          </div>
+
+          <!-- product categories -->
+          <div class="shop-filter-container">
+            <p class="shop-filters-header">Product Categories</p>
+            <div class="px-1 small productCategoriesContainer"></div>
+          </div>
+
+          <!-- product brands -->
+          <div class="shop-filter-container">
+            <p class="shop-filters-header">Brands</p>
+            <div class="px-1 small productBrandsContainer"></div>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </body>
 </html>
