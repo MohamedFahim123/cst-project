@@ -1,8 +1,11 @@
 /* Start Global Rules */
 .home-hero {
-  min-height: 50vh;
+  min-height: 40vh;
   background: linear-gradient(to right, var(--bg-main-color), #cdbbfa);
   padding: 100px 0;
+}
+.home-hero .image {
+  display: none !important;
 }
 
 .home .carousel-item {
@@ -10,8 +13,7 @@
 }
 
 .home-hero .carousel-control-prev {
-  top: 98%;
-  /* left: 75rem; */
+  top: 95%;
   width: 50px;
   height: 50px;
   background-color: var(--bg-main-color);
@@ -25,7 +27,7 @@
 }
 
 .home-hero .carousel-control-next {
-  top: 98%;
+  top: 95%;
   width: 50px;
   height: 50px;
   background-color: var(--bg-main-color);
@@ -64,13 +66,22 @@
   transition: 0.3s ease-in-out;
 }
 .card:hover {
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
 }
 .card img {
   transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
 }
 .card:hover img {
   transform: scale(1.05);
+  -webkit-transform: scale(1.05);
+  -moz-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  -o-transform: scale(1.05);
 }
 .card-tocart-btn {
   background-color: var(--green-color);
@@ -151,16 +162,6 @@
 .home-bestseller .fa-heart {
   right: 5px;
   top: 5px;
-}
-
-@media (min-width: 540px) {
-  .section-head {
-    display: flex;
-    align-items: center;
-  }
-  .section-head span {
-    margin: 1px 0 0 12px;
-  }
 }
 /* End Global Components */
 
@@ -262,7 +263,7 @@
 .promo .promo-tagline {
   position: relative;
   font-weight: bold;
-  font-size: 1.5rem;
+  font-size: 1.5rem !important;
   margin-bottom: 8px;
   color: white;
 }
@@ -323,20 +324,6 @@
   font-size: 14px;
 }
 
-@media (min-width: 768px) {
-  .home-category .card .card-title {
-    font-size: 17px;
-  }
-  .home-category .card .rate li i {
-    font-size: 14px;
-  }
-  .home-category .card .card-text {
-    font-size: 14px;
-  }
-  .home-category .card .price {
-    font-size: 20px;
-  }
-}
 /* End Category */
 
 /* Start Service */
@@ -348,6 +335,9 @@
   width: 55px;
   height: 55px;
   border-radius: 50%;
+}
+.home-services .col {
+  margin-bottom: 20px;
 }
 
 .home-services .col:nth-child(2) .icon {
@@ -383,4 +373,46 @@
 }
 .card .fa-heart:hover {
   color: var(--red-color);
+}
+@media screen and (min-width: 991px) {
+  .home-hero {
+    min-height: 55vh;
+  }
+  .home-services .col {
+    margin-bottom: 0px;
+  }
+}
+
+@media (min-width: 768px) {
+  .promo .promo-description {
+    font-size: 16px;
+  }
+  .card {
+    min-height: 500px;
+  }
+  .home-category .card .card-title {
+    font-size: 17px;
+  }
+  .home-category .card .rate li i {
+    font-size: 14px;
+  }
+  .home-category .card .card-text {
+    font-size: 14px;
+  }
+  .home-category .card .price {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 540px) {
+  .home-hero .image {
+    display: block !important;
+  }
+  .section-head {
+    display: flex;
+    align-items: center;
+  }
+  .section-head span {
+    margin: 1px 0 0 12px;
+  }
 }

@@ -24,7 +24,10 @@ import displayProductSummary, {
 import { registerSubmitHandler } from "../pages/register/main.js";
 import { initializeProductDetailsFunctions } from "../pages/shop/product-details/product-details.js";
 import { initializeShop } from "../pages/shop/shop.js";
-import { initializeWishlist, refreshWishlist } from "../pages/wishlist/mywishlist.js";
+import {
+  initializeWishlist,
+  refreshWishlist,
+} from "../pages/wishlist/mywishlist.js";
 import { router } from "./router.js";
 import { cartAndWishlistLogic } from "./shred.js";
 import { initializeProducts } from "../pages/admin-dashboard/products/products.js";
@@ -188,4 +191,32 @@ window.addEventListener("scroll", () => {
     });
     ticking = true;
   }
+});
+document.addEventListener("DOMContentLoaded", function () {
+  const imageWrappers = document.querySelectorAll(".image-wrapper");
+
+  imageWrappers.forEach((wrapper) => {
+    const img = wrapper.querySelector("img");
+
+    // If image is already loaded, skip
+    if (img.complete && img.naturalHeight !== 0) {
+      wrapper.classList.add("loaded");
+      return;
+    }
+
+    // Load image
+    img.onload = function () {
+      wrapper.classList.add("loaded");
+    };
+
+    // In case the image is already in cache
+    if (img.complete) {
+      wrapper.classList.add("loaded");
+    }
+
+    // Trigger image load (if not already loading)
+    if (img.src && !img.complete) {
+      img.src = img.src;
+    }
+  });
 });

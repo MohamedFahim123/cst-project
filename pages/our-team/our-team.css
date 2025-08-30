@@ -5,88 +5,124 @@
 }
 
 .team-badge {
-  padding: 7px;
-  background-color: #eeeaff;
+  padding: 7px 15px;
+  background-color: var(--light-bg);
   border-radius: 12px;
-  color: #5946a5;
+  color: var(--primary-color);
+  font-weight: 600;
 }
 
 .team-header {
-  font-size: 3.5rem;
+  font-size: 2.5rem;
+  color: #2c2c2c;
+  margin: 1rem 0;
 }
 
-.light-gray {
-  color: #868b8d;
-}
-
-.contactus-btn {
-  padding: 10px 25px;
-  border-radius: 12px;
-  background-color: #5946a5;
-  color: white;
-  font-weight: 500;
-  text-decoration: none;
-  transition: all 300ms ease;
-}
-
-.contactus-btn:hover {
-  background-color: #745bd7;
+.ot-wrapper {
+  margin-top: 2rem;
 }
 
 .member {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  height: 550px;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
-.member ul li {
+
+.member-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  color: white;
+  padding: 20px;
+  transition: all 0.4s ease;
+  transform: translateY(70px);
+}
+
+.member-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.member-role {
+  color: var(--secondary-color);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.member-desc {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  line-height: 1.5;
+}
+
+.member-social {
+  display: flex;
+  gap: 12px;
+  margin-top: 15px;
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+.member-social a {
   width: 40px;
   height: 40px;
-  transition: all 0.3s ease-in-out;
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  -ms-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   border-radius: 50%;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  -o-border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
 }
-.member ul li:first-child {
+
+.social-github {
   background-color: #000000;
-  border: 1px solid #000000;
+  color: white;
 }
-.member ul li:nth-child(2) {
+
+.social-linkedin {
   background-color: #0077b5;
-  border: 1px solid #0077b5;
+  color: white;
 }
-.member ul li i {
-  transition: all 0.3s ease-in-out;
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  -ms-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
+
+.member-social a:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
-.member .gitHubIcon {
-  color: #fff;
+
+.member:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
-.member .linkedInIcon {
-  color: #fff;
+
+.member:hover .member-content {
+  transform: translateY(0);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
 }
-.member ul li:first-child:hover {
-  background-color: #fff;
+
+.member:hover .member-desc {
+  max-height: 100px;
+  opacity: 1;
+  margin-top: 10px;
 }
-.member ul li:first-child:hover i {
-  color: #000000;
+
+.member:hover .member-social {
+  opacity: 1;
 }
-.member ul li:nth-child(2):hover {
-  background-color: #fff;
-}
-.member ul li:nth-child(2):hover i {
-  color: #0077b5;
+
+@media screen and (min-width: 991px) {
+  .team-header {
+    font-size: 3.5rem;
+  }
 }
 
 .member-1 {
@@ -99,12 +135,10 @@
   background-image: url(../../assets/person3.png);
 }
 
-.card-jobtitle {
-  color: #866ee6;
+.member-4 {
+  background-image: url(../../assets/person3.png);
 }
 
-@media screen and (max-width: 600px) {
-  .team-header {
-    font-size: 2.5rem;
-  }
+.member-5 {
+  background-image: url(../../assets/person2.png);
 }

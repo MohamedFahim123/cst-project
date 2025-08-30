@@ -10,7 +10,10 @@
   margin-bottom: 0.5rem;
   color: #333;
 }
-
+.product-image-container{
+  min-height: 125px;
+  min-width: 125px;
+}
 .shop-filter-container {
   padding: 1rem 0;
   border-bottom: 1px solid #e1e1e1;
