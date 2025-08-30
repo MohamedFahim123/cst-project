@@ -48,17 +48,13 @@ function renderOrdersTable(filteredOrders, page = 1) {
         <td${isLastRow ? ' class="cell-rad-bl"' : ""}>#${order.id.slice(0, 5)}</td>
         ${currentUser.role === "admin" ? `<td>${getUserById(order.userID)?.username || "N/A"}</td>` : ""}
         ${currentUser.role === "admin" ? `<td>${`${order.userID}`.slice(0, 5) || "N/A"}</td>` : ""}
-        <td style="color: ${getStatusColor(order.status)}">${order.status || "N/A"}</td>
+        <td><span class="status-bg ${getStatusBackground(order.status)}">${order.status || "N/A"}</span></td>
         <td>${formatOrderDate(order.date)}</td>
         <td class="total-amount">$${totalPrice.toFixed(2)}</td>
         <td${isLastRow ? ' class="cell-rad-br"' : ""}>
           <div class="action-buttons">
-            <a
-              href="/${currentUser.role}-dashboard/order-details"
-              data-link
-              class="btn btn-sm btn-outline-primary action-btn or-view-order-btn"
-              data-order-id="${order.id}">
-              <i class="fa-solid fa-eye"></i>
+            <a href="/${currentUser.role}-dashboard/order-details" data-link>
+               <button class="btn view-btn or-view-order-btn" data-order-id="${order.id}">View</button> 
             </a>
             
           </div>
@@ -69,6 +65,7 @@ function renderOrdersTable(filteredOrders, page = 1) {
     .join("");
 
   // Create the complete table structure
+
   const tableHTML = `
     <table class="table table-hover mb-0">
       <thead>
@@ -233,16 +230,15 @@ function updateAllOrdersVariable() {
 }
 
 // get admin status colors (processing - delivered - shipped)
-function getStatusColor(status) {
-  switch (status) {
-    case "processing":
-      return "orange";
-    case "delivered":
-      return "green";
-    case "shipped":
-      return "blue";
-    default:
-      return "black";
+function getStatusBackground(status) {
+  if (status == "processing") {
+    return "bg-orange";
+  } else if (status == "shipped") {
+    return "bg-black";
+  } else if (status == "delivered") {
+    return "bg-green";
+  } else {
+    return "bg-red";
   }
 }
 

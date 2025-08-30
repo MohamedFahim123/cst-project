@@ -378,6 +378,8 @@ export const router = new Router({
   "/seller-dashboard/addproduct": "/pages/seller-dashboard/addProduct/addProduct.html",
   "/seller-dashboard/my-products": "/pages/seller-dashboard/my-products/my-products.html",
   "/seller-dashboard/booked-orders": "/pages/seller-dashboard/booked-orders/booked-orders.html",
+  "/seller-dashboard/booked-orders-details":
+    "/pages/seller-dashboard/booked-orders-details/booked-orders-details.html",
 
   // admin Dashboard
   "/admin-dashboard/dashboard": "/pages/admin-dashboard/dashboard/dashboard.html",

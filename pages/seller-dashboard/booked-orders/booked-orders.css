@@ -1,8 +1,7 @@
 .invoice-table {
   overflow-x: scroll;
 }
-
-#status {
+.status-bg {
   padding: 4px 10px;
   border-radius: 14px;
   font-weight: 500;

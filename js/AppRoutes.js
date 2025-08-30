@@ -71,6 +71,11 @@ export const APP_ROUTES = [
     title: "Booked Orders",
     description: "Booked Orders Page",
   },
+  {
+    path: "/seller-dashboard/booked-orders-details",
+    title: "Booked Orders Details",
+    description: "Booked Orders Details Page",
+  },
 
   // admin Dashboard
   {

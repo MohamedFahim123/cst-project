@@ -6,7 +6,7 @@ import { initializeUpdateProfile } from "./globalJs/update-profile.js";
 
 import { addProductHandler } from "../pages/seller-dashboard/my-products/my-products.js";
 import { dashboardInitSeller } from "../pages/seller-dashboard/dashboard/dashboard.js";
-import { showBookedOrders } from "../pages/seller-dashboard/booked-orders/booked-orders.js";
+import { intiateBookedOrders } from "../pages/seller-dashboard/booked-orders/booked-orders.js";
 
 import { initializeAddUser } from "../pages/admin-dashboard/add-new-user/add-new-user.js";
 import { initializeCustomers } from "../pages/admin-dashboard/customers/customers.js";
@@ -33,6 +33,7 @@ import { cartAndWishlistLogic } from "./shred.js";
 import { initializeProducts } from "../pages/admin-dashboard/products/products.js";
 import { initializeDashboardProductDetailsFunctions } from "../pages/admin-dashboard/products/product-details/product-details.js";
 import { shuffleTeamMembers } from "../pages/our-team/our-team.js";
+import { checkoutValidation } from "../pages/checkout/checkout.js";
 
 //------------------------------------------------------------//
 
@@ -105,7 +106,10 @@ export const PAGE_INITIALIZERS = {
     dashboardInitSeller();
   },
   "/seller-dashboard/booked-orders": () => {
-    showBookedOrders();
+    intiateBookedOrders();
+  },
+  "/seller-dashboard/booked-orders-details": () => {
+    initializeOrderDetails();
   },
 
   "/cart": () => {
@@ -120,6 +124,7 @@ export const PAGE_INITIALIZERS = {
   },
   "/checkout": () => {
     cartAndWishlistLogic();
+    checkoutValidation();
   },
   "/login": () => {
     loginSubmitHandler();
