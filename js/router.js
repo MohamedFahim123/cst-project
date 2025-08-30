@@ -245,7 +245,7 @@ class Router {
       console.error("Navigation error:", error);
       this.navigate("#/404");
     } finally {
-      this.#toggleLoader(false);
+      setTimeout(() => this.#toggleLoader(false), 500);
     }
   }
 
