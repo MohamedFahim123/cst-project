@@ -10,10 +10,17 @@
 .home-hero .image img {
   width: 100%;
   min-height: 200px;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
 }
 
 .home .carousel-item {
   margin-bottom: 50px;
+}
+.heroSection-paragraph {
+  margin-bottom: 30px;
+  font-size: 1.2rem;
 }
 
 .home-hero .carousel-control-prev {
@@ -59,6 +66,9 @@
 .main-heading h2 {
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
   color: var(--title-main-color);
+}
+.heading-text {
+  color: var(--text-second-color) !important;
 }
 
 .card {

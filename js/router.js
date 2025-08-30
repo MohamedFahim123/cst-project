@@ -44,38 +44,50 @@ class Router {
       // Cart and wishlist elements
       const cartLink = document.querySelector('a[href="/cart"]');
       const wishlistLink = document.querySelector('a[href="/wishlist"]');
-      const mobileCartLink = document.querySelector('#mobileMenu a[href="/cart"]');
-      const mobileWishlistLink = document.querySelector('#mobileMenu a[href="/wishlist"]');
+      const mobileCartLink = document.querySelector(
+        '#mobileMenu a[href="/cart"]'
+      );
+      const mobileWishlistLink = document.querySelector(
+        '#mobileMenu a[href="/wishlist"]'
+      );
 
       if (isLoggedIn) {
         // User is logged in - show user menu, hide auth buttons
         if (authButtons) authButtons.classList.add("d-none");
         if (mobileAuthButtons) mobileAuthButtons.classList.add("d-none");
-        if (mobileUserMenu.length) mobileUserMenu.forEach((item) => item.classList.remove("d-none"));
+        if (mobileUserMenu.length)
+          mobileUserMenu.forEach((item) => item.classList.remove("d-none"));
 
         // Hide cart/wishlist for admin users
         if (isAdmin) {
           if (cartLink) cartLink.style.display = "none";
           if (wishlistLink) wishlistLink.style.display = "none";
-          if (mobileCartLink) mobileCartLink.parentElement.style.display = "none";
-          if (mobileWishlistLink) mobileWishlistLink.parentElement.style.display = "none";
+          if (mobileCartLink)
+            mobileCartLink.parentElement.style.display = "none";
+          if (mobileWishlistLink)
+            mobileWishlistLink.parentElement.style.display = "none";
         } else {
           if (cartLink) cartLink.style.display = "block";
           if (wishlistLink) wishlistLink.style.display = "block";
-          if (mobileCartLink) mobileCartLink.parentElement.style.display = "block";
-          if (mobileWishlistLink) mobileWishlistLink.parentElement.style.display = "block";
+          if (mobileCartLink)
+            mobileCartLink.parentElement.style.display = "block";
+          if (mobileWishlistLink)
+            mobileWishlistLink.parentElement.style.display = "block";
         }
       } else {
         // User is not logged in - show auth buttons, hide user menu
         if (authButtons) authButtons.classList.remove("d-none");
         if (mobileAuthButtons) mobileAuthButtons.classList.remove("d-none");
-        if (mobileUserMenu.length) mobileUserMenu.forEach((item) => item.classList.add("d-none"));
+        if (mobileUserMenu.length)
+          mobileUserMenu.forEach((item) => item.classList.add("d-none"));
 
         // Show cart/wishlist for non-logged in users
         if (cartLink) cartLink.style.display = "block";
         if (wishlistLink) wishlistLink.style.display = "block";
-        if (mobileCartLink) mobileCartLink.parentElement.style.display = "block";
-        if (mobileWishlistLink) mobileWishlistLink.parentElement.style.display = "block";
+        if (mobileCartLink)
+          mobileCartLink.parentElement.style.display = "block";
+        if (mobileWishlistLink)
+          mobileWishlistLink.parentElement.style.display = "block";
       }
     },
 
@@ -127,14 +139,17 @@ class Router {
       });
 
       // Listen for custom auth state changes
-      window.addEventListener("authStateChanged", this.#authState.updateUI.bind(this));
+      window.addEventListener(
+        "authStateChanged",
+        this.#authState.updateUI.bind(this)
+      );
     },
   };
 
   constructor(routes) {
     this.#routeMap = routes;
     this.#setupEventListeners();
-    setTimeout(() => this.#authState.init(), 0);
+    this.#authState.init();
   }
 
   #setupEventListeners() {
@@ -153,7 +168,11 @@ class Router {
   }
 
   #getRouteMeta(path) {
-    return APP_ROUTES.find((route) => route.path.toLowerCase() === path.toLowerCase()) || null;
+    return (
+      APP_ROUTES.find(
+        (route) => route.path.toLowerCase() === path.toLowerCase()
+      ) || null
+    );
   }
 
   #normalizePath(path) {
@@ -197,24 +216,27 @@ class Router {
       const hashPath = window.location.hash.slice(1) || "/";
       const normalizedPath = this.#normalizePath(hashPath);
 
-      // if navigate to any path this will be called
       initializeLocalStorage();
 
-      if (this.#currentPath === normalizedPath && !normalizedPath.includes("/shop/product-details")) {
+      if (
+        this.#currentPath === normalizedPath &&
+        !normalizedPath.includes("/shop/product-details")
+      ) {
         this.#toggleLoader(false);
         return;
       }
 
-      this.#currentPath = normalizedPath; // Update current path
+      this.#currentPath = normalizedPath;
 
       const matchingRoute = this.#findMatchingRoute(normalizedPath);
       if (!matchingRoute) {
         return this.navigate("#/404");
       }
-
-      // Check if admin is trying to access restricted routes
       const isAdmin = this.#authState.isAdmin();
-      if (isAdmin && (normalizedPath === "/cart" || normalizedPath === "/wishlist")) {
+      if (
+        isAdmin &&
+        (normalizedPath === "/cart" || normalizedPath === "/wishlist")
+      ) {
         return this.navigate("/admin-dashboard/profile");
       }
 
@@ -223,36 +245,50 @@ class Router {
       console.error("Navigation error:", error);
       this.navigate("#/404");
     } finally {
-      setTimeout(() => this.#toggleLoader(false), 500);
+      this.#toggleLoader(false);
     }
   }
 
   #findMatchingRoute(path) {
     const cleanPath = path.replace(/\/+$/, "");
-    return Object.keys(this.#routeMap).find((key) => key.replace(/\/+$/, "") === cleanPath) || null;
+    return (
+      Object.keys(this.#routeMap).find(
+        (key) => key.replace(/\/+$/, "") === cleanPath
+      ) || null
+    );
   }
 
   async #renderRoute(routeKey, normalizedPath) {
     document.querySelectorAll("[data-link]").forEach((link) => {
-      const linkPath = this.#normalizePath(link.getAttribute("href").replace("#", ""));
+      const linkPath = this.#normalizePath(
+        link.getAttribute("href").replace("#", "")
+      );
       link.classList.toggle("active", linkPath === normalizedPath);
     });
 
     if (!normalizedPath.includes("dashboard")) {
       await this.#loadLayoutComponents();
       updateCartAndWishlistBadges();
-      this.#sideBarElement = "";
+      if (this.#sideBarElement) this.#sideBarElement.style.display = "none";
+      if (this.#footerElement.style.display)
+        this.#footerElement.style.display = "block";
     } else {
+      if(this.#sideBarElement) this.#sideBarElement.style.display = "block";
+      if(this.#footerElement) this.#footerElement.style.display = "none";
       const user = JSON.parse(localStorage.getItem("currentUser"));
       if (!user) return this.navigate("/login");
 
       const isCustomerOk =
         user.role.toLowerCase() === "customer" &&
-        (normalizedPath.split("/")[1].includes("seller") || normalizedPath.split("/")[1]).includes("admin");
+        (
+          normalizedPath.split("/")[1].includes("seller") ||
+          normalizedPath.split("/")[1]
+        ).includes("admin");
 
       const isSellerOk =
         user.role.toLowerCase() === "seller" &&
-        (normalizedPath.split("/")[1].includes("customer") || normalizedPath.split("/")[1].includes("admin"));
+        (normalizedPath.split("/")[1].includes("customer") ||
+          normalizedPath.split("/")[1].includes("admin"));
 
       const isAdminOk =
         user.role.toLowerCase() === "admin" &&
@@ -272,10 +308,15 @@ class Router {
       this.#footerElement.innerHTML = "";
     }
 
-    if (normalizedPath.includes("/login") || normalizedPath.includes("/register")) {
+    if (
+      normalizedPath.includes("/login") ||
+      normalizedPath.includes("/register")
+    ) {
       const currentUser = JSON.parse(localStorage.getItem("currentUser"));
       if (currentUser) {
-        return this.navigate(`/${currentUser.role.toLowerCase()}-dashboard/profile`);
+        return this.navigate(
+          `/${currentUser.role.toLowerCase()}-dashboard/profile`
+        );
       }
     }
 
@@ -364,32 +405,46 @@ export const router = new Router({
   "/payment": "/pages/payment/payment.html",
 
   // customer Dashboard
-  "/customer-dashboard/profile": "/pages/customer-dashboard/profile/profile.html",
+  "/customer-dashboard/profile":
+    "/pages/customer-dashboard/profile/profile.html",
   "/customer-dashboard/orders": "/pages/customer-dashboard/orders/orders.html",
-  "/customer-dashboard/update-profile": "/pages/customer-dashboard/update-profile/update-profile.html",
-  "/customer-dashboard/order-details": "/pages/customer-dashboard/order-details/order-details.html",
+  "/customer-dashboard/update-profile":
+    "/pages/customer-dashboard/update-profile/update-profile.html",
+  "/customer-dashboard/order-details":
+    "/pages/customer-dashboard/order-details/order-details.html",
 
   // seller Dashboard
-  "/seller-dashboard/dashboard": "/pages/seller-dashboard/dashboard/dashboard.html",
+  "/seller-dashboard/dashboard":
+    "/pages/seller-dashboard/dashboard/dashboard.html",
   "/seller-dashboard/profile": "/pages/seller-dashboard/profile/profile.html",
   "/seller-dashboard/orders": "/pages/seller-dashboard/orders/orders.html",
-  "/seller-dashboard/order-details": "/pages/seller-dashboard/order-details/order-details.html",
-  "/seller-dashboard/update-profile": "/pages/seller-dashboard/update-profile/update-profile.html",
-  "/seller-dashboard/addproduct": "/pages/seller-dashboard/addProduct/addProduct.html",
-  "/seller-dashboard/my-products": "/pages/seller-dashboard/my-products/my-products.html",
-  "/seller-dashboard/booked-orders": "/pages/seller-dashboard/booked-orders/booked-orders.html",
+  "/seller-dashboard/order-details":
+    "/pages/seller-dashboard/order-details/order-details.html",
+  "/seller-dashboard/update-profile":
+    "/pages/seller-dashboard/update-profile/update-profile.html",
+  "/seller-dashboard/addproduct":
+    "/pages/seller-dashboard/addProduct/addProduct.html",
+  "/seller-dashboard/my-products":
+    "/pages/seller-dashboard/my-products/my-products.html",
+  "/seller-dashboard/booked-orders":
+    "/pages/seller-dashboard/booked-orders/booked-orders.html",
   "/seller-dashboard/booked-orders-details":
     "/pages/seller-dashboard/booked-orders-details/booked-orders-details.html",
 
   // admin Dashboard
-  "/admin-dashboard/dashboard": "/pages/admin-dashboard/dashboard/dashboard.html",
+  "/admin-dashboard/dashboard":
+    "/pages/admin-dashboard/dashboard/dashboard.html",
   "/admin-dashboard/profile": "/pages/admin-dashboard/profile/profile.html",
   "/admin-dashboard/orders": "/pages/admin-dashboard/orders/orders.html",
-  "/admin-dashboard/update-profile": "/pages/admin-dashboard/update-profile/update-profile.html",
-  "/admin-dashboard/order-details": "/pages/admin-dashboard/order-details/order-details.html",
+  "/admin-dashboard/update-profile":
+    "/pages/admin-dashboard/update-profile/update-profile.html",
+  "/admin-dashboard/order-details":
+    "/pages/admin-dashboard/order-details/order-details.html",
   "/admin-dashboard/sellers": "/pages/admin-dashboard/sellers/sellers.html",
-  "/admin-dashboard/customers": "/pages/admin-dashboard/customers/customers.html",
-  "/admin-dashboard/add-new-user": "/pages/admin-dashboard/add-new-user/add-new-user.html",
+  "/admin-dashboard/customers":
+    "/pages/admin-dashboard/customers/customers.html",
+  "/admin-dashboard/add-new-user":
+    "/pages/admin-dashboard/add-new-user/add-new-user.html",
   "/admin-dashboard/products": "/pages/admin-dashboard/products/products.html",
   "/admin-dashboard/products/product-details":
     "/pages/admin-dashboard/products/product-details/product-details.html",

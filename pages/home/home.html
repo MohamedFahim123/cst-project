@@ -1,218 +1,310 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="stylesheet" href="home.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Home</title>
-  <link rel="stylesheet" href="home.css" />
-</head>
-
-<body>
-  <div class="home">
-    <!-- Hero Section -->
-    <section class="home-hero py-5">
-      <div class="container">
-        <div id="carouselExample" class="carousel slide">
-          <div class="carousel-inner">
-            <!-- Slide 1: Smartphone -->
-            <div class="carousel-item active">
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="text pe-4">
-                  <h1 class="text-capitalize mb-4 fw-bold">Smartphones That Inspire</h1>
-                  <p class="fs-5 mb-5">Stay connected in style with the latest flagship phones at unbeatable prices.</p>
-                  <button id="smartphones" type="button" title="Shop Smartphones"
-                    class="home-banner-category signIn-btn shadow-md">Shop
-                    Smartphones</button>
+  <body>
+    <div class="home">
+      <!-- Hero Section -->
+      <section class="home-hero py-5">
+        <div class="container">
+          <div id="carouselExample" class="carousel slide">
+            <div class="carousel-inner">
+              <!-- Slide 1: Smartphone -->
+              <div class="carousel-item active">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="text pe-4">
+                    <h1 class="text-capitalize mb-4 fw-bold">
+                      Smartphones That Inspire
+                    </h1>
+                    <p class="heroSection-paragraph">
+                      Experience the future of connectivity with our top-rated
+                      smartphones.
+                    </p>
+                    <button
+                      id="smartphones"
+                      type="button"
+                      title="Shop Smartphones"
+                      class="home-banner-category signIn-btn shadow-md"
+                    >
+                      Shop Smartphones
+                    </button>
+                  </div>
+                  <div class="image">
+                    <img
+                      src="/assets//smartphone.webp"
+                      alt="Smartphone"
+                      loading="eager"
+                      decoding="async"
+                    />
+                  </div>
                 </div>
-                <div class="image">
-                  <img src="https://cdn.dummyjson.com/product-images/smartphones/iphone-6/thumbnail.webp"
-                    class="object-fit-contain w-100 h-100" alt="Smartphone" />
+              </div>
+
+              <!-- Slide 2: Laptop -->
+              <div class="carousel-item">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="text pe-4">
+                    <h1 class="text-capitalize mb-4 fw-bold">
+                      Powerful Laptops for Work & Play
+                    </h1>
+                    <p class="heroSection-paragraph">
+                      Experience blazing performance and sleek design with our
+                      top-rated laptops.
+                    </p>
+                    <button
+                      id="laptops"
+                      type="button"
+                      title="Explore Laptops"
+                      class="home-banner-category signIn-btn shadow-md"
+                    >
+                      Explore Laptops
+                    </button>
+                  </div>
+                  <div class="image">
+                    <img
+                      src="/assets/laptop.webp"
+                      loading="eager"
+                      decoding="async"
+                      alt="Laptop"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 3: Tablet -->
+              <div class="carousel-item">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="text pe-4">
+                    <h1 class="text-capitalize mb-4 fw-bold">
+                      Tablets Built for Productivity
+                    </h1>
+                    <p class="heroSection-paragraph">
+                      Lightweight, fast, and versatile — discover tablets
+                      perfect for work or play.
+                    </p>
+                    <button
+                      id="tablets"
+                      type="button"
+                      title="Browse Tablets"
+                      class="home-banner-category signIn-btn shadow-md"
+                    >
+                      Browse Tablets
+                    </button>
+                  </div>
+                  <div class="image">
+                    <img
+                      src="/assets/tablet.webp"
+                      loading="eager"
+                      decoding="async"
+                      alt="Tablet"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
 
-            <!-- Slide 2: Laptop -->
-            <div class="carousel-item">
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="text pe-4">
-                  <h1 class="text-capitalize mb-4 fw-bold">Powerful Laptops for Work & Play</h1>
-                  <p class="fs-5 mb-5">Experience blazing performance and sleek design with our top-rated laptops.</p>
-                  <button id="laptops" type="button" title="Explore Laptops"
-                    class="home-banner-category signIn-btn shadow-md">Explore Laptops</button>
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#carouselExample"
+              data-bs-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#carouselExample"
+              data-bs-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      </section>
+      <!-- Hero Section -->
+
+      <!-- Shop by category -->
+      <section class="home-shopbycategory py-5">
+        <div class="container">
+          <div
+            class="main-heading d-flex flex-column justify-content-center align-items-center mb-5"
+          >
+            <h2 class="fw-bold fs-1 mb-3">Shop by Brand</h2>
+          </div>
+
+          <div class="swiper" id="brandsSlider">
+            <div class="swiper-wrapper" id="brandsContainer"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Shop by category -->
+
+      <!-- Highly Recommended -->
+
+      <section class="home-recommended py-5">
+        <div class="container">
+          <div
+            class="main-heading d-flex flex-column justify-content-center align-items-center"
+          >
+            <h2 class="fw-bold fs-1 mb-3">Highly Recommended</h2>
+            <p class="fs-6 fw-medium heading-text">
+              Hightly Recommended Products For You
+            </p>
+          </div>
+
+          <!-- Swiper -->
+          <article class="home-recommended-products">
+            <div class="swiper pb-5 px-2" id="recommendedSlider">
+              <div
+                class="swiper-wrapper"
+                id="recommendedProductsContainer"
+              ></div>
+
+              <!-- Navigation -->
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-button-next"></div>
+            </div>
+          </article>
+        </div>
+      </section>
+      <!-- End Highly recommended -->
+
+      <!-- Category -->
+      <section class="home-category py-5">
+        <div class="container">
+          <article class="promo">
+            <div class="row row-cols-1 row-cols-lg-2 row-gap-3">
+              <div class="col">
+                <div class="promo-card">
+                  <span class="promo-heading fw-bold p-2 rounded-5"
+                    >On this week</span
+                  >
+                  <p class="promo-tagline fs-3 mt-3 mb-2">
+                    Upgrade Your Tech with Ease
+                  </p>
+                  <p class="promo-description fs-6 mb-4">
+                    Simplify your life with cutting-edge electronics
+                  </p>
+                  <a
+                    href="/shop"
+                    data-link
+                    aria-label="label"
+                    id="shop-direct"
+                    class="promo-button d-inline-block fw-bold text-decoration-none rounded-5 border"
+                    >Shop Now →</a
+                  >
                 </div>
-                <div class="image">
-                  <img src="https://cdn.dummyjson.com/product-images/laptops/new-dell-xps-13-9300-laptop/thumbnail.webp"
-                    class="object-fit-contain w-100 h-100" alt="Laptop" />
+              </div>
+              <div class="col">
+                <div class="promo-card">
+                  <span class="promo-heading fw-bold p-2 rounded-5"
+                    >On this week</span
+                  >
+                  <p class="promo-tagline fs-3 mt-3 mb-2">
+                    Everything Tech in One Place
+                  </p>
+                  <p class="promo-description fs-6 mb-4">
+                    From smart home gadgets to premium accessories
+                  </p>
+                  <a
+                    href="/shop"
+                    data-link
+                    aria-label="label"
+                    id="shop-direct"
+                    class="promo-button d-inline-block fw-bold text-decoration-none rounded-5 border"
+                    >Shop Now →</a
+                  >
                 </div>
               </div>
             </div>
+          </article>
+          <article class="home-category-products mt-4"></article>
+        </div>
+      </section>
+      <!-- Category -->
 
-            <!-- Slide 3: Tablet -->
-            <div class="carousel-item">
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="text pe-4">
-                  <h1 class="text-capitalize mb-4 fw-bold">Tablets Built for Productivity</h1>
-                  <p class="fs-5 mb-5">Lightweight, fast, and versatile — discover tablets perfect for work or play.</p>
-                  <button id="tablets" type="button" title="Browse Tablets"
-                    class="home-banner-category signIn-btn shadow-md">Browse Tablets</button>
-                </div>
-                <div class="image">
-                  <img
-                    src="https://cdn.dummyjson.com/product-images/tablets/samsung-galaxy-tab-s8-plus-grey/thumbnail.webp"
-                    class="object-fit-contain w-100 h-100" alt="Tablet" />
-                </div>
+      <!-- Best Seller -->
+      <section class="home-bestseller py-5">
+        <div class="container">
+          <div
+            class="main-heading d-flex flex-column justify-content-center align-items-center mb-5"
+          >
+            <h2 class="fw-bold fs-1 mb-3">Best Selleings</h2>
+            <p class="fs-6 fw-medium heading-text">
+              Top selling products & Heighly Rated
+            </p>
+          </div>
+          <article class="bestseller-products my-3">
+            <div class="swiper pb-5 px-2" id="bestsellerProducts">
+              <div class="swiper-wrapper" id="bestsellerContainer"></div>
+
+              <!-- Navigation -->
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-button-next"></div>
+            </div>
+          </article>
+        </div>
+      </section>
+      <!-- Best Seller -->
+
+      <!-- Service -->
+      <article class="home-services py-5">
+        <div class="container">
+          <div
+            class="row row-cols-1 row-cols-md-2 row-cols-lg-3 justify-content-center"
+          >
+            <div class="col text-center">
+              <div
+                class="icon bg-primary mx-auto d-flex justify-content-center align-items-center text-light"
+              >
+                <i class="fa-solid fa-truck fs-5"></i>
               </div>
+              <span class="d-block pt-2 pb-1 fw-bold">Free Shipping</span>
+              <span class="service-info heading-text"
+                >Free delivery on orders over $50</span
+              >
             </div>
-          </div>
-
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-        </div>
-      </div>
-    </section>
-    <!-- Hero Section -->
-
-    <!-- Shop by category -->
-    <section class="home-shopbycategory py-5">
-      <div class="container">
-        <div class="main-heading d-flex flex-column justify-content-center align-items-center mb-5">
-          <h2 class="fw-bold fs-1 mb-3">Shop by Brand</h2>
-        </div>
-
-        <div class="swiper" id="brandsSlider">
-          <div class="swiper-wrapper" id="brandsContainer">
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Shop by category -->
-
-    <!-- Highly Recommended -->
-
-    <section class="home-recommended py-5">
-      <div class="container">
-        <div class="main-heading d-flex flex-column justify-content-center align-items-center">
-          <h2 class="fw-bold fs-1 mb-3">Highly Recommended</h2>
-          <p class="fs-6 fw-medium text-secondary">New products with updated stocks.</p>
-        </div>
-
-        <!-- Swiper -->
-        <article class="home-recommended-products">
-          <div class="swiper pb-5 px-2" id="recommendedSlider">
-            <div class="swiper-wrapper" id="recommendedProductsContainer">
-            </div>
-
-            <!-- Navigation -->
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
-
-          </div>
-        </article>
-
-      </div>
-    </section>
-    <!-- End Highly recommended -->
-
-    <!-- Category -->
-    <section class="home-category py-5">
-      <div class="container">
-        <article class="promo">
-          <div class="row row-cols-1 row-cols-lg-2 row-gap-3">
-            <div class="col">
-              <div class="promo-card">
-                <span class="promo-heading fw-bold p-2 rounded-5">On this week</span>
-                <p class="promo-tagline fs-3 mt-3 mb-2">
-                  Upgrade Your Tech with Ease
-                </p>
-                <p class="promo-description fs-6 mb-4">
-                  Simplify your life with cutting-edge electronics
-                </p>
-                <a href="/shop" data-link aria-label="label" id="shop-direct"
-                  class="promo-button d-inline-block fw-bold text-decoration-none rounded-5 border">Shop Now →</a>
+            <div class="col text-center">
+              <div
+                class="icon mx-auto d-flex justify-content-center align-items-center text-light"
+              >
+                <i class="fa-solid fa-shield-halved fs-4"></i>
               </div>
+              <span class="d-block pt-2 pb-1 fw-bold">Secure Payment</span>
+              <span class="service-info heading-text"
+                >Your payment information is safe</span
+              >
             </div>
-            <div class="col">
-              <div class="promo-card">
-                <span class="promo-heading fw-bold p-2 rounded-5">On this week</span>
-                <p class="promo-tagline fs-3 mt-3 mb-2">
-                  Everything Tech in One Place
-                </p>
-                <p class="promo-description fs-6 mb-4">
-                  From smart home gadgets to premium accessories
-                </p>
-                <a href="/shop" data-link aria-label="label" id="shop-direct"
-                  class="promo-button d-inline-block fw-bold text-decoration-none rounded-5 border">Shop Now →</a>
+            <div class="col text-center">
+              <div
+                class="icon mx-auto d-flex justify-content-center align-items-center text-light"
+              >
+                <i class="fa-solid fa-bolt fs-4"></i>
               </div>
+              <span class="d-block pt-2 pb-1 fw-bold">Fast Processing</span>
+              <span class="service-info heading-text"
+                >Quick order processing and shipping
+              </span>
             </div>
-          </div>
-        </article>
-        <article class="home-category-products mt-4">
-        </article>
-      </div>
-    </section>
-    <!-- Category -->
-
-    <!-- Best Seller -->
-    <section class="home-bestseller py-5">
-      <div class="container">
-        <div class="main-heading d-flex flex-column justify-content-center align-items-center mb-5">
-          <h2 class="fw-bold fs-1 mb-3">Best Seller</h2>
-          <p class="fs-6 fw-medium text-secondary">New products with updated stocks.</p>
-        </div>
-        <article class="bestseller-products my-3">
-          <div class="swiper pb-5 px-2" id="bestsellerProducts">
-            <div class="swiper-wrapper" id="bestsellerContainer">
-            </div>
-
-            <!-- Navigation -->
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
-
-          </div>
-        </article>
-      </div>
-    </section>
-    <!-- Best Seller -->
-
-    <!-- Service -->
-    <article class="home-services py-5">
-      <div class="container">
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 justify-content-center">
-          <div class="col text-center">
-            <div class="icon bg-primary mx-auto d-flex justify-content-center align-items-center text-light">
-              <i class="fa-solid fa-truck fs-5"></i>
-            </div>
-            <span class="d-block pt-2 pb-1 fw-bold">Free Shipping</span>
-            <span class="service-info">Free delivery on orders over $50</span>
-          </div>
-          <div class="col text-center">
-            <div class="icon mx-auto d-flex justify-content-center align-items-center text-light">
-              <i class="fa-solid fa-shield-halved fs-4"></i>
-            </div>
-            <span class="d-block pt-2 pb-1 fw-bold">Secure Payment</span>
-            <span class="service-info">Your payment information is safe</span>
-          </div>
-          <div class="col text-center">
-            <div class="icon mx-auto d-flex justify-content-center align-items-center text-light">
-              <i class="fa-solid fa-bolt fs-4"></i>
-            </div>
-            <span class="d-block pt-2 pb-1 fw-bold">Fast Processing</span>
-            <span class="service-info">Quick order processing and shipping
-            </span>
           </div>
         </div>
-      </div>
-    </article>
-    <!-- Service -->
-  </div>
-</body>
-
+      </article>
+      <!-- Service -->
+    </div>
+  </body>
 </html>

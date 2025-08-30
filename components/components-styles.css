@@ -109,6 +109,7 @@ button:active {
   color: #fff;
   font-size: 0.9rem;
   padding: 20px;
+  min-height: 61px;
 }
 
 .footerContainer a {
