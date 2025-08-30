@@ -7,6 +7,10 @@
 .home-hero .image {
   display: none !important;
 }
+.home-hero .image img {
+  width: 100%;
+  min-height: 200px;
+}
 
 .home .carousel-item {
   margin-bottom: 50px;

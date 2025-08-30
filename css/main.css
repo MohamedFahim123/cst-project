@@ -54,6 +54,11 @@ body {
   background-color: var(--pf-light);
   color: var(--pf-dark);
 }
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
 
 #app {
   min-height: calc(100vh - 150px);
@@ -126,6 +131,8 @@ ul {
   justify-content: center;
   align-items: center;
   position: fixed;
+  margin: 0;
+  padding: 0;
   top: 0;
   left: 0;
   background-color: #fff;
