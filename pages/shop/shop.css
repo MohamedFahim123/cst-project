@@ -11,8 +11,14 @@
   color: #333;
 }
 .product-image-container{
-  min-height: 125px;
-  min-width: 125px;
+  min-width: 200px;
+  min-height: 150px;
+}
+.product-image-container  img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
 }
 .shop-filter-container {
   padding: 1rem 0;

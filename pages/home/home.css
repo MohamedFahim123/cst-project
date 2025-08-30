@@ -70,6 +70,9 @@
 .heading-text {
   color: var(--text-second-color) !important;
 }
+.service-info.heading-text {
+  color: var(--bg-main-color) !important;
+}
 
 .card {
   overflow: hidden;

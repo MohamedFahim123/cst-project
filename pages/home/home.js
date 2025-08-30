@@ -116,9 +116,9 @@ const productCard = (product) => {
           <img src="${product.thumbnail}" class="card-img-top" alt="${product.title}" loading="lazy" />
 
           <div class="card-body">
-            <h5 class="card-title fs-6" title="${product.title}">
+            <h3 class="card-title fs-6" title="${product.title}">
               ${product.title.length > 30 ? product.title.slice(0, 30) + "..." : product.title}
-            </h5>
+            </h3>
 
             <p class="card-text fs-6 text-secondary mb-1" title="${product.description}">
               ${product.description.slice(0, 95)}...
