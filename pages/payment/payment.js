@@ -1,76 +1,5 @@
-import { cart } from "../../actions/cart.js";
 import { generateSecureId } from "../../actions/generateId.js";
-import { showToast } from "../../actions/showToast.js";
 
-export async function initializePayment() {
-  // Load PayPal SDK dynamically
-  const paypalScript = document.createElement("script");
-  paypalScript.src =
-    "https://www.sandbox.paypal.com/sdk/js?client-id=AWwGica7qOijXlw0dsQ_OYl-Tft5VkdJTDPPM5_cchS4tD-0Dk0Jayd0C53wHKoXHdsIbsqsOaAwzfSq&currency=USD";
-
-  paypalScript.onload = () => {
-    if (window.paypal) {
-      paypal
-        .Buttons({
-          createOrder: function (data, actions) {
-            return actions.order.create({
-              purchase_units: [
-                {
-                  description: "Ecommerce Checkout",
-                  amount: {
-                    currency_code: "USD",
-                    value: "15.89", // fixed test total
-                  },
-                },
-              ],
-            });
-          },
-          onApprove: function (data, actions) {
-            return actions.order.capture().then(function (details) {
-              alert("✅ Payment completed by " + details.payer.name.given_name);
-            });
-          },
-          onError: function (err) {
-            console.error("PayPal Error:", err);
-            alert("❌ PayPal Checkout failed: " + err.message);
-          },
-        })
-        .render("#paypal-button-container");
-    }
-  };
-  document.body.appendChild(paypalScript);
-}
-
-export function paypalGateway() {
-  const total = 15.89;
-
-  paypal
-    .Buttons({
-      createOrder: function (data, actions) {
-        return actions.order.create({
-          purchase_units: [
-            {
-              description: "Ecommerce Checkout",
-              amount: {
-                currency_code: "USD", // force USD
-                value: total.toFixed(2), // force 15.89
-              },
-            },
-          ],
-        });
-      },
-      onApprove: function (data, actions) {
-        return actions.order.capture().then(function (details) {
-          alert("✅ Payment completed by " + details.payer.name.given_name);
-        });
-      },
-      onError: function (err) {
-        console.error(err);
-        alert("PayPal Checkout failed: " + err.message);
-      },
-    })
-    .render("#paypal-button-container");
-}
 
 // ///////////        display order summary          ////////////////////////////////////////
 
@@ -147,100 +76,128 @@ export default function displayProductSummary() {
   tbody.appendChild(totalRow);
 }
 
-// ✅ Save order to history on payment success
-export function paymentStutusFn() {
-  const paymentStatusBtn = document.getElementById("paymentStatusBtn");
-  const popup = document.getElementById("popup");
 
-  const createdOverlay = document.createElement("div");
-  createdOverlay.style.width = "100vw";
-  createdOverlay.style.height = "100vh";
-  createdOverlay.style.backgroundColor = "rgba(0, 0, 0, 0.4)";
-  createdOverlay.style.position = "fixed";
-  createdOverlay.style.top = "0";
-  createdOverlay.style.left = "0";
-  createdOverlay.style.zIndex = "9999999";
-  createdOverlay.style.display = "flex";
-  createdOverlay.style.alignItems = "center";
-  createdOverlay.style.justifyContent = "center";
 
-  const createdPopupBox = document.createElement("div");
-  createdPopupBox.style.width = "600px";
-  createdPopupBox.style.minHeight = "400px";
-  createdPopupBox.style.borderRadius = "20px";
-  createdPopupBox.style.padding = "30px";
-  createdPopupBox.style.backgroundColor = "var(--bg-light)";
-  createdPopupBox.style.color = "var(--title-main-color)";
-  createdPopupBox.style.boxShadow = "0 8px 20px rgba(0,0,0,0.2)";
-  createdPopupBox.style.textAlign = "center";
-  createdPopupBox.style.display = "flex";
-  createdPopupBox.style.flexDirection = "column";
-  createdPopupBox.style.justifyContent = "center";
-  createdPopupBox.style.alignItems = "center";
-  createdPopupBox.style.opacity = "0";
-  createdPopupBox.style.transition = "all 1s";
 
-  // Wait a tiny bit then show
-  setTimeout(() => {
-    createdPopupBox.style.opacity = "1";
-  }, 10);
 
-  const message = document.createElement("h2");
-  message.innerText = "✅ Payment Successful!";
-  message.style.color = "var(--title-second-color)";
-  message.style.marginBottom = "20px";
 
-  const closeBtn = document.createElement("button");
-  closeBtn.innerText = "Close";
-  closeBtn.style.padding = "10px 20px";
-  closeBtn.style.border = "none";
-  closeBtn.style.borderRadius = "10px";
-  closeBtn.style.backgroundColor = "var(--bg-main-color)";
-  closeBtn.style.color = "#fff";
-  closeBtn.style.cursor = "pointer";
-  closeBtn.style.fontSize = "16px";
 
-  closeBtn.addEventListener("click", () => {
-    createdOverlay.remove();
-    window.location.href = "/";
-    cart.clear();
-  });
 
-  createdPopupBox.appendChild(message);
-  createdPopupBox.appendChild(closeBtn);
-  createdOverlay.appendChild(createdPopupBox);
 
-  paymentStatusBtn.addEventListener("click", function () {
-    // get existing history
-    let existingOrders = JSON.parse(localStorage.getItem("orders")) || [];
+//  updated credit card desgin : 
 
-    updateStock(newOrder);
 
-    // append the new order(s)
-    let updatedOrders = [...existingOrders, newOrder];
 
-    // save to localStorage
-    localStorage.setItem("orders", JSON.stringify(updatedOrders));
+export function updatedCreditCaerd(){
 
-    popup.appendChild(createdOverlay);
-  });
-}
 
-export function validateBuiltPayment() {
-  // don't apply it for make testing easy and save time ;
-}
+ 
+  const cardNumber = document.getElementById("card-number");
+  const cardName = document.getElementById("card-name");
+  const cardMonth = document.getElementById("card-month");
+  const cardYear = document.getElementById("card-year");
+  const cardCvv = document.getElementById("card-cvv");
+  const cardType = document.getElementById("card-type");
+  const cardTypeBack = document.getElementById("card-type-back");
+  const cardItem = document.getElementById("card-item");
+  const bg = document.getElementById("card-bg");
+  const bgBack = document.getElementById("card-bg-back");
 
-function updateStock(order) {
-  const orderProducts = order.products;
-  const allProducts = JSON.parse(localStorage.getItem("all-products")) || [];
 
-  orderProducts.forEach((product) => {
-    const { id, quantity } = product;
-    // Find the product in the inventory and reduce the stock
-    const inventoryItem = allProducts.find((item) => item.id === id);
-    if (inventoryItem && inventoryItem.stock >= quantity) {
-      inventoryItem.stock -= quantity;
-      localStorage.setItem("all-products", JSON.stringify(allProducts));
+  // Random background
+  const bgNumber = Math.floor(Math.random() * 25) + 1;
+  bg.src = `https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/${bgNumber}.jpeg`;
+  bgBack.src = bg.src;
+
+  // Populate months & years
+  const monthSelect = document.getElementById("input-month");
+  const yearSelect = document.getElementById("input-year");
+  for (let i = 1; i <= 12; i++) {
+    let m = i < 10 ? "0" + i : i;
+    monthSelect.innerHTML += `<option value="${m}">${m}</option>`;
+  
+
+  }
+  let yearNow = new Date().getFullYear();
+  for (let i = 0; i < 12; i++) {
+    let y = yearNow + i;
+    yearSelect.innerHTML += `<option value="${y}">${y}</option>`;
+  }
+
+  // Detect card type
+  function getCardType(number) {
+    if (/^4/.test(number)) return "visa";
+    if (/^(34|37)/.test(number)) return "amex";
+    if (/^5[1-5]/.test(number)) return "mastercard";
+    if (/^6011/.test(number)) return "discover";
+    if (/^9792/.test(number)) return "troy";
+    return "";
+  }
+
+  // Format card number
+  function formatCardNumber(value) {
+    return value.replace(/\D/g, "")
+      .replace(/(.{4})/g, "$1 ")
+      .trim()
+      .slice(0, 19);
+  }
+
+
+  
+
+  // Input listeners
+ document.getElementById("input-number").addEventListener("input", e => {
+  let rawVal = formatCardNumber(e.target.value); // النص الأصلي المنسق
+  let maskedVal = rawVal.split("").map((ch, i) => {
+    // نخلي أول 4 أرقام تبان والباقي يبقى #
+    if ([4,5,6,10,11,3,14].includes(i) && ch !== " ") {
+      return "#";
+    }
+    return ch;
+  }).join("");
+
+  
+
+
+  cardNumber.textContent = maskedVal || "#### #### #### ####";
+
+  let type = getCardType(rawVal); // هنا بنفحص الرقم الحقيقي مش المخفي
+  if (type) {
+    cardType.src = `https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/${type}.png`;
+    cardTypeBack.src = cardType.src;
+  } else {
+    cardType.src = "";
+    cardTypeBack.src = "";
+  }
+});
+
+
+  document.getElementById("input-name").addEventListener("input", e => {
+
+    if(e.target.value.length <= 12 && /^[a-zA-Z\s]*$/.test(e.target.value)){
+      cardName.textContent = e.target.value.toUpperCase() ;
+    }else{
+      cardName.textContent =  "FULL NAME"
     }
   });
+
+  monthSelect.addEventListener("change", e => {
+    cardMonth.textContent = e.target.value || "MM";
+  });
+
+  yearSelect.addEventListener("change", e => {
+    cardYear.textContent = e.target.value.slice(2) || "YY";
+  });
+
+  document.getElementById("input-cvv").addEventListener("focus", () => {
+    cardItem.classList.add("-active");
+  });
+  document.getElementById("input-cvv").addEventListener("blur", () => {
+    cardItem.classList.remove("-active");
+  });
+  document.getElementById("input-cvv").addEventListener("input", e => {
+    cardCvv.textContent = e.target.value.replace(/./g, "*") || "***";
+  });
+
+
 }
