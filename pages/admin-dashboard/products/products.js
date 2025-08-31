@@ -5,6 +5,7 @@ let currentPage = 1;
 let filteredProducts = [];
 let allProducts = [];
 
+// !
 const productCell = (product) => {
   return `<tr>
     <td>${product.id ? product.id : "N/A"}</td>
@@ -28,15 +29,14 @@ const productCell = (product) => {
       <button class="btn btn-action viewProductDetails btn-outline-success" title="Edit Product">
         <i class="fa-solid fa-eye viewProductEye" data-id="${product.id}"></i>
       </button>
-      <button class="btn-action btn-delete" title="Delete Product" data-id="${
-        product.id
-      }">
+      <button class="btn-action btn-delete" title="Delete Product" data-id="${product.id}">
         <i class="fas fa-trash"></i>
       </button>
     </td>
   </tr>`;
 };
 
+// ?
 const getStatusClass = (product) => {
   if (product.status === "inactive") return "status-inactive";
   if (product.stock === 0) return "status-out-of-stock";
@@ -44,6 +44,7 @@ const getStatusClass = (product) => {
   return "status-active";
 };
 
+// ?
 const getStatusText = (product) => {
   if (product.status === "inactive") return "Inactive";
   if (product.stock === 0) return "Out of Stock";
@@ -51,6 +52,7 @@ const getStatusText = (product) => {
   return "Active";
 };
 
+// !
 const renderAllProducts = (products) => {
   const tableBody = document.getElementById("products-table-body");
   const emptyState = document.getElementById("empty-state");
@@ -107,21 +109,15 @@ const renderPagination = (totalItems, totalPages) => {
 
   let paginationHTML = "";
 
-  paginationHTML += `<button class="page-btn ${
-    currentPage === 1 ? "disabled" : ""
-  }" ${currentPage === 1 ? "disabled" : ""} id="prev-page">
+  paginationHTML += `<button class="page-btn ${currentPage === 1 ? "disabled" : ""}" ${currentPage === 1 ? "disabled" : ""} id="prev-page">
     <i class="fas fa-chevron-left"></i>
   </button>`;
 
   for (let i = 1; i <= totalPages; i++) {
-    paginationHTML += `<button class="page-btn ${
-      currentPage === i ? "active" : ""
-    }" data-page="${i}">${i}</button>`;
+    paginationHTML += `<button class="page-btn ${currentPage === i ? "active" : ""}" data-page="${i}">${i}</button>`;
   }
 
-  paginationHTML += `<button class="page-btn ${
-    currentPage === totalPages ? "disabled" : ""
-  }" ${currentPage === totalPages ? "disabled" : ""} id="next-page">
+  paginationHTML += `<button class="page-btn ${currentPage === totalPages ? "disabled" : ""}" ${currentPage === totalPages ? "disabled" : ""} id="next-page">
     <i class="fas fa-chevron-right"></i>
   </button>`;
 
@@ -130,9 +126,7 @@ const renderPagination = (totalItems, totalPages) => {
   document.querySelectorAll(".page-btn[data-page]").forEach((button) => {
     button.addEventListener("click", () => {
       currentPage = parseInt(button.dataset.page);
-      renderAllProducts(
-        filteredProducts.length > 0 ? filteredProducts : allProducts
-      );
+      renderAllProducts(filteredProducts.length > 0 ? filteredProducts : allProducts);
     });
   });
 
@@ -143,9 +137,7 @@ const renderPagination = (totalItems, totalPages) => {
     prevPageBtn.addEventListener("click", () => {
       if (currentPage > 1) {
         currentPage--;
-        renderAllProducts(
-          filteredProducts.length > 0 ? filteredProducts : allProducts
-        );
+        renderAllProducts(filteredProducts.length > 0 ? filteredProducts : allProducts);
       }
     });
   }
@@ -154,9 +146,7 @@ const renderPagination = (totalItems, totalPages) => {
     nextPageBtn.addEventListener("click", () => {
       if (currentPage < totalPages) {
         currentPage++;
-        renderAllProducts(
-          filteredProducts.length > 0 ? filteredProducts : allProducts
-        );
+        renderAllProducts(filteredProducts.length > 0 ? filteredProducts : allProducts);
       }
     });
   }
@@ -189,12 +179,7 @@ export const productsSearch = () => {
 
   searchInput.addEventListener("input", (e) => {
     if (e.target.value) {
-      filteredProducts = allProducts.filter(
-        (product) =>
-          product &&
-          product.title &&
-          product.title.toLowerCase().includes(e.target.value.toLowerCase())
-      );
+      filteredProducts = allProducts.filter((product) => product && product.title && product.title.toLowerCase().includes(e.target.value.toLowerCase()));
       currentPage = 1;
       renderAllProducts(filteredProducts);
     } else {
@@ -205,6 +190,7 @@ export const productsSearch = () => {
   });
 };
 
+// !
 const addActionListeners = () => {
   const tableBody = document.getElementById("products-table-body");
   if (tableBody) {
@@ -212,14 +198,10 @@ const addActionListeners = () => {
   }
 };
 
+// !
 const handleAssignEventToTable = (e) => {
-  if (
-    e.target.classList.contains("btn-delete") ||
-    e.target.closest(".btn-delete")
-  ) {
-    const deleteBtn = e.target.classList.contains("btn-delete")
-      ? e.target
-      : e.target.closest(".btn-delete");
+  if (e.target.classList.contains("btn-delete") || e.target.closest(".btn-delete")) {
+    const deleteBtn = e.target.classList.contains("btn-delete") ? e.target : e.target.closest(".btn-delete");
     const productId = deleteBtn.dataset.id;
     openDeleteModal(productId);
     return;
@@ -238,15 +220,14 @@ const handleAssignEventToTable = (e) => {
   }
 };
 
+// !
 const openDeleteModal = (productId) => {
   const deleteProductIdInput = document.getElementById("deleteProductId");
   if (deleteProductIdInput) {
     deleteProductIdInput.value = productId;
   }
 
-  const deleteModal = new bootstrap.Modal(
-    document.getElementById("deleteProductModal")
-  );
+  const deleteModal = new bootstrap.Modal(document.getElementById("deleteProductModal"));
   deleteModal.show();
 };
 
@@ -264,24 +245,14 @@ const handleDeleteProduct = () => {
 
   const productId = deleteProductIdInput.value;
 
-  allProducts = allProducts.filter(
-    (product) =>
-      product && product.id && product.id.toString() !== productId.toString()
-  );
-  filteredProducts = filteredProducts.filter(
-    (product) =>
-      product && product.id && product.id.toString() !== productId.toString()
-  );
+  allProducts = allProducts.filter((product) => product && product.id && product.id.toString() !== productId.toString());
+  filteredProducts = filteredProducts.filter((product) => product && product.id && product.id.toString() !== productId.toString());
 
   localStorage.setItem("all-products", JSON.stringify(allProducts));
 
-  renderAllProducts(
-    filteredProducts.length > 0 ? filteredProducts : allProducts
-  );
+  renderAllProducts(filteredProducts.length > 0 ? filteredProducts : allProducts);
 
-  const deleteModal = bootstrap.Modal.getInstance(
-    document.getElementById("deleteProductModal")
-  );
+  const deleteModal = bootstrap.Modal.getInstance(document.getElementById("deleteProductModal"));
   if (deleteModal) {
     deleteModal.hide();
   }

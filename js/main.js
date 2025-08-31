@@ -27,6 +27,8 @@ import { initializeDashboardProductDetailsFunctions } from "../pages/admin-dashb
 import { shuffleTeamMembers } from "../pages/our-team/our-team.js";
 import { checkoutValidation } from "../pages/checkout/checkout.js";
 
+import { validateContactUs } from "../pages/contact/contact.js";
+
 //------------------------------------------------------------//
 
 export const PAGE_INITIALIZERS = {
@@ -149,6 +151,9 @@ export const PAGE_INITIALIZERS = {
   "/admin-dashboard/products/product-details": () => {
     initializeDashboardProductDetailsFunctions();
   },
+  "/contact": () => {
+    validateContactUs();
+  },
 };
 
 document.addEventListener("click", (e) => {
@@ -158,11 +163,7 @@ document.addEventListener("click", (e) => {
     const pathname = `/${user.role.toLowerCase()}-dashboard/profile`;
     router.navigate(pathname.trim());
   }
-  if (
-    e.target.id == "arrowUp" ||
-    e.target.classList.contains("containerArrow") ||
-    e.target.classList.contains("arrowUpIcon")
-  ) {
+  if (e.target.id == "arrowUp" || e.target.classList.contains("containerArrow") || e.target.classList.contains("arrowUpIcon")) {
     window.scrollTo(0, 0);
   }
 });
