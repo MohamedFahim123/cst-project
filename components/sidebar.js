@@ -142,7 +142,7 @@ export function initializeSidebarToggle() {
 // Toggle sidebar up/down
 function toggleSidebar() {
   const sidebar = document.getElementById("pf-sidebar");
-  
+
   if (sidebar) {
     if (sidebar.classList.contains("expanded")) {
       sidebar.classList.remove("expanded");
@@ -155,7 +155,7 @@ function toggleSidebar() {
 // Open sidebar (expand)
 export function openSidebar() {
   const sidebar = document.getElementById("pf-sidebar");
-  
+
   if (sidebar) {
     sidebar.classList.add("expanded");
   }
@@ -164,7 +164,7 @@ export function openSidebar() {
 // Close sidebar (collapse)
 export function closeSidebar() {
   const sidebar = document.getElementById("pf-sidebar");
-  
+
   if (sidebar) {
     sidebar.classList.remove("expanded");
   }

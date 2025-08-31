@@ -1,18 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 - Page Not Found</title>
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-</head>
+  <body>
+    <div class="er-container">
+      <div class="container-fluid er-main-wrapper">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-12 col-md-8 col-lg-6">
+            <div class="er-error-content text-center">
+              <!-- 404 Animation -->
+              <div class="er-error-number-container">
+                <div class="er-error-number">
+                  <span class="er-digit er-digit-4">4</span>
+                  <span class="er-digit er-digit-0">
+                    <div class="er-zero-animation">
+                      <i class="fas fa-search er-search-icon"></i>
+                    </div>
+                  </span>
+                  <span class="er-digit er-digit-4">4</span>
+                </div>
+              </div>
 
-<body>
-    <div class="vh-100 bg-body d-flex justify-content-center align-items-center">
-        <h1>
-            404 - Page Not Found !
-        </h1>
+              <!-- Error Message -->
+              <div class="er-error-message">
+                <h2 class="er-title mb-3">Oops! Page Not Found</h2>
+                <p class="er-subtitle mb-4">
+                  The page you are looking for might have been removed, had its name changed, or is
+                  temporarily unavailable.
+                </p>
+              </div>
+
+              <!-- Action Buttons -->
+              <div class="er-action-buttons">
+                <a href="/" class="er-btn er-btn-primary me-3 mb-3" data-link>
+                  <i class="fas fa-home me-2"></i>
+                  Go Home
+                </a>
+                <button class="er-btn er-btn-secondary mb-3" onclick="window.history.back()">
+                  <i class="fas fa-arrow-left me-2"></i>
+                  Go Back
+                </button>
+              </div>
+
+              <!-- Popular Links -->
+              <div class="er-popular-links mt-5">
+                <h5 class="er-popular-title mb-3">Popular Pages</h5>
+                <div class="er-links-grid">
+                  <a href="/" class="er-popular-link">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                  </a>
+                  <a href="/shop" class="er-popular-link" data-link>
+                    <i class="fas fa-shopping-bag"></i>
+                    <span>Shop</span>
+                  </a>
+                  <a href="/contact" class="er-popular-link" data-link>
+                    <i class="fas fa-envelope"></i>
+                    <span>Contact</span>
+                  </a>
+                  <a href="/our-team" class="er-popular-link" data-link>
+                    <i class="fas fa-blog"></i>
+                    <span>Blog</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</body>
-
+  </body>
 </html>
