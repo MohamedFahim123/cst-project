@@ -1,5 +1,6 @@
 import { cart } from "../../actions/cart.js";
 import { generateSecureId } from "../../actions/generateId.js";
+import { showToast } from "../../actions/showToast.js";
 
 
 // ///////////        display order summary          ////////////////////////////////////////
@@ -90,10 +91,10 @@ export default function displayProductSummary() {
 
 
 // let orderz = [] ;
-export function updatedCreditCaerd(){
+export function updatedCreditCaerd() {
 
 
- 
+
   const cardNumber = document.getElementById("card-number");
   const cardName = document.getElementById("card-name");
   const cardMonth = document.getElementById("card-month");
@@ -117,7 +118,7 @@ export function updatedCreditCaerd(){
   for (let i = 1; i <= 12; i++) {
     let m = i < 10 ? "0" + i : i;
     monthSelect.innerHTML += `<option value="${m}">${m}</option>`;
-  
+
 
   }
   let yearNow = new Date().getFullYear();
@@ -145,46 +146,47 @@ export function updatedCreditCaerd(){
   }
 
 
-  
+
 
   // Input listeners
- document.getElementById("input-number").addEventListener("input", e => {
-  let rawVal = formatCardNumber(e.target.value); // النص الأصلي المنسق
-  let maskedVal = rawVal.split("").map((ch, i) => {
-    // نخلي أول 4 أرقام تبان والباقي يبقى #
-    if ([4,5,6,10,11,3,14].includes(i) && ch !== " ") {
-      return "#";
+  document.getElementById("input-number").addEventListener("input", e => {
+    let rawVal = formatCardNumber(e.target.value); // النص الأصلي المنسق
+    let maskedVal = rawVal.split("").map((ch, i) => {
+      // نخلي أول 4 أرقام تبان والباقي يبقى #
+      if ([4, 5, 6, 10, 11, 3, 14].includes(i) && ch !== " ") {
+        return "#";
+      }
+      return ch;
+    }).join("");
+
+
+
+
+    cardNumber.textContent = maskedVal || "#### #### #### ####";
+
+    let type = getCardType(rawVal); // هنا بنفحص الرقم الحقيقي مش المخفي
+    if (type) {
+      cardType.src = `https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/${type}.png`;
+      cardTypeBack.src = cardType.src;
+    } else {
+      cardType.src = "";
+      cardTypeBack.src = "";
     }
-    return ch;
-  }).join("");
-
-  
-
-
-  cardNumber.textContent = maskedVal || "#### #### #### ####";
-
-  let type = getCardType(rawVal); // هنا بنفحص الرقم الحقيقي مش المخفي
-  if (type) {
-    cardType.src = `https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/${type}.png`;
-    cardTypeBack.src = cardType.src;
-  } else {
-    cardType.src = "";
-    cardTypeBack.src = "";
-  }
-});
+  });
 
 
   document.getElementById("input-name").addEventListener("input", e => {
 
-    if(e.target.value.length <= 12 && /^[a-zA-Z\s]*$/.test(e.target.value)){
-      cardName.textContent = e.target.value.toUpperCase() ;
-    }else{
-      cardName.textContent =  "FULL NAME"
+    if (e.target.value.length <= 12 && /^[a-zA-Z\s]*$/.test(e.target.value)) {
+      cardName.textContent = e.target.value.toUpperCase();
+    } else {
+      cardName.textContent = "FULL NAME"
     }
   });
 
   monthSelect.addEventListener("change", e => {
     cardMonth.textContent = e.target.value || "MM";
+
   });
 
   yearSelect.addEventListener("change", e => {
@@ -202,22 +204,28 @@ export function updatedCreditCaerd(){
   });
 
 
-    document.querySelector(".card-form__inner").addEventListener("submit" ,  function(e){
-      e.preventDefault()
+  document.querySelector(".card-form__inner").addEventListener("submit", async function (e) {
+    e.preventDefault()
+    showToast("payment success", "success" )
 
-    updateStock(newOrder) ;
-     let updatedOrders = JSON.parse(localStorage.getItem("orders")) ;
-     updatedOrders = [...updatedOrders , newOrder] ;
-      localStorage.setItem( "orders" , JSON.stringify(updatedOrders)) ;
+    await sleep(3000)
+
+    updateStock(newOrder);
+    let updatedOrders = JSON.parse(localStorage.getItem("orders"));
+    updatedOrders = [...updatedOrders, newOrder];
+    localStorage.setItem("orders", JSON.stringify(updatedOrders));
     cart.clear()
-    window.location.href ="#/" ;
+    window.location.href = "#/";
 
-    
+
   })
 }
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
 
- function updateStock(order) {
+function updateStock(order) {
   const orderProducts = order.products;
   const allProducts = JSON.parse(localStorage.getItem("all-products")) || [];
 
@@ -228,6 +236,6 @@ export function updatedCreditCaerd(){
     if (inventoryItem && inventoryItem.stock >= quantity) {
       inventoryItem.stock -= quantity;
       localStorage.setItem("all-products", JSON.stringify(allProducts));
-    }
-  });
+    }
+  });
 }
