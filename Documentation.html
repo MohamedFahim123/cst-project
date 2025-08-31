@@ -4,6 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TecNo E-Commerce Platform Documentation</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+      integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="icon" type="image/svg+xml" href="/assets/logo.svg" />
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
 
@@ -20,16 +28,123 @@
         background-color: #f9fafb;
         padding: 0;
         margin: 0;
+        scroll-behavior: smooth;
       }
 
       .container {
-        max-width: 210mm;
-        min-height: 297mm;
+        max-width: 100%;
         margin: 0 auto;
-        background: white;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        padding: 20mm;
-        position: relative;
+        padding: 20px;
+      }
+      /* Arrow Up */
+      .arrowFixed {
+        position: fixed;
+        bottom: 20px;
+        right: 30px;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+        background-color: #000;
+        width: 60px;
+        height: 60px;
+        z-index: 101;
+        cursor: pointer;
+        font-size: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.3s ease-in-out;
+        -webkit-transition: all 0.3s ease-in-out;
+        -moz-transition: all 0.3s ease-in-out;
+        -ms-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out;
+        box-shadow: 0px 0px 4px rgba(255, 255, 255, 0.15);
+      }
+      .containerArrow {
+        width: 25px;
+        height: 25px;
+        background-color: #ffffff;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-top: 3px;
+      }
+      .arrowFixed .containerArrow i {
+        color: #000;
+        transition: all 0.3s ease-in-out;
+      }
+      .arrowFixed:hover {
+        background-color: #634c9f;
+        transform: translateY(-5px);
+        -webkit-transform: translateY(-5px);
+        -moz-transform: translateY(-5px);
+        -ms-transform: translateY(-5px);
+        -o-transform: translateY(-5px);
+      }
+      .arrowFixed:hover .containerArrow i {
+        color: #634c9f;
+      }
+      #arrowUp {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      #arrowUp.visible {
+        opacity: 1;
+      }
+      .arrowFixed:hover .containerArrow {
+        animation-name: hoveredArrow;
+        animation-duration: 0.3s;
+        animation-iteration-count: 2;
+      }
+
+      @keyframes hoveredArrow {
+        0% {
+          transform: translateY(0);
+          -webkit-transform: translateY(0);
+          -moz-transform: translateY(0);
+          -ms-transform: translateY(0);
+          -o-transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-4px);
+          -webkit-transform: translateY(-4px);
+          -moz-transform: translateY(-4px);
+          -ms-transform: translateY(-4px);
+          -o-transform: translateY(-4px);
+        }
+        100% {
+          transform: translateY(0);
+          -webkit-transform: translateY(0);
+          -moz-transform: translateY(0);
+          -ms-transform: translateY(0);
+          -o-transform: translateY(0);
+        }
+      }
+      /* End Arrow Up */
+      @media (min-width: 768px) {
+        .container {
+          max-width: 750px;
+          padding: 30px;
+        }
+      }
+
+      @media (min-width: 992px) {
+        .container {
+          max-width: 970px;
+        }
+      }
+
+      @media (min-width: 1200px) {
+        .container {
+          max-width: 1170px;
+        }
       }
 
       .header {
@@ -111,9 +226,15 @@
 
       .grid {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
         gap: 15px;
         margin-bottom: 20px;
+      }
+
+      @media (min-width: 600px) {
+        .grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
       }
 
       .card {
@@ -142,6 +263,85 @@
         page-break-before: always;
       }
 
+      /* Responsive navigation */
+      .nav-toggle {
+        display: none;
+      }
+
+      .nav-toggle-label {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        display: none;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 21px;
+        cursor: pointer;
+        z-index: 1000;
+      }
+
+      .nav-toggle-label span {
+        height: 3px;
+        width: 100%;
+        background-color: #634c9f;
+        border-radius: 3px;
+        transition: all 0.3s ease;
+      }
+
+      .nav {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 30px;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .nav-item {
+        padding: 8px 15px;
+        background-color: #f3f0ff;
+        border-radius: 5px;
+        text-decoration: none;
+        color: #634c9f;
+        font-weight: 500;
+        transition: background-color 0.3s ease;
+      }
+
+      .nav-item:hover {
+        background-color: #e5deff;
+      }
+
+      @media (max-width: 768px) {
+        .nav-toggle-label {
+          display: flex;
+        }
+
+        .nav {
+          display: none;
+          flex-direction: column;
+          width: 100%;
+          position: absolute;
+          top: 70px;
+          left: 0;
+          background-color: white;
+          box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+          padding: 20px;
+          z-index: 999;
+        }
+
+        .nav-toggle:checked ~ .nav {
+          display: flex;
+        }
+
+        .title {
+          font-size: 24px;
+        }
+
+        .subtitle {
+          font-size: 16px;
+        }
+      }
+
       @media print {
         body {
           background: white;
@@ -155,17 +355,62 @@
         .page-break {
           margin-top: 20mm;
         }
+
+        .nav,
+        .nav-toggle-label {
+          display: none;
+        }
       }
     </style>
   </head>
   <body>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+    <label for="nav-toggle" class="nav-toggle-label">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+
+    <nav class="nav">
+      <a href="#intro" class="nav-item">Introduction</a>
+      <a href="#features" class="nav-item">Features</a>
+      <a href="#installation" class="nav-item">Installation</a>
+      <a href="#accounts" class="nav-item">User Accounts</a>
+      <a href="#usage" class="nav-item">Usage</a>
+      <a href="#tech" class="nav-item">Tech Stack</a>
+      <a href="#deployment" class="nav-item">Deployment</a>
+      <a href="#troubleshooting" class="nav-item">Troubleshooting</a>
+    </nav>
+
     <div class="container">
-      <div class="header">
+      <div class="header" id="intro">
         <div class="logo">TecNo</div>
         <h1 class="title">E-Commerce Platform Documentation</h1>
         <p class="subtitle">
           Complete Guide to Installation, Usage, and Development
         </p>
+
+        <div class="section page-break">
+          <p>
+            TecNo E-Commerce Platform Documentation | Generated on: September 1,
+            2025
+          </p>
+          <p>
+            Project Repository:
+            <a
+              href="https://github.com/MohamedFahim123/cst-project"
+              target="_blank"
+            >
+              https://github.com/MohamedFahim123/cst-project</a
+            >
+          </p>
+          <p>
+            Live Demo:
+            <a href="https://cst-project-xi.vercel.app/" target="_blank"
+              >https://cst-project-xi.vercel.app/</a
+            >
+          </p>
+        </div>
       </div>
 
       <div class="section">
@@ -186,7 +431,7 @@
         </p>
       </div>
 
-      <div class="section">
+      <div class="section" id="features">
         <h2 class="section-title">Key Features</h2>
 
         <div class="grid">
@@ -224,7 +469,7 @@
         </div>
       </div>
 
-      <div class="section">
+      <div class="section" id="installation">
         <h2 class="section-title">Installation Guide</h2>
 
         <div class="subsection">
@@ -239,7 +484,7 @@
     </div>
 
     <div class="container page-break">
-      <div class="header">
+      <div class="header" id="accounts">
         <h2 class="title">User Accounts</h2>
         <p class="subtitle">Pre-configured accounts for testing</p>
       </div>
@@ -283,7 +528,7 @@
         </div>
       </div>
 
-      <div class="section">
+      <div class="section" id="usage">
         <h2 class="section-title">Usage Guide</h2>
 
         <div class="subsection">
@@ -345,7 +590,7 @@
     </div>
 
     <div class="container page-break">
-      <div class="header">
+      <div class="header" id="tech">
         <h2 class="title">Technical Architecture</h2>
         <p class="subtitle">System overview and development guide</p>
       </div>
@@ -438,12 +683,12 @@
           // Example route configuration from js/router.js<br />
           const routes = {<br />
           '/': {<br />
-          template: 'pages/home/home.html',<br />
+          path: 'pages/home/home.html',<br />
           title: 'Home',<br />
           description: 'Welcome to our e-commerce platform'<br />
           },<br />
           '/shop': {<br />
-          template: 'pages/shop/shop.html',<br />
+          path: 'pages/shop/shop.html',<br />
           title: 'Shop',<br />
           description: 'Browse our products'<br />
           },<br />
@@ -454,7 +699,7 @@
     </div>
 
     <div class="container page-break">
-      <div class="header">
+      <div class="header" id="deployment">
         <h2 class="title">Deployment Guide</h2>
         <p class="subtitle">Publishing your application to Vercel</p>
       </div>
@@ -559,7 +804,7 @@
     </div>
 
     <div class="container page-break">
-      <div class="header">
+      <div class="header" id="troubleshooting">
         <h2 class="title">Troubleshooting</h2>
         <p class="subtitle">Common issues and solutions</p>
       </div>
@@ -663,28 +908,35 @@
           </li>
         </ul>
       </div>
-
-      <div class="footer">
-        <p>
-          TecNo E-Commerce Platform Documentation | Generated on: September 1,
-          2025
-        </p>
-        <p>
-          Project Repository:
-          <a
-            href="https://github.com/MohamedFahim123/cst-project"
-            target="_blank"
-          >
-            https://github.com/MohamedFahim123/cst-project</a
-          >
-        </p>
-        <p>
-          Live Demo:
-          <a href="https://cst-project-xi.vercel.app/" target="_blank"
-            >https://cst-project-xi.vercel.app/</a
-          >
-        </p>
+    </div>
+    <!-- Arror Up -->
+    <div id="arrowUp" class="arrowFixed">
+      <div class="containerArrow">
+        <i class="fa-regular fa-circle-up arrowUpIcon"></i>
       </div>
     </div>
+
+    <script>
+      const arrow = document.getElementById("arrowUp");
+
+      arrow.addEventListener("click", () => {
+        window.scrollTo(0, 0);
+      });
+
+      let ticking = false;
+
+      window.addEventListener("scroll", () => {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            const scrollY = window.scrollY;
+
+            arrow.classList.toggle("visible", scrollY > 150);
+
+            ticking = false;
+          });
+          ticking = true;
+        }
+      });
+    </script>
   </body>
 </html>
