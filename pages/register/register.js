@@ -1,9 +1,9 @@
-import { Customer, Seller } from "../register/User.js";
-import { displayErrorsAlerts, validateUserRegister, validationErrors } from "../register/validationUtils.js";
+import { Customer, Seller } from "./User.js";
+import { displayErrorsAlerts, validateUserRegister, validationErrors } from "./validationUtils.js";
 
 import { showToast } from "../../actions/showToast.js";
 import { router } from "../../js/router.js";
-import { addUserToLocalStorage, checkIfUserExists, setCurrentUser } from "../register/LocalStorageUtils.js";
+import { addUserToLocalStorage, checkIfUserExists, setCurrentUser } from "./LocalStorageUtils.js";
 
 // event Handler for Form Submission
 

@@ -45,6 +45,57 @@
   margin-bottom: 1.25rem;
 }
 
+.form-control:hover,
+.form-control:focus {
+  outline: none;
+  border-color: var(--bg-main-color);
+  background-color: #fff;
+  box-shadow: none;
+}
+
+/* Password Toggle Styles */
+.password-input-wrapper {
+  position: relative;
+}
+
+.password-input-wrapper .form-control {
+  padding-right: 3rem;
+  margin-bottom: 0;
+}
+
+.password-toggle-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--text-second-color);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: var(--transition);
+  z-index: 2;
+}
+
+.password-toggle-btn:hover {
+  color: var(--bg-main-color);
+  background-color: rgba(99, 76, 159, 0.1);
+}
+
+.password-toggle-btn:focus {
+  outline: 2px solid var(--bg-main-color);
+  outline-offset: 2px;
+}
+
+.password-toggle-btn i {
+  font-size: 1rem;
+  pointer-events: none;
+}
+
 .user-type-options {
   margin: 1.5rem 0;
 }

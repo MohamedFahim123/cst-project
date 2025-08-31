@@ -16,7 +16,7 @@ import { initializeCart } from "../pages/cart/mycart.js";
 import { initializeHome } from "../pages/home/home.js";
 import { initializeLogin } from "../pages/login/login.js";
 import displayProductSummary, { updatedCreditCaerd } from "../pages/payment/payment.js";
-import { registerSubmitHandler } from "../pages/register/main.js";
+import { initializeRegister } from "../pages/register/register.js";
 import { initializeProductDetailsFunctions } from "../pages/shop/product-details/product-details.js";
 import { initializeShop } from "../pages/shop/shop.js";
 import { initializeWishlist, refreshWishlist } from "../pages/wishlist/mywishlist.js";
@@ -122,7 +122,7 @@ export const PAGE_INITIALIZERS = {
     initializeLogin();
   },
   "/register": () => {
-    registerSubmitHandler();
+    initializeRegister();
   },
 
   "/payment": () => {
