@@ -128,11 +128,12 @@ body{
 
 /* Card Form Container */
 .card-form_creditCart {
-  width: 400px;
+  width: 650px;
   background: #fff;
   border-radius: 15px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.1);
   padding: 20px !important;
+  margin: 50px 0;
 }
 
 /* Card Preview List */
@@ -145,8 +146,8 @@ body{
 /* Card Item */
 .card-form_creditCart .card-item {
   position: relative;
-  width: 380px;
-  height: 200px;
+  width: 630px;
+  height: 250px;
   perspective: 1000px;
 }
 
@@ -315,7 +316,7 @@ body{
 .card-form_creditCart .card-form__button {
   width: 100%;
   padding: 12px;
-  background: #3182ce;
+  background: rgb(161, 88, 220);
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -326,7 +327,7 @@ body{
 }
 
 .card-form_creditCart .card-form__button:hover {
-  background: #2b6cb0;
+  background: var(--bg-main-color);
 }
 
 
@@ -356,4 +357,15 @@ body{
 
 .card-form_creditCart .card-form__col.-cvv {
   flex: 0.8; 
+}
+
+
+@media (max-width:670px){
+  .card-form_creditCart{
+    width: 400px;
+  }
+  .card-form_creditCart .card-item{
+    width: 380px;
+    height: 200px;
+  }
 }

@@ -164,3 +164,60 @@
     width: 100% !important;
   }
 }
+
+@media (max-width: 768px) {
+  .cart-table thead {
+    display: none; /* Hide table header */
+  }
+
+  .cart-table,
+  .cart-table tbody,
+  .cart-table tr,
+  .cart-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .cart-table tr {
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    background: #fff;
+  }
+
+  .cart-table td {
+    text-align: left;
+    padding: 8px 10px;
+    border: none;
+    position: relative;
+  }
+
+  /* Add labels before td content */
+  .cart-table td:nth-child(1)::before {
+    content: "Product: ";
+    font-weight: bold;
+  }
+  .cart-table td:nth-child(2)::before {
+    content: "Price: ";
+    font-weight: bold;
+  }
+  .cart-table td:nth-child(3)::before {
+    content: "Quantity: ";
+    font-weight: bold;
+  }
+  .cart-table td:nth-child(4)::before {
+    content: "Total: ";
+    font-weight: bold;
+  }
+  .cart-table td:nth-child(5)::before {
+    content: "Action: ";
+    font-weight: bold;
+  }
+
+  /* Scrollable cart container */
+  .cart-table-wrap {
+    max-height: 70vh; /* adjust as needed */
+    overflow-y: auto;
+  }
+}
