@@ -1,3 +1,4 @@
+import { cart } from "../../actions/cart.js";
 import { generateSecureId } from "../../actions/generateId.js";
 
 
@@ -88,6 +89,7 @@ export default function displayProductSummary() {
 
 
 
+// let orderz = [] ;
 export function updatedCreditCaerd(){
 
 
@@ -200,4 +202,32 @@ export function updatedCreditCaerd(){
   });
 
 
+    document.querySelector(".card-form__inner").addEventListener("submit" ,  function(e){
+      e.preventDefault()
+
+    updateStock(newOrder) ;
+     let updatedOrders = JSON.parse(localStorage.getItem("orders")) ;
+     updatedOrders = [...updatedOrders , newOrder] ;
+      localStorage.setItem( "orders" , JSON.stringify(updatedOrders)) ;
+    cart.clear()
+    window.location.href ="#/" ;
+
+    
+  })
+}
+
+
+ function updateStock(order) {
+  const orderProducts = order.products;
+  const allProducts = JSON.parse(localStorage.getItem("all-products")) || [];
+
+  orderProducts.forEach((product) => {
+    const { id, quantity } = product;
+    // Find the product in the inventory and reduce the stock
+    const inventoryItem = allProducts.find((item) => item.id === id);
+    if (inventoryItem && inventoryItem.stock >= quantity) {
+      inventoryItem.stock -= quantity;
+      localStorage.setItem("all-products", JSON.stringify(allProducts));
+    }
+  });
 }
