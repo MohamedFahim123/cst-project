@@ -14,18 +14,12 @@ import { dashboardInit } from "../pages/admin-dashboard/dashboard/dashboard.js";
 import { initializeSellers } from "../pages/admin-dashboard/sellers/sellers.js";
 import { initializeCart } from "../pages/cart/mycart.js";
 import { initializeHome } from "../pages/home/home.js";
-import { loginSubmitHandler } from "../pages/login/login.js";
-import displayProductSummary, {
- 
-  updatedCreditCaerd,
-} from "../pages/payment/payment.js";
+import { initializeLogin } from "../pages/login/login.js";
+import displayProductSummary, { updatedCreditCaerd } from "../pages/payment/payment.js";
 import { registerSubmitHandler } from "../pages/register/main.js";
 import { initializeProductDetailsFunctions } from "../pages/shop/product-details/product-details.js";
 import { initializeShop } from "../pages/shop/shop.js";
-import {
-  initializeWishlist,
-  refreshWishlist,
-} from "../pages/wishlist/mywishlist.js";
+import { initializeWishlist, refreshWishlist } from "../pages/wishlist/mywishlist.js";
 import { router } from "./router.js";
 import { cartAndWishlistLogic } from "./shred.js";
 import { initializeProducts } from "../pages/admin-dashboard/products/products.js";
@@ -125,7 +119,7 @@ export const PAGE_INITIALIZERS = {
     checkoutValidation();
   },
   "/login": () => {
-    loginSubmitHandler();
+    initializeLogin();
   },
   "/register": () => {
     registerSubmitHandler();
@@ -133,8 +127,8 @@ export const PAGE_INITIALIZERS = {
 
   "/payment": () => {
     displayProductSummary();
-   
-    updatedCreditCaerd() ;
+
+    updatedCreditCaerd();
   },
 
   "/admin-dashboard/sellers": () => {
