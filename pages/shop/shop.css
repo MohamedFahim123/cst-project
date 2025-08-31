@@ -11,7 +11,7 @@
   color: #333;
 }
 .product-image-container{
-  min-width: 200px;
+  min-width: 150px;
   min-height: 150px;
 }
 .product-image-container  img{
