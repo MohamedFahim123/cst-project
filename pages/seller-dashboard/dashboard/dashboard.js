@@ -90,7 +90,7 @@ export const dashboardInitSeller = () => {
   // ! Orders
   orders.forEach((order) => {
     order.products.forEach((prOrder) => {
-      ids.push(prOrder.id);
+      ids.push(String(prOrder.id));
     });
   });
 

@@ -15,7 +15,7 @@ function loadOrderData() {
   if (currentUser.role == "seller") {
     order = JSON.parse(localStorage.getItem("selectedSellerOrder"));
   } else {
-    order = orders.find((order) => order.id == orderId);
+    order = orders.find((order) => String(order.id) == orderId);
   }
 
   if (order) {
@@ -26,7 +26,7 @@ function loadOrderData() {
 // Display order data
 function displayOrderData(order) {
   // Update order header
-  document.querySelector(".od-order-number").textContent = `Order #${order.id.slice(0, 5)}`;
+  document.querySelector(".od-order-number").textContent = `Order #${String(order.id).slice(0, 5)}`;
   document.querySelector(".od-order-date").innerHTML = `
     <i class="fas fa-calendar-alt"></i>
     ${order.date}
@@ -212,7 +212,7 @@ function updateOrderStatus(orderId, newStatus) {
 
 // Event handlers
 function getUserById(userId) {
-  return JSON.parse(localStorage.getItem("users")).users.find((user) => user.id === userId);
+  return JSON.parse(localStorage.getItem("users")).users.find((user) => user.id == userId);
 }
 
 function handleContactSupport() {

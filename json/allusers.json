@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "username": "mohamed fahim",
       "email": "mohamed@fahim.com",
       "password": "mohamed1",
@@ -11,7 +11,7 @@
       "avatar": "../../assets/avatar.jpg"
     },
     {
-      "id": 2,
+      "id": "2",
       "username": "Antonette",
       "password": "customer12",
       "email": "customer@example.com",
@@ -21,7 +21,7 @@
       "avatar": "../../assets/avatar.jpg"
     },
     {
-      "id": 3,
+      "id": "3",
       "username": "Samantha",
       "password": "seller12",
       "email": "seller@example.com",

@@ -45,9 +45,9 @@ function renderOrdersTable(filteredOrders, page = 1) {
 
       return `
       <tr>
-        <td${isLastRow ? ' class="cell-rad-bl"' : ""}>#${order.id.slice(0, 5)}</td>
+        <td${isLastRow ? ' class="cell-rad-bl"' : ""}>#${String(order.id).slice(0, 5)}</td>
         ${currentUser.role === "admin" ? `<td>${getUserById(order.userID)?.username || "N/A"}</td>` : ""}
-        ${currentUser.role === "admin" ? `<td>${`${order.userID}`.slice(0, 5) || "N/A"}</td>` : ""}
+        ${currentUser.role === "admin" ? `<td>${String(order.userID).slice(0, 5) || "N/A"}</td>` : ""}
         <td><span class="status-bg ${getStatusBackground(order.status)}">${order.status || "N/A"}</span></td>
         <td>${formatOrderDate(order.date)}</td>
         <td class="total-amount">$${totalPrice.toFixed(2)}</td>
