@@ -13,7 +13,7 @@
     {
       "id": "2",
       "username": "Antonette",
-      "password": "customer12",
+      "password": "customer1",
       "email": "customer@example.com",
       "role": "customer",
       "phone": "+1 (555) 987-6543",
@@ -26,6 +26,46 @@
       "password": "seller12",
       "email": "seller@example.com",
       "role": "seller",
+      "phone": "+1 (555) 987-6543",
+      "address": "123 Main St",
+      "avatar": "../../assets/avatar.jpg"
+    },
+    {
+      "id": "4",
+      "username": "Saed ElAgamy",
+      "email": "saed@agamy.com",
+      "password": "saed1234",
+      "role": "admin",
+      "phone": "+1 (555) 987-6543",
+      "address": "123 Main St",
+      "avatar": "../../assets/avatar.jpg"
+    },
+    {
+      "id": "5",
+      "username": "Mahmoud Hamza",
+      "email": "mahmoud@hamza.com",
+      "password": "mahmoud1",
+      "role": "admin",
+      "phone": "+1 (555) 987-6543",
+      "address": "123 Main St",
+      "avatar": "../../assets/avatar.jpg"
+    },
+    {
+      "id": "6",
+      "username": "Omar Abdelmoaty",
+      "email": "omar@abdelmoaty.com",
+      "password": "omar1234",
+      "role": "admin",
+      "phone": "+1 (555) 987-6543",
+      "address": "123 Main St",
+      "avatar": "../../assets/avatar.jpg"
+    },
+    {
+      "id": "7",
+      "username": "Remon Magdy",
+      "email": "remon@magdy.com",
+      "password": "remon123",
+      "role": "admin",
       "phone": "+1 (555) 987-6543",
       "address": "123 Main St",
       "avatar": "../../assets/avatar.jpg"
