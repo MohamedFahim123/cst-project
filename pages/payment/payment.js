@@ -150,9 +150,8 @@ export function updatedCreditCaerd() {
 
   // Input listeners
   document.getElementById("input-number").addEventListener("input", e => {
-    let rawVal = formatCardNumber(e.target.value); // النص الأصلي المنسق
+    let rawVal = formatCardNumber(e.target.value); 
     let maskedVal = rawVal.split("").map((ch, i) => {
-      // نخلي أول 4 أرقام تبان والباقي يبقى #
       if ([4, 5, 6, 10, 11, 3, 14].includes(i) && ch !== " ") {
         return "#";
       }
@@ -164,7 +163,7 @@ export function updatedCreditCaerd() {
 
     cardNumber.textContent = maskedVal || "#### #### #### ####";
 
-    let type = getCardType(rawVal); // هنا بنفحص الرقم الحقيقي مش المخفي
+    let type = getCardType(rawVal);  
     if (type) {
       cardType.src = `https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/${type}.png`;
       cardTypeBack.src = cardType.src;
@@ -206,7 +205,11 @@ export function updatedCreditCaerd() {
 
   document.querySelector(".card-form__inner").addEventListener("submit", async function (e) {
     e.preventDefault()
-    showToast("payment success", "success" )
+
+    if(document.getElementById("input-name").value &&   document.getElementById("input-number").value && monthSelect.value && yearSelect.value &&  document.getElementById("input-cvv").value){
+
+
+       showToast("payment success", "success" )
 
     await sleep(3000)
 
@@ -216,6 +219,11 @@ export function updatedCreditCaerd() {
     localStorage.setItem("orders", JSON.stringify(updatedOrders));
     cart.clear()
     window.location.href = "#/";
+
+    }else{
+      showToast("Invaild Credit Card", "error")
+    }
+   
 
 
   })

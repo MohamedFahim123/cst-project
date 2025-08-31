@@ -151,21 +151,12 @@
   color: white;
 }
 
-@media (max-width: 768px) {
-  .cart-table-wrap {
-    overflow-x: auto;
-  }
-
-  .cart-table {
-    min-width: 600px;
-  }
-
-  .empty-cart {
-    width: 100% !important;
-  }
-}
 
 @media (max-width: 768px) {
+  .cart-table-wrap{
+   
+    
+  }
   .cart-table thead {
     display: none; /* Hide table header */
   }
@@ -175,6 +166,7 @@
   .cart-table tr,
   .cart-table td {
     display: block;
+  
     width: 100%;
   }
 
