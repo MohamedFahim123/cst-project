@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TecNo E-Commerce Platform Documentation</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background-color: #f9fafb;
+        padding: 0;
+        margin: 0;
+      }
+
+      .container {
+        max-width: 210mm;
+        min-height: 297mm;
+        margin: 0 auto;
+        background: white;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 20mm;
+        position: relative;
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 30px;
+        border-bottom: 2px solid #634c9f;
+        padding-bottom: 20px;
+      }
+
+      .logo {
+        color: #634c9f;
+        font-size: 36px;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+
+      .title {
+        font-size: 28px;
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: #1f2937;
+      }
+
+      .subtitle {
+        font-size: 18px;
+        color: #6b7280;
+        font-weight: 400;
+      }
+
+      .section {
+        margin-bottom: 30px;
+      }
+
+      .section-title {
+        font-size: 20px;
+        font-weight: 600;
+        color: #634c9f;
+        margin-bottom: 15px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #e5e7eb;
+      }
+
+      .subsection {
+        margin-bottom: 20px;
+      }
+
+      .subsection-title {
+        font-size: 18px;
+        font-weight: 500;
+        color: #4b5563;
+        margin-bottom: 10px;
+      }
+
+      p {
+        margin-bottom: 15px;
+        text-align: justify;
+      }
+
+      ul,
+      ol {
+        margin-left: 20px;
+        margin-bottom: 15px;
+      }
+
+      li {
+        margin-bottom: 8px;
+      }
+
+      .code-block {
+        background-color: #f3f4f6;
+        border-left: 4px solid #634c9f;
+        padding: 12px;
+        font-family: monospace;
+        font-size: 14px;
+        margin-bottom: 15px;
+        overflow-x: auto;
+        border-radius: 0 4px 4px 0;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+
+      .card {
+        background-color: #f9fafb;
+        border: 1px solid #e5e7eb;
+        border-radius: 6px;
+        padding: 15px;
+      }
+
+      .card-title {
+        font-weight: 600;
+        color: #634c9f;
+        margin-bottom: 10px;
+      }
+
+      .footer {
+        text-align: center;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid #e5e7eb;
+        color: #6b7280;
+        font-size: 14px;
+      }
+
+      .page-break {
+        page-break-before: always;
+      }
+
+      @media print {
+        body {
+          background: white;
+        }
+
+        .container {
+          box-shadow: none;
+          padding: 15mm;
+        }
+
+        .page-break {
+          margin-top: 20mm;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <div class="logo">TecNo</div>
+        <h1 class="title">E-Commerce Platform Documentation</h1>
+        <p class="subtitle">
+          Complete Guide to Installation, Usage, and Development
+        </p>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">Introduction</h2>
+        <p>
+          TecNo E-Commerce Platform is a modern, responsive web application
+          built with vanilla JavaScript, Bootstrap, and a clean component-based
+          architecture. This project features a multi-role system supporting
+          customers, sellers, and administrators with comprehensive dashboards
+          and functionality.
+        </p>
+
+        <p>
+          This documentation provides a complete guide to setting up, using, and
+          developing TecNo E-Commerce Platform. Whether you're an end-user,
+          administrator, or developer, you'll find the information you need to
+          effectively work with this application.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">Key Features</h2>
+
+        <div class="grid">
+          <div class="card">
+            <h3 class="card-title">Multi-Role System</h3>
+            <p>
+              Support for customers, sellers, and administrators with tailored
+              dashboards and functionality for each role.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">E-Commerce Functionality</h3>
+            <p>
+              Product catalog, shopping cart, wishlist, checkout process, and
+              order management system.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">Responsive Design</h3>
+            <p>
+              Mobile-first design optimized for all device sizes with Bootstrap
+              integration.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">Modern Architecture</h3>
+            <p>
+              SPA architecture with client-side routing, component system, and
+              modern JavaScript features.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">Installation Guide</h2>
+
+        <div class="subsection">
+          <h3 class="subsection-title">Prerequisites</h3>
+          <ul>
+            <li>Modern web browser (Chrome, Firefox, Safari, Edge)</li>
+            <li>Local web server (Live Server, HTTP Server, etc.)</li>
+            <li>Git (for cloning the repository)</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container page-break">
+      <div class="header">
+        <h2 class="title">User Accounts</h2>
+        <p class="subtitle">Pre-configured accounts for testing</p>
+      </div>
+
+      <div class="section">
+        <p>
+          The application comes with pre-configured users for testing different
+          roles and permissions:
+        </p>
+
+        <div class="grid">
+          <div class="card">
+            <h3 class="card-title">Admin Account</h3>
+            <p><strong>Email:</strong> mohamed@fahim.com</p>
+            <p><strong>Password:</strong> mohamed1</p>
+            <p>
+              <strong>Capabilities:</strong> Full system access, user
+              management, product oversight, and analytics.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">Customer Account</h3>
+            <p><strong>Email:</strong> customer@example.com</p>
+            <p><strong>Password:</strong> customer1</p>
+            <p>
+              <strong>Capabilities:</strong> Browse products, make purchases,
+              manage wishlist, and view order history.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title">Seller Account</h3>
+            <p><strong>Email:</strong> seller@example.com</p>
+            <p><strong>Password:</strong> seller12</p>
+            <p>
+              <strong>Capabilities:</strong> Manage products, track orders, view
+              sales analytics, and update seller profile.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">Usage Guide</h2>
+
+        <div class="subsection">
+          <h3 class="subsection-title">For Customers</h3>
+          <ol>
+            <li>
+              <strong>Browse Products:</strong> Visit the shop page to view
+              available products with filtering options.
+            </li>
+            <li>
+              <strong>Search & Filter:</strong> Use the search bar and filters
+              to find specific items.
+            </li>
+            <li>
+              <strong>Add to Cart:</strong> Click "Add to Cart" on product pages
+              to add items to your shopping cart.
+            </li>
+            <li>
+              <strong>Manage Wishlist:</strong> Save products for later viewing
+              by adding them to your wishlist.
+            </li>
+            <li>
+              <strong>Checkout:</strong> Complete your purchase through the
+              secure checkout process.
+            </li>
+            <li>
+              <strong>View Orders:</strong> Track your order history in the
+              customer dashboard.
+            </li>
+          </ol>
+        </div>
+
+        <div class="subsection">
+          <h3 class="subsection-title">For Sellers</h3>
+          <ol>
+            <li>
+              <strong>Register as Seller:</strong> Create a seller account
+              during registration.
+            </li>
+            <li>
+              <strong>Manage Products:</strong> Add, edit, and delete your
+              products from the seller dashboard.
+            </li>
+            <li>
+              <strong>View Orders:</strong> Monitor orders for your products and
+              update order status.
+            </li>
+            <li>
+              <strong>Track Sales:</strong> View sales analytics and performance
+              metrics.
+            </li>
+            <li>
+              <strong>Update Profile:</strong> Manage your seller information
+              and store details.
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="container page-break">
+      <div class="header">
+        <h2 class="title">Technical Architecture</h2>
+        <p class="subtitle">System overview and development guide</p>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">Tech Stack</h2>
+
+        <div class="subsection">
+          <h3 class="subsection-title">Frontend Technologies</h3>
+          <ul>
+            <li>
+              <strong>HTML5:</strong> Semantic markup with accessibility
+              features
+            </li>
+            <li>
+              <strong>CSS3:</strong> Custom properties, Grid, Flexbox,
+              animations
+            </li>
+            <li>
+              <strong>JavaScript (ES6+):</strong> Modules, async/await, classes
+            </li>
+            <li>
+              <strong>Bootstrap 5:</strong> Responsive framework and components
+            </li>
+          </ul>
+        </div>
+
+        <div class="subsection">
+          <h3 class="subsection-title">Storage Solutions</h3>
+          <ul>
+            <li><strong>localStorage:</strong> User data and preferences</li>
+            <li><strong>IndexedDB:</strong> Image storage and management</li>
+            <li>
+              <strong>JSON:</strong> Product catalog and configuration data
+            </li>
+          </ul>
+        </div>
+
+        <div class="subsection">
+          <h3 class="subsection-title">External Libraries</h3>
+          <ul>
+            <li><strong>Font Awesome:</strong> Icon system</li>
+            <li><strong>Swiper.js:</strong> Image carousels and sliders</li>
+            <li><strong>Chart.js:</strong> Dashboard analytics and charts</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">Project Structure</h2>
+
+        <div class="code-block">
+          TecNo/<br />
+          ├── index.html<br />
+          ├── vercel.json<br />
+          ├── robots.txt<br />
+          ├── sitemap.xml<br />
+          ├── assets/<br />
+          │ └── logo.svg<br />
+          ├── css/<br />
+          │ └── main.css<br />
+          ├── js/<br />
+          │ ├── router.js<br />
+          │ └── main.js<br />
+          ├── pages/<br />
+          │ ├── home/<br />
+          │ ├── shop/<br />
+          │ ├── auth/<br />
+          │ ├── dashboard/<br />
+          │ └── ...<br />
+          └── README.md
+        </div>
+
+        <p>
+          The application follows a component-based architecture with a clear
+          separation of concerns. The <strong>pages/</strong> directory contains
+          different sections of the application, each with its own HTML, CSS,
+          and JavaScript files.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">Routing System</h2>
+        <p>
+          The application uses hash-based SPA routing with dynamic content
+          loading:
+        </p>
+
+        <div class="code-block">
+          // Example route configuration from js/router.js<br />
+          const routes = {<br />
+          '/': {<br />
+          template: 'pages/home/home.html',<br />
+          title: 'Home',<br />
+          description: 'Welcome to our e-commerce platform'<br />
+          },<br />
+          '/shop': {<br />
+          template: 'pages/shop/shop.html',<br />
+          title: 'Shop',<br />
+          description: 'Browse our products'<br />
+          },<br />
+          // ... more routes<br />
+          };
+        </div>
+      </div>
+    </div>
+
+    <div class="container page-break">
+      <div class="header">
+        <h2 class="title">Deployment Guide</h2>
+        <p class="subtitle">Publishing your application to Vercel</p>
+      </div>
+
+      <div class="section">
+        <p>
+          The project is configured for deployment on Vercel with the following
+          configuration in <strong>vercel.json</strong>:
+        </p>
+
+        <div class="code-block">
+          {<br />
+          "rewrites": [<br />
+          {<br />
+          "source": "/(.*)",<br />
+          "destination": "/index.html"<br />
+          },<br />
+          {<br />
+          "source": "/robots.txt",<br />
+          "destination": "/api/robots.txt"<br />
+          }<br />
+          ],<br />
+          "headers": [<br />
+          {<br />
+          "source": "/robots.txt",<br />
+          "headers": [<br />
+          {<br />
+          "key": "Content-Type",<br />
+          "value": "text/plain"<br />
+          }<br />
+          ]<br />
+          }<br />
+          ]<br />
+          }
+        </div>
+
+        <div class="subsection">
+          <h3 class="subsection-title">Deploy to Vercel</h3>
+
+          <p><strong>Using Git Integration:</strong></p>
+          <ol>
+            <li>Push your code to GitHub</li>
+            <li>Connect your repository to Vercel</li>
+            <li>Vercel will automatically deploy on every push</li>
+          </ol>
+        </div>
+
+        <div class="subsection">
+          <h3 class="subsection-title">Manual Deployment</h3>
+          <p>
+            Upload all files to your web server maintaining the directory
+            structure. Ensure your server is configured to redirect all requests
+            to index.html for proper SPA functionality.
+          </p>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">SEO Configuration</h2>
+
+        <p>The application includes comprehensive SEO features:</p>
+
+        <div class="subsection">
+          <h3 class="subsection-title">robots.txt</h3>
+          <div class="code-block">
+            User-agent: *<br />
+            Allow: /<br />
+            <br />
+            Sitemap: https://TecNo-xi.vercel.app/sitemap.xml
+          </div>
+        </div>
+
+        <div class="subsection">
+          <h3 class="subsection-title">Sitemap</h3>
+          <p>
+            The <strong>sitemap.xml</strong> file includes all important pages
+            with metadata for search engines:
+          </p>
+          <ul>
+            <li>Homepage and main sections</li>
+            <li>Shop and product pages</li>
+            <li>Authentication pages</li>
+            <li>Dashboard pages for all roles</li>
+          </ul>
+        </div>
+
+        <div class="subsection">
+          <h3 class="subsection-title">Meta Tags</h3>
+          <p>
+            Each page includes appropriate meta tags for description, viewport,
+            and character set:
+          </p>
+          <div class="code-block">
+            &lt;meta charset="UTF-8" /&gt;<br />
+            &lt;meta name="viewport" content="width=device-width,
+            initial-scale=1.0" /&gt;<br />
+            &lt;meta name="description" content="Page description" /&gt;<br />
+            &lt;title&gt;Page Title&lt;/title&gt;
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container page-break">
+      <div class="header">
+        <h2 class="title">Troubleshooting</h2>
+        <p class="subtitle">Common issues and solutions</p>
+      </div>
+
+      <div class="section">
+        <div class="subsection">
+          <h3 class="subsection-title">Favicon Not Appearing</h3>
+          <p>If the SVG favicon doesn't appear in the browser tab:</p>
+          <ol>
+            <li>
+              <strong>Clear browser cache:</strong> Browsers aggressively cache
+              favicons
+            </li>
+            <li>
+              <strong>Check file path:</strong> Ensure the path
+              <code>/assets/logo.svg</code> is correct
+            </li>
+            <li>
+              <strong>Verify SVG validity:</strong> Open the SVG directly in the
+              browser to check if it renders
+            </li>
+            <li>
+              <strong>Add PNG fallback:</strong> Some browsers have limited SVG
+              favicon support
+            </li>
+          </ol>
+        </div>
+
+        <div class="subsection">
+          <h3 class="subsection-title">Routing Issues</h3>
+          <p>If pages don't load correctly in production:</p>
+          <ol>
+            <li>
+              Ensure your server is configured to redirect all requests to
+              index.html
+            </li>
+            <li>Verify that the Vercel configuration is properly set up</li>
+            <li>Check for JavaScript errors in the browser console</li>
+          </ol>
+        </div>
+
+        <div class="subsection">
+          <h3 class="subsection-title">Storage Issues</h3>
+          <p>If data isn't persisting between sessions:</p>
+          <ol>
+            <li>Check if the browser allows localStorage and IndexedDB</li>
+            <li>Verify that storage isn't being cleared automatically</li>
+            <li>Test in incognito mode with different settings</li>
+          </ol>
+        </div>
+
+        <div class="subsection">
+          <h3 class="subsection-title">Performance Optimization</h3>
+          <p>For better performance:</p>
+          <ol>
+            <li>Enable compression on your server</li>
+            <li>Optimize images before uploading</li>
+            <li>Consider implementing lazy loading for images</li>
+            <li>Minify CSS and JavaScript files for production</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2 class="section-title">Development Roadmap</h2>
+
+        <p>Planned future enhancements for the platform:</p>
+
+        <ul>
+          <li>
+            <strong>Real-time notifications:</strong> Browser notifications for
+            order updates
+          </li>
+          <li>
+            <strong>Advanced search:</strong> Search with suggestions and
+            filters
+          </li>
+          <li>
+            <strong>Product reviews and ratings:</strong> User-generated content
+            system
+          </li>
+          <li>
+            <strong>Social media integration:</strong> Sharing products and
+            login with social accounts
+          </li>
+          <li>
+            <strong>Multi-language support:</strong> Internationalization for
+            global reach
+          </li>
+          <li>
+            <strong>PWA features:</strong> Offline functionality and app-like
+            experience
+          </li>
+          <li>
+            <strong>Payment gateway integration:</strong> Support for multiple
+            payment methods
+          </li>
+          <li>
+            <strong>Email notifications:</strong> Transactional emails for
+            orders and updates
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer">
+        <p>
+          TecNo E-Commerce Platform Documentation | Generated on: September 1,
+          2025
+        </p>
+        <p>
+          Project Repository: https://github.com/MohamedFahim123/TecNo
+        </p>
+        <p>Live Demo: https://TecNo-xi.vercel.app/</p>
+      </div>
+    </div>
+  </body>
+</html>
