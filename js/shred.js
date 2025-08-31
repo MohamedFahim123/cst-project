@@ -44,9 +44,22 @@ export const cartAndWishlistLogic = () => {
       }
 
       const currentProductId = JSON.parse(localStorage.getItem("curr-product"));
-      const currentProduct = JSON.parse(localStorage.getItem("all-products")).find(
-        (product) => +product.id === +currentProductId
-      );
+      const currentProduct = JSON.parse(
+        localStorage.getItem("all-products")
+      ).find((product) => +product.id === +currentProductId);
+
+      if (
+        userLogin.role &&
+        userLogin.role === "seller" &&
+        currentProduct.sellerID.toString().toLowerCase() ===
+          userLogin.id.toString().toLowerCase()
+      ) {
+        showToast(
+          "Seller can't add his own products to cart or wishlist",
+          "error"
+        );
+        return;
+      }
 
       const product = {
         id: currentProduct.id,
@@ -57,7 +70,6 @@ export const cartAndWishlistLogic = () => {
       };
 
       cart.add(product, +quantity.value);
-      // re initialize input
       quantity.value = 1;
 
       updateButtonStates();
@@ -74,6 +86,20 @@ export const cartAndWishlistLogic = () => {
 
       if (userLogin.role && userLogin.role === "admin") {
         showToast("Admin can't add items to cart or wishlist", "error");
+        return;
+      }
+
+
+      if (
+        userLogin.role &&
+        userLogin.role === "seller" &&
+        cartBtn.dataset.seller.toString().toLowerCase() ===
+          userLogin.id.toString().toLowerCase()
+      ) {
+        showToast(
+          "Seller can't add his own products to cart or wishlist",
+          "error"
+        );
         return;
       }
 
@@ -104,6 +130,19 @@ export const cartAndWishlistLogic = () => {
 
       if (userLogin.role && userLogin.role === "admin") {
         showToast("Admin can't add items to cart or wishlist", "error");
+        return;
+      };
+
+      if (
+        userLogin.role &&
+        userLogin.role === "seller" &&
+        wishlistBtn.dataset.seller.toString().toLowerCase() ===
+          userLogin.id.toString().toLowerCase()
+      ) {
+        showToast(
+          "Seller can't add his own products to cart or wishlist",
+          "error"
+        );
         return;
       }
 
@@ -183,5 +222,6 @@ export function updateCartAndWishlistBadges() {
   if (cartCount) cartCount.textContent = cart.allItemsCount;
   if (wishlistCount) wishlistCount.textContent = wishlist.allItemsCount;
   if (cartCountMobile) cartCountMobile.textContent = cart.allItemsCount;
-  if (wishlistCountMobile) wishlistCountMobile.textContent = wishlist.allItemsCount;
+  if (wishlistCountMobile)
+    wishlistCountMobile.textContent = wishlist.allItemsCount;
 }
