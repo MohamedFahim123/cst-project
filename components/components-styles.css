@@ -101,33 +101,6 @@ button:active {
   font-weight: 600;
 }
 
-.footerContainer {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  background-color: var(--bg-main-color);
-  color: #fff;
-  font-size: 0.9rem;
-  padding: 20px;
-  min-height: 61px;
-}
-
-.footerContainer a {
-  text-decoration: none;
-  transition: color 0.3s ease;
-  color: #fff;
-  -webkit-transition: color 0.3s ease;
-  -moz-transition: color 0.3s ease;
-  -ms-transition: color 0.3s ease;
-  -o-transition: color 0.3s ease;
-}
-.footerContainer .col-md-6:first-child {
-  margin-bottom: 20px;
-}
-.footerContainer {
-  font-size: 14px !important;
-}
-
 .input-group .form-control {
   border-right: 0;
 }
@@ -338,23 +311,9 @@ button:active {
   animation-iteration-count: 2;
 }
 
-@media (min-width: 768px) {
-  .footerContainer .col-md-6 {
-    text-align: left !important;
-  }
-
-  .payment-methods,
-  .footer-links {
-    justify-content: flex-end;
-  }
-}
-
 @media (min-width: 992px) {
   .delivery-info {
     display: block;
-  }
-  .footerContainer .col-md-6:first-child {
-    margin-bottom: 0px;
   }
   .offcanvas {
     display: none !important;

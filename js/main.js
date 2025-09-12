@@ -15,11 +15,16 @@ import { initializeSellers } from "../pages/admin-dashboard/sellers/sellers.js";
 import { initializeCart } from "../pages/cart/mycart.js";
 import { initializeHome } from "../pages/home/home.js";
 import { initializeLogin } from "../pages/login/login.js";
-import displayProductSummary, { updatedCreditCaerd } from "../pages/payment/payment.js";
+import displayProductSummary, {
+  updatedCreditCaerd,
+} from "../pages/payment/payment.js";
 import { initializeRegister } from "../pages/register/register.js";
 import { initializeProductDetailsFunctions } from "../pages/shop/product-details/product-details.js";
 import { initializeShop } from "../pages/shop/shop.js";
-import { initializeWishlist, refreshWishlist } from "../pages/wishlist/mywishlist.js";
+import {
+  initializeWishlist,
+  refreshWishlist,
+} from "../pages/wishlist/mywishlist.js";
 import { router } from "./router.js";
 import { cartAndWishlistLogic } from "./shred.js";
 import { initializeProducts } from "../pages/admin-dashboard/products/products.js";
@@ -163,7 +168,11 @@ document.addEventListener("click", (e) => {
     const pathname = `/${user.role.toLowerCase()}-dashboard/profile`;
     router.navigate(pathname.trim());
   }
-  if (e.target.id == "arrowUp" || e.target.classList.contains("containerArrow") || e.target.classList.contains("arrowUpIcon")) {
+  if (
+    e.target.id == "arrowUp" ||
+    e.target.classList.contains("containerArrow") ||
+    e.target.classList.contains("arrowUpIcon")
+  ) {
     window.scrollTo(0, 0);
   }
 });
@@ -178,41 +187,13 @@ window.addEventListener("scroll", () => {
       const scrollY = window.scrollY;
 
       if (!router.getPath().includes("dashboard")) {
-        header.classList.toggle("navbar-fixed", scrollY > 120);
+        header.classList.toggle("navbar-fixed", scrollY > 200);
       }
 
-      arrow.classList.toggle("visible", scrollY > 150);
+      arrow.classList.toggle("visible", scrollY > 200);
 
       ticking = false;
     });
     ticking = true;
   }
-});
-document.addEventListener("DOMContentLoaded", function () {
-  const imageWrappers = document.querySelectorAll(".image-wrapper");
-
-  imageWrappers.forEach((wrapper) => {
-    const img = wrapper.querySelector("img");
-
-    // If image is already loaded, skip
-    if (img.complete && img.naturalHeight !== 0) {
-      wrapper.classList.add("loaded");
-      return;
-    }
-
-    // Load image
-    img.onload = function () {
-      wrapper.classList.add("loaded");
-    };
-
-    // In case the image is already in cache
-    if (img.complete) {
-      wrapper.classList.add("loaded");
-    }
-
-    // Trigger image load (if not already loading)
-    if (img.src && !img.complete) {
-      img.src = img.src;
-    }
-  });
 });
