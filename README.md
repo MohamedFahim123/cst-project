@@ -102,18 +102,18 @@ The application comes with pre-configured users for testing:
 
 **Admin Account:**
 
-- Email: `admin@example.com`
-- Password: `admin123`
+- Email: `mohamed@fahim.com`
+- Password: `mohamed1`
 
 **Customer Account:**
 
 - Email: `customer@example.com`
-- Password: `customer123`
+- Password: `customer1`
 
 **Seller Account:**
 
 - Email: `seller@example.com`
-- Password: `seller123`
+- Password: `seller12`
 
 ## 💻 **Usage**
 
