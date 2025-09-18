@@ -13,6 +13,7 @@ let currentPage = 1;
 let itemsPerPage = 10;
 let filteredProducts = [];
 
+// !
 const productCard = (product) => {
   return product.stock > 0
     ? `
@@ -70,6 +71,7 @@ const productCard = (product) => {
     : "";
 };
 
+// !
 const initializeProductCards = () => {
   document.addEventListener("click", (e) => {
     const productCard = e.target.closest(".product-card");
@@ -90,11 +92,13 @@ const initializeProductCards = () => {
   });
 };
 
+// !
 const navigateToProductDetails = (productId) => {
   localStorage.setItem("curr-product", productId);
   router.navigate("/shop/product-details");
 };
 
+// !
 const renderProducts = (products) => {
   filteredProducts = products.filter((product) => product.stock > 0);
   const startIdx = (currentPage - 1) * itemsPerPage;
@@ -172,6 +176,7 @@ const filterProductAndRenderThem = (_localFilters) => {
   renderProducts(filteredProducts.filter((product) => product.stock > 0));
 };
 
+// !
 const handleFilterProductsIfExistFilters = () => {
   const localFilters = JSON.parse(localStorage.getItem("curr-filters"));
   if (localFilters) {

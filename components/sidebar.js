@@ -191,9 +191,7 @@ export const handleRenderingSideBarLinks = async (path) => {
   sidebarLinks.forEach((link) => {
     return (sideLinksContainer.innerHTML += `
       <li class="pf-nav-item">
-        <a href=${link.path} class="pf-nav-link ${
-      path === link.path ? "active" : ""
-    }" data-link data-tab="orders">
+        <a href=${link.path} class="pf-nav-link ${path === link.path ? "active" : ""}" data-link data-tab="orders">
           ${link.icon || ""}
           <span class="pf-nav-text">${link.title}</span>
         </a>

@@ -180,6 +180,8 @@
 /* Main Content Styles */
 .pf-main-content {
   padding-left: 1rem;
+  position: relative;
+  z-index: 1;
 }
 
 .pf-content-header {

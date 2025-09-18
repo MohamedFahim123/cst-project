@@ -245,3 +245,6 @@ body:not(.dashboard-page) #footer {
     gap: 10px;
   }
 }
+.modal-backdrop {
+  display: none !important;
+}
