@@ -20,16 +20,11 @@
         <!-- Empty Cart Message -->
         <div
           class="empty-cart text-center mx-auto w-50 border border-1 border-secondary-subtle p-3"
-          id="empty-cart-message"
-        >
+          id="empty-cart-message">
           <i class="fas fa-shopping-cart mb-2"></i>
           <h4 class="text-muted">Your cart is empty</h4>
-          <p class="text-muted mb-2">
-            Looks like you haven't added any items to your cart yet.
-          </p>
-          <a href="#/shop" data-link class="btn btn-outline-success mt-2"
-            >Continue Shopping</a
-          >
+          <p class="text-muted mb-2">Looks like you haven't added any items to your cart yet.</p>
+          <a href="#/shop" data-link class="btn btn-outline-success mt-2">Continue Shopping</a>
         </div>
 
         <!-- Cart Content -->
@@ -54,15 +49,8 @@
                 </table>
               </div>
               <div class="d-flex justify-content-between mt-3">
-                <a href="#/shop" data-link class="boxed-btn"
-                  >Continue Shopping</a
-                >
-                <button
-                  id="clear-cart"
-                  class="boxed-btn btn btn-outline-danger"
-                >
-                  Clear Cart
-                </button>
+                <a href="#/shop" data-link class="boxed-btn">Continue Shopping</a>
+                <button id="clear-cart" class="boxed-btn btn btn-outline-danger">Clear Cart</button>
               </div>
             </div>
 
@@ -91,9 +79,7 @@
                   </tbody>
                 </table>
                 <div class="cart-buttons mt-3">
-                  <a href="#/checkout" data-link class="boxed-btn bg-success"
-                    >Check Out</a
-                  >
+                  <a href="#/checkout" data-link class="boxed-btn bg-success">Check Out</a>
                 </div>
               </div>
             </div>
@@ -103,40 +89,22 @@
     </div>
 
     <!-- Delete Confirmation Modal -->
-    <div
-      class="modal fade"
-      id="deleteCartModal"
-      tabindex="-1"
-      aria-hidden="true"
-    >
+    <div class="modal fade" id="deleteCartModal" tabindex="-1" aria-hidden="true">
+      <div class="model-overlay"></div>
+
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title">Confirm Delete</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <p>
-              Are you sure you want to delete all items in this cart?
-            </p>
+            <p>Are you sure you want to delete all items in this cart?</p>
             <input type="hidden" id="deleteCartId" />
           </div>
           <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Cancel
-            </button>
-            <button type="button" class="btn btn-danger" id="confirmDeleteCart">
-              Delete
-            </button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-danger" id="confirmDeleteCart">Delete</button>
           </div>
         </div>
       </div>
