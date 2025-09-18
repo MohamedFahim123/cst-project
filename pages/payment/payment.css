@@ -6,9 +6,11 @@
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
   padding: 28px;
 }
-body{
-  position: relative;   
+
+body {
+  position: relative;
 }
+
 .order-summary h4 {
   font-weight: 700;
   color: var(--bg-main-color);
@@ -109,12 +111,9 @@ body{
   color: red;
   font-size: 12px;
   display: none;
-  
 }
 
 /*  new updated credit card */
-
-
 
 /* Wrapper */
 .wrapper_creditCart {
@@ -124,6 +123,7 @@ body{
   min-height: 100vh;
   background: #edf2f7;
   font-family: "Roboto", sans-serif;
+  margin-bottom: 90px;
 }
 
 /* Card Form Container */
@@ -131,7 +131,7 @@ body{
   width: 650px;
   background: #fff;
   border-radius: 15px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   padding: 20px !important;
   margin: 50px 0;
 }
@@ -330,8 +330,7 @@ body{
   background: var(--bg-main-color);
 }
 
-
-.card-form_creditCart .card-form__inner{
+.card-form_creditCart .card-form__inner {
   padding: 0px 25px 25px 25px;
 }
 
@@ -356,16 +355,24 @@ body{
 }
 
 .card-form_creditCart .card-form__col.-cvv {
-  flex: 0.8; 
+  flex: 0.8;
 }
 
-
-@media (max-width:670px){
-  .card-form_creditCart{
+@media (max-width: 670px) {
+  .card-form_creditCart {
     width: 400px;
   }
-  .card-form_creditCart .card-item{
+  .card-form_creditCart .card-item {
     width: 380px;
     height: 200px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .card-form_creditCart .card-form__row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .card-form_creditCart {
+    width: 100%;
   }
 }

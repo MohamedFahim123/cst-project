@@ -38,8 +38,7 @@
   --pf-info: #4299e1;
   --pf-white: #ffffff;
   --pf-black: #000000;
-  --pf-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --pf-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   --pf-radius: 12px;
   --pf-transition: all 0.3s ease;
 }
@@ -62,6 +61,10 @@ body {
 
 #app {
   min-height: calc(100vh - var(--footer-height));
+  transform: translateY(90px);
+}
+footer {
+  transform: translateY(90px);
 }
 
 img {
@@ -157,8 +160,7 @@ ul {
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  background: radial-gradient(10.08px at bottom right, #0000 94%, currentColor)
-      top left,
+  background: radial-gradient(10.08px at bottom right, #0000 94%, currentColor) top left,
     radial-gradient(10.08px at bottom left, #0000 94%, currentColor) top right,
     radial-gradient(10.08px at top right, #0000 94%, currentColor) bottom left,
     radial-gradient(10.08px at top left, #0000 94%, currentColor) bottom right;

@@ -362,3 +362,8 @@ button:active {
     -o-transform: translateY(0);
   }
 }
+@media screen and (max-width: 400px) {
+  .hidden-smallScreen {
+    display: none !important;
+  }
+}

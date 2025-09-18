@@ -15,16 +15,11 @@ import { initializeSellers } from "../pages/admin-dashboard/sellers/sellers.js";
 import { initializeCart } from "../pages/cart/mycart.js";
 import { initializeHome } from "../pages/home/home.js";
 import { initializeLogin } from "../pages/login/login.js";
-import displayProductSummary, {
-  updatedCreditCaerd,
-} from "../pages/payment/payment.js";
+import displayProductSummary, { updatedCreditCaerd } from "../pages/payment/payment.js";
 import { initializeRegister } from "../pages/register/register.js";
 import { initializeProductDetailsFunctions } from "../pages/shop/product-details/product-details.js";
 import { initializeShop } from "../pages/shop/shop.js";
-import {
-  initializeWishlist,
-  refreshWishlist,
-} from "../pages/wishlist/mywishlist.js";
+import { initializeWishlist, refreshWishlist } from "../pages/wishlist/mywishlist.js";
 import { router } from "./router.js";
 import { cartAndWishlistLogic } from "./shred.js";
 import { initializeProducts } from "../pages/admin-dashboard/products/products.js";
@@ -177,23 +172,16 @@ document.addEventListener("click", (e) => {
   }
 });
 
-let ticking = false;
-
 window.addEventListener("scroll", () => {
-  if (!ticking) {
-    window.requestAnimationFrame(() => {
-      const header = document.getElementById("navbar-nav");
-      const arrow = document.getElementById("arrowUp");
-      const scrollY = window.scrollY;
+  window.requestAnimationFrame(() => {
+    // const header = document.getElementById("navbar-nav");
+    const arrow = document.getElementById("arrowUp");
+    const scrollY = window.scrollY;
 
-      if (!router.getPath().includes("dashboard")) {
-        header.classList.toggle("navbar-fixed", scrollY > 200);
-      }
+    // if (!router.getPath().includes("dashboard")) {
+    //   header.classList.toggle("navbar-fixed", scrollY > 200);
+    // }
 
-      arrow.classList.toggle("visible", scrollY > 200);
-
-      ticking = false;
-    });
-    ticking = true;
-  }
+    arrow.classList.toggle("visible", scrollY > 200);
+  });
 });
